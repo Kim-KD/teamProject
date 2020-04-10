@@ -9,21 +9,14 @@
 
 /* Template default CSS
 /*----------------------------------------*/
-
-html,
-body {
+html, body {
 	height: 100%;
 	font-family: "Roboto", sans-serif;
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
 	margin: 0;
 	color: #322429;
 	font-weight: 700;
@@ -63,21 +56,16 @@ img {
 	max-width: 100%;
 }
 
-input:focus,
-select:focus,
-button:focus,
-textarea:focus {
+input:focus, select:focus, button:focus, textarea:focus {
 	outline: none;
 }
 
-a:hover,
-a:focus {
+a:hover, a:focus {
 	text-decoration: none;
 	outline: none;
 }
 
-ul,
-ol {
+ul, ol {
 	padding: 0;
 	margin: 0;
 }
@@ -85,7 +73,6 @@ ol {
 /*---------------------
 Helper CSS
  -----------------------*/
-
 .section-title {
 	text-align: center;
 	margin-bottom: 65px;
@@ -111,16 +98,9 @@ Helper CSS
 	padding-bottom: 110px;
 }
 
-.text-white h1,
-.text-white h2,
-.text-white h3,
-.text-white h4,
-.text-white h5,
-.text-white h6,
-.text-white p,
-.text-white span,
-.text-white li,
-.text-white a {
+.text-white h1, .text-white h2, .text-white h3, .text-white h4,
+	.text-white h5, .text-white h6, .text-white p, .text-white span,
+	.text-white li, .text-white a {
 	color: #fff;
 }
 
@@ -129,7 +109,6 @@ Commom elements
  -----------------------*/
 
 /* buttons */
-
 .site-btn {
 	display: inline-block;
 	border: none;
@@ -160,7 +139,6 @@ Commom elements
 }
 
 /* Preloder */
-
 #preloder {
 	position: fixed;
 	width: 100%;
@@ -184,49 +162,157 @@ Commom elements
 	-webkit-animation: loader 0.8s linear infinite;
 }
 
-@keyframes loader {
-	0% {
-		-webkit-transform: rotate(0deg);
-		transform: rotate(0deg);
-		border: 4px solid #f44336;
-		border-left-color: transparent;
-	}
-	50% {
-		-webkit-transform: rotate(180deg);
-		transform: rotate(180deg);
-		border: 4px solid #673ab7;
-		border-left-color: transparent;
-	}
-	100% {
-		-webkit-transform: rotate(360deg);
-		transform: rotate(360deg);
-		border: 4px solid #f44336;
-		border-left-color: transparent;
-	}
+@
+keyframes loader { 0% {
+	-webkit-transform: rotate(0deg);
+	transform: rotate(0deg);
+	border: 4px solid #f44336;
+	border-left-color: transparent;
 }
 
-@-webkit-keyframes loader {
-	0% {
-		-webkit-transform: rotate(0deg);
-		border: 4px solid #f44336;
-		border-left-color: transparent;
-	}
-	50% {
-		-webkit-transform: rotate(180deg);
-		border: 4px solid #673ab7;
-		border-left-color: transparent;
-	}
-	100% {
-		-webkit-transform: rotate(360deg);
-		border: 4px solid #f44336;
-		border-left-color: transparent;
-	}
+50%
+{
+-webkit-transform
+:
+ 
+rotate
+(180deg);
+
+		
+transform
+:
+ 
+rotate
+(180deg);
+
+		
+border
+:
+ 
+4
+px
+ 
+solid
+ 
+#673ab7
+;
+
+		
+border-left-color
+:
+ 
+transparent
+;
+
+	
+}
+100%
+{
+-webkit-transform
+:
+ 
+rotate
+(360deg);
+
+		
+transform
+:
+ 
+rotate
+(360deg);
+
+		
+border
+:
+ 
+4
+px
+ 
+solid
+ 
+#f44336
+;
+
+		
+border-left-color
+:
+ 
+transparent
+;
+
+	
+}
+}
+@
+-webkit-keyframes loader { 0% {
+	-webkit-transform: rotate(0deg);
+	border: 4px solid #f44336;
+	border-left-color: transparent;
+}
+
+50%
+{
+-webkit-transform
+:
+ 
+rotate
+(180deg);
+
+		
+border
+:
+ 
+4
+px
+ 
+solid
+ 
+#673ab7
+;
+
+		
+border-left-color
+:
+ 
+transparent
+;
+
+	
+}
+100%
+{
+-webkit-transform
+:
+ 
+rotate
+(360deg);
+
+		
+border
+:
+ 
+4
+px
+ 
+solid
+ 
+#f44336
+;
+
+		
+border-left-color
+:
+ 
+transparent
+;
+
+	
+}
 }
 
 /*------------------
 Header section
  ---------------------*/
-
 .header-section {
 	position: absolute;
 	width: 100%;
@@ -274,8 +360,7 @@ Header section
 	transition: 0.3s;
 }
 
-.main-menu li a:hover,
-.main-menu li a.active {
+.main-menu li a:hover, .main-menu li a.active {
 	border-bottom: 2px solid #ff000a;
 }
 
@@ -365,7 +450,6 @@ Header section
 /* ----------------
 Hero section
  -------------------*/
-
 .hero-section {
 	height: 824px;
 	padding-top: 325px;
@@ -464,7 +548,6 @@ Hero section
 /* ----------------
 Intro section
  -------------------*/
-
 .intro-first {
 	margin-bottom: 98px;
 }
@@ -499,7 +582,6 @@ Intro section
 /* ----------------
 Hero section
  -------------------*/
-
 .property-section {
 	padding-bottom: 52px;
 }
@@ -557,7 +639,6 @@ Hero section
 /* ----------------
 Loan section
  -------------------*/
-
 .loan-section {
 	padding: 0 54px;
 }
@@ -589,7 +670,6 @@ Loan section
 /* ----------------
 Footer section
  -------------------*/
-
 .footer-section {
 	padding: 110px 0 0;
 	background: #22242b;
@@ -647,7 +727,6 @@ Footer section
 /* ----------------
 Other Pages
  -------------------*/
-
 .page-top-section {
 	height: 410px;
 	padding: 152px 15px 0;
@@ -661,7 +740,6 @@ Other Pages
 /* ----------------
 About page
  -------------------*/
-
 .sell-section {
 	padding: 0 54px;
 }
@@ -740,7 +818,6 @@ About page
 /* ----------------
 Blog page
  -------------------*/
-
 .blog-item {
 	margin-bottom: 58px;
 }
@@ -799,7 +876,6 @@ Blog page
 /* -------------------
  Search Result Page
  ----------------------*/
-
 .search-result-map {
 	height: 100%;
 	background: #ddd;
@@ -882,7 +958,6 @@ Blog page
 /* ---------------------
 Single Property Page
  ------------------------*/
-
 .single-property .sp-image {
 	position: relative;
 	margin-bottom: 50px;
@@ -1106,7 +1181,6 @@ Single Property Page
 /* ----------------
 Contact Page
  ---------------------*/
-
 .contact-section {
 	padding: 100px 0;
 }
@@ -1158,8 +1232,7 @@ Contact Page
 	text-align: center;
 }
 
-.contact-form input,
-.contact-form textarea {
+.contact-form input, .contact-form textarea {
 	width: 100%;
 	height: 56px;
 	padding: 0 23px;
@@ -1184,18 +1257,15 @@ Contact Page
 /* ----------------
 Responsive
  ---------------------*/
-
-@media (min-width: 1200px) {
+@media ( min-width : 1200px) {
 	.container {
 		max-width: 1176px;
 	}
 }
 
 /* Medium screen : 992px. */
-
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
-	.section-title h2,
-	.about-text h2 {
+	.section-title h2, .about-text h2 {
 		font-size: 65px;
 	}
 	.main-menu li a {
@@ -1226,7 +1296,6 @@ Responsive
 }
 
 /* Tablet :768px. */
-
 @media only screen and (min-width: 768px) and (max-width: 991px) {
 	.header-section {
 		padding: 0 15px;
@@ -1253,8 +1322,7 @@ Responsive
 	.search-type .st-item input:checked+label {
 		padding: 11px 15px;
 	}
-	.section-title h2,
-	.about-text h2 {
+	.section-title h2, .about-text h2 {
 		font-size: 55px;
 	}
 	.loan-form {
@@ -1293,7 +1361,6 @@ Responsive
 }
 
 /* Large Mobile :480px. */
-
 @media only screen and (max-width: 767px) {
 	.header-section {
 		padding: 0 15px;
@@ -1378,14 +1445,12 @@ Responsive
 	.search-input {
 		display: block;
 	}
-	.search-input input,
-	.search-input.si-v-2 input {
+	.search-input input, .search-input.si-v-2 input {
 		width: 100%;
 		padding: 0 20px;
 		margin-bottom: 20px;
 	}
-	.section-title h2,
-	.about-text h2 {
+	.section-title h2, .about-text h2 {
 		font-size: 45px;
 	}
 	.loan-section {
@@ -1442,10 +1507,8 @@ Responsive
 }
 
 /* Small Mobile :320px. */
-
 @media only screen and (max-width: 479px) {
-	.section-title h2,
-	.about-text h2 {
+	.section-title h2, .about-text h2 {
 		font-size: 38px;
 	}
 	.search-type label:after {
