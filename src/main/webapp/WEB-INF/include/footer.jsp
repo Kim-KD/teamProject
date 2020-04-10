@@ -53,7 +53,7 @@
 					<div class="footer-widger">
 						<h2>For Renters</h2>
 						<ul>
-							<li><a href="#">Rent with us</a></li>
+							<li><a href="#">Rent 1with us</a></li>
 							<li><a href="#">Guidelines</a></li>
 							<li><a href="#">Apartments</a></li>
 							<li><a href="#">Flats</a></li>
