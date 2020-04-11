@@ -40,12 +40,12 @@
 
 	<!-- Header Section -->
 	<header class="header-section header-bg-2">
-		<a href="index" class="site-logo">
-			<img src="assets/img/logo.png" alt="">
+		<a href="index.html" class="site-logo">
+			<img src="img/logo.png" alt="">
 		</a>
 		<nav class="header-nav">
 			<ul class="main-menu">
-				<li><a href="index" class="active">Home</a></li>
+				<li><a href="index">Home</a></li>
 				<li><a href="about_us">메뉴1</a></li>
 				<li><a href="page1">메뉴2</a></li>
 				<li><a href="page2">메뉴3</a>	</li>
@@ -68,40 +68,39 @@
 	</header>
 	<!-- Header Section end -->
 
-	<!-- Hero Section end -->
-	<section class="hero-section set-bg" data-setbg="assets/img/hero-bg.jpg">
-		<div class="container">
-			<div class="hero-warp">
-				<form class="main-search-form">
-					<div class="search-type">
-						<div class="st-item">
-							<input type="radio" name="st" id="buy" checked>
-							<label for="buy">검색1</label>
-						</div>
-						<div class="st-item">
-							<input type="radio" name="st" id="rent">
-							<label for="rent">검색2</label>
-						</div>
-						<div class="st-item">
-							<input type="radio" name="st" id="sell">
-							<label for="sell">검색3</label>
-						</div>
-						<div class="st-item">
-							<input type="radio" name="st" id="property">
-							<label for="property">검색4</label>
-						</div>
-						<div class="st-item">
-							<input type="radio" name="st" id="agents">
-							<label for="agents">검색5</label>
-						</div>                                                           
+	<!-- Page top Section end -->
+	<section class="page-top-section set-bg" data-setbg="assets/img/page-top-bg.jpg">
+		<div class="page-top-warp">
+			<form class="main-search-form">
+				<div class="search-type">
+					<div class="st-item">
+						<input type="radio" name="st" id="buy" checked>
+						<label for="buy">검색1</label>
 					</div>
-					<div class="search-input">
-						<input type="text" placeholder="Search by state, postcode or suburb">
-						<button class="site-btn">Search</button>
+					<div class="st-item">
+						<input type="radio" name="st" id="rent">
+						<label for="rent">검색2</label>
 					</div>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. </p>
-				</form>
-			</div>
+					<div class="st-item">
+						<input type="radio" name="st" id="sell">
+						<label for="sell">검색3</label>
+					</div>
+					<div class="st-item">
+						<input type="radio" name="st" id="property">
+						<label for="property">검색4</label>
+					</div>
+					<div class="st-item">
+						<input type="radio" name="st" id="agents">
+						<label for="agents">검색5</label>
+					</div>                                                           
+				</div>
+				<div class="search-input si-v-2">
+					<input type="text" placeholder="Search by state, postcode or suburb">
+					<button class="site-btn" type="submit">Search</button>
+					<button class="site-btn sb-light">Show Filters</button>
+				</div>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. </p>
+			</form>
 		</div>
 	</section>
 	<!-- Page top Section end -->
