@@ -40,8 +40,8 @@
 
 	<!-- Header Section -->
 	<header class="header-section header-bg-2">
-		<a href="index.html" class="site-logo">
-			<img src="img/logo.png" alt="">
+		<a href="index" class="site-logo">
+			<img src="assets/img/logo.png" alt="">
 		</a>
 		<nav class="header-nav">
 			<ul class="main-menu">
