@@ -13,13 +13,13 @@
 	</bean>
 	
 	<!-- sqlSessionFactory는 DB 쿼리문 전송을 위한 명령어  -->
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<!-- <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 	
-	<!-- myBatis 사용을 위한 설정 파일이 있는 위치  -->
+	myBatis 사용을 위한 설정 파일이 있는 위치 
 		<property name="configLocation" value="classpath:/mybatis-config.xml" />
 	
-	<!-- 쿼리문이 들어있는 SQL파일의 위치  -->
+	쿼리문이 들어있는 SQL파일의 위치 
 		<property name="mapperLocations" value="classpath:/sql_mapper/*.xml" />
 	</bean>
 	
@@ -29,6 +29,6 @@
 	
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
-	</bean>
+	</bean> -->
 	
 </beans>
