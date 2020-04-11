@@ -3,19 +3,11 @@
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
  */
 @font-face {
-	font-family: 'JalnanOTF';
-	/* src: url('../icon-fonts/fontawesome-webfont.eot?v=4.7.0');
-	src: url('../icon-fonts/fontawesome-webfont.eot?#iefix&v=4.7.0')
-		format('embedded-opentype'),
-		url('../icon-fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2'),
-		url('../icon-fonts/fontawesome-webfont.woff?v=4.7.0') format('woff'),
-		url('../icon-fonts/fontawesome-webfont.ttf?v=4.7.0')
-		format('truetype'),
-		url('../icon-fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular')
-		format('svg'); */
-	src : url('../icon-fonts/JalnanOTF.otf') format('otf');
+	font-family: 'yg-jalnan';
+	src:url('../icon-fonts/JalnanOTF.otf')
+		format('woff');
 	font-weight: normal;
-	font-style: normal
+	font-style: normal;
 }
 
 .fa {
@@ -132,9 +124,18 @@
 
 100%{
 -webkit-transform
+
+
 :rotate(359deg)
-;transform
+
+
+;
+transform
+
+
 :rotate(359deg)
+
+
 }
 }
 @
@@ -145,9 +146,18 @@ keyframes fa-spin { 0%{
 
 100%{
 -webkit-transform
+
+
 :rotate(359deg)
-;transform
+
+
+;
+transform
+
+
 :rotate(359deg)
+
+
 }
 }
 .fa-rotate-90 {

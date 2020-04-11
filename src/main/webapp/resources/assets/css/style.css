@@ -11,7 +11,7 @@
 /*----------------------------------------*/
 html, body {
 	height: 100%;
-	font-family: "JalnanOTF", sans-serif;
+	font-family: "yg-jalnan", sans-serif;
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
 }
@@ -134,7 +134,7 @@ Commom elements
 
 .site-btn.sb-big {
 	font-weight: 700;
-	font-family: "JalnanOTF", sans-serif;
+	font-family: "yg-jalnan", sans-serif;
 	padding: 21px 48px;
 }
 
@@ -352,7 +352,7 @@ Header section
 	display: block;
 	font-size: 16px;
 	color: #ffffff;
-	font-family: "JalnanOTF", sans-serif;
+	font-family: "yg-jalnan", sans-serif;
 	padding: 0 1px 5px;
 	border-bottom: 2px solid transparent;
 	margin-right: 45px;
@@ -431,7 +431,7 @@ Header section
 .header-right a {
 	color: #fff;
 	font-size: 16px;
-	font-family: "JalnanOTF", sans-serif;
+	font-family: "yg-jalnan", sans-serif;
 	display: inline-block;
 }
 
@@ -461,7 +461,7 @@ Hero section
 }
 
 .main-search-form {
-	font-family: "JalnanOTF", sans-serif;
+	font-family: "yg-jalnan", sans-serif;
 }
 
 .main-search-form p {
@@ -496,7 +496,7 @@ Hero section
 
 .search-type label {
 	position: relative;
-	font-family: "JalnanOTF", sans-serif;
+	font-family: "yg-jalnan", sans-serif;
 	font-weight: 700;
 	color: #fff;
 	padding: 11px 10px;
@@ -720,7 +720,7 @@ Footer section
 	font-size: 12px;
 	text-transform: uppercase;
 	color: #676767;
-	font-family: "JalnanOTF", sans-serif;
+	font-family: "yg-jalnan", sans-serif;
 	padding: 5px 0 35px;
 }
 
@@ -776,7 +776,7 @@ About page
 }
 
 .sell-item h3 {
-	font-family: "JalnanOTF", sans-serif;
+	font-family: "yg-jalnan", sans-serif;
 	font-weight: 900;
 	margin-bottom: 20px;
 }
@@ -906,7 +906,7 @@ Blog page
 .search-results .filter-btn li {
 	display: inline-block;
 	margin-right: 38px;
-	font-family: "JalnanOTF", sans-serif;
+	font-family: "yg-jalnan", sans-serif;
 	padding: 15px;
 	font-size: 16px;
 	font-weight: 700;
