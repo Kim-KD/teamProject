@@ -5,7 +5,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-6 order-lg-2">
-				<img src="main_css/img/about/4.jpg" alt="">
+				<img src="assets/img/about/4.jpg" alt="">
 			</div>
 			<div class="col-lg-6 order-lg-1">
 				<div class="about-text">
@@ -21,7 +21,7 @@
 
 <!-- Sell Section -->
 <section class="sell-section ">
-	<div class="sell-warp spad set-bg" data-setbg="main_css/img/sell-bg.jpg">
+	<div class="sell-warp spad set-bg" data-setbg="assets/img/sell-bg.jpg">
 		<div class="container text-white">
 			<div class="section-title">
 				<h2>Selling your place is easy</h2>
@@ -66,7 +66,7 @@
 		<div class="row">
 			<div class="col-md-4">
 				<div class="agent-item">
-					<img src="main_css/img/agents/1.jpg" alt="">
+					<img src="assets/img/agents/1.jpg" alt="">
 					<div class="ai-text">
 						<h4>Christinne James</h4>
 						<p>Fusce lobortis a enim eget tempus. Class aptent taciti sociosqu ad litora. Donec eget efficitur ex. Donec eget dolor vitae eros feugiat tristique id vitae massa. Proin vulputate congue rutrum.</p>
@@ -76,7 +76,7 @@
 			</div>
 			<div class="col-md-4">
 				<div class="agent-item">
-					<img src="main_css/img/agents/2.jpg" alt="">
+					<img src="assets/img/agents/2.jpg" alt="">
 					<div class="ai-text">
 						<h4>Davina Brown</h4>
 						<p>Fusce lobortis a enim eget tempus. Class aptent taciti sociosqu ad litora. Donec eget efficitur ex. Donec eget dolor vitae eros feugiat tristique id vitae massa. Proin vulputate congue rutrum.</p>
@@ -86,7 +86,7 @@
 			</div>
 			<div class="col-md-4">
 				<div class="agent-item">
-					<img src="main_css/img/agents/3.jpg" alt="">
+					<img src="assets/img/agents/3.jpg" alt="">
 					<div class="ai-text">
 						<h4>Michael Smith</h4>
 						<p>Fusce lobortis a enim eget tempus. Class aptent taciti sociosqu ad litora. Donec eget efficitur ex. Donec eget dolor vitae eros feugiat tristique id vitae massa. Proin vulputate congue rutrum.</p>

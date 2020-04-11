@@ -17,4 +17,19 @@ public class HomeController {
 		return "about_us";
 	}
 	
+	@RequestMapping(value = "/page1", method = RequestMethod.GET)
+	public String page1() {
+		return "page1";
+	}
+	
+	@RequestMapping(value = "/page2", method = RequestMethod.GET)
+	public String page2() {
+		return "page2";
+	}
+	
+	@RequestMapping(value = "/page3", method = RequestMethod.GET)
+	public String page3() {
+		return "page3";
+	}
+	
 }
