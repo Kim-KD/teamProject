@@ -3,13 +3,12 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
-	<!-- Root Context: defines shared resources visible to all other web components -->
-	
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-		<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:XE" />
-		<property name="username" value="Team"/>
-		<property name="password" value="qwer1234"/>
+	<!-- MYSQL -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://3.22.138.158/3306" />
+		<property name="username" value="gh_master" />
+		<property name="password" value="ghpwd12#" />
 	</bean>
 	
 	<!-- sqlSessionFactory는 DB 쿼리문 전송을 위한 명령어  -->
