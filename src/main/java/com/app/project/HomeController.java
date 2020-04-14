@@ -37,4 +37,9 @@ public class HomeController {
 		return "page3";
 	}
 	
+	@RequestMapping(value = "/sign_up", method = RequestMethod.GET)
+	public String sign_up() {
+		return "sign_up/sign_up";
+	}
+	
 }
