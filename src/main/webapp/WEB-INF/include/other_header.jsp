@@ -47,16 +47,15 @@
 		</a>
 		<nav class="header-nav">
 			<ul class="main-menu">
-				<li><a href="index">Home</a></li>
-				<li><a href="about_us">메뉴1</a></li>
-				<li><a href="page1">메뉴2</a></li>
+				<li><a href="index" class="active">Home</a></li>
+				<li><a href="about_us">스탭 구인</a></li>
+				<li><a href="page1">게스트 하우스</a></li>
 				<li><a href="page2">메뉴3</a>	</li>
-				<li><a href="page3">메뉴4</a></li>
-				<li><a href="#">메뉴5</a>
+				<li><a href="page3">고객센터</a>
 					<ul class="sub-menu">
-						<li><a href="about-us.html">About Us</a></li>
-						<li><a href="search-result.html">Search Result</a></li>
-						<li><a href="single-property.html">Property</a></li>
+						<li><a href="#">QnA</a></li>
+						<li><a href="#">1:1 문의</a></li>
+						<li><a href="#">신고하기</a></li>
 					</ul>
 				</li>
 			</ul>
