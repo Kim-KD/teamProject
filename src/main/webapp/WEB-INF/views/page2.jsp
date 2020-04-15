@@ -14,14 +14,14 @@
 					<div class="row">
 						<div class="col-lg-8">
 							<div class="property-header">
-								<h3>2768 Clousson Road</h3>
-								<h5>Houston, TX 77002 </h5>
+								<h3>가격</h3>
+								<!-- <h5>Houston, TX 77002 </h5> -->
 							</div>
 						</div>
 						<div class="col-lg-4 text-left text-lg-right">
 							<div class="property-header">
-								<h3>$469,000</h3>
-								<p>3 Bedrooms Townhouse</p>
+								<h3>30,000원</h3>
+								<!-- <p>3 Bedrooms Townhouse</p> -->
 							</div>
 						</div>
 					</div>
@@ -29,10 +29,9 @@
 						<div class="row">
 							<div class="col-lg-7">
 								<div class="pi-metas">
-									<div class="pi-meta">3 Bed </div>
-									<div class="pi-meta">2 Baths</div>
-									<div class="pi-meta">1 Garage</div>
-									<div class="pi-meta">2849 SF</div>
+									<div class="pi-meta">도미토리룸</div>
+									<div class="pi-meta">더블룸</div>
+									<div class="pi-meta">트윈룸</div>
 								</div>
 							</div>
 							<div class="col-lg-5 text-left text-lg-right">
@@ -41,61 +40,63 @@
 						</div>
 					</div>
 					<div class="property-text">
-						<h4>Description</h4>
-						<p>Donec eget efficitur ex. Donec eget dolor vitae eros feugiat tristique id vitae massa. Proin vulputate congue rutrum. Fusce lobortis a enim eget tempus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse potenti. Ut gravida mattis magna, non varius lorem sodales nec. In libero orci, ornare non nisl a, auctor euismod purus. Morbi pretium interdum vestibulum. Fusce nec eleifend ipsum. Sed non blandit tellus. </p>
-						<h4>Details</h4>
-						<p>Proin vulputate congue rutrum. Fusce lobortis a enim eget tempus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse potenti. Ut gravida mattis magna, non varius lorem sodales nec. In libero orci, ornare non nisl a, auctor euismod purus. Morbi pretium interdum vestibulum. Fusce nec eleifend ipsum. Sed non blandit tellus. </p>
+						<h4>소개</h4>
+						<p>게스트하우스 소개글</p>
+						
+						<!-- <h4>상세 내용</h4>
+						<p>파티 정보 - ex) 파티는 7시 ~ 10시 까지 합니다<br>
+						소등 시간 - ex) 파티까 끝나고 11시 부터 소등시간입니다.</p> -->
 					</div>
 					<div class="property-feature">
 						<div class="row">
 							<div class="col-6 col-sm-4 col-md-3 col-lg-2">
 								<div class="pf-box">
-									<h6>House Type</h6>
-									<p>Family</p>
+									<h6>주차</h6>
+									<p>무료!</p>
 								</div>
 							</div>
 							<div class="col-6 col-sm-4 col-md-3 col-lg-2">
 								<div class="pf-box">
-									<h6>Stories</h6>
-									<p>3</p>
+									<h6>반려동물</h6>
+									<p>출입 불가</p>
 								</div>
 							</div>
 							<div class="col-6 col-sm-4 col-md-3 col-lg-2">
 								<div class="pf-box">
-									<h6>Year Built</h6>
-									<p>2008</p>
+									<h6>Wi-Fi</h6>
+									<p>무료!</p>
 								</div>
 							</div>
 							<div class="col-6 col-sm-4 col-md-3 col-lg-2">
 								<div class="pf-box">
-									<h6>A/C</h6>
-									<p>Central</p>
+									<h6>파티 시간</h6>
+									<p>7시 ~ 10시</p>
 								</div>
 							</div>
 							<div class="col-6 col-sm-4 col-md-3 col-lg-2">
 								<div class="pf-box">
-									<h6>Heating</h6>
-									<p>Forced Air</p>
+									<h6>소등 시간</h6>
+									<p>11시</p>
 								</div>
 							</div>
 							<div class="col-6 col-sm-4 col-md-3 col-lg-2">
 								<div class="pf-box">
-									<h6>Bathrooms</h6>
-									<p>2</p>
+									<h6>입실 시간</h6>
+									<p>2시</p>
 								</div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-6 col-sm-4 col-md-3 col-lg-2">
 								<div class="pf-box">
-									<h6>Pool</h6>
-									<p>Yes</p>
+									<h6>퇴실 시간</h6>
+									<p>11시</p>
 								</div>
 							</div>
 							<div class="col-6 col-sm-4 col-md-3 col-lg-2">
 								<div class="pf-box">
-									<h6>Fireplace</h6>
-									<p>No</p>
+									<h6>술</h6>
+									<p>Yes</p>
 								</div>
 							</div>
 							<div class="col-6 col-sm-4 col-md-3 col-lg-3">
@@ -127,26 +128,30 @@
 						</div>
 					</div>
 				</div>
-				<div class="video-item">
+				<!-- <div class="video-item">
 					<img src="assets/img/video-img.jpg" alt="">
 					<a href="https://www.youtube.com/watch?v=Sz_1tkcU0Co" class="video-play"><span class="i fa fa-play"></span></a>
-				</div>
+				</div> -->
 				<div class="loan-calculator">
-					<h4>Loan Calculator</h4>
+					<h4>후기</h4>
 					<div class="row">
-						<div class="col-md-4">
-							<input type="text" placeholder="Purchase Price" id="lc-price">
+						<div class="col-md-12">
+							<div class="loan-cal-result">후기 내용</div>
 						</div>
-						<div class="col-md-4">
+						<div class="col-md-12">
+						<i></i>
+							<input type="text" placeholder="후기를 작성해주세요~" id="lc-price">
+						</div>
+						<!-- <div class="col-md-4">
 							<input type="text" placeholder="Interest Rate" id="lc-interest">
 						</div>
 						<div class="col-md-4">
 							<input type="text" placeholder="Down Payment" id="lc-dpay">
-						</div>
+						</div> -->
+						
 						<div class="col-md-12">
-							<div class="loan-cal-result">Weekly Payments: <span id="lc-result">$0.00</span></div>
-							<div class="text-left text-sm-right">
-								<button class="site-btn sb-big" id="lc-submit">Apply for pre-Qualification</button>
+							<div class="text-left text-sm-center">
+								<button class="site-btn sb-big" id="lc-submit">등록</button>
 							</div>
 						</div>
 					</div>
@@ -156,10 +161,11 @@
 				<div class="agent-widget">
 					<img src="assets/img/agents/1.jpg" alt="">
 					<div class="aw-text">
-						<h4>Christinne James</h4>
-						<h6>Real Estate Agent</h6>
-						<p>Fusce lobortis a enim eget tempus. Class aptent taciti sociosqu ad litora. Donec eget efficitur ex. Donec eget dolor vitae eros feugiat tristique id vitae massa. </p>
-						<a href="#" class="readmore-btn">Contact the agent</a>
+						<h4>이름</h4>
+						<h6>게스트 하우스 이름</h6>
+						<p>연락처 : 010 - 0000 - 0000</p>
+						<p>주소 : 서울특별시 관악구 남부순환로 서울특별시 관악구 남부순환로</p>
+						<a href="#" class="readmore-btn">블로그 or 카페 or SNS 링크</a>
 					</div>
 				</div>
 				<div class="map-widget">
