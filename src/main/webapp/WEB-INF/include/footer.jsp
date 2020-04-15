@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!-- Footer Section -->
 	<footer class="footer-section">
 		<div class="container">
@@ -7,21 +9,23 @@
 						<div class="about-widget">
 							<div class="aw-text">
 								<img src="assets/img/footer-logo.png" alt="">
-								<p>Donec eget efficitur ex. Donec eget dolor vitae eros feugiat tristique id vitae massa. Proin vulputate cong ue rutrum. Fusce lobortis a enim eget tempus. </p>
-								<a href="#" class="site-btn">we are hiring</a>
+								<p><i class="fas fa-phone"></i>&emsp;010 - 000 - 0000</p>
+								<p><i class="fas fa-envelope">&emsp;test@test.com</i></p>
+								<p><i class="fas fa-location-arrow"></i>&emsp;관악구 남부순환로 144길 35<br>
+																		&emsp;&emsp;관악구 남부순환로 144길 35
+								</p>
+								<!-- <a href="#" class="site-btn">we are hiring</a> -->
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-2 col-md-3 col-sm-6">
 					<div class="footer-widger">
-						<h2>Company</h2>
+						<h2>회사 SNS</h2>
 						<ul>
-							<li><a href="#">About us</a></li>
-							<li><a href="#">Services</a></li>
-							<li><a href="#">Clients</a></li>
-							<li><a href="#">Testimonials</a></li>
-							<li><a href="#">Carrers</a></li>
+							<li><a href="#">페이스북</a></li>
+							<li><a href="#">인스타그램</a></li>
+							<li><a href="#">트위터</a></li>
 						</ul>
 					</div>
 				</div>
@@ -51,13 +55,12 @@
 				</div>
 				<div class="col-lg-2 col-md-3 col-sm-6">
 					<div class="footer-widger">
-						<h2>For Renters</h2>
+						<h2>고객센터</h2>
 						<ul>
-							<li><a href="#">Rent 1with us</a></li>
-							<li><a href="#">Guidelines</a></li>
-							<li><a href="#">Apartments</a></li>
-							<li><a href="#">Flats</a></li>
-							<li><a href="#">Houses</a></li>
+							<li><a href="#">1:1 문의</a></li>
+							<li><a href="#">환불 문의</a></li>
+							<li><a href="#">게시글 신고</a></li>
+							<li><a href="#">욕설 신고</a></li>
 						</ul>
 					</div>
 				</div>
@@ -68,9 +71,8 @@
 				<script>
 					document.write(new Date().getFullYear());
 				</script>
-				All rights reserved | This template is made with
-				<i class="fa fa-heart-o" aria-hidden="true"></i> by
-				<a href="#" target="_blank">Colorlib</a>
+				<i class="fas fa-heart" aria-hidden="true"></i> by
+				<a href="#" target="_blank">TEAMPROJECT</a>
 				<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 			</div>
 		</div>
