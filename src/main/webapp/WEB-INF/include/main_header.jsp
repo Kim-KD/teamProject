@@ -95,11 +95,11 @@
 					<div class="search-input">
 						<input type="text" placeholder="게이루 게스트하우스 검색">
 						<button class="site-btn">검색</button>
+						<button class="site-btn sb-light">상세 검색</button>
 					</div>
 					<!-- 게스트하우스 검색창 설명 -->
 					<!-- <p>게이루 게스트하우스 검색 </p> -->
-					<!-- 상세 검색 버튼 -->
-					<button class="site-btn">상세 검색</button>
+					
 				</form>
 			</div>
 		</div>

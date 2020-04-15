@@ -74,34 +74,35 @@
 	<section class="page-top-section set-bg" data-setbg="assets/img/page-top-bg.jpg">
 		<div class="page-top-warp">
 			<form class="main-search-form">
-				<div class="search-type">
-					<div class="st-item">
-						<input type="radio" name="st" id="buy" checked>
-						<label for="buy">검색1</label>
-					</div>
-					<div class="st-item">
-						<input type="radio" name="st" id="rent">
-						<label for="rent">검색2</label>
-					</div>
-					<div class="st-item">
-						<input type="radio" name="st" id="sell">
-						<label for="sell">검색3</label>
-					</div>
-					<div class="st-item">
-						<input type="radio" name="st" id="property">
-						<label for="property">검색4</label>
-					</div>
-					<div class="st-item">
-						<input type="radio" name="st" id="agents">
-						<label for="agents">검색5</label>
-					</div>                                                           
-				</div>
+			<!-- 검색 타입 -->
+<!-- 				<div class="search-type"> -->
+<!-- 					<div class="st-item"> -->
+<!-- 						<input type="radio" name="st" id="buy" checked> -->
+<!-- 						<label for="buy">검색1</label> -->
+<!-- 					</div> -->
+<!-- 					<div class="st-item"> -->
+<!-- 						<input type="radio" name="st" id="rent"> -->
+<!-- 						<label for="rent">검색2</label> -->
+<!-- 					</div> -->
+<!-- 					<div class="st-item"> -->
+<!-- 						<input type="radio" name="st" id="sell"> -->
+<!-- 						<label for="sell">검색3</label> -->
+<!-- 					</div> -->
+<!-- 					<div class="st-item"> -->
+<!-- 						<input type="radio" name="st" id="property"> -->
+<!-- 						<label for="property">검색4</label> -->
+<!-- 					</div> -->
+<!-- 					<div class="st-item"> -->
+<!-- 						<input type="radio" name="st" id="agents"> -->
+<!-- 						<label for="agents">검색5</label> -->
+<!-- 					</div>                                                            -->
+<!-- 				</div> -->
 				<div class="search-input si-v-2">
-					<input type="text" placeholder="Search by state, postcode or suburb">
-					<button class="site-btn" type="submit">Search</button>
-					<button class="site-btn sb-light">Show Filters</button>
+					<input type="text" placeholder="게이루 게스트 하우스 검색">
+					<button class="site-btn" type="submit">검색</button>
+					<button class="site-btn sb-light">상세 검색</button>
 				</div>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. </p>
+				<!-- <p>게이루 게스트 하우스 검색 설명 </p> -->
 			</form>
 		</div>
 	</section>
