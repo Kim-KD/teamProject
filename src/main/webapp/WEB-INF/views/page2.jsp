@@ -139,16 +139,9 @@
 							<div class="loan-cal-result">후기 내용</div>
 						</div>
 						<div class="col-md-12">
-						<i></i>
-							<input type="text" placeholder="후기를 작성해주세요~" id="lc-price">
-						</div>
-						<!-- <div class="col-md-4">
-							<input type="text" placeholder="Interest Rate" id="lc-interest">
-						</div>
-						<div class="col-md-4">
-							<input type="text" placeholder="Down Payment" id="lc-dpay">
-						</div> -->
-						
+							<!-- <input type="text" placeholder="후기를 작성해주세요~" id="lc-price"> -->
+							<textarea placeholder="후기를 작성해주세요~"></textarea>
+						</div>						
 						<div class="col-md-12">
 							<div class="text-left text-sm-center">
 								<button class="site-btn sb-big" id="lc-submit">등록</button>

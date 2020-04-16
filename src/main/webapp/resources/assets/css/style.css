@@ -1118,6 +1118,7 @@ Single Property Page
 }
 
 .loan-calculator h4 {
+	text-align: center;
 	margin-bottom: 35px;
 }
 
@@ -1132,7 +1133,7 @@ Single Property Page
 }
 
 .loan-calculator .loan-cal-result {
-	text-align: center;
+	text-align: left;
 	font-size: 18px;
 	font-weight: 700;
 	padding: 20px 15px;
@@ -1235,7 +1236,8 @@ Contact Page
 	text-align: center;
 }
 
-.contact-form input, .contact-form textarea {
+/* .loan-calculator textarea 추가  */
+.contact-form input, .contact-form textarea, .loan-calculator textarea {
 	width: 100%;
 	height: 56px;
 	padding: 0 23px;
@@ -1247,6 +1249,14 @@ Contact Page
 }
 
 .contact-form textarea {
+	height: 233px;
+	padding: 20px 23px 10px;
+	resize: none;
+	margin-bottom: 35px;
+}
+
+/* .loan-calculator textarea 추가  */
+.loan-calculator textarea {
 	height: 233px;
 	padding: 20px 23px 10px;
 	resize: none;
@@ -1544,4 +1554,8 @@ Responsive
 	.contact-form .site-btn {
 		min-width: auto;
 	}
+}
+
+.padding_bt div {
+	padding-bottom: 110px;
 }

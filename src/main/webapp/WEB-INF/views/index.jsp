@@ -17,7 +17,7 @@
 					<h3>게스트하우스 이름</h3>
 					<h5>가격</h5>
 					<p>게스트 하우스 소개글</p>
-					<a href="#" class="readmore-btn">게시글로 이동</a>
+					<!-- <a href="#" class="readmore-btn">게시글로 이동</a> -->
 				</div>
 			</div>
 			<div class="col-lg-4">
@@ -29,7 +29,7 @@
 					<h3>게스트하우스 이름</h3>
 					<h5>가격</h5>
 					<p>게스트 하우스 소개글</p>
-					<a href="#" class="readmore-btn">게시글로 이동</a>
+					<!-- <a href="#" class="readmore-btn">게시글로 이동</a> -->
 				</div>
 			</div>
 			<div class="col-lg-4">
@@ -41,7 +41,7 @@
 					<h3>게스트하우스 이름</h3>
 					<h5>가격</h5>
 					<p>게스트 하우스 소개글</p>
-					<a href="#" class="readmore-btn">게시글로 이동</a>
+					<!-- <a href="#" class="readmore-btn">게시글로 이동</a> -->
 				</div>
 			</div>
 		</div>
@@ -49,8 +49,107 @@
 </section>
 <!-- 일반회원 추천 랭킹 end -->
 
+<!-- 일반회원 추천 랭킹 -->
+<section class="property-section">
+	<div class="container">
+		<div class="section-title">
+			<h2>일반 회원 추천 랭킹</h2>
+		</div>
+		<div class="row">
+			<div class="col-lg-4">
+				<div class="property-item">
+					<div class="pi-image">
+						<img src="assets/img/property/1.jpg" alt="">
+						<div class="pi-badge new">인기</div>
+					</div>
+					<h3>게스트하우스 이름</h3>
+					<h5>가격</h5>
+					<p>게스트 하우스 소개글</p>
+					<!-- <a href="#" class="readmore-btn">게시글로 이동</a> -->
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="property-item">
+					<div class="pi-image">
+						<img src="assets/img/property/2.jpg" alt="">
+						<div class="pi-badge offer">추천</div>
+					</div>
+					<h3>게스트하우스 이름</h3>
+					<h5>가격</h5>
+					<p>게스트 하우스 소개글</p>
+					<!-- <a href="#" class="readmore-btn">게시글로 이동</a> -->
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="property-item">
+					<div class="pi-image">
+						<img src="assets/img/property/3.jpg" alt="">
+						<div class="pi-badge new">인기</div>
+					</div>
+					<h3>게스트하우스 이름</h3>
+					<h5>가격</h5>
+					<p>게스트 하우스 소개글</p>
+					<!-- <a href="#" class="readmore-btn">게시글로 이동</a> -->
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- 일반회원 추천 랭킹 end -->
+
+<!-- 일반회원 추천 랭킹 -->
+<section class="property-section">
+	<div class="container">
+		<div class="section-title">
+			<h2>일반 회원 추천 랭킹</h2>
+		</div>
+		<div class="row">
+			<div class="col-lg-4">
+				<div class="property-item">
+					<div class="pi-image">
+						<img src="assets/img/property/1.jpg" alt="">
+						<div class="pi-badge new">인기</div>
+					</div>
+					<h3>게스트하우스 이름</h3>
+					<h5>가격</h5>
+					<p>게스트 하우스 소개글</p>
+					<!-- <a href="#" class="readmore-btn">게시글로 이동</a> -->
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="property-item">
+					<div class="pi-image">
+						<img src="assets/img/property/2.jpg" alt="">
+						<div class="pi-badge offer">추천</div>
+					</div>
+					<h3>게스트하우스 이름</h3>
+					<h5>가격</h5>
+					<p>게스트 하우스 소개글</p>
+					<!-- <a href="#" class="readmore-btn">게시글로 이동</a> -->
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="property-item">
+					<div class="pi-image">
+						<img src="assets/img/property/3.jpg" alt="">
+						<div class="pi-badge new">인기</div>
+					</div>
+					<h3>게스트하우스 이름</h3>
+					<h5>가격</h5>
+					<p>게스트 하우스 소개글</p>
+					<!-- <a href="#" class="readmore-btn">게시글로 이동</a> -->
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section class="padding_bt">
+	<div></div>
+</section>
+<!-- 일반회원 추천 랭킹 end -->
+
 <!-- 기업회원 추천 랭킹 -->
-<section class="stories-section spad">
+<!-- <section class="stories-section spad">
 	<div class="container">
 		<div class="row ">
 			<div class="col-lg-5 order-lg-2">
@@ -65,11 +164,11 @@
 			</div>
 		</div>
 	</div>
-</section>
+</section> -->
 <!-- 기업회원 추천 랭킹 end -->
 
 <!-- 관광 명소 추천 랭킹 -->
-<section class="intro-section spad">
+<!-- <section class="intro-section spad">
 	<div class="container">
 		<div class="section-title">
 			<h2>관광 명소 추천 랭킹</h2>
@@ -99,7 +198,7 @@
 			</div>
 		</div>
 	</div>
-</section>
+</section> -->
 <!-- 관광명소 추천 랭킹 end -->
 
 
