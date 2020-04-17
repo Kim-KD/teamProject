@@ -24,10 +24,10 @@
 		<property name="dataSource" ref="dataSource" />
 	
 	<!-- myBatis 사용을 위한 설정 파일이 있는 위치 -->
-		<property name="configLocation" value="classpath:/mybatis-config.xml" />
+		<property name="configLocation" value="classpath:/config/mybatis/mybatis-config.xml" />
 	
 	<!-- 쿼리문이 들어있는 SQL파일의 위치 --> 
-		<property name="mapperLocations" value="classpath:/sql_mapper/*.xml" />
+		<property name="mapperLocations" value="classpath:/query/*/*_mapper.xml" />
 	</bean>
 	
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
