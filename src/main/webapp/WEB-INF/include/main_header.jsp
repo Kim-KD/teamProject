@@ -17,12 +17,13 @@
 	<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i,900%7cRoboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
 	<!-- 폰트어썸 -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-
  
 	<!-- Stylesheets -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/font-awesome.min.css" />
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/slicknav.min.css" />
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="assets/css/slicknav.min.css" />
+	
+	<link rel="stylesheet" href="assets/css/slick.css" />
 
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="assets/css/style.css"/>
@@ -64,33 +65,33 @@
 	<!-- Header Section end -->
 
 	<!-- Hero Section end -->
-	<section class="hero-section set-bg" data-setbg="assets/img/hero-bg.jpg">
+	<section class="hero-section set-bg" data-setbg="assets/img/1.jpg">
 		<div class="container">
 			<div class="hero-warp">
 				<form class="main-search-form">
 				<!-- 검색 타입 변경 -->
-<!-- 					<div class="search-type"> -->
-<!-- 						<div class="st-item"> -->
-<!-- 							<input type="radio" name="st" id="buy" checked> -->
-<!-- 							<label for="buy">검색1</label> -->
-<!-- 						</div> -->
-<!-- 						<div class="st-item"> -->
-<!-- 							<input type="radio" name="st" id="rent"> -->
-<!-- 							<label for="rent">검색2</label> -->
-<!-- 						</div> -->
-<!-- 						<div class="st-item"> -->
-<!-- 							<input type="radio" name="st" id="sell"> -->
-<!-- 							<label for="sell">검색3</label> -->
-<!-- 						</div> -->
-<!-- 						<div class="st-item"> -->
-<!-- 							<input type="radio" name="st" id="property"> -->
-<!-- 							<label for="property">검색4</label> -->
-<!-- 						</div> -->
-<!-- 						<div class="st-item"> -->
-<!-- 							<input type="radio" name="st" id="agents"> -->
-<!-- 							<label for="agents">검색5</label> -->
-<!-- 						</div>                                                            -->
-<!-- 					</div> -->
+ 					<!-- <div class="search-type">
+						<div class="st-item">
+ 							<input type="radio" name="st" id="buy" checked>
+ 							<label for="buy">검색1</label>
+ 						</div>
+ 						<div class="st-item">
+ 							<input type="radio" name="st" id="rent">
+ 							<label for="rent">검색2</label>
+ 						</div>
+ 						<div class="st-item">
+ 							<input type="radio" name="st" id="sell">
+ 							<label for="sell">검색3</label>
+ 						</div>
+ 						<div class="st-item">
+ 							<input type="radio" name="st" id="property">
+ 							<label for="property">검색4</label>
+ 						</div>
+ 						<div class="st-item">
+ 							<input type="radio" name="st" id="agents">
+ 							<label for="agents">검색5</label>
+ 						</div>
+ 					</div> -->
 					<div class="search-input">
 						<input type="text" placeholder="게이루 게스트하우스 검색">
 						<button class="site-btn">검색</button>
