@@ -144,7 +144,7 @@
 						</div>						
 						<div class="col-md-12">
 							<div class="text-left text-sm-center">
-								<button class="site-btn sb-big" id="lc-submit">등록</button>
+								<button class="site-btn1 sb-big1" id="lc-submit">등록</button>
 							</div>
 						</div>
 					</div>

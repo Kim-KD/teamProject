@@ -143,6 +143,42 @@ Commom elements
 	padding: 21px 48px;
 }
 
+/*  */
+.site-btn1 {
+	display: inline-block;
+	border: none;
+	padding: 20px 44px;
+	min-width: 156px;
+	font-size: 16px;
+	background: #ff000a;
+	color: #fff;
+	line-height: normal;
+	cursor: pointer;
+	text-transform: uppercase;
+	text-align: center;
+	border-radius: 0 30px 30px 0;
+}
+
+.site-btn1:hover {
+	color: #fff;
+	
+}
+
+.site-btn1.sb-light1 {
+	background: #fff;
+	color: #241e1e;
+	margin-left:25px;
+	font-size: 15px;
+	border-radius: 30px;
+}
+
+.site-btn1.sb-big1 {
+	font-weight: 700;
+	font-family: "yg-jalnan", sans-serif;
+	padding: 21px 48px;
+}
+/*  */
+
 /* Preloder */
 #preloder {
 	position: fixed;
