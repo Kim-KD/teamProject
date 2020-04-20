@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원 가입</title>
+<title>Insert title here</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -47,9 +47,9 @@
       <input type="text" class="form-control" id="cable">
       <span id="cable_msg"></span>
    </div>
-
-	<div class="form-group">
-	<label for="gender">성별</label>
+   
+<div class="form-group">
+   <label for="gender">성별</label>
    <div class="btn-group" data-toggle="buttons">
     	<label class="btn btn-primary">
       <input type="radio" id="man" autocomplete="off" value="m">남자
@@ -61,12 +61,28 @@
       
       <span id="gender_msg"></span>
    </div>
-</div>
+</div>   
    <div class="form-group">
       <label for="job">직업</label>
       <input type="text" class="form-control" id="job">
       <span id="job_msg"></span>
    </div>
+   <div class="form-group">
+      <label for="service_num">사업자 번호</label>
+      <input type="text" class="form-control" id="service_num">
+      <span id="service_num_msg"></span>
+   </div>
+   <div class="form-group">
+      <label for="bank">은행</label>
+      <input type="text" class="form-control" id="bank">
+      <span id="bank_msg"></span>
+   </div>
+   <div class="form-group">
+      <label for="job">계좌번호</label>
+      <input type="text" class="form-control" id="account">
+      <span id="account_msg"></span>
+   </div>
+   
    
 	<button class="btn btn-info">가입</button>
 </div>

@@ -6,4 +6,9 @@
 	<insert id="userinsert" parameterType="user">
 		INSERT INTO test VALUES(#{id}, #{pw}, #{name}) 
 	</insert>
+	
+	<insert id="sign_up" parameterType="user">
+		insert into user info (user_id,)
+	</insert>
+	
 </mapper>

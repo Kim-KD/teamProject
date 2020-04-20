@@ -62,7 +62,7 @@
 			<div class="header-right">
 				<div class="user-panel">
 					<a href="#" class="login">로그인</a>
-					<a href="#" class="register">회원가입</a>
+					<a href="normal_or_cpn" class="register">회원가입</a>
 				</div>
 			</div>
 		</nav>

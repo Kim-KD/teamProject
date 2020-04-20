@@ -37,9 +37,19 @@ public class HomeController {
 		return "page3";
 	}
 	
+	@RequestMapping(value = "/normal_or_cpn", method = RequestMethod.GET)
+	public String normal_or_cpn() {
+		return "sign_up/normal_or_cpn";
+	}
+	
 	@RequestMapping(value = "/sign_up", method = RequestMethod.GET)
 	public String sign_up() {
 		return "sign_up/sign_up";
+	}
+	
+	@RequestMapping(value = "/cpn_sign_up", method = RequestMethod.GET)
+	public String cpn_sign_up() {
+		return "sign_up/cpn_sign_up";
 	}
 	
 }
