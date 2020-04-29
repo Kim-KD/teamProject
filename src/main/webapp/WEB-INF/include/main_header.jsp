@@ -46,6 +46,7 @@
 				<li><a href="about_us">스탭 구인</a></li>
 				<li><a href="page1">게스트 하우스</a></li>
 				<li><a href="page2">메뉴3</a>	</li>
+				<li><a href="write_page">글작성</a></li>
 				<li><a href="page3">고객센터</a>
 					<ul class="sub-menu">
 						<li><a href="#">QnA</a></li>

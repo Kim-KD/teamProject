@@ -126,13 +126,12 @@ Commom elements
 
 .site-btn:hover {
 	color: #fff;
-	
 }
 
 .site-btn.sb-light {
 	background: #fff;
 	color: #241e1e;
-	margin-left:25px;
+	margin-left: 25px;
 	font-size: 15px;
 	border-radius: 30px;
 }
@@ -161,22 +160,47 @@ Commom elements
 
 .site-btn1:hover {
 	color: #fff;
-	
 }
 
 .site-btn1.sb-light1 {
 	background: #fff;
 	color: #241e1e;
-	margin-left:25px;
+	margin-left: 25px;
 	font-size: 15px;
 	border-radius: 30px;
 }
 
 .site-btn1.sb-big1 {
+	border-radius: 30px;
 	font-weight: 700;
 	font-family: "yg-jalnan", sans-serif;
 	padding: 21px 48px;
 }
+
+#chk_info {
+	width: 20px;
+	height: 20px;
+	margin: 15px;
+	padding: 20px;
+}
+
+input[type="radio"] {
+	margin: auto;
+	width: 30px;
+	height: 30px;
+}
+
+span {
+	padding: 15px;
+}
+
+#test {
+	margin-left: -10px;
+	margin-right: -10px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
 /*  */
 
 /* Preloder */
@@ -214,74 +238,138 @@ keyframes loader { 0% {
 50%
 {
 -webkit-transform
+
+
 :
+
  
+
 rotate
-(180deg);
+
+
+(180
+deg
+);
+
 
 		
+
 transform
+
+
 :
+
  
+
 rotate
-(180deg);
+
+
+(180
+deg
+);
+
 
 		
+
 border
+
+
 :
+
  
+
 4
 px
+
  
+
 solid
+
  
+
 #673ab7
-;
 
-		
+
+;
 border-left-color
-:
- 
-transparent
-;
 
-	
+
+:
+
+ 
+
+transparent
+
+
+;
 }
 100%
 {
 -webkit-transform
+
+
 :
+
  
+
 rotate
-(360deg);
+
+
+(360
+deg
+);
+
 
 		
+
 transform
+
+
 :
+
  
+
 rotate
-(360deg);
+
+
+(360
+deg
+);
+
 
 		
+
 border
+
+
 :
+
  
+
 4
 px
+
  
+
 solid
+
  
+
 #f44336
-;
 
-		
+
+;
 border-left-color
-:
- 
-transparent
-;
 
-	
+
+:
+
+ 
+
+transparent
+
+
+;
 }
 }
 @
@@ -294,60 +382,104 @@ transparent
 50%
 {
 -webkit-transform
+
+
 :
+
  
+
 rotate
-(180deg);
+
+
+(180
+deg
+);
+
 
 		
+
 border
+
+
 :
+
  
+
 4
 px
+
  
+
 solid
+
  
+
 #673ab7
-;
 
-		
+
+;
 border-left-color
-:
- 
-transparent
-;
 
-	
+
+:
+
+ 
+
+transparent
+
+
+;
 }
 100%
 {
 -webkit-transform
+
+
 :
+
  
+
 rotate
-(360deg);
+
+
+(360
+deg
+);
+
 
 		
+
 border
+
+
 :
+
  
+
 4
 px
+
  
+
 solid
+
  
+
 #f44336
-;
 
-		
+
+;
 border-left-color
-:
- 
-transparent
-;
 
-	
+
+:
+
+ 
+
+transparent
+
+
+;
 }
 }
 

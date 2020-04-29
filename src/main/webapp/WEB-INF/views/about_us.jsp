@@ -51,7 +51,7 @@
 				</div>
 			</div>
 			<div class="text-center pt-5 mt-3">
-				<a href="#" class="site-btn sb-big">Contact an agent now</a>
+				<a href="#" class="site-btn1 sb-big1">Contact an agent now</a>
 			</div>
 		</div>
 	</div>

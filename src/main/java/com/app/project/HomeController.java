@@ -52,4 +52,9 @@ public class HomeController {
 		return "sign_up/cpn_sign_up";
 	}
 	
+	@RequestMapping(value = "/write_page", method = RequestMethod.GET)
+	public String write_page() {
+		return "write_page";
+	}
+	
 }
