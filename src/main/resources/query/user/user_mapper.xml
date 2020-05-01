@@ -5,52 +5,52 @@
 <mapper namespace="UserBean">
 	
 	<!-- 유저 회원가입 (변경 비밀번호,변경일,이메일 인증,[로그인 실패 횟수,계정 차단]) -->
-	<insert id="user_sign_up" parameterType="user">
-		insert into user_info
-		(user_id, user_status, user_num, user_pwd, user_name,
-		user_radio, user_cable, user_email, user_gender, user_job,
-		user_create_day, user_certify, change_pwd, change_pwd_day
-		login_fail_cnt, user_block)
-		values(#{user_id}, #{user_status}, #{user_num}, #{user_pwd},
-		#{user_name}, #{user_radio}, #{user_cable}, #{user_email},
-		#{user_gender}, #{user_job}, sysdate, #{user_certify},
-		#{user_pwd}, sysdate, 0,0)
-	</insert>
+<!-- 	<insert id="user_sign_up" parameterType="user"> -->
+<!-- 		insert into user_info -->
+<!-- 		(user_id, user_status, user_num, user_pwd, user_name, -->
+<!-- 		user_radio, user_cable, user_email, user_gender, user_job, -->
+<!-- 		user_create_day, user_certify, change_pwd, change_pwd_day -->
+<!-- 		login_fail_cnt, user_block) -->
+<!-- 		values(#{user_id}, #{user_status}, #{user_num}, #{user_pwd}, -->
+<!-- 		#{user_name}, #{user_radio}, #{user_cable}, #{user_email}, -->
+<!-- 		#{user_gender}, #{user_job}, sysdate, #{user_certify}, -->
+<!-- 		#{user_pwd}, sysdate, 0,0) -->
+<!-- 	</insert> -->
 	
-	<!-- 기업 회원 가입 추가 정보 -->
-	<insert id="cpn_sign_up" parameterType="user">
-		insert into cpn_info
-		(user_id, cpn_service_num, cpn_bank, cpn_account)
-		values(#{user_id}, #{cpn_service_num}, #{cpn_bank}, #{cpn_account})
-	</insert>
+	 	<!-- 기업 회원 가입 추가 정보 -->
+<!-- 	<insert id="cpn_sign_up" parameterType="user"> -->
+<!-- 		insert into cpn_info -->
+<!-- 		(user_id, cpn_service_num, cpn_bank, cpn_account) -->
+<!-- 		values(#{user_id}, #{cpn_service_num}, #{cpn_bank}, #{cpn_account}) -->
+<!-- 	</insert> -->
 	
-	<!-- 유저 정보 수정 -->
-	<update id="update">
-	update user_info
-	<trim prefix="SET" suffixOverrides=",">
-	<if test="user_pwd != null">user_pwd = #{user_pwd},</if>
-	<if test="user_radio != null">user_radio = #{user_radio},</if>
-	<if test="user_cable != null">user_cable = #{user_cable},</if>
-	<if test="user_email != null">user_email = #{user_email},</if>
-	</trim>
-	where user_id=#{user_id} and rownum=1
-	</update>
+ 		<!-- 유저 정보 수정 -->
+<!-- 	<update id="update"> -->
+<!-- 	update user_info -->
+<!-- 	<trim prefix="SET" suffixOverrides=","> -->
+<!-- 	<if test="user_pwd != null">user_pwd = #{user_pwd},</if> -->
+<!-- 	<if test="user_radio != null">user_radio = #{user_radio},</if> -->
+<!-- 	<if test="user_cable != null">user_cable = #{user_cable},</if> -->
+<!-- 	<if test="user_email != null">user_email = #{user_email},</if> -->
+<!-- 	</trim> -->
+<!-- 	where user_id=#{user_id} and rownum=1 -->
+<!-- 	</update> -->
 	
-	<!-- 기업 정보 수정 -->
-	<update id="update">
-	update cpn_info
-	<trim prefix="SET" suffixOverrides=",">
-	<if test="cpn_service_num != null">cpn_service_num = #{cpn_service_num},</if>
-	<if test="cpn_bank != null">cpn_bank = #{cpn_bank},</if>
-	<if test="cpn_account != null">cpn_account = #{cpn_account},</if>
-	</trim>
-	where user_id=#{user_id} and rownum=1
-	</update>
+	 	<!-- 기업 정보 수정 -->
+<!-- 	<update id="update"> -->
+<!-- 	update cpn_info -->
+<!-- 	<trim prefix="SET" suffixOverrides=","> -->
+<!-- 	<if test="cpn_service_num != null">cpn_service_num = #{cpn_service_num},</if> -->
+<!-- 	<if test="cpn_bank != null">cpn_bank = #{cpn_bank},</if> -->
+<!-- 	<if test="cpn_account != null">cpn_account = #{cpn_account},</if> -->
+<!-- 	</trim> -->
+<!-- 	where user_id=#{user_id} and rownum=1 -->
+<!-- 	</update> -->
 	
-	<!-- 아이디 중복 확인 -->
-	<select id="existsById" resultType="boolean">
-		select count(*) from user_info
-		where user_id=#{user_id} and rownum=1
-	</select>
+	 	<!-- 아이디 중복 확인 -->
+<!-- 	<select id="existsById" resultType="boolean"> -->
+<!-- 		select count(*) from user_info -->
+<!-- 		where user_id=#{user_id} and rownum=1 -->
+<!-- 	</select> -->
 	
 </mapper>
