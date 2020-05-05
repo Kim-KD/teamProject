@@ -190,11 +190,11 @@ input[type="radio"] {
 	height: 30px;
 }
 
-span {
+.control-label {
 	padding: 15px;
 }
 
-#test {
+#wave {
 	margin-left: -10px;
 	margin-right: -10px;
 	padding-left: 0px;

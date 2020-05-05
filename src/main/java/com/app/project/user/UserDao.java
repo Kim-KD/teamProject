@@ -10,8 +10,11 @@ public class UserDao {
 	@Autowired
 	private SqlSessionTemplate sql;
 
-	public void join(UserBean userBean) {
-		sql.insert("UserBean.userinsert", userBean);
+	public void user_join(UserBean userBean) {
+		sql.insert("UserBean.user_sign_up", userBean);
 	}
 	
+	public void cpn_join(UserBean userBean) {
+		sql.insert("UserBean.cpn_sign_up", userBean);
+	}
 }

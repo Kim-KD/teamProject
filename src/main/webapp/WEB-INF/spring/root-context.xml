@@ -14,10 +14,16 @@
 	<!-- MYSQL -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://127.0.0.1:3306/teamproject?serverTimezone=UTC" />
+		<property name="username" value="teamproject" />
+		<property name="password" value="1234" />
+	</bean>
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://3.22.138.158:3306/GH_DBMS" />
 		<property name="username" value="gh_master" />
 		<property name="password" value="ghpwd12#" />
-	</bean>
+	</bean> -->
 	
 	<!-- sqlSessionFactory는 DB 쿼리문 전송을 위한 명령어  -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

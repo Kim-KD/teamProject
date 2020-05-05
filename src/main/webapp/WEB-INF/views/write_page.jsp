@@ -90,7 +90,7 @@
                         <option value="">24:00</option>
                     </select>
                 </div>
-                <span id="test">~</span>
+                <span id="wave">~</span>
                 <div class="col-sm-2">
                     <select class="form-control" name="파티 시간">
                         <option value="">18:00</option>

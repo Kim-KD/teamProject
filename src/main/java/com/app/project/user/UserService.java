@@ -10,7 +10,12 @@ public class UserService {
 	private UserDao udao;
 
 	public void join(UserBean userBean) {
-		udao.join(userBean);
+		if(userBean.getUser_status().equals("0")) {
+			udao.user_join(userBean);
+		} else {
+			udao.user_join(userBean);
+			udao.cpn_join(userBean);
+		}
 	}
 	
 }
