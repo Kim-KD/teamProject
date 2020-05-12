@@ -3,8 +3,10 @@ package com.app.project;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
+@SessionAttributes("login_data")
 public class HomeController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -50,6 +52,11 @@ public class HomeController {
 	@RequestMapping(value = "/cpn_sign_up", method = RequestMethod.GET)
 	public String cpn_sign_up() {
 		return "sign_up/cpn_sign_up";
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login() {
+		return "login/login";
 	}
 	
 	@RequestMapping(value = "/write_page", method = RequestMethod.GET)

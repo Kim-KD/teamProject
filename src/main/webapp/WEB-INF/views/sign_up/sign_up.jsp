@@ -7,6 +7,30 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<script>
+	function id_check() {
+		var user_id = $("#user_id").val();
+		if(user_id == null) {
+			alert("아이디를 입력해주세요");
+		} else {
+			$.ajax({
+				url : "id_chk",
+				data : {"user_id" : user_id},
+				type : "POST",
+				dataType : "json",
+				success : function(result) {
+					if(result == 0) {
+						alert("사용가능한 아이디입니다.");
+					} else {
+						alert("중복된 아이디입니다.");
+					}
+				}
+			});
+		}
+	}
+</script>
+
 </head>
 <body>
 	<form action="join" method="post">
@@ -15,6 +39,7 @@
 			<div class="form-group">
 				<label for="user_id">아이디:</label>
 				<input type="text" class="form-control" id="user_id" name="user_id">
+				<input type="button" value="중복확인" onclick="id_check()">
 				<span id="username_msg"></span>
 			</div>
 			<div class="form-group">

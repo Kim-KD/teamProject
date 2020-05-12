@@ -55,12 +55,22 @@
 					</ul>
 				</li>
 			</ul>
+			<c:if test="${login_data == null}">
 			<div class="header-right">
 				<div class="user-panel">
-					<a href="#" class="login">로그인</a>
+					<a href="login" class="login">로그인</a>
 					<a href="normal_or_cpn" class="register">회원가입</a>
 				</div>
 			</div>
+			</c:if>
+			<c:if test="${login_data != null}">
+			<div class="header-right">
+				<div class="user-panel">
+					<a href="#">${login_data.user_id}</a>
+					<a href="logout" class="register">로그아웃</a>
+				</div>
+			</div>
+			</c:if>
 		</nav>
 	</header>
 	<!-- Header Section end -->

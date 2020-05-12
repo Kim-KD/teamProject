@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="boardBean">
+<mapper namespace="GH_BoardBean">
 
 	<!-- 게스트 하우스 게시글 총 갯수 -->
 	<!-- <select id='gh_Count' resultType='int'>
@@ -82,40 +82,29 @@
 	</select> -->
 
 	<!-- 게스트하우스 정보 작성 -->
-	<!-- <insert id="gh_Insert" parameterType="board">
-		<selectKey resultType="int" keyProperty="bno" order="BEFORE">
+	<insert id="gh_Insert" parameterType="board">
+		<!-- <selectKey resultType="int" keyProperty="bno" order="BEFORE">
 			select
-			gh_seq.nextval from dual
-		</selectKey>
-		insert into gh_info(no,user_id userId,title,content,w_date
-		wDate,city,postcode,
-		address,on_off onOff,p_link pLink,up_view
-		upView,views,likes)
-		values(#{no},#{userId},#{title},#{content},sysdate,#{city},#{postcode},#{address},
-		y,n,n,0,0)
-	</insert> -->
-
-	<!-- 게스트하우스 방 정보 작성 -->
-	<!-- <insert id="gh_Room_Insert" parameterType="board">
-		insert into
-		gh_room_info(no,room,room_status
-		roomStatus,price,photo,room_people
-		roomPeople)
-		values(#{no},#{room},#{roomStatus},#{price},#{photo
-		jdbcType=VARCHAR},#{roomPeople})
-	</insert> -->
+			gh_seq.auto_increment from dual
+		</selectKey> -->
+		insert into gh_info(no, user_id, title, content, w_date, 
+		postcode, city, address, on_off, p_link, up_view, views, likes)
+		values(1, #{user_id}, #{title}, #{content}, now(), #{postcode}, #{city}, #{address}, "y", "n", "n", 0, 0)
+	</insert>
 
 	<!-- 게스트하우스 상세 정보 작성 -->
-	<!-- <insert id="gh_more_Insert" parameterType="board">
-		insert into
-		gh_more_info(no,party_menu partyMenu,alcohol,party_time
-		partyTime,off_time offTime,
-		join_man joinMan,join_girl
-		joinGirl,party_day
-		partyDay,wifi,parking,mornig,pet,in,out)
-		values(#{no},#{partyMenu},#{alcohol},#{partyTime},#{offTime},#{joinMan},#{joinGirl},#{partyDay},
-		#{wifi},#{parking},#{morning},#{pet},#{in},#{out})
-	</insert> -->
+	<insert id="gh_more_Insert" parameterType="board">
+		insert into gh_more_info(no, party_menu, alcohol, party_time, off_time, join_man, join_girl, 
+									party_day, wifi, parking, morning, pet, check_in, check_out)
+		values(1, #{party_menu}, #{alcohol}, #{party_time}, #{off_time}, 0, 0, 
+				#{party_day}, #{wifi}, #{parking}, #{morning}, #{pet}, #{check_in}, #{check_out})
+	</insert>
+
+	<!-- 게스트하우스 방 정보 작성 -->
+	<insert id="gh_Room_Insert" parameterType="board">
+		insert into gh_room_info(no, room, room_status, price, photo, room_people)
+		values(1, #{room}, #{room_status}, #{price}, #{photo}, #{room_people})
+	</insert>
 
 	<!-- 관광명소 게시글 작성 -->
 	<!-- <insert id="trip_Insert" parameterType="board">

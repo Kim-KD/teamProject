@@ -23,6 +23,17 @@
 		(user_id, cpn_service_num, cpn_bank, cpn_account)
 		values(#{user_id}, #{cpn_service_num}, #{cpn_bank}, #{cpn_account})
 	</insert>
+	
+	<!-- 아이디 중복 확인 -->
+	<select id="existsById" resultType="int">
+		select count(*) from user_info
+		where user_id=#{user_id}
+	</select>
+	
+	<!-- 로그인 -->
+	<select id="login" resultType="user" parameterType="user">
+		select user_id, user_pwd from user_info where user_id=#{user_id} and user_pwd=#{user_pwd}
+	</select>
 
 	<!-- 유저 정보 수정 -->
 	<!-- <update id="update">
@@ -46,11 +57,5 @@
 		</trim>
 		where user_id=#{user_id} and rownum=1
 	</update> -->
-
-	<!-- 아이디 중복 확인 -->
-	<!-- <select id="existsById" resultType="boolean">
-		select count(*) from user_info
-		where user_id=#{user_id} and rownum=1
-	</select> -->
 
 </mapper>
