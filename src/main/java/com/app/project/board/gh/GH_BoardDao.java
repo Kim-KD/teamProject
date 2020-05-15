@@ -2,25 +2,31 @@ package com.app.project.board.gh;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
-@Service
+@Repository
 public class GH_BoardDao {
 	
 	@Autowired
 	private SqlSessionTemplate sql;
 
-	public void gh_Insert(GH_BoardBean boardBean) {
-		sql.insert("GH_BoardBean.gh_Insert", boardBean);
+	public int gh_Insert(GH_BoardBean boardBean) {
+		return sql.insert("GH_Mapper.gh_Insert", boardBean);
 	}
 	
-	public void gh_more_Insert(GH_BoardBean boardBean) {
-		sql.insert("GH_BoardBean.gh_more_Insert", boardBean);
-	}
-
-	
-	public void gh_Room_Insert(GH_BoardBean boardBean) {
-		sql.insert("GH_BoardBean.gh_Room_Insert", boardBean);
+	public int gh_More_Insert(GH_BoardBean boardBean) {
+		return sql.insert("GH_Mapper.gh_More_Insert", boardBean);
 	}
 	
+	public int gh_Room_Insert(GH_BoardBean boardBean) {
+		return sql.insert("GH_Mapper.gh_Room_Insert", boardBean);
+	}
+	
+	public int gh_Update(GH_BoardBean boardBean) {
+		return sql.update("GH_Mapper.gh_Update", boardBean);
+	}
+	
+	public int gh_Update(int no) {
+		return sql.delete("GH_Mapper.gh_Delete", no);
+	}
 }

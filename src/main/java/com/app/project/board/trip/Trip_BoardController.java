@@ -1,4 +1,4 @@
-package com.app.project.board.gh;
+package com.app.project.board.trip;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
 @SessionAttributes("login_data")
-public class GH_BoardController {
+public class Trip_BoardController {
 	
-//	@Autowired
-//	private GH_BoardService bsvc;
+	@Autowired
+	private Trip_BoardService bsvc;
 	
 //	@RequestMapping(value="/write", method = RequestMethod.POST)
-//	public String write(GH_BoardBean boardBean) {
+//	public String write(Trip_BoardBean boardBean) {
 //		bsvc.write(boardBean);
 //		
 //		return "index";

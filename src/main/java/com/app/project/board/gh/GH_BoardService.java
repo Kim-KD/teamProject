@@ -2,8 +2,9 @@ package com.app.project.board.gh;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
-@Repository
+@Service
 public class GH_BoardService {
 	
 	@Autowired
@@ -11,7 +12,7 @@ public class GH_BoardService {
 
 	public void write(GH_BoardBean boardBean) {
 		bdao.gh_Insert(boardBean);
-		bdao.gh_more_Insert(boardBean);
+		bdao.gh_More_Insert(boardBean);
 		bdao.gh_Room_Insert(boardBean);
 	}
 	

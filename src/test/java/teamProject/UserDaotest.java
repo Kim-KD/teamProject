@@ -25,10 +25,10 @@ public class UserDaotest {
 	UserDao dao;
 	
 	// 일반 회원가입 테스트
-	//@Test
-	//@Transactional
+//	@Test
+//	@Transactional
 	public void insertTest() {
-		UserBean user = UserBean.builder().user_id("bb").user_status("d")
+		UserBean user = UserBean.builder().user_id("aaaa").user_status("d")
 				.user_pwd("1111").user_name("pjm").user_radio("010")
 				.user_cable("0000").user_email("aaa").user_gender("m")
 				.user_job("bs").change_pwd("1111").build();
@@ -40,8 +40,9 @@ public class UserDaotest {
 	
 	// 일반 정보수정 테스트
 	//@Test
+	//@Transactional
 	public void updateTest() {
-		UserBean user = UserBean.builder().user_id("aa")
+		UserBean user = UserBean.builder().user_id("aaaa")
 				.user_pwd("2222").user_radio("070")
 				.user_cable("1010").user_email("aaa@a.com").build();
 		assertThat(dao.user_info_update(user), is(1));
@@ -50,7 +51,7 @@ public class UserDaotest {
 	// 로그인 테스트
 	//@Test
 	public void loginTest() {
-		UserBean user = UserBean.builder().user_id("aa").user_pwd("2222").build();
+		UserBean user = UserBean.builder().user_id("aaaa").user_pwd("2222").build();
 		dao.login(user);
 		System.out.println(user);
 	}
@@ -58,6 +59,6 @@ public class UserDaotest {
 	// 아이디 중복 테스트
 	//@Test
 	public void existByIdTest() {
-		assertThat(dao.id_chk("aavvv"), is(1));
+		assertThat(dao.id_chk("aaaa"), is(1));
 	}
 }

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Trip_Mapper">
+
+	<!-- 관광 명소 게시글 총 갯수 -->
+	<!-- <select id='trip_Count' resultType='int'>
+		select /*+
+		index_ffs(trip_info pk_trip_num)*/ count(*)
+		from trip_info
+	</select> -->
+
+	<!-- 관광 명소 게시글 정보 -->
+	<!-- <select id="trip_Find_All" resultType="board"> 
+ 	<![CDATA[ 
+ 	 		select*from 
+ 	 			(select trip.*,rownum as rnum from 
+ 	 				(select /*+ index_desc(trip_info trip_pk_no)*/ 
+ 	 				no,user_id userId,title,content,admission,opentime,w_date wDate, 
+ 	 				city,postcode,address,on_off onOff,p_link pLink,up_view upView,views,likes 
+ 	 				from trip_info)trip 
+ 	 			where rownum<=#{endRowNum}) 
+ 	 		where rnum>=#{startRowNum} 
+ 	 	]]>
+	</select> -->
+
+	<!-- 관광명소 조회수 상승 -->
+	<!-- <update id="trip_Read_Cnt">
+		update trip_info set views=views+1
+		where no=#{no} and
+		rownum=1
+	</update> -->
+
+	<!-- 관광명소 글번호 찾기 -->
+	<!-- <select id="trip_Find_no" resultType="board">
+		no,user_id
+		userId,title,content,admission,opentime,w_date wDate,
+		city,postcode,address,on_off onOff,p_link pLink,up_view
+		upView,views,likes
+		from trip_info
+		where no=#{no}
+	</select> -->
+
+	<!-- 관광명소 게시글 작성 -->
+	<!-- <insert id="trip_Insert" parameterType="board">
+		insert into trip_info(no,user_id userId,title,content,admission,opentime,w_date
+		wDate,city,postcode,address,photo,on_off onOff,p_link pLink,up_view
+		upView,views,likes)
+		values(#{no},#{userId},#{title},#{content},#{admission},#{opentime},sysdate,
+		#{city},#{postcode},#{address},#{photo},y,n,n,0,0)
+	</insert> -->
+
+	<!-- 관광명소 게시글 수정 -->
+	<!-- <update id="trip_Update">
+		update trip_info
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="title != null">title = #{title},</if>
+			<if test="content != null">content = #{content},</if>
+			<if test="admission != null">admission = #{admission},</if>
+			<if test="opentime != null">opentime = #{opentime},</if>
+			<if test="city != null">city = #{city},</if>
+			<if test="address != null">city = #{address},</if>
+			<if test="postcode != null">postcode = #{postcode},</if>
+			<if test="onOff != null">on_off = #{onOff},</if>
+			<if test="pLink != null">p_link = #{pLink},</if>
+			<if test="upView != null">up_view = #{upView},</if>
+			<if test="views > 0">views = views+1,</if>
+			<if test="likes > 0">likes = likes+1,</if>
+		</trim>
+		where no=#{no} and rownum=1
+	</update> -->
+
+	<!-- 관광명소 게시글 삭제 -->
+	<!-- <delete id="trip_Delete">
+		delete from trip_info where no=#{no} and rownum=1
+	</delete> -->
+
+</mapper>

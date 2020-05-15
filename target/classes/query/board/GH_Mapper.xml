@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="GH_Mapper">
+
+	<!-- 게스트 하우스 게시글 총 갯수 -->
+	<!-- <select id='gh_Count' resultType='int'>
+		select /*+ index_ffs(gh_info
+		pk_gh_num)*/ count(*)
+		from gh_info
+	</select> -->
+
+	<!-- 게스트 하우스 게시글 정보 -->
+	<!-- <select id="gh_Find_All" resultType="board"> 
+ 	<![CDATA[ 
+ 		select*from 
+ 			(select gh.*,rownum as rnum from 
+ 				(select /*+ index_desc(gh_info gh_pk_no)*/  
+ 				no,user_id userId,title,content,w_date wDate,city,postcode, 
+ 				address,on_off onOff,p_link pLink,up_view upView,views,likes
+ 				from gh_info)gh 
+ 			where rownum<=#{endRowNum}) 
+ 		where rnum>=#{startRowNum} 
+ 	]]>
+	</select> -->
+
+	<!-- 게스트하우스 조회수 상승 -->
+	<!-- <update id="gh_Read_Cnt">
+		update gh_info set views=views+1
+		where no=#{no} and
+		rownum=1
+	</update> -->
+
+	<!-- 게스트하우스 글번호 찾기 -->
+	<!-- <select id="gh_Find_no" resultType="board">
+		select no,user_id
+		userId,title,content,w_date wDate,city,postcode,
+		address,on_off
+		onOff,p_link pLink,up_view upView,views,likes
+		from gh_info
+		where
+		no=#{no}
+	</select> -->
+
+	<!-- 게스트하우스 정보 작성 -->
+	<insert id="gh_Insert" parameterType="gh_Board">
+		insert into gh_info(no, user_id, title, content, w_date, 
+		postcode, city, address, on_off, p_link, up_view, views, likes)
+		values(#{no}, #{user_id}, #{title}, #{content}, now(), #{postcode}, #{city}, #{address}, "y", "n", "n", 0, 0)
+	</insert>
+
+	<!-- 게스트하우스 상세 정보 작성 -->
+	<insert id="gh_More_Insert" parameterType="gh_Board">
+		insert into gh_more_info(no, party_menu, alcohol, party_time, off_time, join_man, join_girl, 
+									party_day, wifi, parking, morning, pet, check_in, check_out)
+		values(#{no}, #{party_menu}, #{alcohol}, #{party_time}, #{off_time}, #{join_man}, #{join_girl}, 
+				#{party_day}, #{wifi}, #{parking}, #{morning}, #{pet}, #{check_in}, #{check_out})
+	</insert>
+
+	<!-- 게스트하우스 방 정보 작성 -->
+	<insert id="gh_Room_Insert" parameterType="gh_Board">
+		insert into gh_room_info(no, room, room_status, price, photo, room_people)
+		values(#{no}, #{room}, #{room_status}, #{price}, #{photo}, #{room_people})
+	</insert>
+
+	<!-- 게스트하우스 게시글 수정 -->
+	<update id="gh_Update">
+		update gh_info
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="title != null">title = #{title},</if>
+			<if test="content != null">content = #{content},</if>
+			<if test="city != null">city = #{city},</if>
+			<if test="address != null">city = #{address},</if>
+			<if test="postcode != null">postcode = #{postcode},</if>
+			<if test="on_off != null">on_off = #{on_off},</if>
+			<if test="p_link != null">p_link = #{p_link},</if>
+			<if test="up_view != null">up_view = #{up_view},</if>
+			<if test="views > 0">views = views+1,</if>
+			<if test="likes > 0">likes = likes+1,</if>
+		</trim>
+		where no=#{no}
+	</update>
+
+	<!-- 게스트하우스 게시글 삭제 -->
+	<delete id="gh_Delete">
+		delete from gh_info where no=#{no}
+		delete from gh_room_info where no=#{no}
+		delete from gh_more_info where no=#{no}
+	</delete>
+
+</mapper>

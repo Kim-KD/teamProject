@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="UserMapper">
+<mapper namespace="User_Mapper">
 
 	<!-- 유저 회원가입 (변경 비밀번호,변경일,이메일 인증,[로그인 실패 횟수,계정 차단]) -->
 	<insert id="user_sign_up" parameterType="user">

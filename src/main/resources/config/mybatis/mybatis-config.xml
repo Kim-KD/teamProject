@@ -5,6 +5,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="user" type="com.app.project.user.UserBean" />
-		<typeAlias alias="board" type="com.app.project.board.gh.GH_BoardBean" />
+		<typeAlias alias="gh_Board" type="com.app.project.board.gh.GH_BoardBean" />
+		<typeAlias alias="trip_Board" type="com.app.project.board.trip.Trip_BoardBean" />
 	</typeAliases>
 </configuration>
