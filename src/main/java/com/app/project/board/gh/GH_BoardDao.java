@@ -22,6 +22,10 @@ public class GH_BoardDao {
 		return sql.insert("GH_Mapper.gh_Room_Insert", boardBean);
 	}
 	
+	public int gh_View_Insert(GH_BoardBean boardBean) {
+		return sql.insert("GH_Mapper.gh_View_Insert", boardBean);
+	}
+	
 	public int gh_Update(GH_BoardBean boardBean) {
 		return sql.update("GH_Mapper.gh_Update", boardBean);
 	}

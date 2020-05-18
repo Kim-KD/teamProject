@@ -63,6 +63,12 @@
 		insert into gh_room_info(no, room, room_status, price, photo, room_people)
 		values(#{no}, #{room}, #{room_status}, #{price}, #{photo}, #{room_people})
 	</insert>
+	
+	<!-- 게스트하우스 후기 작성 -->
+	<insert id="gh_View_Insert" parameterType="gh_Board">
+		insert into gh_view_info(no, user_id, content)
+		values(#{no}, #{user_id}, #{content})
+	</insert>
 
 	<!-- 게스트하우스 게시글 수정 -->
 	<update id="gh_Update">
@@ -82,14 +88,14 @@
 		where no=#{no}
 	</update>
 
-	<!-- 게스트하우스 게시글 삭제 -->
+	<!-- 게스트하우스 게시글,후기 삭제 -->
 	<delete id="gh_Delete">
-		delete gh_info, gh_more_info, gh_room_info
-			from gh_info
-				left join gh_more_info on (gh_info.no = gh_more_info.no)
-				left join gh_room_info on (gh_more_info.no = gh_room_info.no)
-			where gh_info.no = #{no}
+		delete gh_info, gh_more_info, gh_room_info, gh_view_info
+			from gh_view_info
+				left join gh_room_info on (gh_view_info.no = gh_room_info.no)
+				left join gh_more_info on (gh_room_info.no = gh_more_info.no)
+				left join gh_info on (gh_more_info.no = gh_info.no)
+			where gh_view_info.no = #{no}
 	</delete>
-
 
 </mapper>

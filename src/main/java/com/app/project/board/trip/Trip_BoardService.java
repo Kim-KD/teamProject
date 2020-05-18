@@ -12,8 +12,6 @@ public class Trip_BoardService {
 
 	public void write(Trip_BoardBean boardBean) {
 		bdao.trip_Insert(boardBean);
-		bdao.trip_more_Insert(boardBean);
-		bdao.trip_Room_Insert(boardBean);
 	}
 	
 }

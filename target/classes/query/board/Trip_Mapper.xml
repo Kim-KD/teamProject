@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="Trip_Mapper">
+<mapper namespace="trip_Mapper">
 
 	<!-- 관광 명소 게시글 총 갯수 -->
 	<!-- <select id='trip_Count' resultType='int'>
@@ -43,16 +43,15 @@
 	</select> -->
 
 	<!-- 관광명소 게시글 작성 -->
-	<!-- <insert id="trip_Insert" parameterType="board">
-		insert into trip_info(no,user_id userId,title,content,admission,opentime,w_date
-		wDate,city,postcode,address,photo,on_off onOff,p_link pLink,up_view
-		upView,views,likes)
-		values(#{no},#{userId},#{title},#{content},#{admission},#{opentime},sysdate,
-		#{city},#{postcode},#{address},#{photo},y,n,n,0,0)
-	</insert> -->
+	<insert id="trip_Insert" parameterType="trip_Board">
+		insert into trip_info(no, user_id, title, content, admission, opentime,w_date
+		, city, postcode, address, photo, on_off, p_link, up_view, views, likes)
+		values(#{no},#{user_id},#{title},#{content},#{admission},#{opentime},now(),
+		#{city},#{postcode},#{address},#{photo},"y","n","n",0,0)
+	</insert>
 
 	<!-- 관광명소 게시글 수정 -->
-	<!-- <update id="trip_Update">
+	<update id="trip_Update">
 		update trip_info
 		<trim prefix="SET" suffixOverrides=",">
 			<if test="title != null">title = #{title},</if>
@@ -60,20 +59,30 @@
 			<if test="admission != null">admission = #{admission},</if>
 			<if test="opentime != null">opentime = #{opentime},</if>
 			<if test="city != null">city = #{city},</if>
-			<if test="address != null">city = #{address},</if>
+			<if test="address != null">address = #{address},</if>
 			<if test="postcode != null">postcode = #{postcode},</if>
-			<if test="onOff != null">on_off = #{onOff},</if>
-			<if test="pLink != null">p_link = #{pLink},</if>
-			<if test="upView != null">up_view = #{upView},</if>
+			<if test="photo != null">photo = #{photo},</if>
+			<if test="on_off != null">on_off = #{on_off},</if>
+			<if test="p_link != null">p_link = #{p_link},</if>
+			<if test="up_view != null">up_view = #{up_view},</if>
 			<if test="views > 0">views = views+1,</if>
 			<if test="likes > 0">likes = likes+1,</if>
 		</trim>
-		where no=#{no} and rownum=1
-	</update> -->
+		where no=#{no}
+	</update>
+
+	<!-- 게스트하우스 후기 작성 -->
+	<insert id="trip_View_Insert" parameterType="trip_Board">
+		insert into trip_view_info(no, user_id, content)
+		values(#{no}, #{user_id}, #{content})
+	</insert>
 
 	<!-- 관광명소 게시글 삭제 -->
-	<!-- <delete id="trip_Delete">
-		delete from trip_info where no=#{no} and rownum=1
-	</delete> -->
+	<delete id="trip_Delete">
+		delete trip_info, trip_view_info
+		from trip_view_info
+			left join trip_info on (trip_view_info.no = trip_info.no)
+		where trip_view_info.no = #{no}
+	</delete>
 
 </mapper>
