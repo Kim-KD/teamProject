@@ -26,7 +26,7 @@ public class GH_BoardDao {
 		return sql.update("GH_Mapper.gh_Update", boardBean);
 	}
 	
-	public int gh_Update(int no) {
+	public int gh_Delete(int no) {
 		return sql.delete("GH_Mapper.gh_Delete", no);
 	}
 }

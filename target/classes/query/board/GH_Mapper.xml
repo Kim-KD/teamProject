@@ -84,9 +84,12 @@
 
 	<!-- 게스트하우스 게시글 삭제 -->
 	<delete id="gh_Delete">
-		delete from gh_info where no=#{no}
-		delete from gh_room_info where no=#{no}
-		delete from gh_more_info where no=#{no}
+		delete gh_info, gh_more_info, gh_room_info
+			from gh_info
+				left join gh_more_info on (gh_info.no = gh_more_info.no)
+				left join gh_room_info on (gh_more_info.no = gh_room_info.no)
+			where gh_info.no = #{no}
 	</delete>
+
 
 </mapper>
