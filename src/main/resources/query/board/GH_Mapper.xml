@@ -32,16 +32,30 @@
 		rownum=1
 	</update> -->
 
-	<!-- 게스트하우스 글번호 찾기 -->
-	<!-- <select id="gh_Find_no" resultType="board">
-		select no,user_id
-		userId,title,content,w_date wDate,city,postcode,
-		address,on_off
-		onOff,p_link pLink,up_view upView,views,likes
-		from gh_info
-		where
-		no=#{no}
-	</select> -->
+	<!-- 게스트하우스 게시글 읽기 -->
+	<select id="gh_Read" resultType="gh_Board">
+		select g.no,g.user_id,title,g.content,city,address,on_off,p_link,up_view,views,likes
+		,w_date,postcode,room,room_status,price,photo,room_people,party_menu,alcohol,party_time
+		,off_time,join_man,join_girl,party_day,wifi,parking,morning,pet,check_in,check_out
+		from gh_room_info r
+		left join gh_more_info m on (r.no = m.no)
+		left join gh_info g on (m.no = g.no)
+		where g.no = #{no} and r.room_status = 1;
+	</select>
+	
+	<!-- 게스트하우스 방 정보 읽기 -->
+	<select id="gh_Room_Read" resultType="gh_Board">
+		select no,room,room_status,price,photo,room_people
+		from gh_room_info
+		where gh_room_info.no = #{no}
+	</select>
+	
+	<!-- 게스트하우스 후기 읽기(게시글 번호에 맞는 후기 전부 찾는다) -->
+	<select id="gh_View_Read" resultType="gh_Board">
+		select no,user_id,content
+		from gh_view_info
+		where gh_view_info.no = #{no}
+	</select>
 
 	<!-- 게스트하우스 정보 작성 -->
 	<insert id="gh_Insert" parameterType="gh_Board">
@@ -88,7 +102,7 @@
 		where no=#{no}
 	</update>
 
-	<!-- 게스트하우스 게시글,후기 삭제 -->
+	<!-- 게스트하우스 게시글 + 후기 삭제 -->
 	<delete id="gh_Delete">
 		delete gh_info, gh_more_info, gh_room_info, gh_view_info
 			from gh_view_info

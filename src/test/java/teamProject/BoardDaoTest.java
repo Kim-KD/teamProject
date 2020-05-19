@@ -1,6 +1,7 @@
 package teamProject;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
@@ -25,6 +26,24 @@ public class BoardDaoTest {
 	Trip_BoardDao tripDao;
 
 	//@Test
+	// 게하 게시글 읽기
+	public void ghReadTest() {
+		assertThat(ghDao.gh_Read(5),is(notNullValue()));
+	}
+	
+	//@Test
+	// 게하 방 정보 읽기
+	public void ghRoomReadTest() {
+		assertThat(ghDao.gh_Room_Read(5),is(notNullValue()));
+	}
+	
+	//@Test
+	// 게하 후기 정보 읽기
+	public void ghViewReadTest() {
+		assertThat(ghDao.gh_View_Read(5),is(notNullValue()));
+	}
+	
+	//@Test
 	//@Transactional
 	// 게하 기본 게시글 작성
 	public void ghInsertTest() {
@@ -48,7 +67,7 @@ public class BoardDaoTest {
 	//@Transactional
 	// 게하 방정보 작성
 	public void ghRoomInsertTest() {
-		GH_BoardBean b = GH_BoardBean.builder().no(7).room("트윈룸").room_status("1").price(1000000).photo("사진")
+		GH_BoardBean b = GH_BoardBean.builder().no(5).room("트윈룸").room_status("2").price(1000000).photo("사진")
 				.room_people(2).build();
 		assertThat(ghDao.gh_Room_Insert(b), is(1));
 	}
@@ -57,7 +76,7 @@ public class BoardDaoTest {
 	//@Transactional
 	// 게하 후기 작성
 	public void ghViewInsertTest() {
-		GH_BoardBean b = GH_BoardBean.builder().no(7).user_id("aaaa").content("후기 내용").build();
+		GH_BoardBean b = GH_BoardBean.builder().no(5).user_id("aaaa").content("후기 내용").build();
 		assertThat(ghDao.gh_View_Insert(b), is(1));
 	}
 	
@@ -91,6 +110,18 @@ public class BoardDaoTest {
 //	}
 	
 	//@Test
+	// 관광명소 게시글 읽기
+	public void trupReadTest() {
+		assertThat(tripDao.trip_Read(2),is(notNullValue()));
+	}
+	
+	//@Test
+	// 관광명소 후기 정보 읽기
+	public void tripViewReadTest() {
+		assertThat(tripDao.trip_View_Read(2),is(notNullValue()));
+	}
+	
+	//@Test
 	//@Transactional
 	// 관광명소 게시글 작성
 	public void tripInsertTest() {
@@ -104,7 +135,7 @@ public class BoardDaoTest {
 	//@Transactional
 	// 관광명소 후기 작성
 	public void tripViewInsertTest() {
-		Trip_BoardBean b = Trip_BoardBean.builder().no(1).user_id("aaaa").content("후기 내용").build();
+		Trip_BoardBean b = Trip_BoardBean.builder().no(2).user_id("aaaa").content("후기 내용").build();
 		assertThat(tripDao.trip_View_Insert(b), is(1));
 	}
 	

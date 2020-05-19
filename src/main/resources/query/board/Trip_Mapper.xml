@@ -20,7 +20,7 @@
  	 				no,user_id userId,title,content,admission,opentime,w_date wDate, 
  	 				city,postcode,address,on_off onOff,p_link pLink,up_view upView,views,likes 
  	 				from trip_info)trip 
- 	 			where rownum<=#{endRowNum}) 
+ 	 			where rownum<=#{endRowNum})
  	 		where rnum>=#{startRowNum} 
  	 	]]>
 	</select> -->
@@ -41,7 +41,22 @@
 		from trip_info
 		where no=#{no}
 	</select> -->
-
+	
+	<!-- 관광명소 게시글 읽기 -->
+	<select id="trip_Read" resultType="trip_Board">
+		select no,user_id,title,content,city,address,on_off,p_link,up_view
+		,views,w_date,postcode,admission,opentime,photo
+		from trip_info
+		where trip_info.no = #{no};
+	</select>
+	
+	<!-- 관광명소 후기 읽기(게시글 번호에 맞는 후기 전부 찾는다) -->
+	<select id="trip_View_Read" resultType="trip_Board">
+		select no,user_id,content
+		from trip_view_info
+		where trip_view_info.no = #{no}
+	</select>
+	
 	<!-- 관광명소 게시글 작성 -->
 	<insert id="trip_Insert" parameterType="trip_Board">
 		insert into trip_info(no, user_id, title, content, admission, opentime,w_date
