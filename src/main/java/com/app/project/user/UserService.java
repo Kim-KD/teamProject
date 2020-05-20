@@ -42,4 +42,34 @@ public class UserService {
 		}
 	}
 	
+	// 유저 정보 읽기
+	public UserBean userInfoRead(String user_id) {
+		UserBean user = udao.user_Read(user_id);
+		if(user.getUser_status().equals("d")) {
+			return user;
+		}
+		else if(user.getUser_status().equals("c")) {
+			UserBean cpn = udao.cpn_Read(user_id);
+			user.setCpn_service_num(cpn.getCpn_service_num());
+			user.setCpn_bank(cpn.getCpn_bank());
+			user.setCpn_account(cpn.getCpn_account());
+			return user;
+		}
+		else {
+			return null;
+		}
+	}
+	
+	// 유저 정보 수정
+	public Integer userInfoUpdate(UserBean user) {
+		if(user.getUser_status().equals("d")) {
+			return udao.user_info_update(user);
+		}
+		else if(user.getUser_status().equals("c")) {
+			return udao.cpn_info_update(user);
+		}
+		else {
+			return null;
+		}
+	}	
 }

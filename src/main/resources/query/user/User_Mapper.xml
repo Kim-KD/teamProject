@@ -4,6 +4,23 @@
 
 <mapper namespace="User_Mapper">
 
+	<!-- 유저 정보 읽기 -->
+	<select id="user_Read" resultType="user">
+		select user_id, user_status, user_num, user_pwd, user_name,
+		user_radio, user_cable, user_email, user_gender, user_job,
+		user_create_day, user_certify, change_pwd, change_pwd_day,
+		login_fail_cnt, user_block
+		from user_info
+		where user_id = #{user_id};
+	</select>
+	
+	<!-- 기업 유저 상세 정보 읽기 -->
+	<select id="cpn_Read" resultType="user">
+		select user_id, cpn_service_num, cpn_bank, cpn_account
+		from cpn_info
+		where user_id = #{user_id};
+	</select>
+
 	<!-- 유저 회원가입 (변경 비밀번호,변경일,이메일 인증,[로그인 실패 횟수,계정 차단]) -->
 	<insert id="user_sign_up" parameterType="user">
 		insert into user_info
@@ -48,14 +65,14 @@
 	</update>
 
 	<!-- 기업 정보 수정 -->
-	<!-- <update id="cpn_info_update">
+	<update id="cpn_info_update">
 		update cpn_info
 		<trim prefix="SET" suffixOverrides=",">
 			<if test="cpn_service_num != null">cpn_service_num = #{cpn_service_num},</if>
 			<if test="cpn_bank != null">cpn_bank = #{cpn_bank},</if>
 			<if test="cpn_account != null">cpn_account = #{cpn_account},</if>
 		</trim>
-		where user_id=#{user_id} and rownum=1
-	</update> -->
+		where user_id=#{user_id}
+	</update>
 
 </mapper>

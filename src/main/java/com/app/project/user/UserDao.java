@@ -20,12 +20,22 @@ public class UserDao {
 		return sql.insert("User_Mapper.cpn_sign_up", userBean);
 	}
 	
+	// 유저 정보 읽기
+	public UserBean user_Read(String user_id) {
+		return sql.selectOne("User_Mapper.user_Read", user_id);
+	}
+	
+	// 기업 유저 상세 정보 읽기
+	public UserBean cpn_Read(String user_id) {
+		return sql.selectOne("User_Mapper.cpn_Read", user_id);
+	}
+	
 	// 일반 회원 정보 수정
 	public int user_info_update(UserBean userBean) {
 		return sql.update("User_Mapper.user_info_update", userBean);
 	}
 	
-	// 일반 회원 정보 수정
+	// 기업 회원 정보 수정
 	public int cpn_info_update(UserBean userBean) {
 		return sql.update("User_Mapper.cpn_info_update", userBean);
 	}
