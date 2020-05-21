@@ -29,9 +29,9 @@
 				<div class="footer-widger">
 					<h2>회사 SNS</h2>
 					<ul>
-						<li><a href="#">페이스북</a></li>
-						<li><a href="#">인스타그램</a></li>
-						<li><a href="#">트위터</a></li>
+						<li><a href="#"><i class="fab fa-facebook"></i>&nbsp;페이스북</a></li>
+						<li><a href="#"><i class="fab fa-instagram"></i>&nbsp;인스타그램</a></li>
+						<li><a href="#"><i class="fab fa-twitter"></i>&nbsp;트위터</a></li>
 					</ul>
 				</div>
 			</div>
