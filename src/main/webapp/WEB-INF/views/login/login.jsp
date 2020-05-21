@@ -10,10 +10,23 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <script>
-	function login() {
-		var user_id = $("#user_id").val();
-		var user_pwd = $("#user_pwd").val();
-		
+function login() {
+	// ID 유효성 검사
+	var idRegExp = /^[a-z]+[a-z0-9]{4,12}$/g;
+	var user_id = $("#user_id").val();
+	var user_pwd = $("#user_pwd").val();
+	
+	if($("#user_id").val() == "") {
+		$("#userid_msg").empty();
+		$("#userid_msg").text("아이디를 입력해주세요.").css("color", "red");
+		$("#user_id").focus();
+		return false;
+	} else if(!idRegExp.test($("#user_id").val())) {
+		$("#userid_msg").empty();
+		$("#userid_msg").text("4~12자 영어 또는 숫자로 입력하세요.").css("color", "red");
+		$("#user_id").focus();
+		return false;
+	} else {
 		$.ajax({
 			url : "login",
 			data : {"user_id" : user_id, "user_pwd" : user_pwd},
@@ -28,22 +41,23 @@
 			}
 		});
 	}
+}
 </script>
 
 </head>
 <body>
 	<div class="container">
 		<div class="form-group">
-			<label for="user_id">아이디:</label>
+			<label for="user_id">아이디</label>&nbsp;
+			<span id="userid_msg"></span>
 			<input type="text" class="form-control" id="user_id" name="user_id">
-			<span id="username_msg"></span>
 		</div>
 		<div class="form-group">
 			<label for="user_pwd">비밀번호:</label>
 			<input type="password" class="form-control" id="user_pwd" name="user_pwd">
 			<span id="password_msg"></span>
 		</div>
-		<button class="btn btn-info" onclick="login()">로그인</button>
+		<button class="btn btn-info" onclick="return login()">로그인</button>
 	</div>
 </body>
 </html>
