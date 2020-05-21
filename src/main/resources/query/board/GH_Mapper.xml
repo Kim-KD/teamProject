@@ -77,9 +77,11 @@
 		values(#{no}, #{user_id}, #{content})
 	</insert>
 
-	<!-- 게스트하우스 게시글 수정(조회수,추천수 상승 포함) -->
+	<!-- 게스트하우스 게시글 수정(조회수,추천수 상승,게스트 하우스 전체 테이블 포함) -->
 	<update id="gh_Update">
-		update gh_info
+		update gh_room_info r
+		inner join gh_more_info m on r.no = m.no
+		inner join gh_info g on m.no = g.no
 		<trim prefix="SET" suffixOverrides=",">
 			<if test="title != null">title = #{title},</if>
 			<if test="content != null">content = #{content},</if>
@@ -91,8 +93,25 @@
 			<if test="up_view != null">up_view = #{up_view},</if>
 			<if test="views > 0">views = views+1,</if>
 			<if test="likes > 0">likes = likes+1,</if>
+			<if test="room != null">room = #{room},</if>
+			<if test="price != null">price = #{price},</if>
+			<if test="photo != null">photo = #{photo},</if>
+			<if test="room_people != null">room_people = #{room_people},</if>
+			<if test="party_menu != null">party_menu = #{party_menu},</if>
+			<if test="alcohol != null">alcohol = #{alcohol},</if>
+			<if test="party_time != null">party_time = #{party_time},</if>
+			<if test="off_time != null">off_time = #{off_time},</if>
+			<if test="join_man != null">join_man = #{join_man},</if>
+			<if test="join_girl != null">join_girl = #{join_girl},</if>
+			<if test="party_day != null">party_day = #{party_day},</if>
+			<if test="wifi != null">wifi = #{wifi},</if>
+			<if test="parking != null">parking = #{parking},</if>
+			<if test="morning != null">morning = #{morning},</if>
+			<if test="pet != null">pet = #{pet},</if>
+			<if test="check_in != null">check_in = #{check_in},</if>
+			<if test="check_out != null">check_out = #{check_out},</if>
 		</trim>
-		where no=#{no}
+		where g.no=#{no} and r.room_status = #{room_status}
 	</update>
 	
 	<!-- 게스트하우스 방 정보 수정 -->

@@ -33,4 +33,13 @@ public class GH_BoardService {
 		return bdao.gh_Room_Read(bno);
 	}
 	
+	// 게시글 수정
+	public int ghUpdate(GH_BoardBean boardBean) {
+		return bdao.gh_Update(boardBean);
+	}
+	
+	// 게시글 삭제
+	public int ghDelete(int no) {
+		return bdao.gh_Delete(no);
+	}
 }

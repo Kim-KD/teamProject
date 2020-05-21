@@ -25,23 +25,6 @@
  	 	]]>
 	</select> -->
 
-	<!-- 관광명소 조회수 상승 -->
-	<!-- <update id="trip_Read_Cnt">
-		update trip_info set views=views+1
-		where no=#{no} and
-		rownum=1
-	</update> -->
-
-	<!-- 관광명소 글번호 찾기 -->
-	<!-- <select id="trip_Find_no" resultType="board">
-		no,user_id
-		userId,title,content,admission,opentime,w_date wDate,
-		city,postcode,address,on_off onOff,p_link pLink,up_view
-		upView,views,likes
-		from trip_info
-		where no=#{no}
-	</select> -->
-	
 	<!-- 관광명소 게시글 읽기 -->
 	<select id="trip_Read" resultType="trip_Board">
 		select no,user_id,title,content,city,address,on_off,p_link,up_view
