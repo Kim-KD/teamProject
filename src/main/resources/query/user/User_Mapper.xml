@@ -46,6 +46,12 @@
 		where user_id=#{user_id}
 	</select>
 	
+	<!-- 이메일 중복 확인 -->
+	<select id="existsByEmail" resultType="int">
+		select count(*) from user_info
+		where user_email=#{user_email}
+	</select>
+	
 	<!-- 로그인 -->
 	<select id="login" resultType="user" parameterType="user">
 		select user_id, user_pwd from user_info where user_id=#{user_id} and user_pwd=#{user_pwd}

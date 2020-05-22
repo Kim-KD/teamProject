@@ -33,6 +33,14 @@ public class UserController {
 		int result = usvc.id_chk(user_id);
 		return result;
 	}
+	
+	// 이메일 중복체크
+	@RequestMapping(value="/email_chk", method = RequestMethod.POST)
+	@ResponseBody
+	public int email_chk(@RequestParam("user_email") String user_email) {
+		int result = usvc.email_chk(user_email);
+		return result;
+	}
 
 	// 로그인
 	@RequestMapping(value="/login", method = RequestMethod.POST)

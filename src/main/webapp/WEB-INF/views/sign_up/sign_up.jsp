@@ -41,6 +41,7 @@ function id_check() {
 					$("#id_chk_icon").removeClass();
 					$("#id_chk_icon").addClass("fas fa-check");
 					$("#btn_id_chk").removeAttr("onclick");
+					$("#id_chk_validation").val("1");
 				} else {
 					alert("중복된 아이디입니다.");
 					$("#user_id").val('');
@@ -80,6 +81,7 @@ function email_check() {
 					$("#email_chk_icon").removeClass();
 					$("#email_chk_icon").addClass("fas fa-check");
 					$("#btn_email_chk").removeAttr("onclick");
+					$("#email_chk_validation").val("1");
 				} else {
 					alert("중복된 이메일입니다.");
 					$("#user_email").focus();
@@ -105,7 +107,7 @@ $(function(){
 	});
 });
 
-function join_form_chk() {
+function join_chk() {
 	// ID 유효성 검사
 	var idRegExp = /^[a-z]+[a-z0-9]{4,12}$/g;
 	// Email 유효성 검사
@@ -114,23 +116,29 @@ function join_form_chk() {
 	var pwRegExp = /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])(?=.*[0-9]).{8,16}$/;
 	// Name 유효성 검사
     var nameRegExp = /^[가-힣]{2,4}$/;
+    var radio_chk = $("input[name=user_gender]:checked").val();
     
-    if(!idRegExp.test("#user_id").val()) {
+    if(!idRegExp.test($("#user_id").val())) {
     	$("#userid_msg").empty();
     	$("#userid_msg").text("4~12자 영어 또는 숫자로 입력하세요.").css("color", "red");
     	$("#user_id").focus();
     	return false;
-    } else if(!emailRegExp.test("#user_email").val()) {
+    } else if(!emailRegExp.test($("#user_email").val())) {
     	$("#email_msg").empty();
     	$("#email_msg").text("이메일형식이 올바르지 않습니다.").css("color", "red");
     	$("#user_email").focus();
     	return false;
-    } else if(!pwRegExp.test("#user_pwd").val()) {
+    }  else if(!nameRegExp.test($("#user_name").val())) {
+    	$("#name_msg").empty();
+    	$("#name_msg").text("이름을 입력해주세요.").css("color", "red");
+    	$("#user_name").focus();
+    	return false;
+    } else if(!pwRegExp.test($("#user_pwd").val())) {
     	$("#password_msg").empty();
     	$("#password_msg").text("비밀번호는 8~16자 이내 영문,숫자,특수문자가 포함되어야합니다.").css("color", "red");
     	$("#user_pwd").focus();
     	return false;
-    } else if(!pwRegExp.test("#pwd_chk").val()) {
+    } else if(!pwRegExp.test($("#pwd_chk").val())) {
     	$("#password_chk_msg").empty();
     	$("#password_chk_msg").text("비밀번호는 8~16자 이내 영문,숫자,특수문자가 포함되어야합니다.").css("color", "red");
     	$("#pwd_chk").focus();
@@ -140,17 +148,12 @@ function join_form_chk() {
     	$("#password_msg").text("비밀번호가 일치하지 않습니다.").css("color", "red");
     	$("#user_pwd").focus();
     	return false;
-    } else if(!nameRegExp.test($("#user_name").val())) {
-    	$("#name_msg").empty();
-    	$("#name_msg").text("이름을 입력해주세요.").css("color", "red");
-    	$("#user_name").focus();
-    	return false;
     } else if($("#user_radio").val() == "") {
     	$("#radio_msg").empty();
     	$("#radio_msg").text("휴대폰 번호를 입력해주세요.").css("color", "red");
     	$("#user_radio").focus();
     	return false;
-    } else if($("#user_gender").val() == "") {
+    } else if(radio_chk == null) {
     	$("#gender_msg").empty();
     	$("#gender_msg").text("성별을 선택해주세요.").css("color", "red");
     	$("#user_gender").focus();
@@ -160,20 +163,13 @@ function join_form_chk() {
     	$("#job_msg").text("직업을 입력해주세요.").css("color", "red");
     	$("#user_job").focus();
     	return false;
-    } else if($("#cpn_service_num").val() == "") {
-    	$("#service_num_msg").empty();
-    	$("#service_num_msg").text("사업자 번호를 입력해주세요.").css("color", "red");
-    	$("#cpn_service_num").focus();
+    } else if($("#id_chk_validation").val() == "0") {
+    	alert("아이디 중복확인을 진행해주세요.");
+    	$("#user_id").focus();
     	return false;
-    } else if($("#cpn_bank").val() == "") {
-    	$("#bank_msg").empty();
-    	$("#bank_msg").text("은행을 입력해주세요.").css("color", "red");
-    	$("#cpn_bank").focus();
-    	return false;
-    } else if($("#cpn_account").val() == "") {
-    	$("#account_msg").empty();
-    	$("#account_msg").text("계좌번호를 입력해주세요.").css("color", "red");
-    	$("#cpn_account").focus();
+    } else if($("#email_chk_validation").val() == "0") {
+    	alert("이메일 중복확인을 진행해주세요.");
+    	$("#user_email").focus();
     	return false;
     }
 }
@@ -190,6 +186,7 @@ $(function(){
 	});
 	$("#pwd_chk").focusout(function(){
 		$("#password_msg").empty();
+		$("#password_chk_msg").empty();
 	});
 	$("#user_name").focusout(function(){
 		$("#name_msg").empty();
@@ -210,6 +207,8 @@ $(function(){
 </head>
 <body>
 	<form action="join" method="post">
+	<input type="hidden" id="id_chk_validation" value="0">
+	<input type="hidden" id="email_chk_validation" value="0">
 	<input type="hidden" id="user_status" name="user_status" value="0">
 		<div class="container">		
 			<div class="form-group">
@@ -265,10 +264,10 @@ $(function(){
 				<span id="gender_msg"></span>
 				<div class="btn-group" data-toggle="buttons">
 					<label class="btn btn-primary">
-						<input type="radio" id="user_gender" autocomplete="off" value="m" name="user_gender">남자
+						<input type="radio" id="man" autocomplete="off" value="m" name="user_gender">남자
 					</label>
 					<label class="btn btn-danger">
-						<input type="radio" id="user_gender" autocomplete="off" value="g" name="user_gender">여자
+						<input type="radio" id="woman" autocomplete="off" value="g" name="user_gender">여자
 					</label>
 				</div>
 			</div>
@@ -277,8 +276,7 @@ $(function(){
 				<span id="job_msg"></span>
 				<input type="text" class="form-control" id="user_job" name="user_job" placeholder="개발자, 기획자, 서버 관리자 등등">
 			</div>
-
-			<button class="btn btn-info" onclick="retrun join_form_chk()">가입</button>
+			<button type="submit" class="btn btn-info" onclick="return join_chk()">회원가입</button>
 		</div>
 	</form>
 </body>

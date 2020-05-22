@@ -28,6 +28,12 @@ public class UserService {
 		return result;
 	}
 	
+	// 이메일 중복체크
+	public int email_chk(String user_email) {
+		int result = dao.email_chk(user_email);
+		return result;
+	}
+	
 	// 로그인
 	public int login(UserBean userBean, HttpServletRequest request) {
 		UserBean loginData = dao.login(userBean);

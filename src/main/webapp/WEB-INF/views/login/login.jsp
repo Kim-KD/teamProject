@@ -16,7 +16,7 @@ function login() {
 	var user_id = $("#user_id").val();
 	var user_pwd = $("#user_pwd").val();
 	
-	if($("#user_id").val() == "") {
+	if(user_id == "") {
 		$("#userid_msg").empty();
 		$("#userid_msg").text("아이디를 입력해주세요.").css("color", "red");
 		$("#user_id").focus();
@@ -25,6 +25,11 @@ function login() {
 		$("#userid_msg").empty();
 		$("#userid_msg").text("4~12자 영어 또는 숫자로 입력하세요.").css("color", "red");
 		$("#user_id").focus();
+		return false;
+	} else if(user_pwd == "") {
+		$("#password_msg").empty();
+		$("#password_msg").text("비밀번호를 입력해주세요.").css("color", "red");
+		$("#user_pwd").focus();
 		return false;
 	} else {
 		$.ajax({
@@ -42,6 +47,15 @@ function login() {
 		});
 	}
 }
+
+$(function(){
+	$("#user_id").focusout(function(){
+		$("#userid_msg").empty();
+	});
+	$("#user_pwd").focusout(function(){
+		$("#password_msg").empty();
+	});
+});
 </script>
 
 </head>
@@ -53,9 +67,9 @@ function login() {
 			<input type="text" class="form-control" id="user_id" name="user_id">
 		</div>
 		<div class="form-group">
-			<label for="user_pwd">비밀번호:</label>
-			<input type="password" class="form-control" id="user_pwd" name="user_pwd">
+			<label for="user_pwd">비밀번호</label>&nbsp;
 			<span id="password_msg"></span>
+			<input type="password" class="form-control" id="user_pwd" name="user_pwd">
 		</div>
 		<button class="btn btn-info" onclick="return login()">로그인</button>
 	</div>

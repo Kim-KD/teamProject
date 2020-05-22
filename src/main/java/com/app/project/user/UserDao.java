@@ -45,6 +45,11 @@ public class UserDao {
 		return sql.selectOne("User_Mapper.existsById", user_id);
 	}
 	
+	// 이메일 중복체크
+	public int email_chk(String user_email) {
+		return sql.selectOne("User_Mapper.existsByEmail", user_email);
+	}
+	
 	// 로그인
 	public UserBean login(UserBean userBean) {
 		return sql.selectOne("User_Mapper.login", userBean);
