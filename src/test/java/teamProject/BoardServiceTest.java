@@ -1,6 +1,7 @@
 package teamProject;
 
 import java.util.Map;
+import java.util.Random;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,10 +21,11 @@ public class BoardServiceTest {
 	@Autowired
 	Trip_BoardService tsvc;
 	
-	@Test
+	//@Test
 	public void ghReadTest() {
 		Map<String,Object> map = gsvc.ghRead(5);
 		System.out.println(map.get("info"));
 		System.out.println(map.get("view"));
 	}
+	
 }

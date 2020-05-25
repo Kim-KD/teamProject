@@ -25,11 +25,11 @@ public class UserDaoTest {
 	UserDao dao;
 	
 	// 일반 회원가입 테스트
-	//@Test
+	@Test
 	//@Transactional
 	public void insertTest() {
-		UserBean user = UserBean.builder().user_id("bbbb").user_status("c")
-				.user_pwd("1111").user_name("cpn").user_radio("010")
+		UserBean user = UserBean.builder().user_id("aaaa12").user_status("c")
+				.user_pwd("test1234").user_name("cpn").user_radio("010")
 				.user_cable("0000").user_email("aaa").user_gender("m")
 				.user_job("bs").change_pwd("1111").build();
 		

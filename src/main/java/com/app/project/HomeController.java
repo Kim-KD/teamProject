@@ -64,4 +64,9 @@ public class HomeController {
 		return "write_page";
 	}
 	
+	@RequestMapping(value = "/send_sms", method = RequestMethod.GET)
+	public String sms_page() {
+		return "send_sms";
+	}
+	
 }
