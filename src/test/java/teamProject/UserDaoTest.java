@@ -29,7 +29,7 @@ public class UserDaoTest {
 	//@Transactional
 	public void insertTest() {
 		UserBean user = UserBean.builder().user_id("aaaa12").user_status("c")
-				.user_pwd("test1234").user_name("cpn").user_radio("010")
+				.user_pwd("test1234").user_name("cpn").user_radio("01079793021")
 				.user_cable("0000").user_email("aaa").user_gender("m")
 				.user_job("bs").change_pwd("1111").build();
 		
@@ -42,14 +42,14 @@ public class UserDaoTest {
 	//@Test
 	public void userReadTest() {
 		String id = "aaaa";
-		assertThat(dao.user_Read(id),is(notNullValue()));
+		assertThat(dao.user_read(id),is(notNullValue()));
 	}
 	
 	// 기업 유저 상세 정보 읽기 테스트
 	//@Test
 	public void cpnReadTest() {
 		String id = "bbbb";
-		assertThat(dao.cpn_Read(id),is(notNullValue()));
+		assertThat(dao.cpn_read(id),is(notNullValue()));
 	}
 	
 	// 일반 정보수정 테스트

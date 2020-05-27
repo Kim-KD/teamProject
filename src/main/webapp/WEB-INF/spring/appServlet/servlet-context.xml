@@ -10,13 +10,13 @@
 	
 	<annotation-driven />
 
-	<resources mapping="/resources/**" location="/resources/" />
+	<default-servlet-handler/>
 	
-	<resources mapping="/assets/css/**" location="/resources/assets/css/" />
-	<resources mapping="/assets/icon-fonts/**" location="/resources/assets/icon-fonts/" />
-	<resources mapping="/assets/img/**" location="/resources/assets/img/" />
-	<resources mapping="/assets/js/**" location="/resources/assets/js/" />
-	<resources mapping="/assets/sass/**" location="/resources/assets/sass/" />
+<!-- 	<resources mapping="/assets/css/**" location="/resources/assets/css/" /> -->
+<!-- 	<resources mapping="/assets/icon-fonts/**" location="/resources/assets/icon-fonts/" /> -->
+<!-- 	<resources mapping="/assets/img/**" location="/resources/assets/img/" /> -->
+<!-- 	<resources mapping="/assets/js/**" location="/resources/assets/js/" /> -->
+<!-- 	<resources mapping="/assets/sass/**" location="/resources/assets/sass/" /> -->
 
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />

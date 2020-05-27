@@ -21,12 +21,12 @@ public class UserDao {
 	}
 	
 	// 유저 정보 읽기
-	public UserBean user_Read(String user_id) {
+	public UserBean user_read(String user_id) {
 		return sql.selectOne("User_Mapper.user_Read", user_id);
 	}
 	
 	// 기업 유저 상세 정보 읽기
-	public UserBean cpn_Read(String user_id) {
+	public UserBean cpn_read(String user_id) {
 		return sql.selectOne("User_Mapper.cpn_Read", user_id);
 	}
 	
@@ -48,6 +48,21 @@ public class UserDao {
 	// 이메일 중복체크
 	public int email_chk(String user_email) {
 		return sql.selectOne("User_Mapper.existsByEmail", user_email);
+	}
+	
+	// 아이디 찾기
+	public String find_by_id(UserBean userBean) {
+		return sql.selectOne("User_Mapper.findById",userBean); 
+	}
+	
+	// 비밀번호 찾기
+	public String find_by_pwd(UserBean userBean) {
+		return sql.selectOne("User_Mapper.findByPwd",userBean); 
+	}
+		
+	// 인증번호
+	public String find_by_num(UserBean userBean) {
+		return sql.selectOne("User_Mapper.findByNum",userBean); 
 	}
 	
 	// 로그인

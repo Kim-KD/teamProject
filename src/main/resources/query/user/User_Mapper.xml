@@ -26,11 +26,10 @@
 		insert into user_info
 		(user_id, user_status, user_num, user_pwd, user_name,
 		user_radio, user_cable, user_email, user_gender, user_job,
-		user_create_day, user_certify, change_pwd, change_pwd_day,
-		login_fail_cnt, user_block, find_num)
+		user_create_day, user_certify, change_pwd, change_pwd_day)
 		values(#{user_id},#{user_status},0000,#{user_pwd},
 		#{user_name},#{user_radio},#{user_cable},#{user_email},
-		#{user_gender},#{user_job},now(),0,#{change_pwd},now(),0,0)
+		#{user_gender},#{user_job},now(),0,#{change_pwd},now())
 	</insert>
 
 	<!-- 기업 회원 가입 추가 정보 -->
@@ -61,7 +60,13 @@
 	<!-- 비밀번호 찾기 -->
 	<select id="findByPwd" resultType="user">
 		select user_pwd from user_info
-		where user_email=#{user_email} and user_name=#{user_name}
+		where user_email=#{user_email} and user_id=#{user_id} and find_num=#{find_num}
+	</select>
+	
+	<!-- 인증번호 -->
+	<select id="findByNum" resultType="user">
+		select find_num from user_info
+		where user_email=#{user_email} and user_id=#{user_id}
 	</select>
 	
 	<!-- 로그인 -->
@@ -78,6 +83,7 @@
 			<if test="user_email != null">user_email = #{user_email},</if>
 			<if test="user_pwd != null">user_pwd = #{user_pwd},
 			change_pwd = #{user_pwd},change_pwd_day = now(),</if>
+			<if test="find_num != null">find_num = #{find_num},</if>
 		</trim>
 		where user_id=#{user_id}
 	</update>

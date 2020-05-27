@@ -1,5 +1,7 @@
 package com.app.project.user;
 
+import java.util.Random;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -50,12 +52,12 @@ public class UserService {
 	
 	// 유저 정보 읽기
 	public UserBean userInfoRead(String user_id) {
-		UserBean user = dao.user_Read(user_id);
+		UserBean user = dao.user_read(user_id);
 		if(user.getUser_status().equals("d")) {
 			return user;
 		}
 		else if(user.getUser_status().equals("c")) {
-			UserBean cpn = dao.cpn_Read(user_id);
+			UserBean cpn = dao.cpn_read(user_id);
 			user.setCpn_service_num(cpn.getCpn_service_num());
 			user.setCpn_bank(cpn.getCpn_bank());
 			user.setCpn_account(cpn.getCpn_account());
@@ -77,5 +79,38 @@ public class UserService {
 		else {
 			return null;
 		}
-	}	
+	}
+	
+	// 아이디 찾기
+	public String findById(UserBean user) {
+		if(user != null) {
+			return dao.find_by_id(user);
+		}
+		else {
+			return null;
+		}
+	}
+	// 비밀번호 찾기
+	public String findByPwd(UserBean user) {
+		if(user != null) {
+			return dao.find_by_pwd(user);
+		}
+		else {
+			return null;
+		}
+	}
+
+	// 인증번호
+	public String findByNum(UserBean user) {
+		if(user != null) {
+			int num = new Random().nextInt(9999);
+			String key = "" + num;
+			user.setFind_num(key);
+			dao.user_info_update(user);
+			return dao.find_by_num(user);
+		}
+		else {
+			return null;
+		}
+	}
 }

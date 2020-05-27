@@ -43,7 +43,7 @@ public class UserController {
 	}
 
 	// 로그인
-	@RequestMapping(value="/login", method = RequestMethod.POST)
+	@RequestMapping(value="/login1", method = RequestMethod.POST)
 	@ResponseBody
 	public int login(UserBean userBean, HttpServletRequest request) {
 		int result = usvc.login(userBean, request);
