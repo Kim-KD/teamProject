@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,14 +14,20 @@ public class UserService {
 	
 	@Autowired
 	private UserDao dao;
+	@Autowired
+	private PasswordEncoder pwdEncoder;
 	
 	// 회원가입
-	public void join(UserBean userBean) {
-		if(userBean.getUser_status().equals("0")) {
-			dao.user_join(userBean);
+	public void join(UserBean user) {
+		if(user.getUser_status().equals("0")) {
+			String encodedPwd = pwdEncoder.encode(user.getUser_pwd());
+			user.setUser_pwd(encodedPwd);
+			dao.user_join(user);
 		} else {
-			dao.user_join(userBean);
-			dao.cpn_join(userBean);
+			String encodedPwd = pwdEncoder.encode(user.getUser_pwd());
+			user.setUser_pwd(encodedPwd);
+			dao.user_join(user);
+			dao.cpn_join(user);
 		}
 	}
 	

@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,7 +20,7 @@ public class UserController {
 	private UserService usvc;
 	
 	// 회원가입
-	@RequestMapping(value="/join", method = RequestMethod.POST)
+	@PostMapping("/join")
 	public String join(UserBean userBean) {
 		usvc.join(userBean);
 		
@@ -27,7 +28,7 @@ public class UserController {
 	}
 	
 	// 아이디 중복체크
-	@RequestMapping(value="/id_chk", method = RequestMethod.POST)
+	@PostMapping("/id_chk")
 	@ResponseBody
 	public int id_chk(@RequestParam("user_id") String user_id) {
 		int result = usvc.id_chk(user_id);
@@ -35,7 +36,7 @@ public class UserController {
 	}
 	
 	// 이메일 중복체크
-	@RequestMapping(value="/email_chk", method = RequestMethod.POST)
+	@PostMapping("/email_chk")
 	@ResponseBody
 	public int email_chk(@RequestParam("user_email") String user_email) {
 		int result = usvc.email_chk(user_email);
@@ -43,7 +44,7 @@ public class UserController {
 	}
 
 	// 로그인
-	@RequestMapping(value="/login1", method = RequestMethod.POST)
+	@PostMapping("/login")
 	@ResponseBody
 	public int login(UserBean userBean, HttpServletRequest request) {
 		int result = usvc.login(userBean, request);
@@ -51,7 +52,7 @@ public class UserController {
 	}
 	
 	// 로그아웃
-	@RequestMapping(value="/logout")
+	@PostMapping("/logout")
 	public String logout(SessionStatus session) {
 		session.setComplete();
 		return "redirect:index";

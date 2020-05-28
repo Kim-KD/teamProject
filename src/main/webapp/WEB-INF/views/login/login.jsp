@@ -34,7 +34,7 @@ function login() {
 	} else {
 		$.ajax({
 			url : "login",
-			data : {"user_id" : user_id, "user_pwd" : user_pwd},
+			data : {"user_id" : user_id, "user_pwd" : user_pwd, "${_csrf.parameterName}" : "${_csrf.token}"},
 			type : "POST",
 			dataType : "json",
 			success : function(result) {

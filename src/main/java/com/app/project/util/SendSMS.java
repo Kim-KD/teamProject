@@ -5,6 +5,7 @@ import java.util.Random;
 
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -14,22 +15,18 @@ import com.app.project.user.UserBean;
 @Controller
 public class SendSMS {
 
-	@RequestMapping(value = "/find_num", method = RequestMethod.POST)
-	public void sendSMS(UserBean user) { // String userPhoneNumber 휴대폰 문자보내기
+	@PostMapping("/find_num")
+	public void sendSMS(UserBean user) {
 
 		String api_key = "NCSCZLR4KJEVU3RV";
 		String api_secret = "AIUPIRJ1TRJHKETGJI9I9MNDYTQNAGJO";
 		Coolsms coolsms = new Coolsms(api_key, api_secret); // 메시지보내기 객체 생성
 		String key = user.getFind_num(); // 인증키 생성
 		
-//		int num = new Random().nextInt(9999);
-//		key = ""+num;
-		
-		//userService.insertAuthCode(userPhoneNumber, key); // 휴대폰 인증 관련 서비스
-		
 		/*
 		 * Parameters 관련정보 : http://www.coolsms.co.kr/SDK_Java_API_Reference_ko#toc-0
 		 */
+		
 		HashMap<String, String> set = new HashMap<String, String>();
 		set.put("to", "01079793021"); // 수신번호
 		set.put("from", user.getUser_radio()); // 발신번호

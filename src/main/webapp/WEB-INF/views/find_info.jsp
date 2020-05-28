@@ -2,10 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/include/other_header.jsp" %>
 <meta charset="UTF-8">
-<title>아이디&비밀번호 찾기</title>
 <style>
 #findIdAndPwd{padding: 100px}
-#sendFindNum{margin-left: 200px; padding: 10px}
+#sendFindNum{margin-left: 44%; padding: 10px}
 </style>
 <script>
 $(function(){
@@ -17,7 +16,7 @@ $(function(){
 			success:function() {
 				alert("인증번호를 보냈습니다.");
 			}, error() {
-				
+				alert("인증번호를 보내는데 실패했습니다.");
 			}
 		})
 	})

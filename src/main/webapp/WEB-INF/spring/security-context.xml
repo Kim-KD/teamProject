@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:sec="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 
+		스프링 시큐리티 프레임워크 -> 보안 서술적 프로그래밍
+		- 인증(authentication) : 로그인 -> 건물 출입증
+		- 인가(authorization) : 권한
+		- 위조 방지(csrf):post방식일 때 사용자가 보내온 폼이 위조되지 않았나?
+	 -->
+	 
+	<!-- 스프링 시큐리티 로그인 활성화
+		login.jsp의 아이디, 비밀번호의 name 지정
+		로그인 화면 주소, 로그인 처리 주소, 로그인 후 이동경로, 실패시 이동경로 
+	-->
+	<sec:http auto-config="true">
+		<sec:form-login
+			username-parameter="user_id"
+			password-parameter="user_pwd"
+			login-page="/login1"
+			login-processing-url="/login1"
+			default-target-url="/"
+		/>
+		<!-- 실패시 이동 경로 authentication-failure-forward-url="/user/login" -->
+		
+		<sec:logout
+			logout-url="/user/logout"
+			logout-success-url="/"
+		/>
+	</sec:http>
+	
+	<!-- 계정과 권한 설정
+		1. 권한은 ROLE_로 시작한다
+		2. 단순한 문자열이다. 즉 ROLE_ADMIN이 ROLE_USER를 포함X 
+	-->
+	<bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	<sec:authentication-manager>
+		<sec:authentication-provider>
+			<sec:jdbc-user-service data-source-ref="dataSource"
+			users-by-username-query="select user_id, user_pwd, user_block from user_info where username=?"
+			authorities-by-username-query="select user_id,authority from authorities where username=?"/>
+			<sec:password-encoder ref="encoder" />
+		</sec:authentication-provider>
+	</sec:authentication-manager>
+	
+</beans>
+
+
+
+
