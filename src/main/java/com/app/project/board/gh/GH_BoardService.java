@@ -6,18 +6,29 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 @Service
 public class GH_BoardService {
 	
 	@Autowired
 	private GH_BoardDao bdao;
+	private ModelAndView mav;
 
 	// 게시글 작성
-	public void write(GH_BoardBean boardBean) {
+	public void write(GH_BoardBean boardBean, GH_TestBean testBean) {
 		bdao.gh_Insert(boardBean);
 		bdao.gh_More_Insert(boardBean);
-		bdao.gh_Room_Insert(boardBean);
+		bdao.gh_Room_Insert(testBean);
+	}
+	
+	public ModelAndView testlist() {
+		mav = new ModelAndView();
+		List<GH_BoardBean> boardlist = bdao.testlist();
+		
+		mav.addObject("boardlist", boardlist);
+		mav.setViewName("index");
+		return mav;
 	}
 	
 	// 게시글 읽기

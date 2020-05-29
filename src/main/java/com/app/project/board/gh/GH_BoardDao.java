@@ -13,6 +13,25 @@ public class GH_BoardDao {
 	@Autowired
 	private SqlSessionTemplate sql;
 
+	// 게스트 하우스 게시글 작성
+	public int gh_Insert(GH_BoardBean boardBean) {
+		return sql.insert("GH_Mapper.gh_Insert", boardBean);
+	}
+	
+	// 게스트 하우스 상세 정보 작성
+	public int gh_More_Insert(GH_BoardBean boardBean) {
+		return sql.insert("GH_Mapper.gh_More_Insert", boardBean);
+	}
+	
+	// 게스트 하우스 방 정보 작성
+	public int gh_Room_Insert(GH_TestBean testBean) {
+		return sql.insert("GH_Mapper.gh_Room_Insert", testBean);
+	}
+	
+	public List<GH_BoardBean> testlist() {
+		return sql.selectList("GH_Mapper.testlist");
+	}
+	
 	// 게스트 하우스 게시글 읽기
 	public GH_BoardBean gh_Read(int no) {
 		return sql.selectOne("GH_Mapper.gh_Read", no);
@@ -26,21 +45,6 @@ public class GH_BoardDao {
 	// 게스트 하우스 댓글 읽기
 	public List<GH_ViewBean> gh_View_Read(int no) {
 		return sql.selectList("GH_Mapper.gh_View_Read", no);
-	}
-	
-	// 게스트 하우스 게시글 작성
-	public int gh_Insert(GH_BoardBean boardBean) {
-		return sql.insert("GH_Mapper.gh_Insert", boardBean);
-	}
-	
-	// 게스트 하우스 상세 정보 작성
-	public int gh_More_Insert(GH_BoardBean boardBean) {
-		return sql.insert("GH_Mapper.gh_More_Insert", boardBean);
-	}
-	
-	// 게스트 하우스 방 정보 작성
-	public int gh_Room_Insert(GH_BoardBean boardBean) {
-		return sql.insert("GH_Mapper.gh_Room_Insert", boardBean);
 	}
 	
 	// 게스트 하우스 댓글 작성

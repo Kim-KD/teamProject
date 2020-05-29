@@ -20,6 +20,11 @@ public class UserDao {
 		return sql.insert("User_Mapper.cpn_sign_up", userBean);
 	}
 	
+	// 로그인
+	public UserBean login(UserBean userBean) {
+		return sql.selectOne("User_Mapper.login", userBean);
+	}
+	
 	// 유저 정보 읽기
 	public UserBean user_read(String user_id) {
 		return sql.selectOne("User_Mapper.user_Read", user_id);
@@ -63,11 +68,6 @@ public class UserDao {
 	// 인증번호
 	public String find_by_num(UserBean userBean) {
 		return sql.selectOne("User_Mapper.findByNum",userBean); 
-	}
-	
-	// 로그인
-	public UserBean login(UserBean userBean) {
-		return sql.selectOne("User_Mapper.login", userBean);
 	}
 	
 }

@@ -8,7 +8,21 @@
 			<h2>일반 회원 추천 랭킹</h2>
 		</div>
 		<div class="row" id="slide">
+			<%-- <c:forEach items="${boardlist}" var="boardlist">
 			<div class="col-lg-4">
+				<div class="property-item">
+					<div class="pi-image">
+						<img src="assets/img/property/1.jpg" alt="">
+						<div class="pi-badge new">인기</div>
+					</div>
+					<h3>${boardlist.title}</h3>
+					<h5>${boardlist.price}</h5>
+					<p>${boardlist.content}</p>
+				</div>
+			</div>
+			</c:forEach> --%>
+
+			<!-- <div class="col-lg-4">
 				<div class="property-item">
 					<div class="pi-image">
 						<img src="assets/img/property/1.jpg" alt="">
@@ -17,7 +31,7 @@
 					<h3>게스트하우스 이름</h3>
 					<h5>가격</h5>
 					<p>게스트 하우스 소개글</p>
-					<!-- <a href="#" class="readmore-btn">게시글로 이동</a> -->
+					<a href="#" class="readmore-btn">게시글로 이동</a>
 				</div>
 			</div>
 			<div class="col-lg-4">
@@ -29,7 +43,7 @@
 					<h3>게스트하우스 이름</h3>
 					<h5>가격</h5>
 					<p>게스트 하우스 소개글</p>
-					<!-- <a href="#" class="readmore-btn">게시글로 이동</a> -->
+					<a href="#" class="readmore-btn">게시글로 이동</a>
 				</div>
 			</div>
 			<div class="col-lg-4">
@@ -41,7 +55,7 @@
 					<h3>게스트하우스 이름</h3>
 					<h5>가격</h5>
 					<p>게스트 하우스 소개글</p>
-					<!-- <a href="#" class="readmore-btn">게시글로 이동</a> -->
+					<a href="#" class="readmore-btn">게시글로 이동</a>
 				</div>
 			</div>
 			<div class="col-lg-4">
@@ -53,7 +67,7 @@
 					<h3>게스트하우스 이름</h3>
 					<h5>가격</h5>
 					<p>게스트 하우스 소개글</p>
-					<!-- <a href="#" class="readmore-btn">게시글로 이동</a> -->
+					<a href="#" class="readmore-btn">게시글로 이동</a>
 				</div>
 			</div>
 			<div class="col-lg-4">
@@ -65,7 +79,7 @@
 					<h3>게스트하우스 이름</h3>
 					<h5>가격</h5>
 					<p>게스트 하우스 소개글</p>
-					<!-- <a href="#" class="readmore-btn">게시글로 이동</a> -->
+					<a href="#" class="readmore-btn">게시글로 이동</a>
 				</div>
 			</div>
 			<div class="col-lg-4">
@@ -77,9 +91,9 @@
 					<h3>게스트하우스 이름</h3>
 					<h5>가격</h5>
 					<p>게스트 하우스 소개글</p>
-					<!-- <a href="#" class="readmore-btn">게시글로 이동</a> -->
+					<a href="#" class="readmore-btn">게시글로 이동</a>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </section>

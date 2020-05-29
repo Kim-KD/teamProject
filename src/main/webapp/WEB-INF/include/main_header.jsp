@@ -15,6 +15,7 @@
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i,900%7cRoboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
+	
 	<!-- 폰트어썸 -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
  
@@ -22,11 +23,12 @@
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="assets/css/font-awesome.min.css" />
 	<link rel="stylesheet" href="assets/css/slicknav.min.css" />
-	
 	<link rel="stylesheet" href="assets/css/slick.css" />
 
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="assets/css/style.css"/>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 </head>
 <body>
@@ -46,7 +48,6 @@
 				<li><a href="about_us">스탭 구인</a></li>
 				<li><a href="page1">게스트 하우스</a></li>
 				<li><a href="page2">메뉴3</a>	</li>
-				<li><a href="write_page">글작성</a></li>
 				<li><a href="page3">고객센터</a>
 					<ul class="sub-menu">
 						<li><a href="#">QnA</a></li>
@@ -67,6 +68,9 @@
 			<div class="header-right">
 				<div class="user-panel">
 					<a href="#">${login_data.user_id}</a>
+					<c:if test="${login_data.user_status == 1}">
+						<a href="write_page">글 작성</a>
+					</c:if>
 					<a href="logout" class="register">로그아웃</a>
 				</div>
 			</div>
