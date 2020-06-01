@@ -3,7 +3,12 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="User_Mapper">
-
+	
+	<!-- 로그인 -->
+	<select id="login" resultType="user" parameterType="user">
+		select user_id, user_pwd, user_status from user_info where user_id=#{user_id} and user_pwd=#{user_pwd}
+	</select>
+	
 	<!-- 유저 정보 읽기 -->
 	<select id="user_Read" resultType="user">
 		select user_id, user_status, user_num, user_pwd, user_name,
@@ -67,11 +72,6 @@
 	<select id="findByNum" resultType="user">
 		select find_num from user_info
 		where user_email=#{user_email} and user_id=#{user_id}
-	</select>
-	
-	<!-- 로그인 -->
-	<select id="login" resultType="user" parameterType="user">
-		select user_id, user_pwd from user_info where user_id=#{user_id} and user_pwd=#{user_pwd}
 	</select>
 
 	<!-- 유저 정보 수정 -->
