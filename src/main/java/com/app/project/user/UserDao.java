@@ -20,6 +20,11 @@ public class UserDao {
 		return sql.insert("User_Mapper.cpn_sign_up", userBean);
 	}
 	
+	// 로그인
+	public UserBean login(UserBean userBean) {
+		return sql.selectOne("User_Mapper.login", userBean);
+	}
+	
 	// 유저 정보 읽기
 	public UserBean user_read(String user_id) {
 		return sql.selectOne("User_Mapper.user_Read", user_id);
@@ -65,6 +70,7 @@ public class UserDao {
 		return sql.selectOne("User_Mapper.findByNum",userBean); 
 	}
 	
+<<<<<<< HEAD
 	// 로그인
 	public UserBean login(UserBean userBean) {
 		return sql.selectOne("User_Mapper.login", userBean);
@@ -75,4 +81,6 @@ public class UserDao {
 		return (UserBean)sql.selectOne("User_Mapper.findByUserNum", user_num);
 	}
 	
+=======
+>>>>>>> branch 'master' of https://github.com/Kim-KD/teamProject.git
 }

@@ -38,9 +38,4 @@ public class GH_BoardBean {
 	private String pet;			// 반려동물 출입여부
 	private String check_in;	// 입실 시간
 	private String check_out;	// 퇴실 시간
-	private String room;		// 방
-	private String room_status;	// 방 구분
-	private int price;			// 가격
-	private String photo;		// 뷰
-	private int room_people;	// 정원
 }
