@@ -12,7 +12,7 @@
 	
 	<annotation-driven />
 
-	<resources mapping="/resources/**" location="/resources/" />
+ 	<resources mapping="/resources/**" location="/resources/" />
 	
 	<resources mapping="/assets/css/**" location="/resources/assets/css/" />
 	<resources mapping="/assets/icon-fonts/**" location="/resources/assets/icon-fonts/" />

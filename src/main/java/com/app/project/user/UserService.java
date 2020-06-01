@@ -110,10 +110,20 @@ public class UserService {
 	
 	// 유저 정보 수정
 	public Integer userInfoUpdate(UserBean user) {
-		if(user.getUser_status().equals("d")) {
+		if(user.getUser_status().equals("0")) {
+			if(user.getUser_pwd() != null) {
+				String encodedPwd = pwdEncoder.encode(user.getUser_pwd());
+				user.setUser_pwd(encodedPwd);
+				user.setChange_pwd(encodedPwd);
+			}
 			return dao.user_info_update(user);
 		}
-		else if(user.getUser_status().equals("c")) {
+		else if(user.getUser_status().equals("1")) {
+			if(user.getUser_pwd() != null) {
+				String encodedPwd = pwdEncoder.encode(user.getUser_pwd());
+				user.setUser_pwd(encodedPwd);
+				user.setChange_pwd(encodedPwd);
+			}
 			return dao.cpn_info_update(user);
 		}
 		else {

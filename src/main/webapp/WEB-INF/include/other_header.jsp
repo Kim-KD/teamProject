@@ -1,10 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
+<script>
+	$(function() {
+		$("#logoutBtn").on("click", function() {
+			var param = {
+				_csrf:"${_csrf.token}"
+			}
+			$.ajax({
+				url: "/project/logout",
+				method: "post",
+				data: param,
+				success: function() {
+					location.href = "/project";
+				}
+			})
+		})
+	})
+</script>
 <head>
-	<title>Mondy | Real Estate HTML Template</title>
+	<title>게하모 | 게스트 하우스의 모든 것</title>
 	<meta charset="UTF-8">
 	<meta name="description" content="Real estate HTML Template">
 	<meta name="keywords" content="real estate, html">
@@ -33,7 +52,6 @@
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
 </head>
 <body>
 	<!-- Page Preloder -->
@@ -61,22 +79,25 @@
 					</ul>
 				</li>
 			</ul>
-			<c:if test="${login_data == null}">
-			<div class="header-right">
+			<sec:authorize access="isAuthenticated()">
+		<div class="header-right">
+				<div class="user-panel">
+					<c:set var="loginId" 
+value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}"></c:set>
+					<a href="#">${loginId}</a>
+<!-- 						<a href="write_page">글 작성</a> -->
+					<a href="#" id="logoutBtn" class="register">로그아웃</a>
+				</div>
+			</div>
+	</sec:authorize>
+	<sec:authorize access="isAnonymous()">
+		<div class="header-right">
 				<div class="user-panel">
 					<a href="login" class="login">로그인</a>
 					<a href="normal_or_cpn" class="register">회원가입</a>
 				</div>
 			</div>
-			</c:if>
-			<c:if test="${login_data != null}">
-			<div class="header-right">
-				<div class="user-panel">
-					<a href="#">${login_data.user_id}</a>
-					<a href="logout" class="register">로그아웃</a>
-				</div>
-			</div>
-			</c:if>
+	</sec:authorize>
 		</nav>
 	</header>
 	<!-- Header Section end -->

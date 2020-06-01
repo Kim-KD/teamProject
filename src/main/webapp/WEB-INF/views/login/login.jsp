@@ -10,7 +10,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <script>
-function login() {
+$(function login() {
+
+	$("#loginbtn").on("click",function(){
+	
+	
 	// ID 유효성 검사
 	var idRegExp = /^[a-z]+[a-z0-9]{4,12}$/g;
 	var user_id = $("#user_id").val();
@@ -34,9 +38,8 @@ function login() {
 	} else {
 		$.ajax({
 			url : "/project/login",
-			data : {"user_id" : user_id, "user_pwd" : user_pwd, "${_csrf.parameterName}" : "${_csrf.token}"},
+			data : $('#loginFrm').serialize(),
 			type : "POST",
-			dataType : "json",
 			success : function(result) {
 				if(result == 0) {
 					alert("아이디 또는 비밀번호를 확인해주세요");
@@ -46,7 +49,8 @@ function login() {
 			}
 		});
 	}
-}
+	})
+})
 
 $(function(){
 	$("#user_id").focusout(function(){
@@ -60,6 +64,7 @@ $(function(){
 
 </head>
 <body>
+	<form id = "loginFrm" action="/project/login" method="post">
 	<div class="container">
 		<div class="form-group">
 			<label for="user_id">아이디</label>&nbsp;
@@ -71,7 +76,9 @@ $(function(){
 			<span id="password_msg"></span>
 			<input type="password" class="form-control" id="user_pwd" name="user_pwd">
 		</div>
-		<button class="btn btn-info" onclick="return login()">로그인</button>
+		<input type="hidden" name="_csrf" value="${_csrf.token}">
+		<button class="btn btn-info" id="loginbtn" type="button">로그인</button>
 	</div>
+	</form>
 </body>
 </html>

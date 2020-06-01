@@ -22,8 +22,9 @@
 			login-page="/login"
 			login-processing-url="/login"
 			default-target-url="/index"
+			authentication-failure-url="/user/login?error=1"
 		/>
-		<!-- 실패시 이동 경로 authentication-failure-forward-url="/user/login" -->
+		
 		
 		<sec:logout
 			logout-url="/logout"
@@ -39,8 +40,8 @@
 	<sec:authentication-manager>
 		<sec:authentication-provider>
 			<sec:jdbc-user-service data-source-ref="dataSource"
-			users-by-username-query="select user_id, user_pwd, user_block from user_info where username=?"
-			authorities-by-username-query="select user_id, authority from authorities where username=?"/>
+			users-by-username-query="select user_id as username, user_pwd as password, enabled from user_info where user_id=?"
+			authorities-by-username-query="select user_id as username, authority from authorities where user_id=?"/>
 			<sec:password-encoder ref="encoder" />
 		</sec:authentication-provider>
 	</sec:authentication-manager>
