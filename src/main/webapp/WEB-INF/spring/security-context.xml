@@ -19,14 +19,14 @@
 		<sec:form-login
 			username-parameter="user_id"
 			password-parameter="user_pwd"
-			login-page="/login1"
-			login-processing-url="/login1"
-			default-target-url="/"
+			login-page="/login"
+			login-processing-url="/login"
+			default-target-url="/index"
 		/>
 		<!-- 실패시 이동 경로 authentication-failure-forward-url="/user/login" -->
 		
 		<sec:logout
-			logout-url="/user/logout"
+			logout-url="/logout"
 			logout-success-url="/"
 		/>
 	</sec:http>
@@ -40,7 +40,7 @@
 		<sec:authentication-provider>
 			<sec:jdbc-user-service data-source-ref="dataSource"
 			users-by-username-query="select user_id, user_pwd, user_block from user_info where username=?"
-			authorities-by-username-query="select user_id,authority from authorities where username=?"/>
+			authorities-by-username-query="select user_id, authority from authorities where username=?"/>
 			<sec:password-encoder ref="encoder" />
 		</sec:authentication-provider>
 	</sec:authentication-manager>

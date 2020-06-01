@@ -1,13 +1,15 @@
 package com.app.project.user;
 
+import java.util.List;
 import java.util.Random;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import com.app.project.util.MailUtil;
+import com.app.project.user.AuthorityDao;
 
 @Service
 public class UserService {
@@ -15,19 +17,50 @@ public class UserService {
 	@Autowired
 	private UserDao dao;
 	@Autowired
+	private AuthorityDao authorityDao;
+	@Autowired
 	private PasswordEncoder pwdEncoder;
 	
 	// 회원가입
 	public void join(UserBean user) {
 		if(user.getUser_status().equals("0")) {
+			
+			String userNum = RandomStringUtils.randomAlphanumeric(10);
 			String encodedPwd = pwdEncoder.encode(user.getUser_pwd());
 			user.setUser_pwd(encodedPwd);
+			user.setChange_pwd(encodedPwd);
+			user.setUser_num(userNum);
+			
+			String link= "<a href='http://localhost:8084/project/join_check?user_num="+userNum+"'>";
+			String msg = "<p>회원 가입 확인</p>";
+			msg += "<p>가입을 위해 아래 링크를 클릭하세요</p>";
+			msg += "<p>가입 확인 :" + link + "클릭하세요</a></p>";
+			MailUtil.sendMail("wkdql789@gmail.com", user.getUser_email(), "회원 가입 확인", msg);
+			
 			dao.user_join(user);
+			List<String> authorities = user.getAuthorities();
+			for(String authority:authorities) {
+				authorityDao.insert(user.getUser_id(),authority);
+			}
 		} else {
+			
+			String userNum = RandomStringUtils.randomAlphanumeric(10);
 			String encodedPwd = pwdEncoder.encode(user.getUser_pwd());
 			user.setUser_pwd(encodedPwd);
+			user.setUser_num(userNum);
+			
+			String link= "<a href='http://localhost:8084/project/join_check?user_num="+userNum+"'>";
+			String msg = "<p>회원 가입 확인</p>";
+			msg += "<p>가입을 위해 아래 링크를 클릭하세요</p>";
+			msg += "<p>가입 확인 :" + link + "클릭하세요</a></p>";
+			MailUtil.sendMail("wkdql789@gmail.com", user.getUser_email(), "회원 가입 확인", msg);
+			
 			dao.user_join(user);
 			dao.cpn_join(user);
+			List<String> authorities = user.getAuthorities();
+			for(String authority:authorities) {
+				authorityDao.insert(user.getUser_id(),authority);
+			}
 		}
 	}
 	
@@ -43,19 +76,19 @@ public class UserService {
 		return result;
 	}
 	
-	// 로그인
-	public int login(UserBean userBean, HttpServletRequest request) {
-		UserBean loginData = dao.login(userBean);
-		
-		HttpSession session = request.getSession();
-		
-		if(loginData == null) {
-			return 0;
-		} else {
-			session.setAttribute("login_data", loginData);
-			return 1;
-		}
-	}
+	// 로그인 (스프링 시큐리티가 해줌)
+//	public int login(UserBean user, HttpServletRequest request) {
+//		UserBean loginData = dao.login(user);
+//		
+//		HttpSession session = request.getSession();
+//		
+//		if(loginData == null) {
+//			return 0;
+//		} else {
+//			session.setAttribute("login_data", loginData);
+//			return 1;
+//		}
+//	}
 	
 	// 유저 정보 읽기
 	public UserBean userInfoRead(String user_id) {
@@ -89,21 +122,43 @@ public class UserService {
 	}
 	
 	// 아이디 찾기
-	public String findById(UserBean user) {
+	public void findById(UserBean user) {
 		if(user != null) {
-			return dao.find_by_id(user);
+			
+			String id = dao.find_by_id(user);
+			
+			String link= "<a href='http://localhost:8084/login'>";
+			String msg = "<p>게하모 아이디 찾기</p>";
+			msg += "<p>아이디 찾기 결과 고객님의 아이디는" + id + "입니다</p>";
+			msg += "<p>로그인 하시려면 아래 링크를 클릭하세요</p>";
+			msg += "<p>로그인하기 :" + link + "클릭하세요</a></p>";
+			MailUtil.sendMail("wkdql789@gmail.com", user.getUser_email(), "게하모 아이디 찾기 이메일입니다.", msg);
+			
 		}
 		else {
-			return null;
+			System.out.println("유저 정보가 없습니다");
 		}
 	}
 	// 비밀번호 찾기
-	public String findByPwd(UserBean user) {
+	public void findByPwd(UserBean user) {
 		if(user != null) {
-			return dao.find_by_pwd(user);
+			
+			String pwd = RandomStringUtils.randomAlphanumeric(8);
+			String encodedPwd = pwdEncoder.encode(pwd);
+			user.setUser_pwd(encodedPwd);
+			
+			dao.user_info_update(user);
+			
+			String link= "<a href='http://localhost:8084/login'>";
+			String msg = "<p>게하모 비밀번호 찾기</p>";
+			msg += "<p>고객님의 임시비밀번호는" + pwd + "입니다</p>";
+			msg += "<p>로그인 하신 뒤 비밀번호 변경하시고 이용 부탁드립니다.</p>";
+			msg += "<p>로그인 하시려면 아래 링크를 클릭하세요</p>";
+			msg += "<p>로그인하기 :" + link + "클릭하세요</a></p>";
+			MailUtil.sendMail("wkdql789@gmail.com", user.getUser_email(), "게하모 비밀번호 찾기 이메일입니다.", msg);
 		}
 		else {
-			return null;
+			System.out.println("유저 정보가 없습니다");
 		}
 	}
 
@@ -119,5 +174,16 @@ public class UserService {
 		else {
 			return null;
 		}
+	}
+
+	// 이메일 인증
+	public boolean joinCheck(String user_num) {
+		UserBean user = dao.findByUserNum(user_num);
+		if(user==null) {
+			return false;
+		}
+		user.setUser_block(true);
+		dao.user_info_update(user);
+		return true;
 	}
 }

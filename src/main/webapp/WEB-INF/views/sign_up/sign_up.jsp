@@ -163,15 +163,15 @@ function join_chk() {
     	$("#job_msg").text("직업을 입력해주세요.").css("color", "red");
     	$("#user_job").focus();
     	return false;
-    } else if($("#id_chk_validation").val() == "0") {
-    	alert("아이디 중복확인을 진행해주세요.");
-    	$("#user_id").focus();
-    	return false;
-    } else if($("#email_chk_validation").val() == "0") {
-    	alert("이메일 중복확인을 진행해주세요.");
-    	$("#user_email").focus();
-    	return false;
-    }
+     }// else if($("#id_chk_validation").val() == "0") {
+//     	alert("아이디 중복확인을 진행해주세요.");
+//     	$("#user_id").focus();
+//     	return false;
+//     } else if($("#email_chk_validation").val() == "0") {
+//     	alert("이메일 중복확인을 진행해주세요.");
+//     	$("#user_email").focus();
+//     	return false;
+//     }
 }
 
 $(function(){
@@ -276,6 +276,12 @@ $(function(){
 				<span id="job_msg"></span>
 				<input type="text" class="form-control" id="user_job" name="user_job" placeholder="개발자, 기획자, 서버 관리자 등등">
 			</div>
+			권한 : <select name="authorities">
+			<option value="ROLE_USER">사용자</option>
+			<option value="ROLE_MANAGER">매니저</option>
+			<option value="ROLE_ADMIN">관리자</option>
+		</select>
+		<input type="hidden" name="_csrf" value="${_csrf.token}"><br>
 			<button type="submit" class="btn btn-info" onclick="return join_chk()">회원가입</button>
 		</div>
 	</form>

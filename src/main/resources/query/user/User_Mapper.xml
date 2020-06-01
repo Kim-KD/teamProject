@@ -27,7 +27,7 @@
 		(user_id, user_status, user_num, user_pwd, user_name,
 		user_radio, user_cable, user_email, user_gender, user_job,
 		user_create_day, user_certify, change_pwd, change_pwd_day)
-		values(#{user_id},#{user_status},0000,#{user_pwd},
+		values(#{user_id},#{user_status},#{user_num},#{user_pwd},
 		#{user_name},#{user_radio},#{user_cable},#{user_email},
 		#{user_gender},#{user_job},now(),0,#{change_pwd},now())
 	</insert>
@@ -84,6 +84,7 @@
 			<if test="user_pwd != null">user_pwd = #{user_pwd},
 			change_pwd = #{user_pwd},change_pwd_day = now(),</if>
 			<if test="find_num != null">find_num = #{find_num},</if>
+			<if test="user_block != null">user_block = #{user_block},</if>
 		</trim>
 		where user_id=#{user_id}
 	</update>
@@ -98,5 +99,10 @@
 		</trim>
 		where user_id=#{user_id}
 	</update>
+	
+	<!-- 이메일 인증 -->
+	<select id="findByUserNum" resultType="user">
+		select user_id, user_num from user_info where user_num=#{user_num}
+	</select>
 
 </mapper>

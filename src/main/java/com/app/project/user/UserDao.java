@@ -70,4 +70,9 @@ public class UserDao {
 		return sql.selectOne("User_Mapper.login", userBean);
 	}
 	
+	// 이메일 인증
+	public UserBean findByUserNum(String user_num) {
+		return (UserBean)sql.selectOne("User_Mapper.findByUserNum", user_num);
+	}
+	
 }

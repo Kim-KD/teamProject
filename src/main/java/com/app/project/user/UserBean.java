@@ -1,5 +1,7 @@
 package com.app.project.user;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,10 +30,11 @@ public class UserBean {
 	private String change_pwd;		// 변경된 비밀번호
 	private String change_pwd_day;	// 비밀번호 변경일
 	private String login_fail_cnt;	// 로그인 실패 횟수
-	private String user_block;		// 계정 차단
+	private boolean user_block;		// 계정 차단
 	private String find_num;		// 인증 번호
 	private String cpn_service_num;	// 사업자 번호
 	private String cpn_bank;		// 은행
 	private String cpn_account;		// 계좌번호
+	private List<String> authorities;	// 유저 권한
 	
 }

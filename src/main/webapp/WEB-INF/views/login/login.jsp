@@ -33,7 +33,7 @@ function login() {
 		return false;
 	} else {
 		$.ajax({
-			url : "login",
+			url : "/project/login",
 			data : {"user_id" : user_id, "user_pwd" : user_pwd, "${_csrf.parameterName}" : "${_csrf.token}"},
 			type : "POST",
 			dataType : "json",
