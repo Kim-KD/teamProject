@@ -20,9 +20,12 @@
 	</insert>
 	
 	<!-- 게스트하우스 방 정보 작성 -->
-	<insert id="gh_Room_Insert" parameterType="gh_Board">
+	<insert id="gh_Room_Insert" parameterType="java.util.ArrayList">
 		insert into gh_room_info(no, room, room_status, price, photo, room_people, gender)
-		values(#{no}, #{room}, #{room_status}, #{price}, #{photo}, #{room_people}, #{gender})
+		values
+		<foreach item="roomList" collection="list" separator=",">
+			(#{roomList.no}, #{roomList.room}, #{roomList.room_status}, #{roomList.price}, #{roomList.photo}, #{roomList.room_people}, #{roomList.gender})
+		</foreach>
 	</insert>
 	
 	

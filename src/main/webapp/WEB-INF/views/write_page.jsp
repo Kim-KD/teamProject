@@ -5,7 +5,17 @@
 <section class="contact-section">
     <div class="container">
         <form class="contact-form" action="write" method="post">
-        <input type="hidden" name="user_id" value="${login_data.user_id}">
+        <%-- <input type="hidden" name="user_id" value="${login_data.user_id}"> --%>
+        <input type="hidden" name="user_id" value="test1">
+        <input type="hidden" name="user_status" value="1">
+        
+        <input type="hidden" name="postcode" value="0000">
+        <input type="hidden" name="party_day" value="00-00">
+        <input type="hidden" name="no" value="2">
+        
+        <input type="hidden" name="room_status" value="0">
+        <input type="hidden" name="photo" value="사진">
+        
             <div class="row">
                 <span class="col-sm-2 control-label">제목</span>
                 <div class="col-sm-10">
@@ -23,8 +33,8 @@
                 </div>
 
                 <span class="col-sm-2 control-label">방</span>
-                <div class="col-sm-4">
-                    <select class="form-control selectbox" name="list[0].room">
+                <div class="col-sm-4" id="sroom">
+                    <select class="form-control selectbox" id="room" name="room">
                     	<option>===선택===</option>
                         <option value="도미토리룸">도미토리룸</option>
                         <option value="더블룸">더블룸</option>
@@ -33,8 +43,8 @@
                 </div>
 
                 <span class="col-sm-2 control-label">방구분(남/여)</span>
-                <div class="col-sm-4">
-                    <select class="form-control selectbox" name="list[0].gender">
+                <div class="col-sm-4" id="sgender">
+                    <select class="form-control selectbox" id="gender" name="gender">
                     	<option>===선택===</option>
                         <option value="0">남</option>
                         <option value="1">여</option>
@@ -42,8 +52,8 @@
                 </div>
 
                 <span class="col-sm-2 control-label">정원</span>
-                <div class="col-sm-4">
-                    <select class="form-control selectbox" name="list[0].room_people">
+                <div class="col-sm-4" id="sroom_people">
+                    <select class="form-control selectbox" id="room_people" name="room_people">
                         <option>===선택===</option>
                         <option value="1">1명</option>
                         <option value="2">2명</option>
@@ -59,16 +69,16 @@
                 </div>
 
                 <span class="col-sm-2 control-label">가격</span>
-                <div class="col-sm-4">
-                    <select class="form-control selectbox" name="list[0].price">
+                <div class="col-sm-4" id="sprice">
+                    <select class="form-control selectbox" id="price" name="price">
                         <option>===선택===</option>
-                        <option value="30,000원">30,000원</option>
-                        <option value="40,000원">40,000원</option>
-                        <option value="50,000원">50,000원</option>
-                        <option value="60,000원">60,000원</option>
-                        <option value="70,000원">70,000원</option>
-                        <option value="80,000원">80,000원</option>
-                        <option value="90,000원">90,000원</option>
+                        <option value="30000">30,000원</option>
+                        <option value="40000">40,000원</option>
+                        <option value="50000">50,000원</option>
+                        <option value="60000">60,000원</option>
+                        <option value="70000">70,000원</option>
+                        <option value="80000">80,000원</option>
+                        <option value="90000">90,000원</option>
                     </select>
                 </div>
                 <span class="col-sm-12 control-label"></span>
@@ -83,69 +93,31 @@
                 	<input type="button" onclick="btn_test();" value="추가">
                 </div>
                 <script>
-                	var i = 1;
-                	function btn_test() {
-                		const test = $("#test").val();
-                		
-                		if(confirm("방 정보를 추가 하시겠습니까??") == true) {
-                			$("#test").append(
-    								'<span class="col-sm-2 control-label">방</span>' + 
-    									'<div class="col-sm-4">' + 
-    										'<select class="form-control selectbox" name="list['+ i +'].room"> '+
-    											'<option>===선택===</option>' +
-    											'<option value="도미토리룸">도미토리룸</option>' +
-    											'<option value="더블룸">더블룸</option>' +
-    											'<option value="트윈룸">트윈룸</option>' +
-    										'</select>' +
-    									'</div>' +
-    		
-    									'<span class="col-sm-2 control-label">방구분(남/여)</span>' +
-    									'<div class="col-sm-4">' +
-    										'<select class="form-control selectbox" name=""list['+ i +'].gender">' +
-    											'<option>===선택===</option>' +
-    											'<option value="0">남</option>' +
-    											'<option value="1">여</option>' +
-    										'</select>' +
-    									'</div>' +
-
-    									'<span class="col-sm-2 control-label">정원</span>' +
-    									'<div class="col-sm-4">' +
-    										'<select class="form-control selectbox" name=""list['+ i +'].room_people">' +
-    											'<option>===선택===</option>' +
-    											'<option value="1">1명</option>' +
-    											'<option value="2">2명</option>' +
-    											'<option value="3">3명</option>' +
-    											'<option value="4">4명</option>' +
-    											'<option value="5">5명</option>' +
-    											'<option value="6">6명</option>' +
-    											'<option value="7">7명</option>' +
-    											'<option value="8">8명</option>' +
-    											'<option value="9">9명</option>' +
-    											'<option value="10">10명</option>' +
-    										'</select>' +
-    									'</div>' +
-
-    									'<span class="col-sm-2 control-label">가격</span>' +
-    										'<div class="col-sm-4">' +
-    										'<select class="form-control selectbox" name=""list['+ i +'].price">' +
-    											'<option>===선택===</option>' +
-    											'<option value="30,000원">30,000원</option>' +
-    											'<option value="40,000원">40,000원</option>' +
-    											'<option value="50,000원">50,000원</option>' +
-    											'<option value="60,000원">60,000원</option>' +
-    											'<option value="70,000원">70,000원</option>' +
-    											'<option value="80,000원">80,000원</option>' +
-    											'<option value="90,000원">90,000원</option>' +
-    										'</select>' +
-    									'</div>' +
-    									
-    									'<span class="col-sm-12 control-label"></span>'
-                    			);
-                			i++;
-                		} else {
-                			return;
-                		}
+                function btn_test(){
+                	if(confirm("방 정보를 추가 하시겠습니까??") == true) {
+	                	var room_orig = $("select", $('#room'));
+	                	var gender_orig = $("select", $('#gender'));
+	                	var room_people_orig = $("select", $('#room_people'));
+	                	var price_orig = $("select", $('#price'));
+	                	
+	                	var room_copy = $("#room").clone();
+	                	var gender_copy = $("#gender").clone();
+	                	var room_people_copy = $("#room_people").clone();
+	                	var price_copy = $("#price").clone();
+	                	
+	                	$("select", room_copy).val(room_orig.val());
+	                	$("select", gender_copy).val(gender_orig.val());
+	                	$("select", room_people_copy).val(room_people_orig.val());
+	                	$("select", price_copy).val(price_orig.val());
+	                	
+	                	room_copy.appendTo("#sroom");
+	                	gender_copy.appendTo("#sgender");
+	                	room_people_copy.appendTo("#sroom_people");
+	                	price_copy.appendTo("#sprice");
+                	} else {
+                		return;
                 	}
+                }
                 </script>
 
                 <span class="col-sm-2 control-label">파티 메뉴</span>
@@ -285,13 +257,6 @@
                         </div>
                     </div>
                 </div>
-                
-                <input type="hidden" name="postcode" value="0000">
-                <input type="hidden" name="party_day" value="00-00">
-                <input type="hidden" name="no" value="2">
-                
-                <input type="hidden" name="room_status" value="0">
-                <input type="hidden" name="photo" value="사진">
                 
                 <span class="col-sm-2 control-label">내용</span>
                 <div class="col-lg-10">

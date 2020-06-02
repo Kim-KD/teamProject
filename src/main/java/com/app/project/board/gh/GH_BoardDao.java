@@ -24,8 +24,8 @@ public class GH_BoardDao {
 	}
 	
 	// 게스트 하우스 방 정보 작성
-	public int gh_Room_Insert(GH_TestBean testBean) {
-		return sql.insert("GH_Mapper.gh_Room_Insert", testBean);
+	public int gh_Room_Insert(List<GH_RoomBean> roomList) {
+		return sql.insert("GH_Mapper.gh_Room_Insert", roomList);
 	}
 	
 	public List<GH_BoardBean> testlist() {

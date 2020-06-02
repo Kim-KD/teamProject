@@ -1,12 +1,14 @@
 package com.app.project.board.gh;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -20,10 +22,12 @@ public class GH_BoardController {
 	
 	// 게시글 작성
 	@RequestMapping(value="/write", method = RequestMethod.POST)
-	public String write(GH_BoardBean boardBean, GH_TestBean testBean, HttpServletRequest request) {
+	public String write(GH_BoardBean boardBean, GH_RoomBean roomBean, HttpServletRequest request) {
 		
 		/*
-		 * int i=0; String room=""; do { room +=(String)
+		 * int i=0; 
+		 * String room=""; 
+		 * do { room +=(String)
 		 * 
 		 * request.getParameter("room"+(i+1));
 		 * 
@@ -33,15 +37,31 @@ public class GH_BoardController {
 		 * 
 		 * }while(request.getParameter("room"+(i+1))!=null);
 		 */
-		for(int i=0; i<testBean.getList().size(); i++) {
-			System.out.print(testBean.getList().get(i).getRoom() + "/ ");
-			System.out.print(testBean.getList().get(i).getRoom_status() + "/ ");
-			System.out.print(testBean.getList().get(i).getPrice() + "/ ");
-			System.out.print(testBean.getList().get(i).getPhoto() + "/ ");
-			System.out.print(testBean.getList().get(i).getRoom_people() + "/ ");
-			System.out.println(testBean.getList().get(i).getGender() + "/ ");
+		
+		List<GH_RoomBean> roomList = new ArrayList<GH_RoomBean>();
+		String[] Room = roomBean.getRoom().split(",");
+		String[] Price = roomBean.getPrice().split(",");
+		String[] Gender = roomBean.getGender().split(",");
+		String[] Room_people = roomBean.getRoom_people().split(",");
+		
+		for(int i = 0; i < Room.length; i++) {
+			System.out.print(Room[i] + ", ");
+			System.out.print(Price[i] + ", ");
+			System.out.print(Gender[i] + ", ");
+			System.out.println(Room_people[i]);
+			System.out.println("no : " + roomBean.getNo());
+			System.out.println("room_status : " + roomBean.getRoom_status());
+			System.out.println("===============================");
+			
+			roomList.add(new GH_RoomBean(
+						roomBean.getNo(), Room[i], 
+						roomBean.getRoom_status(), 
+						Price[i], roomBean.getPhoto(), 
+						Room_people[i], Gender[i]
+					));
 		}
-		bsvc.write(boardBean, testBean);
+		
+		bsvc.write(boardBean, roomList);
 		return "index";
 	}
 	

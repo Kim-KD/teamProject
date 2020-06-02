@@ -16,10 +16,10 @@ public class GH_BoardService {
 	private ModelAndView mav;
 
 	// 게시글 작성
-	public void write(GH_BoardBean boardBean, GH_TestBean testBean) {
+	public void write(GH_BoardBean boardBean, List<GH_RoomBean> roomList) {
 		bdao.gh_Insert(boardBean);
 		bdao.gh_More_Insert(boardBean);
-		bdao.gh_Room_Insert(testBean);
+		bdao.gh_Room_Insert(roomList);
 	}
 	
 	public ModelAndView testlist() {
