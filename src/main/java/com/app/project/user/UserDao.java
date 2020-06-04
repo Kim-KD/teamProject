@@ -21,9 +21,9 @@ public class UserDao {
 	}
 	
 	// 로그인
-	public UserBean login(UserBean userBean) {
-		return sql.selectOne("User_Mapper.login", userBean);
-	}
+//	public UserBean login(UserBean userBean) {
+//		return sql.selectOne("User_Mapper.login", userBean);
+//	}
 	
 	// 유저 정보 읽기
 	public UserBean user_read(String user_id) {
@@ -56,17 +56,17 @@ public class UserDao {
 	}
 	
 	// 아이디 찾기
-	public String find_by_id(UserBean userBean) {
-		return sql.selectOne("User_Mapper.findById",userBean); 
+	public String find_by_id(UserBean user) {
+		return sql.selectOne("User_Mapper.findById",user); 
 	}
 	
 	// 비밀번호 찾기
-	public String find_by_pwd(UserBean userBean) {
-		return sql.selectOne("User_Mapper.findByPwd",userBean); 
+	public String find_by_pwd(UserBean user) {
+		return sql.selectOne("User_Mapper.findByPwd",user); 
 	}
 		
 	// 인증번호
-	public String find_by_num(UserBean userBean) {
+	public UserBean find_by_num(UserBean userBean) {
 		return sql.selectOne("User_Mapper.findByNum",userBean); 
 	}
 	

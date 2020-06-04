@@ -4,20 +4,29 @@ import java.util.HashMap;
 import java.util.Random;
 
 import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.app.project.user.UserBean;
+import com.app.project.user.UserService;
 
 
 @Controller
 public class SendSMS {
 
+	@Autowired
+	private UserService svc;
+	
 	@PostMapping("/find_num")
-	public void sendSMS(UserBean user) {
-
+	public ResponseEntity<Void> sendSMS(UserBean user) {
+		
+		user = svc.findByNum(user);
+		
 		String api_key = "NCSCZLR4KJEVU3RV";
 		String api_secret = "AIUPIRJ1TRJHKETGJI9I9MNDYTQNAGJO";
 		Coolsms coolsms = new Coolsms(api_key, api_secret); // 메시지보내기 객체 생성
@@ -34,9 +43,9 @@ public class SendSMS {
 		set.put("type", "sms"); // 문자 타입
 
 		JSONObject result = coolsms.send(set); // 보내기&전송결과받기
-		if (result.get("status") != null) {
+		if ((boolean)result.get("status") == true) {
 			// 메시지 보내기 성공 및 전송결과 출력
-			System.out.println("성공");
+			System.out.println("성공 : " + result.get("status"));
 			System.out.println(result.get("status")); // 성공여부
 			System.out.println(result.get("group_id")); // 그룹아이디
 			System.out.println(result.get("result_code")); // 결과코드
@@ -51,5 +60,6 @@ public class SendSMS {
 			System.out.println(result.get("message")); // 에러메시지
 			//return "fail";
 		}
+		return ResponseEntity.ok(null);
 	}
 }

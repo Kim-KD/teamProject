@@ -14,7 +14,7 @@
 		select user_id, user_status, user_num, user_pwd, user_name,
 		user_radio, user_cable, user_email, user_gender, user_job,
 		user_create_day, user_certify, change_pwd, change_pwd_day,
-		login_fail_cnt, user_block
+		login_fail_cnt, enabled, find_num
 		from user_info
 		where user_id = #{user_id};
 	</select>
@@ -57,20 +57,20 @@
 	</select>
 	
 	<!-- 아이디 찾기 -->
-	<select id="findById" resultType="user">
+	<select id="findById" resultType="string">
 		select user_id from user_info
 		where user_email=#{user_email} and user_name=#{user_name}
 	</select>
 	
 	<!-- 비밀번호 찾기 -->
-	<select id="findByPwd" resultType="user">
+	<select id="findByPwd" resultType="string">
 		select user_pwd from user_info
 		where user_email=#{user_email} and user_id=#{user_id} and find_num=#{find_num}
 	</select>
 	
 	<!-- 인증번호 -->
 	<select id="findByNum" resultType="user">
-		select find_num from user_info
+		select user_radio, find_num from user_info
 		where user_email=#{user_email} and user_id=#{user_id}
 	</select>
 
@@ -84,7 +84,7 @@
 			<if test="user_pwd != null">user_pwd = #{user_pwd},
 			change_pwd = #{user_pwd},change_pwd_day = now(),</if>
 			<if test="find_num != null">find_num = #{find_num},</if>
-			<if test="user_block != null">user_block = #{user_block},</if>
+			<if test="enabled != null">enabled = #{enabled},</if>
 		</trim>
 		where user_id=#{user_id}
 	</update>

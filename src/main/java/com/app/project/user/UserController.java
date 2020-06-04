@@ -3,6 +3,7 @@ package com.app.project.user;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,8 +30,8 @@ public class UserController {
 	
 	// 회원가입
 	@PostMapping("/join")
-	public String join(UserBean userBean) {
-		usvc.join(userBean);
+	public String join(UserBean user) {
+		usvc.join(user);
 		
 		return "index";
 	}
@@ -67,6 +68,20 @@ public class UserController {
 		return result;
 	}
 
+	// 아이디 찾기
+	@PostMapping("/find_id")
+	public ResponseEntity<Void> find_id(UserBean user) {
+		usvc.findById(user);
+		return ResponseEntity.ok(null);
+	}
+	
+	// 비밀번호 찾기
+	@PostMapping("/find_pwd")
+	public ResponseEntity<Void> find_pwd(UserBean user) {
+		usvc.findByPwd(user);
+		return ResponseEntity.ok(null);
+	}
+	
 	// 로그인 (스프링 시큐리티가 해줌)
 //	@PostMapping("/login")
 //	@ResponseBody
@@ -75,11 +90,11 @@ public class UserController {
 //		return result;
 //	}
 	
-	// 로그아웃
-	@PostMapping("/logout")
-	public String logout(SessionStatus session) {
-		session.setComplete();
-		return "redirect:index";
-	}
+	// 로그아웃 (스프링 시큐리티가 해줌)
+//	@PostMapping("/logout")
+//	public String logout(SessionStatus session) {
+//		session.setComplete();
+//		return "redirect:index";
+//	}
 	
 }

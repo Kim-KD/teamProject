@@ -25,11 +25,14 @@ public class UserService {
 	public void join(UserBean user) {
 		if(user.getUser_status().equals("0")) {
 			
+			String[] str = user.getUser_radio().split("-");
+			String newRadio = str[0]+str[1]+str[2];
 			String userNum = RandomStringUtils.randomAlphanumeric(10);
 			String encodedPwd = pwdEncoder.encode(user.getUser_pwd());
 			user.setUser_pwd(encodedPwd);
 			user.setChange_pwd(encodedPwd);
 			user.setUser_num(userNum);
+			user.setUser_radio(newRadio);
 			
 			String link= "<a href='http://localhost:8084/project/join_check?user_num="+userNum+"'>";
 			String msg = "<p>회원 가입 확인</p>";
@@ -44,10 +47,14 @@ public class UserService {
 			}
 		} else {
 			
+			String[] str = user.getUser_radio().split("-");
+			String newRadio = str[0]+str[1]+str[2];
 			String userNum = RandomStringUtils.randomAlphanumeric(10);
 			String encodedPwd = pwdEncoder.encode(user.getUser_pwd());
 			user.setUser_pwd(encodedPwd);
+			user.setChange_pwd(encodedPwd);
 			user.setUser_num(userNum);
+			user.setUser_radio(newRadio);
 			
 			String link= "<a href='http://localhost:8084/project/join_check?user_num="+userNum+"'>";
 			String msg = "<p>회원 가입 확인</p>";
@@ -137,9 +144,9 @@ public class UserService {
 			
 			String id = dao.find_by_id(user);
 			
-			String link= "<a href='http://localhost:8084/login'>";
+			String link= "<a href='http://localhost:8084/project/login'>";
 			String msg = "<p>게하모 아이디 찾기</p>";
-			msg += "<p>아이디 찾기 결과 고객님의 아이디는" + id + "입니다</p>";
+			msg += "<p>아이디 찾기 결과 고객님의 아이디는 " + id + " 입니다</p>";
 			msg += "<p>로그인 하시려면 아래 링크를 클릭하세요</p>";
 			msg += "<p>로그인하기 :" + link + "클릭하세요</a></p>";
 			MailUtil.sendMail("wkdql789@gmail.com", user.getUser_email(), "게하모 아이디 찾기 이메일입니다.", msg);
@@ -152,20 +159,25 @@ public class UserService {
 	// 비밀번호 찾기
 	public void findByPwd(UserBean user) {
 		if(user != null) {
-			
-			String pwd = RandomStringUtils.randomAlphanumeric(8);
-			String encodedPwd = pwdEncoder.encode(pwd);
-			user.setUser_pwd(encodedPwd);
-			
-			dao.user_info_update(user);
-			
-			String link= "<a href='http://localhost:8084/login'>";
-			String msg = "<p>게하모 비밀번호 찾기</p>";
-			msg += "<p>고객님의 임시비밀번호는" + pwd + "입니다</p>";
-			msg += "<p>로그인 하신 뒤 비밀번호 변경하시고 이용 부탁드립니다.</p>";
-			msg += "<p>로그인 하시려면 아래 링크를 클릭하세요</p>";
-			msg += "<p>로그인하기 :" + link + "클릭하세요</a></p>";
-			MailUtil.sendMail("wkdql789@gmail.com", user.getUser_email(), "게하모 비밀번호 찾기 이메일입니다.", msg);
+			if(dao.find_by_pwd(user) != null) {
+				String pwd = RandomStringUtils.randomAlphanumeric(8);
+				String encodedPwd = pwdEncoder.encode(pwd);
+				user.setUser_pwd(encodedPwd);
+				user.setFind_num(null);
+				
+				dao.user_info_update(user);
+				
+				String link= "<a href='http://localhost:8084/project/login'>";
+				String msg = "<p>게하모 비밀번호 찾기</p>";
+				msg += "<p>고객님의 임시비밀번호는 " + pwd + " 입니다</p>";
+				msg += "<p>로그인 하신 뒤 비밀번호 변경하시고 이용 부탁드립니다.</p>";
+				msg += "<p>로그인 하시려면 아래 링크를 클릭하세요</p>";
+				msg += "<p>로그인하기 :" + link + "클릭하세요</a></p>";
+				MailUtil.sendMail("wkdql789@gmail.com", user.getUser_email(), "게하모 비밀번호 찾기 이메일입니다.", msg);
+			}
+			else {
+				System.out.println("비밀번호를 받아오지 못했습니다");
+			}
 		}
 		else {
 			System.out.println("유저 정보가 없습니다");
@@ -173,13 +185,12 @@ public class UserService {
 	}
 
 	// 인증번호
-	public String findByNum(UserBean user) {
+	public UserBean findByNum(UserBean user) {
 		if(user != null) {
-			int num = new Random().nextInt(9999);
-			String key = "" + num;
+			String key = RandomStringUtils.randomNumeric(4);
 			user.setFind_num(key);
 			dao.user_info_update(user);
-			return dao.find_by_num(user);
+			return dao.user_read(user.getUser_id());
 		}
 		else {
 			return null;
@@ -192,7 +203,7 @@ public class UserService {
 		if(user==null) {
 			return false;
 		}
-		user.setUser_block(true);
+		user.setEnabled(true);
 		dao.user_info_update(user);
 		return true;
 	}

@@ -59,6 +59,10 @@ $(function(){
 	$("#user_pwd").focusout(function(){
 		$("#password_msg").empty();
 	});
+
+	$("#findInfoBtn").on("click",function(){
+		location.href = "find_info"
+	})
 });
 </script>
 
@@ -78,6 +82,7 @@ $(function(){
 		</div>
 		<input type="hidden" name="_csrf" value="${_csrf.token}">
 		<button class="btn btn-info" id="loginbtn" type="button">로그인</button>
+		<button class="btn btn-success" type="button" id="findInfoBtn">아이디 / 비밀번호 찾기</button>
 	</div>
 	</form>
 </body>

@@ -66,7 +66,7 @@ public class UserDaoTest {
 	//@Test
 	public void loginTest() {
 		UserBean user = UserBean.builder().user_id("aaaa").user_pwd("2222").build();
-		dao.login(user);
+		//dao.login(user);
 		System.out.println(user);
 	}
 	
