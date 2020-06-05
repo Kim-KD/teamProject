@@ -16,6 +16,7 @@ public class GH_BoardBean {
 	private String user_id;		// 아이디
 	private String title;		// 제목 
 	private String content;		// 내용
+	private String thumbnail;	// 섬네일
 	private String postcode;	// 우편번호
 	private String city;		// 지역주소
 	private String address;		// 상세주소

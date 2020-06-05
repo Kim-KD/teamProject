@@ -1,15 +1,15 @@
 package com.app.project.board.gh;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -22,53 +22,36 @@ public class GH_BoardController {
 	
 	// 게시글 작성
 	@RequestMapping(value="/write", method = RequestMethod.POST)
-	public String write(GH_BoardBean boardBean, GH_RoomBean roomBean, HttpServletRequest request) {
+	public String write(GH_BoardBean boardBean, GH_RoomBean roomBean, @RequestParam MultipartFile file) {
+		System.out.println("======================================");
+		System.out.println("빈에 있는 이름 : " + boardBean.getThumbnail());
+		System.out.println("파일 이릅 : " + file.getName());
+		System.out.println("파일 원본 이름 : " + file.getOriginalFilename());
+		System.out.println("파일 크기 : " + file.getSize());
+		System.out.println("======================================");
 		
-		/*
-		 * int i=0; 
-		 * String room=""; 
-		 * do { room +=(String)
-		 * 
-		 * request.getParameter("room"+(i+1));
-		 * 
-		 * room +=":";
-		 * 
-		 * i++;
-		 * 
-		 * }while(request.getParameter("room"+(i+1))!=null);
-		 */
+		String path = "C:\\Users\\rmseh\\Desktop\\workspace\\teamProject\\src\\main\\webapp\\resources\\assets\\gh_img\\";
+		String originalFileName = file.getOriginalFilename();
+		boardBean.setThumbnail(originalFileName);
 		
-		List<GH_RoomBean> roomList = new ArrayList<GH_RoomBean>();
-		String[] Room = roomBean.getRoom().split(",");
-		String[] Price = roomBean.getPrice().split(",");
-		String[] Gender = roomBean.getGender().split(",");
-		String[] Room_people = roomBean.getRoom_people().split(",");
 		
-		for(int i = 0; i < Room.length; i++) {
-			System.out.print(Room[i] + ", ");
-			System.out.print(Price[i] + ", ");
-			System.out.print(Gender[i] + ", ");
-			System.out.println(Room_people[i]);
-			System.out.println("no : " + roomBean.getNo());
-			System.out.println("room_status : " + roomBean.getRoom_status());
-			System.out.println("===============================");
-			
-			roomList.add(new GH_RoomBean(
-						roomBean.getNo(), Room[i], 
-						roomBean.getRoom_status(), 
-						Price[i], roomBean.getPhoto(), 
-						Room_people[i], Gender[i]
-					));
+		File upload_file = new File(path + originalFileName);
+		
+		try {
+			file.transferTo(upload_file);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		
-		bsvc.write(boardBean, roomList);
-		return "index";
+		bsvc.write(boardBean, roomBean);
+		return "redirect:/";
 	}
 	
-//	@RequestMapping(value = "/", method = RequestMethod.GET)
-//	public ModelAndView home() {
-//		mav = bsvc.testlist();
-//		return mav;
-//	}
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public ModelAndView home() {
+		mav = bsvc.index_Page_Slider();
+		return mav;
+	}
 	
 }

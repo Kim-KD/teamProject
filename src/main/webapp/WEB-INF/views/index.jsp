@@ -1,26 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/include/main_header.jsp" %>
 
-<!-- 일반회원 추천 랭킹 -->
+<!-- 최신글 -->
 <section class="property-section">
 	<div class="container">
 		<div class="section-title">
-			<h2>일반 회원 추천 랭킹</h2>
+			<h2>최신글</h2>
 		</div>
 		<div class="row" id="slide">
-			<%-- <c:forEach items="${boardlist}" var="boardlist">
+			<c:forEach items="${new_list}" var="new_list">
 			<div class="col-lg-4">
 				<div class="property-item">
 					<div class="pi-image">
-						<img src="assets/img/property/1.jpg" alt="">
+						<c:if test="${new_list.thumbnail != null}">
+							<img src="assets/gh_img/${new_list.thumbnail}" alt="">
+						</c:if>
+						<c:if test="${new_list.thumbnail == null}">
+							<img src="assets/gh_img/noimg.jpg" alt="">
+						</c:if>
 						<div class="pi-badge new">인기</div>
 					</div>
-					<h3>${boardlist.title}</h3>
-					<h5>${boardlist.price}</h5>
-					<p>${boardlist.content}</p>
+					<h3>${new_list.title}</h3>
+					<p>${new_list.content}</p>
 				</div>
 			</div>
-			</c:forEach> --%>
+			</c:forEach>
 
 			<!-- <div class="col-lg-4">
 				<div class="property-item">
@@ -97,233 +101,67 @@
 		</div>
 	</div>
 </section>
-<!-- 일반회원 추천 랭킹 end -->
+<!-- 최신글 end -->
 
-<!-- 일반회원 추천 랭킹 -->
+<!-- 조회수 Top -->
 <section class="property-section">
 	<div class="container">
 		<div class="section-title">
-			<h2>일반 회원 추천 랭킹</h2>
+			<h2>조회수 Top</h2>
 		</div>
 		<div class="row" id="slide1">
+			<c:forEach items="${views_list}" var="views_list">
 			<div class="col-lg-4">
 				<div class="property-item">
 					<div class="pi-image">
-						<img src="assets/img/property/1.jpg" alt="">
+						<c:if test="${new_list.thumbnail != null}">
+							<img src="assets/gh_img/${new_list.thumbnail}" alt="">
+						</c:if>
+						<c:if test="${new_list.thumbnail == null}">
+							<img src="assets/gh_img/noimg.jpg" alt="">
+						</c:if>
 						<div class="pi-badge new">인기</div>
 					</div>
-					<h3>게스트하우스 이름</h3>
-					<h5>가격</h5>
-					<p>게스트 하우스 소개글</p>
-					<!-- <a href="#" class="readmore-btn">게시글로 이동</a> -->
+					<h3>${views_list.title}</h3>
+					<p>${views_list.content}</p>
 				</div>
 			</div>
-			<div class="col-lg-4">
-				<div class="property-item">
-					<div class="pi-image">
-						<img src="assets/img/property/2.jpg" alt="">
-						<div class="pi-badge offer">추천</div>
-					</div>
-					<h3>게스트하우스 이름</h3>
-					<h5>가격</h5>
-					<p>게스트 하우스 소개글</p>
-					<!-- <a href="#" class="readmore-btn">게시글로 이동</a> -->
-				</div>
-			</div>
-			<div class="col-lg-4">
-				<div class="property-item">
-					<div class="pi-image">
-						<img src="assets/img/property/3.jpg" alt="">
-						<div class="pi-badge new">인기</div>
-					</div>
-					<h3>게스트하우스 이름</h3>
-					<h5>가격</h5>
-					<p>게스트 하우스 소개글</p>
-					<!-- <a href="#" class="readmore-btn">게시글로 이동</a> -->
-				</div>
-			</div>
-			<div class="col-lg-4">
-				<div class="property-item">
-					<div class="pi-image">
-						<img src="assets/img/property/1.jpg" alt="">
-						<div class="pi-badge new">인기</div>
-					</div>
-					<h3>게스트하우스 이름</h3>
-					<h5>가격</h5>
-					<p>게스트 하우스 소개글</p>
-					<!-- <a href="#" class="readmore-btn">게시글로 이동</a> -->
-				</div>
-			</div>
-			<div class="col-lg-4">
-				<div class="property-item">
-					<div class="pi-image">
-						<img src="assets/img/property/2.jpg" alt="">
-						<div class="pi-badge offer">추천</div>
-					</div>
-					<h3>게스트하우스 이름</h3>
-					<h5>가격</h5>
-					<p>게스트 하우스 소개글</p>
-					<!-- <a href="#" class="readmore-btn">게시글로 이동</a> -->
-				</div>
-			</div>
-			<div class="col-lg-4">
-				<div class="property-item">
-					<div class="pi-image">
-						<img src="assets/img/property/3.jpg" alt="">
-						<div class="pi-badge new">인기</div>
-					</div>
-					<h3>게스트하우스 이름</h3>
-					<h5>가격</h5>
-					<p>게스트 하우스 소개글</p>
-					<!-- <a href="#" class="readmore-btn">게시글로 이동</a> -->
-				</div>
-			</div>
+			</c:forEach>
 		</div>
 	</div>
 </section>
-<!-- 일반회원 추천 랭킹 end -->
+<!-- 조회수 Top end -->
 
-<!-- 일반회원 추천 랭킹 -->
+<!-- 추천 Top -->
 <section class="property-section">
 	<div class="container">
 		<div class="section-title">
-			<h2>일반 회원 추천 랭킹</h2>
+			<h2>추천 Top</h2>
 		</div>
 		<div class="row" id="slide2">
+			<c:forEach items="${likes_list}" var="likes_list">
 			<div class="col-lg-4">
 				<div class="property-item">
 					<div class="pi-image">
-						<img src="assets/img/property/1.jpg" alt="">
+						<c:if test="${new_list.thumbnail != null}">
+							<img src="assets/gh_img/${new_list.thumbnail}" alt="">
+						</c:if>
+						<c:if test="${new_list.thumbnail == null}">
+							<img src="assets/gh_img/noimg.jpg" alt="">
+						</c:if>
 						<div class="pi-badge new">인기</div>
 					</div>
-					<h3>게스트하우스 이름</h3>
-					<h5>가격</h5>
-					<p>게스트 하우스 소개글</p>
-					<!-- <a href="#" class="readmore-btn">게시글로 이동</a> -->
+					<h3>${likes_list.title}</h3>
+					<p>${likes_list.content}</p>
 				</div>
 			</div>
-			<div class="col-lg-4">
-				<div class="property-item">
-					<div class="pi-image">
-						<img src="assets/img/property/2.jpg" alt="">
-						<div class="pi-badge offer">추천</div>
-					</div>
-					<h3>게스트하우스 이름</h3>
-					<h5>가격</h5>
-					<p>게스트 하우스 소개글</p>
-					<!-- <a href="#" class="readmore-btn">게시글로 이동</a> -->
-				</div>
-			</div>
-			<div class="col-lg-4">
-				<div class="property-item">
-					<div class="pi-image">
-						<img src="assets/img/property/3.jpg" alt="">
-						<div class="pi-badge new">인기</div>
-					</div>
-					<h3>게스트하우스 이름</h3>
-					<h5>가격</h5>
-					<p>게스트 하우스 소개글</p>
-					<!-- <a href="#" class="readmore-btn">게시글로 이동</a> -->
-				</div>
-			</div>
-			<div class="col-lg-4">
-				<div class="property-item">
-					<div class="pi-image">
-						<img src="assets/img/property/1.jpg" alt="">
-						<div class="pi-badge new">인기</div>
-					</div>
-					<h3>게스트하우스 이름</h3>
-					<h5>가격</h5>
-					<p>게스트 하우스 소개글</p>
-					<!-- <a href="#" class="readmore-btn">게시글로 이동</a> -->
-				</div>
-			</div>
-			<div class="col-lg-4">
-				<div class="property-item">
-					<div class="pi-image">
-						<img src="assets/img/property/2.jpg" alt="">
-						<div class="pi-badge offer">추천</div>
-					</div>
-					<h3>게스트하우스 이름</h3>
-					<h5>가격</h5>
-					<p>게스트 하우스 소개글</p>
-					<!-- <a href="#" class="readmore-btn">게시글로 이동</a> -->
-				</div>
-			</div>
-			<div class="col-lg-4">
-				<div class="property-item">
-					<div class="pi-image">
-						<img src="assets/img/property/3.jpg" alt="">
-						<div class="pi-badge new">인기</div>
-					</div>
-					<h3>게스트하우스 이름</h3>
-					<h5>가격</h5>
-					<p>게스트 하우스 소개글</p>
-					<!-- <a href="#" class="readmore-btn">게시글로 이동</a> -->
-				</div>
-			</div>
+			</c:forEach>
 		</div>
 	</div>
 </section>
-<section class="padding_bt">
-	<div></div>
+<section class="padding_bt"><div></div>
 </section>
-<!-- 일반회원 추천 랭킹 end -->
-
-<!-- 기업회원 추천 랭킹 -->
-<!-- <section class="stories-section spad">
-	<div class="container">
-		<div class="row ">
-			<div class="col-lg-5 order-lg-2">
-				<img class="w-100" src="assets/img/about/3.jpg" alt="">
-			</div>
-			<div class="col-lg-7 order-lg-1">
-				<div class="about-text">
-					<h2>기업회원 추천 랭킹</h2>
-					<p>게스트 하우스 소개글</p>
-					<a href="#" class="readmore-btn">게시글로 이동</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</section> -->
-<!-- 기업회원 추천 랭킹 end -->
-
-<!-- 관광 명소 추천 랭킹 -->
-<!-- <section class="intro-section spad">
-	<div class="container">
-		<div class="section-title">
-			<h2>관광 명소 추천 랭킹</h2>
-		</div>
-		<div class="row intro-first">
-			<div class="col-lg-6 order-lg-2">
-				<img src="assets/img/about/1.jpg" alt="">
-			</div>
-			<div class="col-lg-6 order-lg-1">
-				<div class="about-text">
-					<h3>관광명소 이름</h3>
-					<p>관광 명소 소개글</p>
-					<a href="#" class="readmore-btn">게시글로 이동</a>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-6">
-				<img src="assets/img/about/2.jpg" alt="">
-			</div>
-			<div class="col-lg-6 ">
-				<div class="about-text">
-					<h3>관광명소 이름</h3>
-					<p>관광 명소 소개글</p>
-					<a href="#" class="readmore-btn">게시글로 이동</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</section> -->
-<!-- 관광명소 추천 랭킹 end -->
-
-
+<!-- 추천 end -->
 
 <!-- Loan Section end -->
 <!-- <section class="loan-section"> -->

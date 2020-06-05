@@ -28,10 +28,6 @@ public class GH_BoardDao {
 		return sql.insert("GH_Mapper.gh_Room_Insert", roomList);
 	}
 	
-	public List<GH_BoardBean> testlist() {
-		return sql.selectList("GH_Mapper.testlist");
-	}
-	
 	// 게스트 하우스 게시글 읽기
 	public GH_BoardBean gh_Read(int no) {
 		return sql.selectOne("GH_Mapper.gh_Read", no);
@@ -61,4 +57,26 @@ public class GH_BoardDao {
 	public int gh_Delete(int no) {
 		return sql.delete("GH_Mapper.gh_Delete", no);
 	}
+	
+	
+	
+	
+	
+	
+	public List<String> testlist() {
+		return sql.selectList("GH_Mapper.testlist");
+	}
+
+	public List<String> index_New_Slider() {
+		return sql.selectList("GH_Mapper.index_New_Slider");
+	}
+	
+	public List<String> index_Views_Slider() {
+		return sql.selectList("GH_Mapper.index_Views_Slider");
+	}
+	
+	public List<String> index_Likes_Slider() {
+		return sql.selectList("GH_Mapper.index_Likes_Slider");
+	}
+
 }

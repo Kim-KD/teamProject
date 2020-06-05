@@ -5,10 +5,10 @@
 <mapper namespace="GH_Mapper">
 	
 	<!-- 게스트하우스 정보 작성 -->
-	<insert id="gh_Insert" parameterType="gh_Board">
-		insert into gh_info(no, user_id, title, content, w_date, 
+	<insert id="gh_Insert" parameterType="gh_Board" useGeneratedKeys="true" keyProperty="no">
+		insert into gh_info(user_id, title, content, thumbnail, w_date, 
 		postcode, city, address, on_off, p_link, up_view, views, likes)
-		values(#{no}, #{user_id}, #{title}, #{content}, now(), #{postcode}, #{city}, #{address}, "y", "n", "n", 0, 0)
+		values(#{user_id}, #{title}, #{content}, #{thumbnail}, now(), #{postcode}, #{city}, #{address}, "y", "n", "n", 0, 0)
 	</insert>
 
 	<!-- 게스트하우스 상세 정보 작성 -->
@@ -28,13 +28,16 @@
 		</foreach>
 	</insert>
 	
-	
 	<!-- 게스트하우스 리스트 -->
-	<select id="testlist" resultType="gh_Board">
-		select g.no, g.title, g.content, r.price
+	<select id="testlist" resultType="map">
+		<!-- select g.no, g.title, g.content, r.price
 		from gh_info g
 		left join gh_more_info m on g.no = m.no
-		left join gh_room_info r on r.no = m.no
+		left join gh_room_info r on r.no = m.no -->
+		
+		select g.no, g.title, g.content, r.price
+		from gh_info g
+		left join gh_room_info r on g.no = r.no
 	</select>
 	
 	<!-- 게스트 하우스 게시글 총 갯수 -->
@@ -168,5 +171,29 @@
 				left join gh_info on (gh_more_info.no = gh_info.no)
 			where gh_view_info.no = #{no}
 	</delete>
+	
+	
+	
+	
+	<!-- index 최신순  -->
+	<select id="index_New_Slider" resultType="map">
+		select no, title, content, thumbnail from gh_info
+		order by w_date desc
+	</select>
 
+	<!-- index 조회수  -->
+	<select id="index_Views_Slider" resultType="map">
+		select no, title, content, thumbnail from gh_info
+		order by views desc
+	</select>
+	
+	<!-- index 추천수  -->
+	<select id="index_Likes_Slider" resultType="map">
+		select no, title, content, thumbnail from gh_info
+		order by likes desc
+	</select>
+	
+	
+	
+	
 </mapper>

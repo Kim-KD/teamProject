@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @SessionAttributes("login_data")
 public class HomeController {
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home() {
-		return "index";
-	}
+//	@RequestMapping(value = "/", method = RequestMethod.GET)
+//	public String home() {
+//		return "index";
+//	}
 	
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index() {
