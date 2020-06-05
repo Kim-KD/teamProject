@@ -172,28 +172,24 @@
 			where gh_view_info.no = #{no}
 	</delete>
 	
-	
-	
-	
 	<!-- index 최신순  -->
 	<select id="index_New_Slider" resultType="map">
 		select no, title, content, thumbnail from gh_info
 		order by w_date desc
+		limit 0, 6
 	</select>
 
 	<!-- index 조회수  -->
 	<select id="index_Views_Slider" resultType="map">
 		select no, title, content, thumbnail from gh_info
 		order by views desc
+		limit 0, 6
 	</select>
 	
 	<!-- index 추천수  -->
 	<select id="index_Likes_Slider" resultType="map">
 		select no, title, content, thumbnail from gh_info
 		order by likes desc
+		limit 0, 6
 	</select>
-	
-	
-	
-	
 </mapper>

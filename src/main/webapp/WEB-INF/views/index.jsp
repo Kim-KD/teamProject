@@ -114,10 +114,10 @@
 			<div class="col-lg-4">
 				<div class="property-item">
 					<div class="pi-image">
-						<c:if test="${new_list.thumbnail != null}">
-							<img src="assets/gh_img/${new_list.thumbnail}" alt="">
+						<c:if test="${views_list.thumbnail != null}">
+							<img src="assets/gh_img/${views_list.thumbnail}" alt="">
 						</c:if>
-						<c:if test="${new_list.thumbnail == null}">
+						<c:if test="${views_list.thumbnail == null}">
 							<img src="assets/gh_img/noimg.jpg" alt="">
 						</c:if>
 						<div class="pi-badge new">인기</div>
@@ -143,10 +143,10 @@
 			<div class="col-lg-4">
 				<div class="property-item">
 					<div class="pi-image">
-						<c:if test="${new_list.thumbnail != null}">
-							<img src="assets/gh_img/${new_list.thumbnail}" alt="">
+						<c:if test="${likes_list.thumbnail != null}">
+							<img src="assets/gh_img/${likes_list.thumbnail}" alt="">
 						</c:if>
-						<c:if test="${new_list.thumbnail == null}">
+						<c:if test="${likes_list.thumbnail == null}">
 							<img src="assets/gh_img/noimg.jpg" alt="">
 						</c:if>
 						<div class="pi-badge new">인기</div>

@@ -33,8 +33,7 @@ public class GH_BoardController {
 		String path = "C:\\Users\\rmseh\\Desktop\\workspace\\teamProject\\src\\main\\webapp\\resources\\assets\\gh_img\\";
 		String originalFileName = file.getOriginalFilename();
 		boardBean.setThumbnail(originalFileName);
-		
-		
+
 		File upload_file = new File(path + originalFileName);
 		
 		try {
@@ -50,6 +49,12 @@ public class GH_BoardController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home() {
+		mav = bsvc.index_Page_Slider();
+		return mav;
+	}
+	
+	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	public ModelAndView index() {
 		mav = bsvc.index_Page_Slider();
 		return mav;
 	}

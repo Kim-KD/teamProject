@@ -65,13 +65,7 @@ public class GH_BoardService {
 		return bdao.gh_Delete(no);
 	}
 	
-	
-	
-	
-	
-	public ModelAndView index_Page_Slider() {
-		HashMap<String, Object> hashMap = new HashMap<>();
-		
+	public ModelAndView index_Page_Slider() {	
 		// index_New_Slider
 		List<String> index_New = new ArrayList<>();
 		index_New = bdao.index_New_Slider();
@@ -83,8 +77,6 @@ public class GH_BoardService {
 		// index_Likes_Slider
 		List<String> index_Likes = new ArrayList<>();
 		index_Likes = bdao.index_Likes_Slider();
-		
-//		hashMap.put("HashMapList", list);
 		
 		mav = new ModelAndView();
 		mav.addObject("new_list", index_New);

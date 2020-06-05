@@ -58,15 +58,6 @@ public class GH_BoardDao {
 		return sql.delete("GH_Mapper.gh_Delete", no);
 	}
 	
-	
-	
-	
-	
-	
-	public List<String> testlist() {
-		return sql.selectList("GH_Mapper.testlist");
-	}
-
 	public List<String> index_New_Slider() {
 		return sql.selectList("GH_Mapper.index_New_Slider");
 	}
