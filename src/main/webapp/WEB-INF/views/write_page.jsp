@@ -4,17 +4,14 @@
 <!-- Contact Section end -->
 <section class="contact-section">
     <div class="container">
-        <form class="contact-form" action="write" method="post">
+        <form class="contact-form" action="write" method="post" enctype="multipart/form-data">
         <%-- <input type="hidden" name="user_id" value="${login_data.user_id}"> --%>
         <input type="hidden" name="user_id" value="test1">
         <input type="hidden" name="user_status" value="1">
         
         <input type="hidden" name="postcode" value="0000">
         <input type="hidden" name="party_day" value="00-00">
-        <input type="hidden" name="no" value="2">
-        
         <input type="hidden" name="room_status" value="0">
-        <input type="hidden" name="photo" value="사진">
         
             <div class="row">
                 <span class="col-sm-2 control-label">제목</span>
@@ -261,6 +258,7 @@
                 <span class="col-sm-2 control-label">내용</span>
                 <div class="col-lg-10">
                     <textarea placeholder="내용" name="content"></textarea>
+                    <input type="file" class="form-control-file" name="file" placeholder="파일 선택">
                     <button class="site-btn1 sb-big1">등록</button>
                 </div>
             </div>

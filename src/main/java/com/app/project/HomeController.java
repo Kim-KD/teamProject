@@ -19,6 +19,7 @@ import com.app.project.user.UserService;
 @Controller
 @SessionAttributes("login_data")
 public class HomeController {
+<<<<<<< HEAD
 	
 	@Autowired
 	private UserService svc;
@@ -29,6 +30,9 @@ public class HomeController {
 	}
 	
 	@GetMapping("/about_us")
+=======
+	@RequestMapping(value = "/about_us", method = RequestMethod.GET)
+>>>>>>> branch 'master' of https://github.com/Kim-KD/teamProject.git
 	public String about_us() {
 		return "about_us";
 	}
