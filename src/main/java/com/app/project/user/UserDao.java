@@ -55,6 +55,16 @@ public class UserDao {
 		return sql.selectOne("User_Mapper.existsByEmail", user_email);
 	}
 	
+	// 이메일 수정체크
+	public int email_update_chk(UserBean user) {
+		return sql.selectOne("User_Mapper.updateByEmail", user);
+	}
+	
+	// 비밀번호 확인
+	public int pwd_chk(UserBean user) {
+		return sql.selectOne("User_Mapper.pwdCheck", user);
+	}
+	
 	// 아이디 찾기
 	public String find_by_id(UserBean user) {
 		return sql.selectOne("User_Mapper.findById",user); 

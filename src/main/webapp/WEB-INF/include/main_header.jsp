@@ -80,7 +80,7 @@
 				<div class="user-panel">
 					<c:set var="loginId" 
 value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}"></c:set>
-					<a href="#">${loginId}</a>
+					<a href="/project/profile_read">${loginId}</a>
 <!-- 						<a href="write_page">글 작성</a> -->
 					<a href="#" id="logoutBtn" class="register">로그아웃</a>
 				</div>

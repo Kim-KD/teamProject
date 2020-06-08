@@ -73,14 +73,27 @@ public class UserService {
 	
 	// 아이디 중복체크
 	public int id_chk(String user_id) {
-		int result = dao.id_chk(user_id);
-		return result;
+		return dao.id_chk(user_id);
 	}
 	
 	// 이메일 중복체크
 	public int email_chk(String user_email) {
-		int result = dao.email_chk(user_email);
-		return result;
+		return dao.email_chk(user_email);
+	}
+	
+	// 이메일 수정체크
+	public int update_email_chk(UserBean user) {
+		return dao.email_update_chk(user);
+	}
+	
+	// 비밀번호 확인
+	public int pwd_chk(UserBean user) {
+		String before_pwd = user.getUser_pwd();
+		user = dao.user_read(user.getUser_id());
+		if(pwdEncoder.matches(before_pwd, user.getUser_pwd())) {
+			return dao.pwd_chk(user);
+		}
+		return 0;
 	}
 	
 	// 로그인 (스프링 시큐리티가 해줌)
@@ -100,10 +113,10 @@ public class UserService {
 	// 유저 정보 읽기
 	public UserBean userInfoRead(String user_id) {
 		UserBean user = dao.user_read(user_id);
-		if(user.getUser_status().equals("d")) {
+		if(user.getUser_status().equals("0")) {
 			return user;
 		}
-		else if(user.getUser_status().equals("c")) {
+		else if(user.getUser_status().equals("1")) {
 			UserBean cpn = dao.cpn_read(user_id);
 			user.setCpn_service_num(cpn.getCpn_service_num());
 			user.setCpn_bank(cpn.getCpn_bank());
@@ -131,6 +144,7 @@ public class UserService {
 				user.setUser_pwd(encodedPwd);
 				user.setChange_pwd(encodedPwd);
 			}
+			dao.user_info_update(user);
 			return dao.cpn_info_update(user);
 		}
 		else {
