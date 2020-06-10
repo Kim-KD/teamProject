@@ -20,7 +20,6 @@ public class GH_BoardService {
 
 	// 게시글 작성
 	public void write(GH_BoardBean boardBean, GH_RoomBean roomBean) {
-
 		bdao.gh_Insert(boardBean);
 		bdao.gh_More_Insert(boardBean);
 		
@@ -65,18 +64,16 @@ public class GH_BoardService {
 		return bdao.gh_Delete(no);
 	}
 	
+	// index Slider 부분 출력
 	public ModelAndView index_Page_Slider() {	
 		// index_New_Slider
-		List<String> index_New = new ArrayList<>();
-		index_New = bdao.index_New_Slider();
+		List<GH_BoardBean> index_New = bdao.index_New_Slider();
 		
 		// index_Views_Slider
-		List<String> index_Views = new ArrayList<>();
-		index_Views = bdao.index_Views_Slider();
+		List<GH_BoardBean> index_Views = bdao.index_Views_Slider();
 		
 		// index_Likes_Slider
-		List<String> index_Likes = new ArrayList<>();
-		index_Likes = bdao.index_Likes_Slider();
+		List<GH_BoardBean> index_Likes = bdao.index_Likes_Slider();
 		
 		mav = new ModelAndView();
 		mav.addObject("new_list", index_New);
@@ -84,5 +81,23 @@ public class GH_BoardService {
 		mav.addObject("likes_list", index_Likes);
 		mav.setViewName("index");
 		return mav;
-	}	
+	}
+	
+	// 상세보기 페이지
+	public ModelAndView gh_details(int no) {
+		Map<String, Object> gh_details = bdao.gh_details(no);
+		
+		mav = new ModelAndView();
+		mav.addObject("gh_details", gh_details);
+		mav.setViewName("page2");
+		
+		return mav;
+	}
+	
+	// 방정보
+	public List<Map<String, Object>> room_info_data(GH_RoomBean roomBean) {
+		List<Map<String, Object>> roomList = bdao.room_info_data(roomBean);
+		return roomList;
+	}
+	
 }

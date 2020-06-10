@@ -12,12 +12,14 @@
 			<div class="col-lg-4">
 				<div class="property-item">
 					<div class="pi-image">
+					<a href="gh_details?no=${new_list.no}">
 						<c:if test="${new_list.thumbnail != null}">
 							<img src="assets/gh_img/${new_list.thumbnail}" alt="">
 						</c:if>
 						<c:if test="${new_list.thumbnail == null}">
 							<img src="assets/gh_img/noimg.jpg" alt="">
 						</c:if>
+					</a>
 						<div class="pi-badge new">인기</div>
 					</div>
 					<h3>${new_list.title}</h3>
@@ -114,12 +116,14 @@
 			<div class="col-lg-4">
 				<div class="property-item">
 					<div class="pi-image">
+					<a href="gh_details?no=${views_list.no}">
 						<c:if test="${views_list.thumbnail != null}">
 							<img src="assets/gh_img/${views_list.thumbnail}" alt="">
 						</c:if>
 						<c:if test="${views_list.thumbnail == null}">
 							<img src="assets/gh_img/noimg.jpg" alt="">
 						</c:if>
+					</a>
 						<div class="pi-badge new">인기</div>
 					</div>
 					<h3>${views_list.title}</h3>
@@ -143,12 +147,14 @@
 			<div class="col-lg-4">
 				<div class="property-item">
 					<div class="pi-image">
+					<a href="gh_details?no=${likes_list.no}">
 						<c:if test="${likes_list.thumbnail != null}">
 							<img src="assets/gh_img/${likes_list.thumbnail}" alt="">
 						</c:if>
 						<c:if test="${likes_list.thumbnail == null}">
 							<img src="assets/gh_img/noimg.jpg" alt="">
 						</c:if>
+					</a>
 						<div class="pi-badge new">인기</div>
 					</div>
 					<h3>${likes_list.title}</h3>

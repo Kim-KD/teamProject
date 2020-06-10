@@ -20,7 +20,7 @@
 	</insert>
 	
 	<!-- 게스트하우스 방 정보 작성 -->
-	<insert id="gh_Room_Insert" parameterType="java.util.ArrayList">
+	<insert id="gh_Room_Insert" parameterType="list">
 		insert into gh_room_info(no, room, room_status, price, photo, room_people, gender)
 		values
 		<foreach item="roomList" collection="list" separator=",">
@@ -71,14 +71,7 @@
 		left join gh_info g on (m.no = g.no)
 		where g.no = #{no} and r.room_status = 1;
 	</select>
-	
-	<!-- 게스트하우스 방 정보 읽기 -->
-	<select id="gh_Room_Read" resultType="gh_Board">
-		select no,room,room_status,price,photo,room_people
-		from gh_room_info
-		where gh_room_info.no = #{no}
-	</select>
-	
+		
 	<!-- 게스트하우스 후기 읽기(게시글 번호에 맞는 후기 전부 찾는다) -->
 	<select id="gh_View_Read" resultType="gh_Board">
 		select no,user_id,content
@@ -173,23 +166,49 @@
 	</delete>
 	
 	<!-- index 최신순  -->
-	<select id="index_New_Slider" resultType="map">
+	<select id="index_New_Slider" resultType="gh_Board">
 		select no, title, content, thumbnail from gh_info
 		order by w_date desc
 		limit 0, 6
 	</select>
 
 	<!-- index 조회수  -->
-	<select id="index_Views_Slider" resultType="map">
+	<select id="index_Views_Slider" resultType="gh_Board">
 		select no, title, content, thumbnail from gh_info
 		order by views desc
 		limit 0, 6
 	</select>
 	
 	<!-- index 추천수  -->
-	<select id="index_Likes_Slider" resultType="map">
+	<select id="index_Likes_Slider" resultType="gh_Board">
 		select no, title, content, thumbnail from gh_info
 		order by likes desc
 		limit 0, 6
 	</select>
+	
+	<!-- 상세보기 페이지 -->
+	<select id="gh_details" parameterType="gh_Board" resultType="map">
+		select gi.no, gi.user_id, gi.title, gi.content, gi.address, gi.views, gi.likes, ui.user_name, ui.user_radio, ui.user_email,
+				gmi.party_day, gmi.party_menu, gmi.party_time, gmi.alcohol, gmi.off_time, gmi.join_man, gmi.join_girl, 
+				gmi.wifi, gmi.parking, gmi.morning, gmi.pet, gmi.check_in, gmi.check_out
+		from gh_info gi
+		left join gh_more_info gmi on (gi.no = gmi.no)
+		left join user_info ui on (gi.user_id = ui.user_id)
+		where gi.no = #{no}
+	</select>
+	
+	<!-- 방정보 -->
+	<select id="room_info_data" parameterType="gh_Board" resultType="map">
+		select no, room, price, photo, room_people, gender
+		from gh_room_info
+		where no = #{no} and room = #{room}
+	</select>
+	
+	<!-- 게스트하우스 방 정보 -->
+	<select id="gh_Room_Read" resultType="gh_Board">
+		select no, room, room_status, price, photo, room_people
+		from gh_room_info
+		where gh_room_info.no = #{no}
+	</select>
+	
 </mapper>

@@ -4,24 +4,6 @@
 
 <!DOCTYPE html>
 <html>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
-<script>
-	$(function() {
-		$("#logoutBtn").on("click", function() {
-			var param = {
-				_csrf:"${_csrf.token}"
-			}
-			$.ajax({
-				url: "/project/logout",
-				method: "post",
-				data: param,
-				success: function() {
-					location.href = "/project";
-				}
-			})
-		})
-	})
-</script>
 <head>
 	<title>게하모 | 게스트 하우스의 모든 것</title>
 	<meta charset="UTF-8">
@@ -52,6 +34,26 @@
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
+	<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+	<script>
+		$(function() {
+			$("#logoutBtn").on("click", function() {
+				var param = {
+					_csrf:"${_csrf.token}"
+				}
+				$.ajax({
+					url: "/project/logout",
+					method: "post",
+					data: param,
+					success: function() {
+						location.href = "/project";
+					}
+				})
+			})
+		})
+	</script>
+
 </head>
 <body>
 	<!-- Page Preloder -->

@@ -58,16 +58,29 @@ public class GH_BoardDao {
 		return sql.delete("GH_Mapper.gh_Delete", no);
 	}
 	
-	public List<String> index_New_Slider() {
+	// index 최신순
+	public List<GH_BoardBean> index_New_Slider() {
 		return sql.selectList("GH_Mapper.index_New_Slider");
 	}
 	
-	public List<String> index_Views_Slider() {
+	// index 조회수
+	public List<GH_BoardBean> index_Views_Slider() {
 		return sql.selectList("GH_Mapper.index_Views_Slider");
 	}
 	
-	public List<String> index_Likes_Slider() {
+	// index 추천수
+	public List<GH_BoardBean> index_Likes_Slider() {
 		return sql.selectList("GH_Mapper.index_Likes_Slider");
+	}
+	
+	// 상세보기 페이지
+	public Map<String, Object> gh_details(int no) {
+		return sql.selectOne("GH_Mapper.gh_details", no);
+	}
+	
+	// 게스트하우스 방 정보
+	public List<Map<String, Object>> room_info_data(GH_RoomBean roomBean) {
+		return sql.selectList("GH_Mapper.room_info_data", roomBean);
 	}
 
 }

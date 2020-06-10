@@ -5,13 +5,11 @@
 <section class="contact-section">
     <div class="container">
         <form class="contact-form" action="write" method="post" enctype="multipart/form-data">
-        <%-- <input type="hidden" name="user_id" value="${login_data.user_id}"> --%>
-        <input type="hidden" name="user_id" value="test1">
-        <input type="hidden" name="user_status" value="1">
+        <input type="hidden" name="user_id" value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}">
+        <input type="hidden" name="_csrf" value="${_csrf.token}">
         
         <input type="hidden" name="postcode" value="0000">
         <input type="hidden" name="party_day" value="00-00">
-        <input type="hidden" name="room_status" value="0">
         
             <div class="row">
                 <span class="col-sm-2 control-label">제목</span>
@@ -31,6 +29,7 @@
 
                 <span class="col-sm-2 control-label">방</span>
                 <div class="col-sm-4" id="sroom">
+                	<input type="hidden" id="room_status" name="room_status" value="0">
                     <select class="form-control selectbox" id="room" name="room">
                     	<option>===선택===</option>
                         <option value="도미토리룸">도미토리룸</option>

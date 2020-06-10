@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,23 +17,18 @@ import com.app.project.user.UserService;
 @Controller
 @SessionAttributes("login_data")
 public class HomeController {
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	
 	@Autowired
 	private UserService svc;
-
-	@GetMapping({"/index","/"})
-	public String index() {
-		return "index";
-	}
 	
-	@GetMapping("/about_us")
-=======
-	@RequestMapping(value = "/about_us", method = RequestMethod.GET)
->>>>>>> branch 'master' of https://github.com/Kim-KD/teamProject.git
-	public String about_us() {
-		return "about_us";
-	}
+//	@GetMapping("/about_us")
+//=======
+//	@RequestMapping(value = "/about_us", method = RequestMethod.GET)
+//>>>>>>> branch 'master' of https://github.com/Kim-KD/teamProject.git
+//	public String about_us() {
+//		return "about_us";
+//	}
 	
 	@GetMapping("/page1")
 	public String page1() {
