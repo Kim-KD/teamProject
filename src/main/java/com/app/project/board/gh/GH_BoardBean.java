@@ -1,5 +1,7 @@
 package com.app.project.board.gh;
 
+import com.app.project.user.UserBean;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
