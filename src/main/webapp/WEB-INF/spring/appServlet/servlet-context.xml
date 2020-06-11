@@ -12,6 +12,7 @@
 	
 	<annotation-driven />
 
+<!-- 	<default-servlet-handler/> -->
  	<resources mapping="/resources/**" location="/resources/" />
 	
 	<resources mapping="/assets/css/**" location="/resources/assets/css/" />
@@ -25,8 +26,10 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
-	<context:component-scan base-package="com.app.project" />
+ 	
+ 	<context:component-scan base-package="com.app.project" use-default-filters="false">
+ 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+ 	</context:component-scan>
 	
 	<sec:global-method-security pre-post-annotations="enabled" secured-annotations="enabled" />
 	
@@ -34,5 +37,6 @@
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="100000000" />
 	</beans:bean>
+	
 	
 </beans:beans>

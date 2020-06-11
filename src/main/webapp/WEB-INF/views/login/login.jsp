@@ -36,19 +36,9 @@ $(function login() {
 		$("#user_pwd").focus();
 		return false;
 	} else {
-		$.ajax({
-			url : "/project/login",
-			data : $('#loginFrm').serialize(),
-			type : "POST",
-			success : function(result) {
-				if(result == 0) {
-					alert("아이디 또는 비밀번호를 확인해주세요");
-				} else {
-					location.href = "index";
-				}
-			}
-		});
-	}
+			$("#loginFrm").submit();
+			location.href="/index";
+		}
 	})
 })
 
@@ -64,11 +54,33 @@ $(function(){
 		location.href = "find_info"
 	})
 });
+
+$(function() {
+	var msg = "${msg}";
+	console.log(msg);
+	if(msg!="") {
+		$("#alert").text(msg);
+		$("#msg").show();
+	}
+});
 </script>
 
 </head>
 <body>
-	<form id = "loginFrm" action="/project/login" method="post">
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">X</button>
+    <h3 class="smaller lighter blue no-margin modal-title">로그인</h3>
+</div>
+ 
+<div class="modal-body">
+<div class="alert alert-success alert-dismissible" id="msg" 
+		style="display:none;">
+    	<a href="#" class="close" data-dismiss="alert" 
+    		aria-label="close">&times;</a>
+    	<strong>서버 메시지 </strong><span id="alert"></span>
+</div>
+    <form id = "loginFrm" action="/project/login" method="post">
 	<div class="container">
 		<div class="form-group">
 			<label for="user_id">아이디</label>&nbsp;
@@ -85,5 +97,13 @@ $(function(){
 		<button class="btn btn-success" type="button" id="findInfoBtn">아이디 / 비밀번호 찾기</button>
 	</div>
 	</form>
+</div>
+ 
+<div class="modal-footer">
+    <button class="btn btn-sm btn-danger pull-right" data-dismiss="modal" id="btnClose">
+        <i class="ace-icon fa fa-times"></i>닫기
+    </button>
+</div>
+	
 </body>
 </html>

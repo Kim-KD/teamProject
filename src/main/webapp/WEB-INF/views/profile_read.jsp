@@ -225,6 +225,7 @@ function ajaxEmailCheck() {
 					method:"post",
 					success:function() {
 						alert("정보를 수정했습니다.");
+						location.href="/project/profile_read";
 					}, error() {
 						alert("정보를 수정하는데 실패했습니다.");
 					}

@@ -66,11 +66,11 @@ public class BoardDaoTest {
 	//@Test
 	//@Transactional
 	// 게하 방정보 작성
-	public void ghRoomInsertTest() {
-		GH_BoardBean b = GH_BoardBean.builder().no(5).room("트윈룸").room_status("2").price(1000000).photo("사진")
-				.room_people(2).build();
-		assertThat(ghDao.gh_Room_Insert(b), is(1));
-	}
+//	public void ghRoomInsertTest() {
+//		GH_BoardBean b = GH_BoardBean.builder().no(5).room("트윈룸").room_status("2").price(1000000).photo("사진")
+//				.room_people(2).build();
+//		assertThat(ghDao.gh_Room_Insert(b), is(1));
+//	}
 	
 	//@Test
 	//@Transactional

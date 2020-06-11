@@ -20,7 +20,7 @@ public class UserServiceTest {
 	
 	@Test
 	public void update() {
-		UserBean user = UserBean.builder().user_id("test1234").user_pwd("test1234")
+		UserBean user = UserBean.builder().user_id("test1234").user_pwd("test1234!")
 				.user_status("0").build();
 		usvc.userInfoUpdate(user);
 	}

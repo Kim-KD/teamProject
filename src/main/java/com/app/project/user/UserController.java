@@ -118,19 +118,4 @@ public class UserController {
 		return "profile_read";
 	}
 	
-	// 로그인 (스프링 시큐리티가 해줌)
-//	@PostMapping("/login")
-//	@ResponseBody
-//	public int login(UserBean userBean, HttpServletRequest request) {
-//		int result = usvc.login(userBean, request);
-//		return result;
-//	}
-	
-	// 로그아웃 (스프링 시큐리티가 해줌)
-//	@PostMapping("/logout")
-//	public String logout(SessionStatus session) {
-//		session.setComplete();
-//		return "redirect:index";
-//	}
-	
 }

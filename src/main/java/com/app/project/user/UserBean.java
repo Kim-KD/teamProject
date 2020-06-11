@@ -29,8 +29,8 @@ public class UserBean {
 	private String user_certify;	// 이메일 인증
 	private String change_pwd;		// 변경된 비밀번호
 	private String change_pwd_day;	// 비밀번호 변경일
-	private String login_fail_cnt;	// 로그인 실패 횟수
-	private boolean enabled;		// 계정 차단
+	private Integer login_fail_cnt;	// 로그인 실패 횟수
+	private Boolean enabled;		// 계정 차단
 	private String find_num;		// 인증 번호
 	private String cpn_service_num;	// 사업자 번호
 	private String cpn_bank;		// 은행

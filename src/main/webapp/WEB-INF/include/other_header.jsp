@@ -6,21 +6,95 @@
 <html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
 <script>
-	$(function() {
-		$("#logoutBtn").on("click", function() {
-			var param = {
-				_csrf:"${_csrf.token}"
+$(function() {
+
+	var msg = "${errorMsg}"
+		if(msg != ""){
+			$('#loginBox').modal('show');
+			$('#user_id').val("${id}");
+			alert(msg);
+		}
+
+	$("#pwdCheck").on("click", function() {
+		$.ajax({
+			url:"/project/check_pwd",
+			data: $('#checkFrm').serialize(),
+			method:"post",
+			success:function(result) {
+				location.href="/profile_read";
+			}, error() {
+				alert("비밀번호 확인에 실패했습니다.");
 			}
-			$.ajax({
-				url: "/project/logout",
-				method: "post",
-				data: param,
-				success: function() {
-					location.href = "/project";
-				}
-			})
 		})
 	})
+	
+	$("#logoutBtn").on("click", function() {
+		var param = {
+			_csrf:"${_csrf.token}"
+		}
+		$.ajax({
+			url: "/project/logout",
+			method: "post",
+			data: param,
+			success: function() {
+				location.href = "/project";
+			}
+		})
+	})
+	
+	$("#loginbtn").on("click",function(){
+		
+		// ID 유효성 검사
+		var idRegExp = /^[a-z]+[a-z0-9]{4,12}$/g;
+		var user_id = $("#user_id").val();
+		var user_pwd = $("#user_pwd").val();
+		
+		if(user_id == "") {
+			$("#userid_msg").empty();
+			$("#userid_msg").text("아이디를 입력해주세요.").css("color", "red");
+			$("#user_id").focus();
+			return false;
+		} else if(!idRegExp.test($("#user_id").val())) {
+			$("#userid_msg").empty();
+			$("#userid_msg").text("4~12자 영어 또는 숫자로 입력하세요.").css("color", "red");
+			$("#user_id").focus();
+			return false;
+		} else if(user_pwd == "") {
+			$("#password_msg").empty();
+			$("#password_msg").text("비밀번호를 입력해주세요.").css("color", "red");
+			$("#user_pwd").focus();
+			return false;
+		} else {
+	 			$("#loginFrm").submit();
+			}
+		})
+	
+	/* 로그인 창 보여주기 */
+	$('#login').on('click', function(){
+		$('#loginBox').modal('show');
+	})
+	/* 비밀번호 확인 창 보여주기 */
+	$('#profile_read').on('click', function(){
+		$('#pwdCheckBox').modal('show');
+	})
+	/* 회원가입 일반,기업 창 보여주기 */
+	$('#sign_up').on('click', function(){
+		$('#selectBox').modal('show');
+	})
+
+	$("#user_id").focusout(function(){
+		$("#userid_msg").empty();
+	})
+	
+	$("#user_pwd").focusout(function(){
+		$("#password_msg").empty();
+	})
+
+	$("#findInfoBtn").on("click",function(){
+		location.href = "find_info"
+	})
+	
+})
 </script>
 <head>
 	<title>게하모 | 게스트 하우스의 모든 것</title>
@@ -84,7 +158,7 @@
 				<div class="user-panel">
 					<c:set var="loginId" 
 value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}"></c:set>
-					<a href="/project/profile_read">${loginId}</a>
+					<a href="#" id="profile_read" data-toggle="modal">${loginId}</a>
 <!-- 						<a href="write_page">글 작성</a> -->
 					<a href="#" id="logoutBtn" class="register">로그아웃</a>
 				</div>
@@ -93,8 +167,8 @@ value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}
 	<sec:authorize access="isAnonymous()">
 		<div class="header-right">
 				<div class="user-panel">
-					<a href="login" class="login">로그인</a>
-					<a href="normal_or_cpn" class="register">회원가입</a>
+					<a href="#" class="login" id="login" data-toggle="modal">로그인</a>
+					<a href="#" class="register" id="sign_up" data-toggle="modal">회원가입</a>
 				</div>
 			</div>
 	</sec:authorize>
@@ -137,5 +211,100 @@ value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}
 				<!-- <p>게이루 게스트 하우스 검색 설명 </p> -->
 			</form>
 		</div>
-	</section>
-	<!-- Page top Section end -->
+		
+<!-- 로그인 Modal -->
+<div id="loginBox" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="myModalLabel">로그인</h4>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+</div>
+
+<div class="modal-body">
+<form id = "loginFrm" action="/project/login" method="post">
+	<div class="container">
+		<div class="form-group">
+			<label for="user_id">아이디</label>&nbsp;
+			<span id="userid_msg"></span>
+			<input type="text" class="form-control" id="user_id" name="user_id" placeholder="아이디를 입력하세요.">
+		</div>
+		<div class="form-group">
+			<label for="user_pwd">비밀번호</label>&nbsp;
+			<span id="password_msg"></span>
+			<input type="password" class="form-control" id="user_pwd" name="user_pwd" placeholder="비밀번호를 입력하세요.">
+		</div>
+		<input type="hidden" name="_csrf" value="${_csrf.token}">
+		<button class="btn btn-info" id="loginbtn" type="button">로그인</button>
+		<button class="btn btn-success" type="button" id="findInfoBtn">아이디 / 비밀번호 찾기</button>
+	</div>
+</form>
+</div>
+
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+</div>
+</div>
+</div>
+</div>
+<!-- 로그인 Modal end -->
+
+<!-- 비밀번호 Modal -->
+<div id="pwdCheckBox" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="myModalLabel">비밀번호 확인</h4>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+</div>
+
+<div class="modal-body">
+<form id="checkFrm">
+	<div class="container">
+		<div class="form-group">
+			<label for="user_pwd">비밀번호</label>
+			<input type="password" name="user_pwd" id="user_pwd" class="form-control" placeholder="비밀번호를 입력하세요.">
+			<input type="hidden" name="_csrf" value="${_csrf.token}">
+		</div>
+		<button type="button" class="btn btn-success" id="pwdCheck">확인</button>
+	</div>
+</form>
+</div>
+
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+</div>
+</div>
+</div>
+</div>
+<!-- 비밀번호 Modal end -->
+
+<!-- 일반,기업회원 선택 Modal -->
+<div id="selectBox" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="myModalLabel">비밀번호 확인</h4>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+</div>
+
+<div class="modal-body">
+	<div class="container">
+		<div class="form-group">
+			<div id = "select">
+			<a href ="sign_up"><button class="btn btn-info">일반 회원</button></a>
+			<a href ="cpn_sign_up"><button class="btn btn-success">기업 회원</button></a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+</div>
+</div>
+</div>
+</div>
+<!-- 일반,기업회원 선택 Modal end -->		
+</section>
+<!-- Page top Section end -->

@@ -10,11 +10,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script>
-$(function() {
-	$("#check").on("click", function() {
-		$("#checkForm").submit();
-	});
-})
 
 // function ajaxPwdCheck() {
 // 	$.ajax({
@@ -32,16 +27,39 @@ $(function() {
 // 		}
 // 	})
 // }
+
+$("#pwdCheck").on("click", function() {
+	$("#checkForm").submit();
+})
 </script>
 </head>
 <body>
-	<p class="flow-text">비밀번호 확인</p>
-	<form action="/project/check_pwd" method="post" id="checkForm">
+<div id="pwdCheckBox" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="myModalLabel">비밀번호 확인</h4>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+</div>
+
+<div class="modal-body">
+<form action="/project/check_pwd" method="post" id="checkForm">
+	<div class="container">
 		<div class="form-group">
-			<input type="password" name="user_pwd" id="user_pwd" class="form-control">
+			<label for="user_pwd">비밀번호</label>
+			<input type="password" name="user_pwd" id="user_pwd" class="form-control" placeholder="비밀번호를 입력하세요.">
 			<input type="hidden" name="_csrf" value="${_csrf.token}">
 		</div>
-		<button type="button" class="btn btn-success" id="check">확인</button>
-	</form>
+		<button type="button" class="btn btn-success" id="pwdCheck">확인</button>
+	</div>
+</form>
+</div>
+
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+</div>
+</div>
+</div>
+</div>
 </body>
 </html>

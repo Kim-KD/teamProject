@@ -95,6 +95,7 @@
 			<if test="user_email != null">user_email = #{user_email},</if>
 			<if test="user_pwd != null">user_pwd = #{user_pwd},
 			change_pwd = #{user_pwd},change_pwd_day = now(),</if>
+			<if test="login_fail_cnt != null">login_fail_cnt = #{login_fail_cnt},</if>
 			<if test="find_num != null">find_num = #{find_num},</if>
 			<if test="enabled != null">enabled = #{enabled},</if>
 		</trim>

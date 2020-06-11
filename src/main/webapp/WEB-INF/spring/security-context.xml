@@ -2,8 +2,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:sec="http://www.springframework.org/schema/security"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
-		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	<!-- 
 		스프링 시큐리티 프레임워크 -> 보안 서술적 프로그래밍
 		- 인증(authentication) : 로그인 -> 건물 출입증
@@ -19,19 +21,19 @@
 		<sec:form-login
 			username-parameter="user_id"
 			password-parameter="user_pwd"
-			login-page="/login"
+			login-page="/"
 			login-processing-url="/login"
-			default-target-url="/index"
-			authentication-failure-url="/user/login?error=1"
+			default-target-url="/"
+			authentication-failure-handler-ref="loginFailureHandler"	
+			authentication-success-handler-ref="loginSuccessHandler"
 		/>
-		
 		
 		<sec:logout
 			logout-url="/logout"
 			logout-success-url="/"
 		/>
 	</sec:http>
-	
+
 	<!-- 계정과 권한 설정
 		1. 권한은 ROLE_로 시작한다
 		2. 단순한 문자열이다. 즉 ROLE_ADMIN이 ROLE_USER를 포함X 

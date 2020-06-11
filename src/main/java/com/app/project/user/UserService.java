@@ -5,6 +5,7 @@ import java.util.Random;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -95,20 +96,6 @@ public class UserService {
 		}
 		return 0;
 	}
-	
-	// 로그인 (스프링 시큐리티가 해줌)
-//	public int login(UserBean user, HttpServletRequest request) {
-//		UserBean loginData = dao.login(user);
-//		
-//		HttpSession session = request.getSession();
-//		
-//		if(loginData == null) {
-//			return 0;
-//		} else {
-//			session.setAttribute("login_data", loginData);
-//			return 1;
-//		}
-//	}
 	
 	// 유저 정보 읽기
 	public UserBean userInfoRead(String user_id) {
