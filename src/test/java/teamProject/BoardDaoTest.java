@@ -112,13 +112,13 @@ public class BoardDaoTest {
 	//@Test
 	// 관광명소 게시글 읽기
 	public void trupReadTest() {
-		assertThat(tripDao.trip_Read(2),is(notNullValue()));
+		assertThat(tripDao.trip_read(2),is(notNullValue()));
 	}
 	
 	//@Test
 	// 관광명소 후기 정보 읽기
 	public void tripViewReadTest() {
-		assertThat(tripDao.trip_View_Read(2),is(notNullValue()));
+		assertThat(tripDao.trip_view_read(2),is(notNullValue()));
 	}
 	
 	//@Test
@@ -128,7 +128,7 @@ public class BoardDaoTest {
 		Trip_BoardBean b = Trip_BoardBean.builder().user_id("aaaa").title("제목")
 				.content("내용").postcode("우편번호").city("지역주소").admission(2000)
 				.opentime("10시").address("상세주소").photo("사진").build();
-		assertThat(tripDao.trip_Insert(b), is(1));
+		assertThat(tripDao.trip_insert(b), is(1));
 	}
 	
 	//@Test
@@ -136,7 +136,7 @@ public class BoardDaoTest {
 	// 관광명소 후기 작성
 	public void tripViewInsertTest() {
 		Trip_BoardBean b = Trip_BoardBean.builder().no(2).user_id("aaaa").content("후기 내용").build();
-		assertThat(tripDao.trip_View_Insert(b), is(1));
+		assertThat(tripDao.trip_view_insert(b), is(1));
 	}
 	
 	//@Test
@@ -146,7 +146,7 @@ public class BoardDaoTest {
 		Trip_BoardBean b = Trip_BoardBean.builder().no(1).title("변경 제목")
 				.content("변경 내용").postcode("변경 우편번호").city("변경 지역주소").admission(2000)
 				.opentime("변경 10시").address("변경 상세주소").photo("변경 사진").build();
-		assertThat(tripDao.trip_Update(b), is(1));
+		assertThat(tripDao.trip_update(b), is(1));
 	}
 	
 	//@Test
@@ -154,6 +154,6 @@ public class BoardDaoTest {
 	// 관광명소 게시글 삭제
 	public void tripDeleteTest() {
 		Trip_BoardBean b = Trip_BoardBean.builder().no(1).build();
-		assertThat(tripDao.trip_Delete(1), is(2));
+		assertThat(tripDao.trip_delete(1), is(2));
 	}
 }

@@ -8,6 +8,11 @@
 <script>
 $(function() {
 
+	var pathname = document.location.pathname,
+		url = pathname.substr(9)
+
+	$('.main-menu').find('a[href="' + url + '"]').addClass('active');
+	
 	var msg = "${errorMsg}"
 		if(msg != ""){
 			$('#loginBox').modal('show');
@@ -160,9 +165,10 @@ $(function() {
 		</a>
 		<nav class="header-nav">
 			<ul class="main-menu">
-				<li><a href="index" class="active">Home</a></li>
+				<li><a href="index">Home</a></li>
 				<li><a href="about_us">스탭 구인</a></li>
 				<li><a href="page1">게스트 하우스</a></li>
+				<li><a href="trip">관광 명소</a></li>
 				<li><a href="page2">메뉴3</a>	</li>
 				<li><a href="write_page">글작성</a></li>
 				<li><a href="page3">고객센터</a>
@@ -175,13 +181,17 @@ $(function() {
 			</ul>
 			<sec:authorize access="isAuthenticated()">
 		<div class="header-right">
-				<div class="user-panel">
+				<ul class="main-menu">
 					<c:set var="loginId" 
 value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}"></c:set>
-					<a href="#" id="profile_read" data-toggle="modal">${loginId}</a>
+					<li><a href="#" id="profile_read" data-toggle="modal">${loginId}님 환영합니다.</a>
+					<ul class="sub-menu">
+						<li><a href="#">내정보 보기</a></li>
+					</ul>
+					</li>
 <!-- 						<a href="write_page">글 작성</a> -->
-					<a href="#" id="logoutBtn" class="register">로그아웃</a>
-				</div>
+					<li><a href="#" id="logoutBtn" class="register">로그아웃</a></li>
+				</ul>
 			</div>
 	</sec:authorize>
 	<sec:authorize access="isAnonymous()">

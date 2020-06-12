@@ -2,31 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="trip_Mapper">
+<mapper namespace="trip_mapper">
 
 	<!-- 관광 명소 게시글 총 갯수 -->
-	<!-- <select id='trip_Count' resultType='int'>
+	<select id='trip_count' resultType='int'>
 		select /*+
 		index_ffs(trip_info pk_trip_num)*/ count(*)
 		from trip_info
-	</select> -->
+		<where>
+			<if test="user_id != null">and user_id=#{user_id}</if>
+		</where>
+	</select>
 
 	<!-- 관광 명소 게시글 정보 -->
-	<!-- <select id="trip_Find_All" resultType="board"> 
+	<select id="trip_find_all" resultType="trip_Board"> 
  	<![CDATA[ 
- 	 		select*from 
- 	 			(select trip.*,rownum as rnum from 
- 	 				(select /*+ index_desc(trip_info trip_pk_no)*/ 
- 	 				no,user_id userId,title,content,admission,opentime,w_date wDate, 
- 	 				city,postcode,address,on_off onOff,p_link pLink,up_view upView,views,likes 
- 	 				from trip_info)trip 
- 	 			where rownum<=#{endRowNum})
- 	 		where rnum>=#{startRowNum} 
- 	 	]]>
-	</select> -->
+  	 		select*from  -->
+  	 			(select trip.*,rownum as rnum 
+  	 			from (select /*+ index_desc(trip_info trip_pk_no)*/
+  	 				no,user_id userId,title,content,admission,opentime,w_date wDate,
+  	 				city,postcode,address,on_off onOff,p_link pLink,up_view upView,views,likes
+  	 				from trip_info)trip
+  	 			where @rownum:<=#{endRowNum})
+  	 		where @rnum:>=#{startRowNum}
+  	 	]]>
+	</select>
 
 	<!-- 관광명소 게시글 읽기 -->
-	<select id="trip_Read" resultType="trip_Board">
+	<select id="trip_read" resultType="trip_Board">
 		select no,user_id,title,content,city,address,on_off,p_link,up_view
 		,views,w_date,postcode,admission,opentime,photo
 		from trip_info
@@ -34,14 +37,14 @@
 	</select>
 	
 	<!-- 관광명소 후기 읽기(게시글 번호에 맞는 후기 전부 찾는다) -->
-	<select id="trip_View_Read" resultType="trip_Board">
+	<select id="trip_view_read" resultType="trip_Board">
 		select no,user_id,content
 		from trip_view_info
 		where trip_view_info.no = #{no}
 	</select>
 	
 	<!-- 관광명소 게시글 작성 -->
-	<insert id="trip_Insert" parameterType="trip_Board">
+	<insert id="trip_insert" parameterType="trip_Board">
 		insert into trip_info(no, user_id, title, content, admission, opentime,w_date
 		, city, postcode, address, photo, on_off, p_link, up_view, views, likes)
 		values(#{no},#{user_id},#{title},#{content},#{admission},#{opentime},now(),
@@ -49,7 +52,7 @@
 	</insert>
 
 	<!-- 관광명소 게시글 수정 -->
-	<update id="trip_Update">
+	<update id="trip_update">
 		update trip_info
 		<trim prefix="SET" suffixOverrides=",">
 			<if test="title != null">title = #{title},</if>
@@ -63,20 +66,20 @@
 			<if test="on_off != null">on_off = #{on_off},</if>
 			<if test="p_link != null">p_link = #{p_link},</if>
 			<if test="up_view != null">up_view = #{up_view},</if>
-			<if test="views > 0">views = views+1,</if>
-			<if test="likes > 0">likes = likes+1,</if>
+			<if test="views != null">views = views+1,</if>
+			<if test="likes != null">likes = likes+1,</if>
 		</trim>
 		where no=#{no}
 	</update>
 
 	<!-- 게스트하우스 후기 작성 -->
-	<insert id="trip_View_Insert" parameterType="trip_Board">
+	<insert id="trip_view_insert" parameterType="trip_Board">
 		insert into trip_view_info(no, user_id, content)
 		values(#{no}, #{user_id}, #{content})
 	</insert>
 
 	<!-- 관광명소 게시글 삭제 -->
-	<delete id="trip_Delete">
+	<delete id="trip_delete">
 		delete trip_info, trip_view_info
 		from trip_view_info
 			left join trip_info on (trip_view_info.no = trip_info.no)
