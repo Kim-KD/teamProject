@@ -9,7 +9,7 @@
 				<div class="footer-widger">
 					<div class="about-widget">
 						<div class="aw-text">
-							<img src="assets/img/footer-logo.png" alt="">
+							<img src="assets/img/title2.png" alt="">
 							<p>
 								<i class="fas fa-phone"></i>&emsp;010 - 000 - 0000
 							</p>

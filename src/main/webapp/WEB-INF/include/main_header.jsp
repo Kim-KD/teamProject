@@ -104,7 +104,7 @@ $(function() {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
 	<!-- Favicon -->
-	<link href="assets/img/favicon.ico" rel="shortcut icon"/>
+	<link href="assets/img/icon.png" rel="shortcut icon"/>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i,900%7cRoboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
@@ -149,7 +149,7 @@ $(function() {
 	<!-- Header Section -->
 	<header class="header-section">
 		<a href="index" class="site-logo">
-			<img src="assets/img/logo.png" alt="">
+			<img src="assets/img/title2.png" alt="">
 		</a>
 		<nav class="header-nav">
 			<ul id="main_menu" class="main-menu">
@@ -222,7 +222,7 @@ value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}
  						</div>
  					</div> -->
 					<div class="search-input">
-						<input type="text" placeholder="게이루 게스트하우스 검색">
+						<input type="text" placeholder="게하모 검색">
 						<button class="site-btn">검색</button>
 						<button class="site-btn sb-light">상세 검색</button>
 					</div>
