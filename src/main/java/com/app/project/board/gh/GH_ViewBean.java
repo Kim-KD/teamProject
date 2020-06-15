@@ -14,6 +14,7 @@ import lombok.Setter;
 public class GH_ViewBean {
 
 	private int no;
+	private int re_no;
 	private String user_id;
 	private String content;
 	

@@ -3,31 +3,6 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="GH_Mapper">
-	
-	<!-- 게스트하우스 정보 작성 -->
-	<insert id="gh_Insert" parameterType="gh_Board" useGeneratedKeys="true" keyProperty="no">
-		insert into gh_info(user_id, title, content, thumbnail, w_date, 
-		postcode, city, address, on_off, p_link, up_view, views, likes)
-		values(#{user_id}, #{title}, #{content}, #{thumbnail}, now(), #{postcode}, #{city}, #{address}, "y", "n", "n", 0, 0)
-	</insert>
-
-	<!-- 게스트하우스 상세 정보 작성 -->
-	<insert id="gh_More_Insert" parameterType="gh_Board">
-		insert into gh_more_info(no, party_menu, alcohol, party_time, off_time, join_man, join_girl, 
-									party_day, wifi, parking, morning, pet, check_in, check_out)
-		values(#{no}, #{party_menu}, #{alcohol}, #{party_time}, #{off_time}, #{join_man}, #{join_girl}, 
-				#{party_day}, #{wifi}, #{parking}, #{morning}, #{pet}, #{check_in}, #{check_out})
-	</insert>
-	
-	<!-- 게스트하우스 방 정보 작성 -->
-	<insert id="gh_Room_Insert" parameterType="list">
-		insert into gh_room_info(no, room, room_status, price, photo, room_people, gender)
-		values
-		<foreach item="roomList" collection="list" separator=",">
-			(#{roomList.no}, #{roomList.room}, #{roomList.room_status}, #{roomList.price}, #{roomList.photo}, #{roomList.room_people}, #{roomList.gender})
-		</foreach>
-	</insert>
-	
 	<!-- 게스트하우스 리스트 -->
 	<select id="testlist" resultType="map">
 		<!-- select g.no, g.title, g.content, r.price
@@ -71,19 +46,6 @@
 		left join gh_info g on (m.no = g.no)
 		where g.no = #{no} and r.room_status = 1;
 	</select>
-		
-	<!-- 게스트하우스 후기 읽기(게시글 번호에 맞는 후기 전부 찾는다) -->
-	<select id="gh_View_Read" resultType="gh_Board">
-		select no,user_id,content
-		from gh_view_info
-		where gh_view_info.no = #{no}
-	</select>
-	
-	<!-- 게스트하우스 후기 작성 -->
-	<insert id="gh_View_Insert" parameterType="gh_Board">
-		insert into gh_view_info(no, user_id, content)
-		values(#{no}, #{user_id}, #{content})
-	</insert>
 
 	<!-- 게스트하우스 게시글 수정(조회수,추천수 상승,게스트 하우스 전체 테이블 포함) -->
 	<update id="gh_Update">
@@ -165,6 +127,32 @@
 			where gh_view_info.no = #{no}
 	</delete>
 	
+	<!-- ============================================================== -->
+	
+	<!-- 게스트하우스 정보 작성 -->
+	<insert id="gh_Insert" parameterType="gh_Board" useGeneratedKeys="true" keyProperty="no">
+		insert into gh_info(user_id, title, content, thumbnail, w_date, 
+		postcode, city, address, on_off, p_link, up_view, views, likes)
+		values(#{user_id}, #{title}, #{content}, #{thumbnail}, now(), #{postcode}, #{city}, #{address}, "y", "n", "n", 0, 0)
+	</insert>
+
+	<!-- 게스트하우스 상세 정보 작성 -->
+	<insert id="gh_More_Insert" parameterType="gh_Board">
+		insert into gh_more_info(no, party_menu, alcohol, party_time, off_time, join_man, join_girl, 
+									party_day, wifi, parking, morning, pet, check_in, check_out)
+		values(#{no}, #{party_menu}, #{alcohol}, #{party_time}, #{off_time}, #{join_man}, #{join_girl}, 
+				#{party_day}, #{wifi}, #{parking}, #{morning}, #{pet}, #{check_in}, #{check_out})
+	</insert>
+	
+	<!-- 게스트하우스 방 정보 작성 -->
+	<insert id="gh_Room_Insert" parameterType="list">
+		insert into gh_room_info(no, room, room_status, price, photo, room_people, gender)
+		values
+		<foreach item="roomList" collection="list" separator=",">
+			(#{roomList.no}, #{roomList.room}, #{roomList.room_status}, #{roomList.price}, #{roomList.photo}, #{roomList.room_people}, #{roomList.gender})
+		</foreach>
+	</insert>
+	
 	<!-- index 최신순  -->
 	<select id="index_New_Slider" resultType="gh_Board">
 		select no, title, content, thumbnail from gh_info
@@ -204,11 +192,19 @@
 		where no = #{no} and room = #{room}
 	</select>
 	
-	<!-- 게스트하우스 방 정보 -->
-	<select id="gh_Room_Read" resultType="gh_Board">
-		select no, room, room_status, price, photo, room_people
-		from gh_room_info
-		where gh_room_info.no = #{no}
+	<!-- 게스트하우스 후기 작성 -->
+	<insert id="gh_View_Insert" parameterType="gh_View">
+		insert into gh_view_info(no, user_id, content)
+		values(#{no}, #{user_id}, #{content})
+	</insert>
+	
+	<!-- 게스트하우스 후기 읽기(게시글 번호에 맞는 후기 전부 찾는다) -->
+	<select id="gh_View_Read" parameterType="gh_View" resultType="gh_view">
+		select no, user_id, content
+		from gh_view_info
+		where no = #{no}
+		order by no
 	</select>
+	
 	
 </mapper>

@@ -1095,7 +1095,7 @@ Single Property Page
 	font-size: 18px;
 	font-weight: 700;
 	padding: 20px 15px;
-	margin-bottom: 28px;
+	margin-bottom: 10px;
 	line-height: 1;
 	background: #fff;
 }
@@ -1219,6 +1219,9 @@ Contact Page
 	padding: 20px 23px 10px;
 	resize: none;
 	margin-bottom: 35px;
+}
+#comment {
+	margin-top: 20px;
 }
 
 .contact-form .site-btn {
