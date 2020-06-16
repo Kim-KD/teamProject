@@ -164,10 +164,12 @@ $(function(){
 		if(result===true) {
 			$.when($.ajax("id_chk?user_id=" + $("#user_id").val()),
 				$.ajax("email_chk?user_email=" + $("#user_email").val())
-			).done(()=>{ $("#join_form").submit(); })
+			).done(()=>{
+				alert("가입하신 이메일로 가입확인 메일을 보냈습니다.\n보내드린 메일에 링크를 클릭하시고 로그인해주세요.");
+				$("#join_form").submit();
+			})
 		}
 	})	
-	
 });
 
 </script>
