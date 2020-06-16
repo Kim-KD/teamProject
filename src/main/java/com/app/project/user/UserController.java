@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.app.project.util.AuthorityPropertyEditor;
+import com.sun.istack.internal.NotNull;
 
 @Controller
 @SessionAttributes("login_data")
@@ -57,15 +58,21 @@ public class UserController {
 	}
 	
 	// 아이디 중복체크
-	@PostMapping("/id_chk")
+	@GetMapping("/id_chk")
 	@ResponseBody
-	public int id_chk(@RequestParam("user_id") String user_id) {
-		int result = usvc.id_chk(user_id);
-		return result;
+	public int id_chk(@RequestParam String user_id) {
+		return usvc.id_chk(user_id);
+	}
+
+	// 이메일 중복체크
+	@GetMapping("/email_chk")
+	@ResponseBody
+	public int checkEmail(@RequestParam @NotNull String user_email) {
+		return usvc.email_chk(user_email);
 	}
 	
 	// 이메일 수정체크
-	@GetMapping("/email_chk")
+	@GetMapping("/up_email_chk")
 	@ResponseBody
 	public int email_chk(String user_email, Principal pcp) {
 		int result = 0;

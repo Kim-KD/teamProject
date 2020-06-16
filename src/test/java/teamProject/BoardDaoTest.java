@@ -124,12 +124,12 @@ public class BoardDaoTest {
 	//@Test
 	//@Transactional
 	// 관광명소 게시글 작성
-	public void tripInsertTest() {
-		Trip_BoardBean b = Trip_BoardBean.builder().user_id("aaaa").title("제목")
-				.content("내용").postcode("우편번호").city("지역주소").admission(2000)
-				.opentime("10시").address("상세주소").photo("사진").build();
-		assertThat(tripDao.trip_insert(b), is(1));
-	}
+//	public void tripInsertTest() {
+//		Trip_BoardBean b = Trip_BoardBean.builder().user_id("aaaa").title("제목")
+//				.content("내용").postcode("우편번호").city("지역주소").admission(2000)
+//				.opentime("10시").address("상세주소").photo("사진").build();
+//		assertThat(tripDao.trip_insert(b), is(1));
+//	}
 	
 	//@Test
 	//@Transactional
@@ -142,12 +142,12 @@ public class BoardDaoTest {
 	//@Test
 	//@Transactional
 	// 관광명소 게시글 수정
-	public void tripUpdateTest() {
-		Trip_BoardBean b = Trip_BoardBean.builder().no(1).title("변경 제목")
-				.content("변경 내용").postcode("변경 우편번호").city("변경 지역주소").admission(2000)
-				.opentime("변경 10시").address("변경 상세주소").photo("변경 사진").build();
-		assertThat(tripDao.trip_update(b), is(1));
-	}
+//	public void tripUpdateTest() {
+//		Trip_BoardBean b = Trip_BoardBean.builder().no(1).title("변경 제목")
+//				.content("변경 내용").postcode("변경 우편번호").city("변경 지역주소").admission(2000)
+//				.opentime("변경 10시").address("변경 상세주소").photo("변경 사진").build();
+//		assertThat(tripDao.trip_update(b), is(1));
+//	}
 	
 	//@Test
 	//@Transactional

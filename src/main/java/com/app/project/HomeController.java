@@ -41,9 +41,9 @@ public class HomeController {
 		return "page3";
 	}
 	
-	@GetMapping("/trip")
+	@GetMapping("/trip_list")
 	public String trip() {
-		return "trip";
+		return "trip_list";
 	}
 	
 	@GetMapping("/trip_write")
@@ -51,9 +51,9 @@ public class HomeController {
 		return "trip_write";
 	}
 	
-	@GetMapping("/normal_or_cpn")
-	public String normal_or_cpn() {
-		return "sign_up/normal_or_cpn";
+	@GetMapping("/trip_read")
+	public String trip_read() {
+		return "trip_read";
 	}
 	
 	@GetMapping("/sign_up")

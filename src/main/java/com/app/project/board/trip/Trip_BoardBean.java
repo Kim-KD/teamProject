@@ -1,13 +1,18 @@
 package com.app.project.board.trip;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
+import com.app.project.board.UploadInfoBean;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -25,8 +30,11 @@ public class Trip_BoardBean {
 	private String up_view;		// 상단노출
 	private Integer views;			// 조회수
 	private Integer likes;			// 추천수
-	private String w_date;		// 작성날짜
+	private LocalDateTime w_date;		// 작성날짜
 	private Integer admission;		// 입장료
 	private String opentime;	// 운영 시간
-	private String photo;		// 풍경 이미지
+	private String thumbnail;		// 풍경 이미지
+	private List<MultipartFile> upload; // 사진 업로드
+	private List<Trip_ViewBean> comments; // 댓글
+	private List<UploadInfoBean> upload_info; // 사진 업로드 정보
 }

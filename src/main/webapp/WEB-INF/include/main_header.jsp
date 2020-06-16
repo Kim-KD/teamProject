@@ -21,7 +21,7 @@ $(function() {
 			data: $('#checkFrm').serialize(),
 			method:"post",
 			success:function(result) {
-				location.href="/profile_read";
+				location.href="/project/profile_read";
 			}, error() {
 				alert("비밀번호 확인에 실패했습니다.");
 			}
@@ -156,7 +156,7 @@ $(function() {
 				<li><a href="/index" class="active">Home</a></li>
 				<li><a href="about_us">스탭 구인</a></li>
 				<li><a href="page1">게스트 하우스</a></li>
-				<li><a href="trip">관광 명소</a></li>
+				<li><a href="trip_list">관광 명소</a></li>
 				<li><a href="page2">메뉴3</a>	</li>
 				<li><a href="page3">고객센터</a>
 					<ul class="sub-menu">

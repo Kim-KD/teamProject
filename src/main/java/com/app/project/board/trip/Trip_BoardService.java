@@ -1,54 +1,48 @@
 package com.app.project.board.trip;
 
 import java.io.File;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.app.project.board.gh.GH_BoardBean;
+import com.app.project.board.CommentDao;
+import com.app.project.board.UploadInfoBean;
+import com.app.project.board.UploadInfoDao;
 
 @Service
 public class Trip_BoardService {
 	
 	@Autowired
 	private Trip_BoardDao dao;
+	@Autowired
+	private UploadInfoDao uploadDao;
+	@Autowired
+	private CommentDao commentDao;
 
 	// 게시글 작성
-	public int tripWrite(Trip_BoardBean board) {
-//		Trip_BoardBean board = modelMapper.map(dto, Board.class);
-//		if(dto.getAttachments()!=null)
-//			board.setAttachmentCnt(dto.getAttachments().size());
-//		else
-//			board.setAttachmentCnt(0);
+	public int tripWrite(Trip_BoardBean board) throws IOException {
+		
 		dao.trip_insert(board);
 		
-//		List<MultipartFile> attachments = dto.getAttachments();
-//		List<Attachment> list = new ArrayList<Attachment>();
-//		if(attachments!=null) {
-//			for(MultipartFile mf:attachments) {
-//				Attachment a = new Attachment();
-//				String originalFileName = mf.getOriginalFilename();
-//				long time = System.nanoTime();
-//				String saveFileName = time + "-" + originalFileName;
-//				boolean isImage = mf.getContentType().toLowerCase().startsWith("image/");
-//				a.setBno(board.getBno()).setIsImage(isImage)
-//					.setWriter(board.getWriter())
-//					.setLength((int)mf.getSize())
-//					.setOriginalFileName(originalFileName)
-//					.setSaveFileName(saveFileName);
-//				File file = new File("d:/upload/attachment", saveFileName);
-//				FileCopyUtils.copy(mf.getBytes(), file);
-//				attachmentDao.insert(a);
-//			}
-//		}
+		List<MultipartFile> uploadInfo = board.getUpload();
+		if(uploadInfo!=null) {
+			for(MultipartFile mf:uploadInfo) {
+				UploadInfoBean a = new UploadInfoBean();
+				String file_name = mf.getOriginalFilename();
+				long time = System.nanoTime();
+				String save_name = time + "-" + file_name;
+				a.setNo(board.getNo()).setUser_id(board.getUser_id())
+					.setFile_size((int)mf.getSize()).setFile_name(file_name)
+					.setSave_name(save_name);
+				File file = new File("d:/upload/attachment", save_name);
+				FileCopyUtils.copy(mf.getBytes(), file);
+				uploadDao.insert(a);
+			}
+		}
 		return board.getNo();
 	}
 	
@@ -61,16 +55,14 @@ public class Trip_BoardService {
 		
 //		String str = board.getW_date().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일"));
 //		board.setW_date(str);
-//		if(board.getAttachmentCnt()>0)
-//			board.setAttachments(attachmentDao.findAllByBno(board.getNo()));
-//		if(board.getCommentCnt()>0)
-//			board.setComments(commentDao.findAllByBno(board.getNo()));
+		board.setUpload_info(uploadDao.findAllByBno(board.getNo()));
+		board.setComments(commentDao.findAllByBno(board.getNo()));
 		return board;
 	}
 	
 	// 게시글 수정
-	public int tripUpdate(Trip_BoardBean boardBean) {
-		return dao.trip_update(boardBean);
+	public int tripUpdate(Trip_BoardBean board) {
+		return dao.trip_update(board);
 	}
 	
 	// 게시글 삭제

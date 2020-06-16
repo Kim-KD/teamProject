@@ -46,6 +46,7 @@
 	</bean>
 
 	<mybatis-spring:scan base-package="com.app.project.user"/>
+	<mybatis-spring:scan base-package="com.app.project.board"/>
 	
 	<context:component-scan base-package="com.app.project">
 		<context:exclude-filter type="annotation" 

@@ -27,13 +27,16 @@ public class UserService {
 		if(user.getUser_status().equals("0")) {
 			
 			String[] str = user.getUser_radio().split("-");
-			String newRadio = str[0]+str[1]+str[2];
+			if(str.length == 3) {
+				String newRadio = str[0]+str[1]+str[2];
+				user.setUser_radio(newRadio);
+			}
 			String userNum = RandomStringUtils.randomAlphanumeric(10);
 			String encodedPwd = pwdEncoder.encode(user.getUser_pwd());
 			user.setUser_pwd(encodedPwd);
 			user.setChange_pwd(encodedPwd);
 			user.setUser_num(userNum);
-			user.setUser_radio(newRadio);
+			
 			
 			String link= "<a href='http://localhost:8084/project/join_check?user_num="+userNum+"'>";
 			String msg = "<p>회원 가입 확인</p>";
@@ -49,13 +52,15 @@ public class UserService {
 		} else {
 			
 			String[] str = user.getUser_radio().split("-");
-			String newRadio = str[0]+str[1]+str[2];
+			if(str.length == 3) {
+				String newRadio = str[0]+str[1]+str[2];
+				user.setUser_radio(newRadio);
+			}
 			String userNum = RandomStringUtils.randomAlphanumeric(10);
 			String encodedPwd = pwdEncoder.encode(user.getUser_pwd());
 			user.setUser_pwd(encodedPwd);
 			user.setChange_pwd(encodedPwd);
 			user.setUser_num(userNum);
-			user.setUser_radio(newRadio);
 			
 			String link= "<a href='http://localhost:8084/project/join_check?user_num="+userNum+"'>";
 			String msg = "<p>회원 가입 확인</p>";

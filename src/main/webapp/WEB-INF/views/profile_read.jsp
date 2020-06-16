@@ -57,7 +57,7 @@ function checkCable() {
 function ajaxEmailCheck() {
 	var user_email = $("#email1").val()+"@"+$("#email2").val()
 	$.ajax({
-		url: "/project/email_chk",
+		url: "/project/up_email_chk",
 		data: "user_email=" + user_email,
 		method: "get",
 		success:function(result){
