@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/include/other_header.jsp" %>
 
+<script src="resources/ckeditor/ckeditor.js"></script>
+<script>
+$(function(){
+	CKEDITOR.replace("content",{
+		 filebrowserUploadUrl : "/project/imgUpload"
+	});	
+})
+</script>
+
 <!-- Contact Section end -->
 <section class="contact-section">
     <div class="container">
@@ -45,7 +54,7 @@
 
                 <span class="col-sm-2 control-label">내용</span>
                 <div class="col-lg-10">
-                    <textarea placeholder="내용" name="content"></textarea>
+                    <textarea placeholder="내용" id="content" name="content"></textarea>
                     <button class="site-btn1 sb-big1">등록</button>
                 </div>
             </div>
