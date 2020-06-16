@@ -33,7 +33,6 @@ function ajaxCheckId() {
 		method: "get",
 		data : "user_id=" + $("#user_id").val(),
 		success: function(result) {
-			console.log($("#user_pwd").val());
 			if (result == 1){
 				$("#id_msg").text("사용중인 아이디입니다").css({"color":"red", "font-size":"0.75em"});
 			}else{
@@ -54,7 +53,6 @@ function ajaxCheckEmail() {
 		method: "get",
 		data : "user_email=" + $("#user_email").val(),
 		success: function(result) {
-			console.log(result);
 			if (result == 1){
 				$("#email_msg").text("사용중인 이메일입니다").css({"color":"red", "font-size":"0.75em"});
 			}else{
