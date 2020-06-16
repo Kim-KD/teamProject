@@ -86,10 +86,10 @@
                 	</div>
                 </div>
                 <div class="col-sm-12 control-label">
-                	<input type="button" onclick="btn_test();" value="추가">
+                	<input type="button" onclick="add_Room_info();" value="추가">
                 </div>
                 <script>
-                function btn_test(){
+                function add_Room_info(){
                 	if(confirm("방 정보를 추가 하시겠습니까??") == true) {
 	                	var room_orig = $("select", $('#room'));
 	                	var gender_orig = $("select", $('#gender'));

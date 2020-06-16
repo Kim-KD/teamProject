@@ -2,7 +2,6 @@ package com.app.project.board.gh;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -67,11 +68,26 @@ public class GH_BoardController {
 	}
 	
 	// 방 정보
-	@GetMapping("/room_info_data")
+	@PostMapping("/room_info_data")
 	@ResponseBody
 	public List<Map<String,Object>> room_info_data(GH_RoomBean roomBean) {
 		List<Map<String,Object>> roomList = bsvc.room_info_data(roomBean);
 		return roomList;
 	}
 	
+	// 게스트하우스 후기 작성
+	@PostMapping("/gh_view_insert")
+	@ResponseBody
+	public int gh_View_Insert(GH_ViewBean viewBean) {
+		int result = bsvc.gh_View_Insert(viewBean);
+		return result;
+	}
+	
+	// 후기 목록
+	@GetMapping("/gh_view_list")
+	@ResponseBody
+	public List<GH_ViewBean> gh_View_Read(int no) {
+		List<GH_ViewBean> viewList = bsvc.gh_View_Read(no);
+		return viewList;
+	}
 }

@@ -4,6 +4,9 @@
 <!-- Single Property Section end -->
 <section class="single-property-section spad">
 	<div class="container">
+		<input type="hidden" id="user_id" name="user_id" value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}">
+		<input type="hidden" id="no" name="no" value="${gh_details.no}">
+		<input type="hidden" id="_csrf" name="_csrf" value="${_csrf.token}">
 		<div class="row">
 			<div class="col-lg-8">
 				<div class="single-property">
@@ -16,13 +19,15 @@
 						<div class="row">
 							<div class="col-lg-7">
 								<div class="pi-metas">
-									<div class="pi-meta" onclick="return room_info(this,${gh_details.no})" id="room">도미토리룸</div>
-									<div class="pi-meta" onclick="return room_info(this,${gh_details.no})" id="room">더블룸</div>
-									<div class="pi-meta" onclick="return room_info(this,${gh_details.no})" id="room">트윈룸</div>
+									<div class="pi-meta" onclick="return room_info(this)" id="room">도미토리룸</div>
+									<div class="pi-meta" onclick="return room_info(this)" id="room">더블룸</div>
+									<div class="pi-meta" onclick="return room_info(this)" id="room">트윈룸</div>
 									
 									<script>
-										function room_info(room_data,no) {
+										function room_info(room_data) {
+											var _csrf = $("#_csrf").val();
 											var room = $(room_data).text();
+											var no = $("#no").val();
 											var trTemplate = Handlebars.compile($('#roomListTemplate').text());
 											/* var roomListBody = $('#room-list tbody'); */
 											
@@ -30,8 +35,8 @@
 											
 											$.ajax({
 												url : "room_info_data",
-												type : "GET",
-												data : {"room" : room, "no" : no},
+												type : "POST",
+												data : {"room" : room, "no" : no, "_csrf" : _csrf},
 												dataType : "json",
 												success : function(data) {
 													if(data == 0) {
@@ -39,8 +44,7 @@
 													} else {
 														/* roomListBody.text(""); */
 														roomList.text("");
-														/* of -> 빨간줄 떠써 in으로 변경 */
-														for (var record in data) {
+														for (var record of data) {
 															record.genderTitle = record.gender == 1 ? '여' : '남';
 														}
 														/* roomListBody.html(trTemplate({rooms: data})); */
@@ -202,22 +206,93 @@
 				</div> -->
 				<div class="loan-calculator">
 					<h4>후기</h4>
+					<div class="row" id="commentList">
+						<%-- <c:if test="${gh_view_read == null}">
+							<div class="col-md-12">
+								<div class="loan-cal-result" style="text-align:center">등록된 댓글이 없습니다.</div>
+							</div>
+						</c:if>
+						<c:if test="${gh_view_read != null}">
+							<c:forEach items="${gh_view_read}" var="gh_view_read">
+									<div class="col-md-12">
+										<div class="loan-cal-result"> 
+											<h6>${gh_view_read.user_id}</h6><br><br>
+											<h6>${gh_view_read.content}</h6>
+										</div>
+									</div>
+							</c:forEach>
+						</c:if> --%>
+					</div>
+					
 					<div class="row">
 						<div class="col-md-12">
-							<div class="loan-cal-result">후기 내용</div>
+							<textarea name="content" id="content" placeholder="후기를 작성해주세요~"></textarea>
 						</div>
 						<div class="col-md-12">
-							<!-- <input type="text" placeholder="후기를 작성해주세요~" id="lc-price"> -->
-							<textarea placeholder="후기를 작성해주세요~"></textarea>
-						</div>						
-						<div class="col-md-12">
 							<div class="text-left text-sm-center">
-								<button class="site-btn1 sb-big1" id="lc-submit">등록</button>
+								<button class="site-btn1 sb-big1" onclick="comment()">등록</button>
 							</div>
 						</div>
 					</div>
+					
 				</div>
 			</div>
+			
+			<script>
+				$(function(){
+					getComment();
+				});
+				
+				var no = $("#no").val();
+				function comment() {
+					var _csrf = $("#_csrf").val();
+					var content = $("#content").val();
+					var user_id = $("#user_id").val();
+					
+					if(content == '') {
+						alert("내용을 입력해주세요.");
+					} else {
+						$.ajax({
+							url : "gh_view_insert",
+							type : "POST",
+							data : {"no" : no, "user_id" : user_id, "content" : content, "_csrf" : _csrf},
+							dataType : "json",
+							success : function(data) {
+								if(data == 1) {
+									alert("댓글이 등록되었습니다.")
+									$("#content").val("");
+									getComment();
+								}
+							}
+						});
+					}
+				}
+				
+				function getComment() {
+					var viewList = Handlebars.compile($('#gh_view_comment').text());
+					var commentList = $("#commentList");
+					
+					$.ajax({
+						url : "gh_view_list",
+						type : "GET",
+						data : {"no" : no},
+						dataType : "json",
+						success : function(data) {
+							 if(data.length != 0) {
+								commentList.html(viewList({commentList: data}));
+								$("#commentList").removeAttr("style");
+							} else {
+								var html = "";
+								html += "<div class='col-md-12'>";
+								html += "<div class='loan-cal-result' style='text-align:center'>등록된 댓글이 없습니다.</div>";
+								html += "</div>";
+								$("#commentList").html(html);
+							}
+						}
+					});
+				}
+			</script>
+			
 			<div class="col-lg-4 col-md-8 sidebar">
 				<div class="agent-widget">
 					<img src="assets/gh_img/unnamed.png" alt="">
@@ -261,6 +336,18 @@
 	</div>
 {{/each}}
 </script>
+
+<script id="gh_view_comment" type="text/handlebars-template">
+{{#each commentList}}
+<div class="col-md-12">
+	<div class="loan-cal-result">
+		<h6>{{user_id}}</h6><br><br>
+		<h6>{{content}}</h6>
+	</div>
+</div>
+{{/each}}
+</script>
+
 <!-- <tr>
   <td>{{room}}</td>
   <td>{{genderTitle}}</td>

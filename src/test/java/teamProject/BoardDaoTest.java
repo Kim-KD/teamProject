@@ -75,10 +75,10 @@ public class BoardDaoTest {
 	//@Test
 	//@Transactional
 	// 게하 후기 작성
-	public void ghViewInsertTest() {
-		GH_BoardBean b = GH_BoardBean.builder().no(5).user_id("aaaa").content("후기 내용").build();
-		assertThat(ghDao.gh_View_Insert(b), is(1));
-	}
+//	public void ghViewInsertTest() {
+//		GH_BoardBean b = GH_BoardBean.builder().no(5).user_id("aaaa").content("후기 내용").build();
+//		assertThat(ghDao.gh_view_insert(b), is(1));
+//	}
 	
 	//@Test
 	//@Transactional
