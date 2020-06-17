@@ -15,7 +15,7 @@ public class GH_BoardService {
 	private GH_BoardDao bdao;
 	private ModelAndView mav;
 
-	// 게시글 읽기
+	// 게시글 읽기 test
 //	public Map ghRead(int no) {
 //		Map<String,Object> map = new HashMap<String, Object>();
 //		map.put("info", bdao.gh_Read(no));
