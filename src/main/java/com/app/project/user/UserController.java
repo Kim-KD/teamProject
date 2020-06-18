@@ -58,14 +58,14 @@ public class UserController {
 	}
 	
 	// 아이디 중복체크
-	@GetMapping("/id_chk")
+	@PostMapping("/id_chk")
 	@ResponseBody
 	public int id_chk(@RequestParam String user_id) {
 		return usvc.id_chk(user_id);
 	}
 
 	// 이메일 중복체크
-	@GetMapping("/email_chk")
+	@PostMapping("/email_chk")
 	@ResponseBody
 	public int checkEmail(@RequestParam @NotNull String user_email) {
 		return usvc.email_chk(user_email);

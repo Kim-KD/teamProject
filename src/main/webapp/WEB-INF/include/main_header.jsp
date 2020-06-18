@@ -42,7 +42,7 @@ $(function() {
 		})
 	})
 	
-	$("#loginbtn").on("click",function(){
+	/* $("#loginbtn").on("click",function(){
 		
 		// ID 유효성 검사
 		var idRegExp = /^[a-z]+[a-z0-9]{4,12}$/g;
@@ -67,12 +67,12 @@ $(function() {
 		} else {
 	 			$("#loginFrm").submit();
 			}
-		})
+		}) */
 	
 	/* 로그인 창 보여주기 */
-	$('#login').on('click', function(){
+	/* $('#login').on('click', function(){
 		$('#loginBox').modal('show');
-	})
+	}) */
 	/* 비밀번호 확인 창 보여주기 */
 	$('#profile_read').on('click', function(){
 		$('#pwdCheckBox').modal('show');
@@ -184,7 +184,7 @@ value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}
 	<sec:authorize access="isAnonymous()">
 		<div class="header-right">
 				<div class="user-panel">
-					<a href="#" class="login" id="login" data-toggle="modal">로그인</a>
+					<a href="login" class="login" id="login">로그인</a>
 					<a href="#" class="register" id="sign_up" data-toggle="modal">회원가입</a>
 				</div>
 			</div>
@@ -234,7 +234,7 @@ value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}
 		</div>
 
 <!-- 로그인 Modal -->
-<div id="loginBox" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<%-- <div id="loginBox" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 <div class="modal-dialog" role="document">
 <div class="modal-content">
 <div class="modal-header">
@@ -267,7 +267,7 @@ value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}
 </div>
 </div>
 </div>
-</div>
+</div> --%>
 <!-- 로그인 Modal end -->
 
 <!-- 비밀번호 Modal -->
@@ -305,7 +305,7 @@ value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}
 <div class="modal-dialog" role="document">
 <div class="modal-content">
 <div class="modal-header">
-<h4 class="modal-title" id="myModalLabel">비밀번호 확인</h4>
+<h4 class="modal-title" id="myModalLabel">회원가입</h4>
 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
 </div>
 
