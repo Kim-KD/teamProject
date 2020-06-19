@@ -21,6 +21,7 @@ public class HomeController {
 	@Autowired
 	private UserService svc;
 
+	
 	@GetMapping("/about_us")
 	public String about_us() {
 		return "about_us";
@@ -39,21 +40,6 @@ public class HomeController {
 	@GetMapping("/page3")
 	public String page3() {
 		return "page3";
-	}
-	
-	@GetMapping("/trip_list")
-	public String trip() {
-		return "trip_list";
-	}
-	
-	@GetMapping("/trip_write")
-	public String trip_write() {
-		return "trip_write";
-	}
-	
-	@GetMapping("/trip_read")
-	public String trip_read() {
-		return "trip_read";
 	}
 	
 	@GetMapping("/sign_up")

@@ -7,7 +7,7 @@
 	<!-- 관광 명소 게시글 총 갯수 -->
 	<select id='trip_count' resultType='int'>
 		select /*+
-		index_ffs(trip_info pk_trip_num)*/ count(*)
+		index_ffs(trip_info PRIMARY)*/ count(*)
 		from trip_info
 		<where>
 			<if test="user_id != null">and user_id=#{user_id}</if>
@@ -17,14 +17,10 @@
 	<!-- 관광 명소 게시글 정보 -->
 	<select id="trip_find_all" resultType="trip_Board"> 
  	<![CDATA[ 
-  	 		select*from  -->
-  	 			(select trip.*,rownum as rnum 
-  	 			from (select /*+ index_desc(trip_info trip_pk_no)*/
-  	 				no,user_id userId,title,content,admission,opentime,w_date wDate,
-  	 				city,postcode,address,on_off onOff,p_link pLink,up_view upView,views,likes
-  	 				from trip_info)trip
-  	 			where @rownum:<=#{endRowNum})
-  	 		where @rnum:>=#{startRowNum}
+ 		select no,user_id userId,title,content,admission,opentime,w_date wDate,
+			city,postcode,address,on_off onOff,p_link pLink,up_view upView,views,likes
+		from trip_info
+  	 limit #{startRowNum},#{endRowNum}
   	 	]]>
 	</select>
 
@@ -44,11 +40,11 @@
 	</select>
 	
 	<!-- 관광명소 게시글 작성 -->
-	<insert id="trip_insert" parameterType="trip_Board">
+	<insert id="trip_insert" parameterType="trip_Board" useGeneratedKeys="true" keyProperty="no">
 		insert into trip_info(no, user_id, title, content, admission, opentime,w_date
-		, city, postcode, address, photo, on_off, p_link, up_view, views, likes)
-		values(#{no},#{user_id},#{title},#{content},#{admission},#{opentime},now(),
-		#{city},#{postcode},#{address},#{photo},"y","n","n",0,0)
+		, city, postcode, address, thumbnail, on_off, p_link, up_view, views, likes, board_status)
+		values(#{no},#{user_id},#{title},#{content},#{admission},#{opentime}
+		,now(),#{city},#{postcode},#{address},#{thumbnail},"y","n","n",0,0,"1")
 	</insert>
 
 	<!-- 관광명소 게시글 수정 -->
@@ -72,7 +68,7 @@
 		where no=#{no}
 	</update>
 
-	<!-- 게스트하우스 후기 작성 -->
+	<!-- 관광명소 후기 작성 -->
 	<insert id="trip_view_insert" parameterType="trip_Board">
 		insert into trip_view_info(no, user_id, content)
 		values(#{no}, #{user_id}, #{content})

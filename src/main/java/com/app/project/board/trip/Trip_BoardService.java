@@ -2,6 +2,8 @@ package com.app.project.board.trip;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +12,10 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.app.project.board.CommentDao;
+import com.app.project.board.Page;
 import com.app.project.board.UploadInfoBean;
 import com.app.project.board.UploadInfoDao;
+import com.app.project.util.PagingUtil;
 
 @Service
 public class Trip_BoardService {
@@ -23,6 +27,22 @@ public class Trip_BoardService {
 	@Autowired
 	private CommentDao commentDao;
 
+	public Page tripList(int pageno, String user_id) {
+		int countOfBoard = dao.trip_count(user_id);
+		Page page = PagingUtil.getPage(pageno, countOfBoard);
+		int srn = page.getStartRowNum();
+		int ern = page.getEndRowNum();
+		List<Trip_BoardBean> boardList = dao.trip_find_all(srn, ern);
+//		List<BoardDto.DtoForList> dtoList = new ArrayList<>();
+//		for(Trip_BoardBean board:boardList) {
+//			BoardDto.DtoForList dto = modelMapper.map(board,BoardDto.DtoForList.class);
+//			dto.setWriteTimeStr(board.getWriteTime().format(DateTimeFormatter.ofPattern("yyyy년MM월dd일")));
+//			dtoList.add(dto);
+//		}
+		page.setTrip_list(boardList);
+		return page;
+	}
+	
 	// 게시글 작성
 	public int tripWrite(Trip_BoardBean board) throws IOException {
 		

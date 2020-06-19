@@ -44,6 +44,22 @@
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+	
+	<bean id="objectMapper"	class="com.fasterxml.jackson.databind.ObjectMapper"/>
+	
+	<!-- 아파치 commons file upload를 이용하는 일반적인 설정 -->
+	<!-- 
+		<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+	-->
+	<!-- 
+		스프링 시큐리티를 사용해 csrf를 포함하는 경우 파일 업로드 객체를 변경해야한다
+		아파치 파일 업로드가 동작안하니까 스프링에서 파일업로드 지원 클래스를 제공	
+		아울러 web.xml에 필터도 등록해야 한다
+	-->	
+	<bean id="filterMultipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+         <!-- 최대업로드 가능한 바이트크기 : 1MB-->
+         <property name="maxUploadSize" value="1048576" />
+	</bean>
 
 	<mybatis-spring:scan base-package="com.app.project.user"/>
 	<mybatis-spring:scan base-package="com.app.project.board"/>

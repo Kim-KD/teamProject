@@ -2,34 +2,7 @@
 <%@include file="/WEB-INF/include/other_header.jsp" %>
 
 <script>
-function room_info(room_data,no) {
-	var room = $(room_data).text();
-	var trTemplate = Handlebars.compile($('#roomListTemplate').text());
-	/* var roomListBody = $('#room-list tbody'); */
-	
-	var roomList = $("#roomList");
-	
-	$.ajax({
-		url : "room_info_data",
-		type : "GET",
-		data : {"room" : room, "no" : no},
-		dataType : "json",
-		success : function(data) {
-			if(data == 0) {
-				alert("등록된 정보가 없습니다.");
-			} else {
-				/* roomListBody.text(""); */
-				roomList.text("");
-				/* of -> 빨간줄 떠써 in으로 변경 */
-				for (var record in data) {
-					record.genderTitle = record.gender == 1 ? '여' : '남';
-				}
-				/* roomListBody.html(trTemplate({rooms: data})); */
-				roomList.html(trTemplate({rooms: data}));
-			}
-		}
-	});
-}
+
 </script>
 
 <!-- Single Property Section end -->
@@ -42,18 +15,6 @@ function room_info(room_data,no) {
 					<div class="sp-image">
 						<img src="assets/img/property/big.jpg" alt="">
 						<div class="sp-badge new">New</div>
-					</div>
-					<div class="property-info-bar">
-						<div class="row">
-							<div class="col-lg-7">
-								<div class="pi-metas">
-									<strong><span>제목</span></strong>
-								</div>
-							</div>
-<!-- 							<div class="col-lg-5 text-left text-lg-right"> -->
-<!-- 								<a href="#" class="offer-btn">예약 하기</a> -->
-<!-- 							</div> -->
-						</div>
 					</div>
 
 					<div class="row">
@@ -80,8 +41,8 @@ function room_info(room_data,no) {
 					</div>
 				<hr>
 				<div class="property-text">
-					<h4>${gh_details.title}</h4>
-					<p>${gh_details.content}</p>
+					<h4>${board.title}</h4>
+					<p>${board.content}</p>
 				</div>
 				<div class="property-feature">
 					<div class="row">

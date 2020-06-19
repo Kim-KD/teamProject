@@ -5,7 +5,7 @@
 <script>
 $(function(){
 	CKEDITOR.replace("content",{
-		 filebrowserUploadUrl : "/project/imgUpload"
+		filebrowserUploadUrl : "/project/imgupload?_csrf=${_csrf.token}"
 	});	
 })
 </script>
@@ -16,17 +16,13 @@ $(function(){
     <div class="section-title">
 			<h2>관광 명소 글 작성</h2>
 	</div>
-        <form class="contact-form" action="write" method="post" enctype="multipart/form-data">
+        <form class="contact-form" action="/project/trip_write" method="post" enctype="multipart/form-data">
         <input type="hidden" name="user_id" value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}">
         <input type="hidden" name="_csrf" value="${_csrf.token}">
         
         <input type="hidden" name="postcode" value="0000">
         
             <div class="row">
-            <span class="col-sm-2 control-label">사진</span>
-                <div class="col-sm-10">
-                    <input type="file" class="form-control-file" name="file" placeholder="파일 선택"> 
-                </div>
                 <span class="col-sm-2 control-label">제목</span>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="title" placeholder="제목"> 
