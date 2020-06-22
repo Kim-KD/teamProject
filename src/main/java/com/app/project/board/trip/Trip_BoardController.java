@@ -34,19 +34,19 @@ public class Trip_BoardController {
 	
 	@GetMapping("/trip_list")
 	public ModelAndView trip(@RequestParam(defaultValue="1") int pageno, @Nullable String user_id) {
-		return new ModelAndView("trip_list").addObject("page",svc.tripList(pageno, user_id));
+		return new ModelAndView("trip/trip_list").addObject("page",svc.tripList(pageno, user_id));
 	}
 	
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/trip_write")
 	public String trip_write() {
-		return "trip_write";
+		return "trip/trip_write";
 	}
 	
 	@GetMapping("/trip_read")
 	public ModelAndView trip_read(Integer no,Principal pcp) throws JsonProcessingException {
 		String username = pcp!=null? pcp.getName():null;
-		ModelAndView mav = new ModelAndView("trip_read").addObject("board",svc.tripRead(no,username));
+		ModelAndView mav = new ModelAndView("trip/trip_read").addObject("board",svc.tripRead(no,username));
 		Trip_BoardBean board = svc.tripRead(no, username);
 		String json = objectMapper.writeValueAsString(board);
 		mav.addObject("board",json);
@@ -58,10 +58,10 @@ public class Trip_BoardController {
 	public String write(Trip_BoardBean board, Principal principal, HttpServletRequest request) {
 		board.setUser_id(principal.getName());
 		try {
-			return "redirect:/trip/trip_read?no=" + svc.tripWrite(board);
+			return "trip/trip_read?no=" + svc.tripWrite(board);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return "redirect:/trip_list";
+		return "trip/trip_list";
 	}
 }

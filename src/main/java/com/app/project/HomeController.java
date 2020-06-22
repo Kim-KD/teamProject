@@ -21,6 +21,10 @@ public class HomeController {
 	@Autowired
 	private UserService svc;
 	
+	@GetMapping("test1")
+	public String testst() {
+		return "index/index";
+	}
 	@GetMapping("/about_us")
 	public String about_us() {
 		return "about_us";
@@ -41,45 +45,8 @@ public class HomeController {
 		return "page3";
 	}
 	
-	@GetMapping("/sign_up")
-	public String sign_up() {
-		return "sign_up/sign_up";
-	}
-	
-	@GetMapping("/cpn_sign_up")
-	public String cpn_sign_up() {
-		return "sign_up/cpn_sign_up";
-	}
-	
 	@GetMapping("/write_page")
 	public String write_page() {
 		return "write_page";
 	}
-	
-	@GetMapping("/find_info")
-	public String find_info() {
-		return "find_info";
-	}
-	
-	@GetMapping("/login")
-	public String login() {
-		return "login/login";
-	}
-	
-	@PreAuthorize("isAuthenticated()")
-	@GetMapping("/profile_read")
-	public ModelAndView profile_read(Principal principal, HttpSession session) {
-		if(session.getAttribute("check")==null)
-			return new ModelAndView("check_pwd");
-		
-		UserBean user = svc.userInfoRead(principal.getName());
-		return new ModelAndView("profile_read").addObject("user",user);
-	}
-	
-	@PreAuthorize("isAuthenticated()")
-	@GetMapping("/check_pwd")
-	public String checkPwd() {
-		return "check_pwd";
-	}
-	
 }

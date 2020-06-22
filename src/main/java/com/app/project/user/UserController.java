@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.app.project.util.AuthorityPropertyEditor;
 import com.sun.istack.internal.NotNull;
@@ -26,34 +27,70 @@ import com.sun.istack.internal.NotNull;
 public class UserController {
 	
 	@Autowired
-	private UserService usvc;
+	private UserService svc;
 	
 	@InitBinder
 	public void init(WebDataBinder wdb) {
 		wdb.registerCustomEditor(List.class, "authorities",new AuthorityPropertyEditor());
 	}
 	
+	@GetMapping("/sign_up")
+	public String sign_up() {
+		return "user/sign_up";
+	}
+	
+	@GetMapping("/cpn_sign_up")
+	public String cpn_sign_up() {
+		return "user/cpn_sign_up";
+	}
+	
+	@GetMapping("/find_info")
+	public String find_info() {
+		return "user/find_info";
+	}
+	
+	@GetMapping("/login")
+	public String login() {
+		return "user/login";
+	}
+	
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/profile")
+	public ModelAndView profile_read(Principal principal, HttpSession session) {
+		if(session.getAttribute("check")==null)
+			return new ModelAndView("check_pwd");
+		
+		UserBean user = svc.userInfoRead(principal.getName());
+		return new ModelAndView("user/profile").addObject("user",user);
+	}
+	
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/check_pwd")
+	public String checkPwd() {
+		return "user/check_pwd";
+	}
+	
 	// 회원가입
 	@PostMapping("/join")
 	public String join(UserBean user) {
-		usvc.join(user);
+		svc.join(user);
 		
-		return "index";
+		return "/";
 	}
 	
 	// 회원가입 이메일 인증
 	@GetMapping("/join_check")
 	public String join_check(String user_num) {
 		
-		boolean result = usvc.joinCheck(user_num);
+		boolean result = svc.joinCheck(user_num);
 		
 		if(result==true) {
 			// 인증 성공시 로그인
-			return "redirect:login";
+			return "user/login";
 		}
 		else {
 			// 인증 실패시 홈화면으로
-			return "redirect:index?state=check_fail";
+			return "index/index?state=check_fail";
 		}
 	}
 	
@@ -61,14 +98,14 @@ public class UserController {
 	@PostMapping("/id_chk")
 	@ResponseBody
 	public int id_chk(@RequestParam String user_id) {
-		return usvc.id_chk(user_id);
+		return svc.id_chk(user_id);
 	}
 
 	// 이메일 중복체크
 	@PostMapping("/email_chk")
 	@ResponseBody
 	public int checkEmail(@RequestParam @NotNull String user_email) {
-		return usvc.email_chk(user_email);
+		return svc.email_chk(user_email);
 	}
 	
 	// 이메일 수정체크
@@ -77,11 +114,11 @@ public class UserController {
 	public int email_chk(String user_email, Principal pcp) {
 		int result = 0;
 		if(pcp ==null) {
-			result = usvc.email_chk(user_email);
+			result = svc.email_chk(user_email);
 		}
 		if(result == 1) {
 			UserBean user = UserBean.builder().user_id(pcp.getName()).user_email(user_email).build();
-			if(usvc.update_email_chk(user) == 1) {
+			if(svc.update_email_chk(user) == 1) {
 				result = 0;
 			}
 		}
@@ -91,14 +128,14 @@ public class UserController {
 	// 아이디 찾기
 	@PostMapping("/find_id")
 	public ResponseEntity<Void> find_id(UserBean user) {
-		usvc.findById(user);
+		svc.findById(user);
 		return ResponseEntity.ok(null);
 	}
 	
 	// 비밀번호 찾기
 	@PostMapping("/find_pwd")
 	public ResponseEntity<Void> find_pwd(UserBean user) {
-		usvc.findByPwd(user);
+		svc.findByPwd(user);
 		return ResponseEntity.ok(null);
 	}
 	
@@ -108,12 +145,12 @@ public class UserController {
 	public String checkPwd(String user_pwd, Principal pcp, HttpSession session) {
 		session.setAttribute("check", "ok");
 		UserBean user = UserBean.builder().user_id(pcp.getName()).user_pwd(user_pwd).build();
-		System.out.println(usvc.pwd_chk(user));
-		if(usvc.pwd_chk(user) == 1) {
-			return "redirect:/profile_read";
+		System.out.println(svc.pwd_chk(user));
+		if(svc.pwd_chk(user) == 1) {
+			return "user/profile";
 		}
 		else {
-			return "redirect:/check_pwd?fail=0";
+			return "user/check_pwd?fail=0";
 		}
 	}
 	
@@ -121,8 +158,8 @@ public class UserController {
 	@PostMapping("/update")
 	public String update_info(UserBean user, Principal pcp) {
 		user.setUser_id(pcp.getName());
-		usvc.userInfoUpdate(user);
-		return "profile_read";
+		svc.userInfoUpdate(user);
+		return "user/profile";
 	}
 	
 }
