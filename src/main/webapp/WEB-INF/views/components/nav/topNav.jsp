@@ -14,9 +14,8 @@
 			<ul id="main_menu" class="main-menu">
 				<li><a href="/index" class="active">Home</a></li>
 				<li><a href="about_us">스탭 구인</a></li>
-				<li><a href="page1">게스트 하우스</a></li>
+				<li><a href="guest_house_list">게스트 하우스</a></li>
 				<li><a href="trip_list">관광 명소</a></li>
-				<li><a href="page2">메뉴3</a></li>
 				<li><a href="page3">고객센터</a>
 					<ul class="sub-menu">
 						<li><a href="#">QnA</a></li>
@@ -27,8 +26,7 @@
 			<sec:authorize access="isAuthenticated()">
 				<div class="header-right">
 					<ul class="main-menu">
-						<c:set var="loginId"
-							value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}"></c:set>
+						<c:set var="loginId" value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}"></c:set>
 						<li><a href="#" id="profile_read" data-toggle="modal">${loginId}님 환영합니다.</a>
 							<ul class="sub-menu">
 								<li><a href="#">내정보 보기</a></li>

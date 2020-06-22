@@ -78,7 +78,7 @@ public class GH_BoardService {
 		mav.addObject("new_list", index_New);
 		mav.addObject("views_list", index_Views);
 		mav.addObject("likes_list", index_Likes);
-		mav.setViewName("index");
+		mav.setViewName("index/index");
 		return mav;
 	}
 	
@@ -88,7 +88,7 @@ public class GH_BoardService {
 		
 		mav = new ModelAndView();
 		mav.addObject("gh_details", gh_details);
-		mav.setViewName("page2");
+		mav.setViewName("guest_house/guest_house_read");
 		return mav;
 	}
 	

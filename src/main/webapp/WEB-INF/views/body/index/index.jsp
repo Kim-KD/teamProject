@@ -14,7 +14,7 @@
 			<div class="col-lg-4">
 				<div class="property-item">
 					<div class="pi-image">
-					<a href="gh_details?no=${new_list.no}">
+					<a href="guest_house_read?no=${new_list.no}">
 						<c:if test="${new_list.thumbnail != null}">
 							<img src="assets/gh_img/${new_list.thumbnail}" alt="">
 						</c:if>
@@ -29,79 +29,6 @@
 				</div>
 			</div>
 			</c:forEach>
-
-			<!-- <div class="col-lg-4">
-				<div class="property-item">
-					<div class="pi-image">
-						<img src="assets/img/property/1.jpg" alt="">
-						<div class="pi-badge new">인기</div>
-					</div>
-					<h3>게스트하우스 이름</h3>
-					<h5>가격</h5>
-					<p>게스트 하우스 소개글</p>
-					<a href="#" class="readmore-btn">게시글로 이동</a>
-				</div>
-			</div>
-			<div class="col-lg-4">
-				<div class="property-item">
-					<div class="pi-image">
-						<img src="assets/img/property/2.jpg" alt="">
-						<div class="pi-badge offer">추천</div>
-					</div>
-					<h3>게스트하우스 이름</h3>
-					<h5>가격</h5>
-					<p>게스트 하우스 소개글</p>
-					<a href="#" class="readmore-btn">게시글로 이동</a>
-				</div>
-			</div>
-			<div class="col-lg-4">
-				<div class="property-item">
-					<div class="pi-image">
-						<img src="assets/img/property/3.jpg" alt="">
-						<div class="pi-badge new">인기</div>
-					</div>
-					<h3>게스트하우스 이름</h3>
-					<h5>가격</h5>
-					<p>게스트 하우스 소개글</p>
-					<a href="#" class="readmore-btn">게시글로 이동</a>
-				</div>
-			</div>
-			<div class="col-lg-4">
-				<div class="property-item">
-					<div class="pi-image">
-						<img src="assets/img/property/1.jpg" alt="">
-						<div class="pi-badge new">인기</div>
-					</div>
-					<h3>게스트하우스 이름</h3>
-					<h5>가격</h5>
-					<p>게스트 하우스 소개글</p>
-					<a href="#" class="readmore-btn">게시글로 이동</a>
-				</div>
-			</div>
-			<div class="col-lg-4">
-				<div class="property-item">
-					<div class="pi-image">
-						<img src="assets/img/property/2.jpg" alt="">
-						<div class="pi-badge offer">추천</div>
-					</div>
-					<h3>게스트하우스 이름</h3>
-					<h5>가격</h5>
-					<p>게스트 하우스 소개글</p>
-					<a href="#" class="readmore-btn">게시글로 이동</a>
-				</div>
-			</div>
-			<div class="col-lg-4">
-				<div class="property-item">
-					<div class="pi-image">
-						<img src="assets/img/property/3.jpg" alt="">
-						<div class="pi-badge new">인기</div>
-					</div>
-					<h3>게스트하우스 이름</h3>
-					<h5>가격</h5>
-					<p>게스트 하우스 소개글</p>
-					<a href="#" class="readmore-btn">게시글로 이동</a>
-				</div>
-			</div> -->
 		</div>
 	</div>
 </section>
@@ -118,7 +45,7 @@
 			<div class="col-lg-4">
 				<div class="property-item">
 					<div class="pi-image">
-					<a href="gh_details?no=${views_list.no}">
+					<a href="guest_house_read?no=${views_list.no}">
 						<c:if test="${views_list.thumbnail != null}">
 							<img src="assets/gh_img/${views_list.thumbnail}" alt="">
 						</c:if>
@@ -149,7 +76,7 @@
 			<div class="col-lg-4">
 				<div class="property-item">
 					<div class="pi-image">
-					<a href="gh_details?no=${likes_list.no}">
+					<a href="guest_house_read?no=${likes_list.no}">
 						<c:if test="${likes_list.thumbnail != null}">
 							<img src="assets/gh_img/${likes_list.thumbnail}" alt="">
 						</c:if>
@@ -169,22 +96,3 @@
 </section>
 <section class="padding_bt"><div></div>
 </section>
-<!-- 추천 end -->
-
-<!-- Loan Section end -->
-<!-- <section class="loan-section"> -->
-<!-- 	<div class="loan-warp"> -->
-<!-- 		<div class="container"> -->
-<!-- 			<div class="section-title text-white"> -->
-<!-- 				<h2>See If You Qualify for a Mortgage</h2> -->
-<!-- 				<p>Donec eget efficitur ex. Donec eget dolor vitae eros feugiat tristique id vitae massa. Proin vulputate congue rutrum. Fusce lobortis a enim eget tempus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse potenti. Ut gravida mattis magna, non varius lorem sodales nec. In libero orci, ornare non nisl a, auctor euismod purus. Morbi pretium interdum vestibulum. Fusce nec eleifend ipsum. Sed non blandit tellus. </p> -->
-<!-- 			</div> -->
-<!-- 			<form class="loan-form"> -->
-<!-- 				<input type="text" placeholder="Your income"> -->
-<!-- 				<input type="text" placeholder="Amount needed"> -->
-<!-- 				<button class="site-btn">Submit</button> -->
-<!-- 			</form> -->
-<!-- 		</div> -->
-<!-- 	</div> -->
-<!-- </section> -->
-<!-- Loan Section end -->

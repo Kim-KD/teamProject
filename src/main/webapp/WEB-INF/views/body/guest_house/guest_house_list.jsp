@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@include file="/WEB-INF/include/other_header.jsp" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!-- Blog Section end -->
 <section class="blog-section spad">
@@ -119,5 +119,3 @@
 	</div>
 </section>
 <!-- Blog Section end -->
-
-<%@include file="/WEB-INF/include/footer.jsp" %>
