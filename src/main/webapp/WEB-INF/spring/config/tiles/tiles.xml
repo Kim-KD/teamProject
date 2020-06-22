@@ -1,0 +1,28 @@
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+    <!--  base layout [s]  -->
+    <definition name="layout" template="/WEB-INF/views/base.jsp">
+        <put-attribute name="header" value="/WEB-INF/views/components/header.jsp" />
+        <put-attribute name="topNav" value="/WEB-INF/views/components/nav/topNav.jsp" />
+        <put-attribute name="body" value="" />
+        <put-attribute name="footer" value="/WEB-INF/views/components/footer.jsp" />
+    </definition>
+    <!--  base layout [e]  -->
+
+
+    <!--  body content [s]  -->
+    <definition name="*/*" extends="layout">
+        <put-attribute name="body" value="/WEB-INF/views/body/{1}/{2}.jsp" />
+    </definition>
+    <!--  body content [e]  -->
+
+	<!-- 예외 항목 -->
+    <definition name="login"  template="/WEB-INF/views/body/login/login.jsp"/>
+    <definition name="logout"  template="/WEB-INF/views/body/login/login.jsp"/>
+    <definition name="error"  template="/WEB-INF/views/error/error.jsp"/>
+
+</tiles-definitions>

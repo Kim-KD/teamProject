@@ -1,7 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page import="org.springframework.util.ObjectUtils" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
-<!-- Footer Section -->
 <footer class="footer-section">
 	<div class="container">
 		<div class="row text-white">
@@ -83,15 +84,3 @@
 		</div>
 	</div>
 </footer>
-<!-- Footer Section end -->
-
-<!--====== Javascripts & Jquery ======-->
-<script src="assets/js/jquery-3.2.1.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/jquery.magnific-popup.min.js"></script>
-<script src="assets/js/jquery.slicknav.min.js"></script>
-<script src="assets/js/main.js"></script>
-<script src="assets/js/slick.min.js"></script>
-
-</body>
-</html>

@@ -20,7 +20,6 @@ public class HomeController {
 	
 	@Autowired
 	private UserService svc;
-
 	
 	@GetMapping("/about_us")
 	public String about_us() {

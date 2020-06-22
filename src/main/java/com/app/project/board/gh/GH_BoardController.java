@@ -32,6 +32,12 @@ public class GH_BoardController {
 		return mav;
 	}
 	
+	@GetMapping("/test")
+	public ModelAndView tests() {
+		mav = bsvc.index_Page_Slider();
+		return mav;
+	}
+	
 	// 게시글 작성
 	@PostMapping("/write")
 	public String write(GH_BoardBean boardBean, GH_RoomBean roomBean, @RequestParam MultipartFile file) {
