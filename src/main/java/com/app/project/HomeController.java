@@ -21,12 +21,7 @@ public class HomeController {
 	public String guest_house_list() {
 		return "guest_house/guest_house_list";
 	}
-	
-	@GetMapping("/guest_house_read")
-	public String guest_house_read() {
-		return "guest_house/guest_house_read";
-	}
-	
+
 	@GetMapping("/guest_house_write")
 	public String write_page() {
 		return "guest_house/guest_house_write";

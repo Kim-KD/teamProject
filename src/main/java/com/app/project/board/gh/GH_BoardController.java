@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -28,12 +26,6 @@ public class GH_BoardController {
 	// 처음 시작 화면
 	@GetMapping({"/index","/"})
 	public ModelAndView home() {
-		mav = bsvc.index_Page_Slider();
-		return mav;
-	}
-	
-	@GetMapping("/test")
-	public ModelAndView tests() {
 		mav = bsvc.index_Page_Slider();
 		return mav;
 	}
@@ -67,9 +59,9 @@ public class GH_BoardController {
 	}
 	
 	// 상세보기 페이지
-	@GetMapping("/gh_details")
-	public ModelAndView gh_details(@RequestParam("no") int no) {
-		mav = bsvc.gh_details(no);
+	@GetMapping("/guest_house_read")
+	public ModelAndView guest_house_read(@RequestParam("no") int no) {
+		mav = bsvc.guest_house_read(no);
 		return mav;
 	}
 	
@@ -89,11 +81,27 @@ public class GH_BoardController {
 		return result;
 	}
 	
-	// 후기 목록
-	@GetMapping("/gh_view_list")
+	// 게스트하우스 후기 읽기
+	@PostMapping("/gh_view_list")
 	@ResponseBody
 	public List<GH_ViewBean> gh_View_Read(int no) {
 		List<GH_ViewBean> viewList = bsvc.gh_View_Read(no);
 		return viewList;
+	}
+	
+	// 게스트하우스 후기 삭제
+	@PostMapping("/gh_view_delete")
+	@ResponseBody
+	public int gh_View_delete(GH_ViewBean viewBean) {
+		int result = bsvc.gh_View_delete(viewBean); 
+		return result;
+	}
+	
+	// 게스트하우스 후기 수정
+	@PostMapping("/gh_view_modify")
+	@ResponseBody
+	public int gh_view_modify(GH_ViewBean viewBean) {
+		int result = bsvc.gh_view_modify(viewBean);
+		return result;
 	}
 }

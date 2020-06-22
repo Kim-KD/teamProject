@@ -28,11 +28,6 @@ public class GH_BoardDao {
 		return sql.update("GH_Mapper.gh_Update", boardBean);
 	}
 	
-	// 게스트 하우스 게시글 삭제
-	public int gh_Delete(int no) {
-		return sql.delete("GH_Mapper.gh_Delete", no);
-	}
-	
 // ==============================================================
 	
 	// 게스트 하우스 게시글 작성
@@ -66,8 +61,8 @@ public class GH_BoardDao {
 	}
 	
 	// 상세보기 페이지
-	public Map<String, Object> gh_details(int no) {
-		return sql.selectOne("GH_Mapper.gh_details", no);
+	public Map<String, Object> guest_house_read(int no) {
+		return sql.selectOne("GH_Mapper.guest_house_read", no);
 	}
 	
 	// 게스트하우스 방 정보
@@ -80,9 +75,19 @@ public class GH_BoardDao {
 		return sql.insert("GH_Mapper.gh_View_Insert", viewBean);
 	}
 	
-	// 게스트 하우스 후기 읽기
+	// 게스트하우스 후기 읽기
 	public List<GH_ViewBean> gh_View_Read(int no) {
 		return sql.selectList("GH_Mapper.gh_View_Read", no);
+	}
+	
+	// 게스트하우스 후기 삭제
+	public int gh_View_delete(GH_ViewBean viewBean) {
+		return sql.delete("GH_Mapper.gh_view_delete", viewBean);
+	}
+	
+	// 게스트하우스 후기 수정
+	public int gh_view_modify(GH_ViewBean viewBean) {
+		return sql.update("GH_Mapper.gh_view_modify", viewBean);
 	}
 
 }

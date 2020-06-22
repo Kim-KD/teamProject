@@ -15,7 +15,7 @@ public class GH_BoardService {
 	private GH_BoardDao bdao;
 	private ModelAndView mav;
 
-	// 게시글 읽기 test
+	// 게시글 읽기
 //	public Map ghRead(int no) {
 //		Map<String,Object> map = new HashMap<String, Object>();
 //		map.put("info", bdao.gh_Read(no));
@@ -31,11 +31,6 @@ public class GH_BoardService {
 	// 게시글 수정
 	public int ghUpdate(GH_BoardBean boardBean) {
 		return bdao.gh_Update(boardBean);
-	}
-	
-	// 게시글 삭제
-	public int ghDelete(int no) {
-		return bdao.gh_Delete(no);
 	}
 	
 // ==============================================================
@@ -83,8 +78,8 @@ public class GH_BoardService {
 	}
 	
 	// 상세보기 페이지
-	public ModelAndView gh_details(int no) {
-		Map<String, Object> gh_details = bdao.gh_details(no);
+	public ModelAndView guest_house_read(int no) {
+		Map<String, Object> gh_details = bdao.guest_house_read(no);
 		
 		mav = new ModelAndView();
 		mav.addObject("gh_details", gh_details);
@@ -103,9 +98,22 @@ public class GH_BoardService {
 		int result = bdao.gh_View_Insert(viewBean);
 		return result;
 	}
-
+	
+	// 게스트하우스 후기 읽기
 	public List<GH_ViewBean> gh_View_Read(int no) {
 		List<GH_ViewBean> viewList = bdao.gh_View_Read(no);
 		return viewList;
+	}
+	
+	// 게스트하우스 후기 삭제
+	public int gh_View_delete(GH_ViewBean viewBean) {
+		int result = bdao.gh_View_delete(viewBean); 
+		return result;
+	}
+	
+	// 게스트하우스 후기 수정
+	public int gh_view_modify(GH_ViewBean viewBean) {
+		int result = bdao.gh_view_modify(viewBean);
+		return result;
 	}
 }

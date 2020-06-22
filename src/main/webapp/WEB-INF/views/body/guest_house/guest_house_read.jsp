@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 <!-- Single Property Section end -->
 <section class="single-property-section spad">
 	<div class="container">
-		<input type="hidden" id="user_id" name="user_id" value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}">
+		<c:set var="user_id" value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}"/>
+		<input type="hidden" id="user_id" name="user_id" value="${user_id}">
+		
 		<input type="hidden" id="no" name="no" value="${gh_details.no}">
 		<input type="hidden" id="_csrf" name="_csrf" value="${_csrf.token}">
 		<div class="row">
@@ -200,85 +203,47 @@
 						</div>
 					</div>
 				</div>
-				<!-- <div class="video-item">
-					<img src="assets/img/video-img.jpg" alt="">
-					<a href="https://www.youtube.com/watch?v=Sz_1tkcU0Co" class="video-play"><span class="i fa fa-play"></span></a>
-				</div> -->
 				<div class="loan-calculator">
 					<h4>후기</h4>
 					<div class="row" id="commentList">
-						<%-- <c:if test="${gh_view_read == null}">
-							<div class="col-md-12">
-								<div class="loan-cal-result" style="text-align:center">등록된 댓글이 없습니다.</div>
-							</div>
-						</c:if>
-						<c:if test="${gh_view_read != null}">
-							<c:forEach items="${gh_view_read}" var="gh_view_read">
-									<div class="col-md-12">
-										<div class="loan-cal-result"> 
-											<h6>${gh_view_read.user_id}</h6><br><br>
-											<h6>${gh_view_read.content}</h6>
-										</div>
-									</div>
-							</c:forEach>
-						</c:if> --%>
+						
 					</div>
-					
 					<div class="row">
 						<div class="col-md-12">
 							<textarea name="content" id="content" placeholder="후기를 작성해주세요~"></textarea>
 						</div>
 						<div class="col-md-12">
 							<div class="text-left text-sm-center">
-								<button class="site-btn1 sb-big1" onclick="comment()">등록</button>
+								<button class="site-btn1 sb-big1" onclick="return comment_Add()">등록</button>
 							</div>
 						</div>
 					</div>
-					
 				</div>
 			</div>
 			
 			<script>
+				Handlebars.registerHelper("isEqual", function(v1, v2) {
+					return v1 == v2;
+				});
+				
 				$(function(){
 					getComment();
 				});
 				
-				var no = $("#no").val();
-				function comment() {
-					var _csrf = $("#_csrf").val();
-					var content = $("#content").val();
-					var user_id = $("#user_id").val();
-					
-					if(content == '') {
-						alert("내용을 입력해주세요.");
-					} else {
-						$.ajax({
-							url : "gh_view_insert",
-							type : "POST",
-							data : {"no" : no, "user_id" : user_id, "content" : content, "_csrf" : _csrf},
-							dataType : "json",
-							success : function(data) {
-								if(data == 1) {
-									alert("댓글이 등록되었습니다.")
-									$("#content").val("");
-									getComment();
-								}
-							}
-						});
-					}
-				}
-				
 				function getComment() {
+					var no = $("#no").val();
 					var viewList = Handlebars.compile($('#gh_view_comment').text());
 					var commentList = $("#commentList");
+					var _csrf = $("#_csrf").val();
+					var user_id = $("#user_id").val();
 					
 					$.ajax({
 						url : "gh_view_list",
-						type : "GET",
-						data : {"no" : no},
+						type : "POST",
+						data : {"no" : no, "_csrf" : _csrf},
 						dataType : "json",
 						success : function(data) {
-							 if(data.length != 0) {
+							if(data.length != 0) {
 								commentList.html(viewList({commentList: data}));
 								$("#commentList").removeAttr("style");
 							} else {
@@ -291,8 +256,99 @@
 						}
 					});
 				}
+				
+				function comment_Add() {
+					var no = $("#no").val();
+					var content = $("#content").val();
+					var user_id = $("#user_id").val();
+					var _csrf = $("#_csrf").val();
+					
+					if(content == '') {
+						alert("내용을 입력해주세요.");
+					} else {
+						$.ajax({
+							url : "gh_view_insert",
+							type : "POST",
+							data : {"no" : no, "user_id" : user_id, "content" : content, "_csrf" : _csrf},
+							dataType : "json",
+							success : function(data) {
+								if(data == 1) {
+									alert("댓글이 등록되었습니다.");
+									$("#content").val("");
+									getComment();
+								}
+							}
+						});
+					}
+				}
+				
+				function comment_Delete(re_no) {
+					var no = $("#no").val();
+					var user_id = $("#user_id").val();
+					var _csrf = $("#_csrf").val();
+					
+					$.ajax({
+						url : "gh_view_delete",
+						type : "POST",
+						data : {"no" : no, "re_no" : re_no, "user_id" : user_id, "_csrf" : _csrf},
+						dataType : "json",
+						success : function(data) {
+							if(data == 1) {
+								alert("댓글이 삭제되었습니다.");
+								getComment();
+							}
+						}
+					});
+				}
+				
+				function comment_Modify_Form(re_no, comment) {
+					var html = "";
+					html += "<div id='formtest'>"
+					html += "<form>"
+					html += "<textarea id='re_comment' style='height:100px; border:solid 1px black; margin:0px' placeholder='내용을 입력해주세요.'>" + comment + "</textarea>";
+					html += "<div style='text-align:center'>";
+					html += "<a class='btn px-4 btn-success text-white' onclick='comment_Modify(" + re_no + ")'>등록</a>&nbsp";
+					html += "<a class='btn px-4 btn-primary text-white' onclick='cancels(" + re_no + "," + comment + ")'>취소</a>";
+					html += "</div>";
+					html += "</form>";
+					html += "</div>";
+					$("#commentbtn"+re_no).css("display", "none");
+					$("#comment"+re_no).html(html);
+				}
+				
+				function cancels(re_no, comment) {
+					var html = "";
+					$("#formtest").remove();
+					$("#commentbtn"+re_no).css("display", "");
+					html += "<h6 id='comment" + re_no + "'>" + comment + "</h6>";
+					$("#comment"+re_no).html(html);
+				}
+				
+				function comment_Modify(re_no) {
+					var no = $("#no").val();
+					var content = $("#re_comment").val();
+					var _csrf = $("#_csrf").val();
+					
+					if(content == '') {
+						alert("내용을 입력해주세요.");
+					} else {
+						$.ajax({
+							url : "gh_view_modify",
+							type : "POST",
+							data : {"no" : no, "re_no" : re_no, "content" : content, "_csrf" : _csrf},
+							dataType : "json",
+							success : function(data) {
+								if(data == 1) {
+									alert("댓글이 등록되었습니다.");
+									$("#formtest").remove();
+									getComment();
+								}
+							}
+						});
+					}
+				}
+				
 			</script>
-			
 			<div class="col-lg-4 col-md-8 sidebar">
 				<div class="agent-widget">
 					<img src="assets/gh_img/unnamed.png" alt="">
@@ -341,8 +397,15 @@
 {{#each commentList}}
 <div class="col-md-12">
 	<div class="loan-cal-result">
-		<h6>{{user_id}}</h6><br><br>
-		<h6>{{content}}</h6>
+		<h6 style="position: absolute;">작성자 : {{user_id}}</h6>
+		{{#if (isEqual user_id '${user_id}')}}
+			<div style="text-align: right" id="commentbtn{{re_no}}">
+				<a class="btn px-4 btn-success text-white" onclick="comment_Modify_Form({{re_no}}, {{content}})">수정</a>&nbsp;
+				<a class="btn px-4 btn-primary text-white" onclick="comment_Delete({{re_no}})">삭제</a>
+			</div>
+		{{/if}}
+		<br><br>
+		<h6 id="comment{{re_no}}">{{content}}</h6>
 	</div>
 </div>
 {{/each}}

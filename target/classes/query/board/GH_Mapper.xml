@@ -175,7 +175,7 @@
 	</select>
 	
 	<!-- 상세보기 페이지 -->
-	<select id="gh_details" parameterType="gh_Board" resultType="map">
+	<select id="guest_house_read" parameterType="gh_Board" resultType="map">
 		select gi.no, gi.user_id, gi.title, gi.content, gi.address, gi.views, gi.likes, ui.user_name, ui.user_radio, ui.user_email,
 				gmi.party_day, gmi.party_menu, gmi.party_time, gmi.alcohol, gmi.off_time, gmi.join_man, gmi.join_girl, 
 				gmi.wifi, gmi.parking, gmi.morning, gmi.pet, gmi.check_in, gmi.check_out
@@ -193,18 +193,28 @@
 	</select>
 	
 	<!-- 게스트하우스 후기 작성 -->
-	<insert id="gh_View_Insert" parameterType="gh_View">
+	<insert id="gh_View_Insert" parameterType="gh_View" useGeneratedKeys="true" keyProperty="re_no">
 		insert into gh_view_info(no, user_id, content)
 		values(#{no}, #{user_id}, #{content})
 	</insert>
 	
 	<!-- 게스트하우스 후기 읽기(게시글 번호에 맞는 후기 전부 찾는다) -->
 	<select id="gh_View_Read" parameterType="gh_View" resultType="gh_view">
-		select no, user_id, content
+		select no, re_no, user_id, content
 		from gh_view_info
 		where no = #{no}
 		order by no
 	</select>
 	
+	<!-- 게스트하우스 후기 삭제 -->
+	<delete id="gh_view_delete" parameterType="gh_View">
+		delete from gh_view_info
+		where re_no = #{re_no}
+	</delete>
+	
+	<!-- 게스트하우스 후기 수정 -->
+	<update id="gh_view_modify" parameterType="gh_View">
+		update gh_view_info set content = #{content} where no = #{no} and re_no = #{re_no}
+	</update>
 	
 </mapper>
