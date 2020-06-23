@@ -93,10 +93,10 @@ public class BoardDaoTest {
 	//@Test
 	//@Transactional
 	// 게하 게시글 삭제
-	public void ghDeleteTest() {
-		GH_BoardBean b = GH_BoardBean.builder().no(7).build();
-		assertThat(ghDao.gh_Delete(7), is(4));
-	}
+//	public void ghDeleteTest() {
+//		GH_BoardBean b = GH_BoardBean.builder().no(7).build();
+//		assertThat(ghDao.gh_delete(7), is(4));
+//	}
 	
 //	//@Test
 //	public void countTest() {

@@ -18,11 +18,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import jdk.internal.org.objectweb.asm.tree.IntInsnNode;
 
 @Controller
 public class Trip_BoardController {
@@ -63,5 +66,18 @@ public class Trip_BoardController {
 			e.printStackTrace();
 		}
 		return "trip/trip_list";
+	}
+	
+	@PreAuthorize("isAuthenticated()")
+	@PostMapping("/trip_delete")
+	@ResponseBody
+	public String delete(Integer no, String user_id, Principal pcp) {
+		if(user_id.equals(pcp.getName())) {
+			System.out.println("게시글 아이디 ======="+user_id);
+			System.out.println("접속 아이디 ======="+pcp.getName());
+			svc.tripDelete(no);
+			return "trip/trip_list";
+		}
+			return null;
 	}
 }

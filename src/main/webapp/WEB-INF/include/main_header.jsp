@@ -237,7 +237,7 @@ $(function() {
 		</div>
 
 		<!-- 로그인 Modal -->
-		<%-- <div id="loginBox" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<%-- <div id="loginBox" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 <div class="modal-dialog" role="document">
 <div class="modal-content">
 <div class="modal-header">

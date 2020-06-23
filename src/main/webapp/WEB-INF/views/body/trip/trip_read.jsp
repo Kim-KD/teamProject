@@ -1,10 +1,96 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@include file="/WEB-INF/include/other_header.jsp" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
+<sec:authorize access="isAuthenticated()">
+   <script>
+      var isLogin = true;
+      var loginId = "${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}"
+   </script>
+</sec:authorize>
+<sec:authorize access="isAnonymous()">
+   <script>
+      var isLogin = false;
+      var loginId = undefined;
+   </script>
+</sec:authorize>
+<script src="resources/ckeditor/ckeditor.js"></script>
 <script>
+$(function() {
+	
+	   // 자바객체 -> json -> 자바스크립트 객체
+	   board = JSON.parse('${board}');
+	   $("#title").text(board.title);
+	   $("#user_id").text(board.user_id);
+	   $("#no").text(board.no);
+	   $("#w_time").text(board.w_time);
+	   $("#likes").text(board.likes);
+	   $("#views").text(board.views);
+	   
+	   if(board.admission==null){
+		   board.admission="";
+		}
+	   if(board.opentime==null){
+		   board.opentime="";
+		}
+	   $("#admission").text(board.admission);
+	   $("#opentime").text(board.opentime);
+	   $("#content").html(board.content);
+	   
+	   // 초기화 - 버튼영역 감추기
+	   $("#btn_area").hide();
 
+	   if(isLogin===true && board.user_id===loginId) {
+	      $("#title").prop("disabled", false);
+	      $("#btn_area").show();
+	      
+	   } else if(isLogin===true && board.user_id!==loginId) {
+	      $("#like_btn").prop("disabled", false);
+	   }
+		// 게시글 수정 확인 창 보여주기
+		$('#update_box_open').on('click', function(){
+			$('#update_box').modal('show');
+		})
+		// 게시글 삭제 확인 창 보여주기
+		$('#delete_box_open').on('click', function(){
+			$('#delete_box').modal('show');
+		})
+
+	// 게시글 삭제
+	$("#delete_btn").on("click", function() {
+		var param = {
+			no : board.no,
+			user_id : board.user_id,
+			_csrf:"${_csrf.token}"
+		}
+		$.ajax({
+			url: "/project/trip_delete",
+			method: "post",
+			data: param,
+			success: function() {
+				alert("게시글이 삭제되었습니다.");
+				location.href = "/project/trip_list"
+			},error(){
+				alert("게시글을 삭제하는데 실패했습니다.");
+			}
+		})
+	})
+
+	// 게시글 수정
+	$("#update_btn").on("click", function() {
+// 		$("#admission").hide();
+// 		$("#opentime").hide();
+// 		$("#title").hide();
+// 		$("#content").hide();
+// 		$("#create_input1").append($("<input type='text' style='width:150px'>").val(board.admission));
+// 		$("#create_input2").append($("<input type='text' style='width:150px'>").val(board.opentime));
+// 		$("#create_input3").append($("<input type='text' style='width:700px'>").val(board.title).$("<br>"));
+// 		$("#create_input3").append($("<textarea></textarea>").html(board.content));
+	})
+})
 </script>
-
+<style>
+	#btn_area2{position:relative; left:38%;}
+</style>
 <!-- Single Property Section end -->
 <section class="single-property-section spad">
 	<div class="container">
@@ -17,121 +103,39 @@
 						<div class="sp-badge new">New</div>
 					</div>
 
-					<div class="row">
-						<div class="col-lg-3">
+					<div class="row" id="basic_info">
+						<div class="col-lg-6">
 							<div class="property-header" >
-								<h4 id="title"><span>입장료 :</span></h4>
+								<h4 id="create_input1"><span>입장료 : </span><span id="admission"></span></h4>
 							</div>
 						</div>
-						<div class="col-lg-3">
-							<div class="property-header" id="hroom_people">
-<!-- 								<h4 id="room_people">인원(?/?)</h4> -->
+						<div class="col-lg-6">
+							<div class="property-header">
+								<h4 id="create_input2"><span>운영 시간 : </span><span id="opentime"></span></h4>
 							</div>
 						</div>
-						<div class="col-lg-3">
-							<div class="property-header" id="hgender">
-								<h4><span id="open_time">운영 시간 :</span></h4>
-							</div>
-						</div>
-<!-- 						<div class="col-lg-3"> -->
-<!-- 							<div class="property-header" id="hprice"> -->
-<!-- 								<h4 id="price">가격</h4> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
 					</div>
 				<hr>
 				<div class="property-text">
-					<h4>${board.title}</h4>
-					<p>${board.content}</p>
+					<div id="create_input3">
+						<h4 id="title"></h4>
+						<p id="content"></p>
+					</div>
+				<div id="btn_area">
+					<button id="update_box_open" class="btn btn-success">수정하기</button>
+					<button id="delete_box_open" class="btn btn-danger">삭제하기</button>
 				</div>
-				<div class="property-feature">
-					<div class="row">
-						<div class="col-6 col-sm-4 col-md-3 col-lg-2">
-							<div class="pf-box">
-								<h6>입실 시간</h6>
-								<p>${gh_details.check_in}</p>
-							</div>
-						</div>
-						<div class="col-6 col-sm-4 col-md-3 col-lg-2">
-							<div class="pf-box">
-								<h6>퇴실 시간</h6>
-								<p>${gh_details.check_out}</p>
-							</div>
-						</div>
-						<div class="col-6 col-sm-4 col-md-3 col-lg-2">
-							<div class="pf-box">
-								<h6>소등 시간</h6>
-								<p>${gh_details.off_time}</p>
-							</div>
-						</div>
-						<div class="col-6 col-sm-4 col-md-3 col-lg-2">
-							<div class="pf-box">
-								<h6>파티 메뉴</h6>
-								<p>${gh_details.party_menu}</p>
-							</div>
-						</div>
-						<div class="col-6 col-sm-4 col-md-3 col-lg-2">
-							<div class="pf-box">
-								<h6>파티 시간</h6>
-								<p>${gh_details.party_time}</p>
-							</div>
-						</div>
-						<div class="col-6 col-sm-4 col-md-3 col-lg-2">
-							<div class="pf-box">
-								<h6>술</h6>
-								<p>${gh_details.alcohol}</p>
-							</div>
-						</div>
-					</div>
-					
-					<div class="row">
-						<div class="col-6 col-sm-4 col-md-3 col-lg-3">
-							<div class="pf-box">
-								<h6>참여 인원(남)</h6>
-								<p>${gh_details.join_man}명</p>
-							</div>
-						</div>
-						<div class="col-6 col-sm-4 col-md-3 col-lg-3">
-							<div class="pf-box">
-								<h6>참여 인원(여)</h6>
-								<p>${gh_details.join_girl}명</p>
-							</div>
-						</div>
-						<div class="col-6 col-sm-4 col-md-3 col-lg-2">
-							<div class="pf-box">
-								<h6>주차장</h6>
-								<p>${gh_details.parking}</p>
-							</div>
-						</div>
-						
-						<div class="col-6 col-sm-4 col-md-3 col-lg-2">
-							<div class="pf-box">
-								<h6>조식</h6>
-								<p>${gh_details.morning}</p>
-							</div>
-						</div>
-						<div class="col-6 col-sm-4 col-md-3 col-lg-2">
-							<div class="pf-box">
-								<h6>Wi-Fi</h6>
-								<p>${gh_details.wifi}</p>
-							</div>
-						</div>
-					</div>
-					
-					<div class="row">
-						<div class="col-6 col-lg-3">
-							<div class="pf-box">
-								<h6>반려동물 출입여부</h6>
-								<p>${gh_details.pet}</p>
-							</div>
-						</div>
-					</div>
+				<div id="btn_area2">
+                  <button type="button" class="btn btn-primary" id="like_btn" disabled="disabled">
+                     추천 <span class="badge" id="likes"></span>
+                  </button>
+                  <button type="button" class="btn btn-success" disabled="disabled">
+                     조회 <span class="badge" id="views"></span>
+                  </button>
+                  </div> 
 				</div>
 			</div>
-			<!-- <div class="video-item">
-				<img src="assets/img/video-img.jpg" alt="">
-				<a href="https://www.youtube.com/watch?v=Sz_1tkcU0Co" class="video-play"><span class="i fa fa-play"></span></a>
-			</div> -->
+			<hr>
 			<div class="loan-calculator">
 				<h4>후기</h4>
 				<div class="row">
@@ -154,11 +158,7 @@
 			<div class="agent-widget">
 				<img src="assets/gh_img/unnamed.png" alt="">
 				<div class="aw-text">
-					<h4>${gh_details.user_name}</h4>
-					<h6>게스트 하우스 이름</h6>
-					<p>연락처 : ${gh_details.user_radio}</p>
-					<p>이메일 : ${gh_details.user_email}</p>
-					<p>주소 : ${gh_details.address}</p>
+					<h6 id="user_id"></h6>
 					<a href="#" class="readmore-btn">블로그 or 카페 or SNS 링크</a>
 				</div>
 			</div>
@@ -168,37 +168,67 @@
 			</div>
 		</div>
 	</div>
+
+<!-- 게시글 삭제 Modal -->
+<div id="update_box" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="myModalLabel">게시글 수정</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">X</span>
+					</button>
+			</div>
+
+			<div class="modal-body">
+				<div class="container">
+					<div class="form-group">
+						<div id="select">
+							<h6>정말 게시글을 수정하시겠습니까?</h6>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="modal-footer">
+				<button id="update_btn" class="btn btn-success">수정하기</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">취소하기</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 게시글 수정 Modal End -->
+	
+<!-- 게시글 삭제 Modal -->
+<div id="delete_box" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="myModalLabel">게시글 삭제</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">X</span>
+					</button>
+			</div>
+
+			<div class="modal-body">
+				<div class="container">
+					<div class="form-group">
+						<div id="select">
+							<h6>정말 게시글을 삭제하시겠습니까?</h6>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="modal-footer">
+				<button id="delete_btn" class="btn btn-danger">삭제하기</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">취소하기</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 게시글 삭제 Modal End -->
 </section>
-<script id="roomListTemplate" type="text/handlebars-template">
-{{#each rooms}}
-	<div class="col-lg-3">
-		<div class="property-header">
-			<h4>{{room}}</h4>
-		</div>
-	</div>
-	<div class="col-lg-3">
-		<div class="property-header">
-			<h4>{{genderTitle}}</h4>
-		</div>
-	</div>
-	<div class="col-lg-3">
-		<div class="property-header">
-			<h4>{{room_people}}</h4>
-		</div>
-	</div>
-	<div class="col-lg-3">
-		<div class="property-header">
-			<h4>{{price}}</h4>
-		</div>
-	</div>
-{{/each}}
-</script>
-<!-- <tr>
-  <td>{{room}}</td>
-  <td>{{genderTitle}}</td>
-  <td>{{room_people}}</td>
-  <td>{{price}}</td>
-</tr> -->
+
 <!--  Section end -->
 
-<%@include file="/WEB-INF/include/footer.jsp" %>

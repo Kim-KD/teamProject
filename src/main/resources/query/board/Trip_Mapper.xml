@@ -27,7 +27,7 @@
 	<!-- 관광명소 게시글 읽기 -->
 	<select id="trip_read" resultType="trip_Board">
 		select no,user_id,title,content,city,address,on_off,p_link,up_view
-		,views,w_date,postcode,admission,opentime,photo
+		,likes,views,w_date,postcode,admission,opentime,thumbnail
 		from trip_info
 		where trip_info.no = #{no};
 	</select>
@@ -77,9 +77,9 @@
 	<!-- 관광명소 게시글 삭제 -->
 	<delete id="trip_delete">
 		delete trip_info, trip_view_info
-		from trip_view_info
-			left join trip_info on (trip_view_info.no = trip_info.no)
-		where trip_view_info.no = #{no}
+		from trip_info
+			left join trip_view_info on (trip_view_info.no = trip_info.no)
+		where trip_info.no = #{no};
 	</delete>
 
 </mapper>
