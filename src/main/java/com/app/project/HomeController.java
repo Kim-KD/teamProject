@@ -32,4 +32,9 @@ public class HomeController {
 		return "page3";
 	}
 	
+	@GetMapping("/")
+	public String home() {
+		return "main/index";
+	}
+	
 }

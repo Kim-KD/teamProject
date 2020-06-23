@@ -24,11 +24,11 @@ public class GH_BoardController {
 	private ModelAndView mav;
 	
 	// 처음 시작 화면
-	@GetMapping({"/index","/"})
-	public ModelAndView home() {
-		mav = bsvc.index_Page_Slider();
-		return mav;
-	}
+//	@GetMapping({"/index","/"})
+//	public ModelAndView home() {
+//		mav = bsvc.index_Page_Slider();
+//		return mav;
+//	}
 	
 	// 게시글 작성
 	@PostMapping("/write")

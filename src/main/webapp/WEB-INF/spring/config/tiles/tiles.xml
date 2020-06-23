@@ -7,7 +7,7 @@
     <!--  base layout [s]  -->
     <definition name="layout" template="/WEB-INF/views/base.jsp">
         <put-attribute name="header" value="/WEB-INF/views/components/header.jsp" />
-        <put-attribute name="topNav" value="/WEB-INF/views/components/nav/topNav.jsp" />
+        <put-attribute name="topNav" value="/WEB-INF/views/components/navbar/topNav.jsp" />
         <put-attribute name="body" value="" />
         <put-attribute name="footer" value="/WEB-INF/views/components/footer.jsp" />
     </definition>
