@@ -33,12 +33,6 @@ public class Trip_BoardService {
 		int srn = page.getStartRowNum();
 		int ern = page.getEndRowNum();
 		List<Trip_BoardBean> boardList = dao.trip_find_all(srn, ern);
-//		List<BoardDto.DtoForList> dtoList = new ArrayList<>();
-//		for(Trip_BoardBean board:boardList) {
-//			BoardDto.DtoForList dto = modelMapper.map(board,BoardDto.DtoForList.class);
-//			dto.setWriteTimeStr(board.getWriteTime().format(DateTimeFormatter.ofPattern("yyyy년MM월dd일")));
-//			dtoList.add(dto);
-//		}
 		page.setTrip_list(boardList);
 		return page;
 	}

@@ -58,7 +58,7 @@
 			<if test="city != null">city = #{city},</if>
 			<if test="address != null">address = #{address},</if>
 			<if test="postcode != null">postcode = #{postcode},</if>
-			<if test="photo != null">photo = #{photo},</if>
+			<if test="thumbnail != null">thumbnail = #{thumbnail},</if>
 			<if test="on_off != null">on_off = #{on_off},</if>
 			<if test="p_link != null">p_link = #{p_link},</if>
 			<if test="up_view != null">up_view = #{up_view},</if>

@@ -20,18 +20,18 @@ public class Trip_BoardDao {
 		return sql.selectOne("trip_mapper.trip_count",map);
 	}
 	
-	public List<Trip_BoardBean> trip_find_all(int startRowNum, int endRowNum) {
+	public List<Trip_BoardBean> trip_find_all(Integer startRowNum, Integer endRowNum) {
 		Map<String,Integer> map = new HashMap<>();
 		map.put("startRowNum", startRowNum);
 		map.put("endRowNum", endRowNum);
 		return sql.selectList("trip_mapper.trip_find_all", map);
 	}
 	
-	public Trip_BoardBean trip_read(int no) {
+	public Trip_BoardBean trip_read(Integer no) {
 		return sql.selectOne("trip_mapper.trip_read", no);
 	}
 	
-	public List<Trip_ViewBean> trip_view_read(int no) {
+	public List<Trip_ViewBean> trip_view_read(Integer no) {
 		return sql.selectList("trip_mapper.trip_view_read", no);
 	}
 	
@@ -47,7 +47,7 @@ public class Trip_BoardDao {
 		return sql.update("trip_mapper.trip_update", board);
 	}
 	
-	public int trip_delete(int no) {
+	public int trip_delete(Integer no) {
 		return sql.delete("trip_mapper.trip_delete", no);
 	}
 

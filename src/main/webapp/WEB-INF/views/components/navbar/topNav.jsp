@@ -1,6 +1,7 @@
 <%@ page import="org.springframework.util.ObjectUtils" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
  <!-- 헤더 [s] -->
 <header>
@@ -10,8 +11,17 @@
                     <div class="row align-items-center">
                         <div class="col-md-12 d-none d-md-block">
                             <div class="social_wrap d-flex align-items-center justify-content-end">
-	                            <a href="javascript:void(0);" class="top-a-tag sp_active">로그인</a>	
+	                            <sec:authorize access="isAuthenticated()">
+                            <c:set var="loginId"
+							value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}"></c:set>
+								<a href="/guehamo/profile">${loginId}님 환영합니다.</a>
+								&nbsp;&nbsp;&nbsp;
+								<a href="javascript:void(0);" id="logoutBtn" class="register">로그아웃</a>
+                            </sec:authorize>
+                            <sec:authorize access="isAnonymous()">
+	                            <a href="/guehamo/login" class="top-a-tag sp_active">로그인</a>	
 	                            <a href="javascript:void(0);" class="top-a-tag">회원가입</a>
+	                        </sec:authorize>
 	                            <a href="javascript:void(0);" class="top-a-tag">고객센터</a>
                             </div>
                         </div>

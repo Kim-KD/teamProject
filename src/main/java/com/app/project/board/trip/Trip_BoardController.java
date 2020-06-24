@@ -1,14 +1,7 @@
 package com.app.project.board.trip;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.security.Principal;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
@@ -16,16 +9,12 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import jdk.internal.org.objectweb.asm.tree.IntInsnNode;
 
 @Controller
 public class Trip_BoardController {
@@ -58,7 +47,7 @@ public class Trip_BoardController {
 	
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/trip_write")
-	public String write(Trip_BoardBean board, Principal principal, HttpServletRequest request) {
+	public String write(Trip_BoardBean board, Principal principal) {
 		board.setUser_id(principal.getName());
 		try {
 			return "trip/trip_read?no=" + svc.tripWrite(board);
@@ -66,6 +55,32 @@ public class Trip_BoardController {
 			e.printStackTrace();
 		}
 		return "trip/trip_list";
+	}
+	
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/trip_update")
+	public ModelAndView update1(Integer no, String user_id, Principal pcp) {
+		if(user_id.equals(pcp.getName())) {
+			Trip_BoardBean board = svc.tripRead(no,user_id);
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("trip/trip_update");
+			mav.addObject("board",board);
+			return mav;
+		}
+		return null;
+	}
+
+	@PreAuthorize("isAuthenticated()")
+	@PostMapping("/trip_update")
+	public ModelAndView update2(Trip_BoardBean board, Principal pcp) {
+		if(board.getUser_id().equals(pcp.getName())) {
+			svc.tripUpdate(board);
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("trip/trip_read?no="+board.getNo());
+			mav.addObject("board",board);
+			return mav;
+		}
+		return null;
 	}
 	
 	@PreAuthorize("isAuthenticated()")

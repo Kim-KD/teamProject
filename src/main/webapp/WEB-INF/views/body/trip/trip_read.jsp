@@ -19,6 +19,8 @@ $(function() {
 	
 	   // 자바객체 -> json -> 자바스크립트 객체
 	   board = JSON.parse('${board}');
+	   $("#update_btn").attr('href',"/guehamo/trip_update?no="+board.no+"&user_id="+board.user_id);
+	   
 	   $("#title").text(board.title);
 	   $("#user_id").text(board.user_id);
 	   $("#no").text(board.no);
@@ -46,10 +48,7 @@ $(function() {
 	   } else if(isLogin===true && board.user_id!==loginId) {
 	      $("#like_btn").prop("disabled", false);
 	   }
-		// 게시글 수정 확인 창 보여주기
-		$('#update_box_open').on('click', function(){
-			$('#update_box').modal('show');
-		})
+	   
 		// 게시글 삭제 확인 창 보여주기
 		$('#delete_box_open').on('click', function(){
 			$('#delete_box').modal('show');
@@ -73,18 +72,6 @@ $(function() {
 				alert("게시글을 삭제하는데 실패했습니다.");
 			}
 		})
-	})
-
-	// 게시글 수정
-	$("#update_btn").on("click", function() {
-// 		$("#admission").hide();
-// 		$("#opentime").hide();
-// 		$("#title").hide();
-// 		$("#content").hide();
-// 		$("#create_input1").append($("<input type='text' style='width:150px'>").val(board.admission));
-// 		$("#create_input2").append($("<input type='text' style='width:150px'>").val(board.opentime));
-// 		$("#create_input3").append($("<input type='text' style='width:700px'>").val(board.title).$("<br>"));
-// 		$("#create_input3").append($("<textarea></textarea>").html(board.content));
 	})
 })
 </script>
@@ -122,7 +109,7 @@ $(function() {
 						<p id="content"></p>
 					</div>
 				<div id="btn_area">
-					<button id="update_box_open" class="btn btn-success">수정하기</button>
+					<a href="javascript:void(0);" id="update_btn" type="button" class="btn btn-success">수정하기</a>
 					<button id="delete_box_open" class="btn btn-danger">삭제하기</button>
 				</div>
 				<div id="btn_area2">
@@ -168,36 +155,6 @@ $(function() {
 			</div>
 		</div>
 	</div>
-
-<!-- 게시글 삭제 Modal -->
-<div id="update_box" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title" id="myModalLabel">게시글 수정</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">X</span>
-					</button>
-			</div>
-
-			<div class="modal-body">
-				<div class="container">
-					<div class="form-group">
-						<div id="select">
-							<h6>정말 게시글을 수정하시겠습니까?</h6>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="modal-footer">
-				<button id="update_btn" class="btn btn-success">수정하기</button>
-				<button type="button" class="btn btn-default" data-dismiss="modal">취소하기</button>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- 게시글 수정 Modal End -->
 	
 <!-- 게시글 삭제 Modal -->
 <div id="delete_box" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
