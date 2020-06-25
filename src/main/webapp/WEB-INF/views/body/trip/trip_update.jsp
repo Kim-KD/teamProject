@@ -8,6 +8,7 @@ $(function(){
 		filebrowserUploadUrl : "/project/imgupload?_csrf=${_csrf.token}"
 	})
 	$("#title").val("${board.title}");
+	$("#name").val("${board.name}");
 	$("#city").val("${board.city}");
 	$("#address").val("${board.address}");
 	$("#admission").val("${board.admission}");
@@ -98,6 +99,11 @@ function search_Postcode() {
                 <span class="col-sm-2 control-label">제목</span>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="title" name="title" placeholder="제목"> 
+                </div>
+                
+                <span class="col-sm-2 control-label">관광명소 이흠</span>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="관광명소 이름"> 
                 </div>
 
                 <span class="col-sm-2 control-label">지역주소</span>

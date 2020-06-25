@@ -25,8 +25,8 @@ $(function(){
 					<a href="/project/trip_read?no=${board.no}"><img src="assets/img/blog/1.jpg" alt="이미지를 불러 올 수 없습니다."></a>
 					<div class="blog-text">
 						<div class="blog-date">${board.w_date}</div>
+						<h4><a href="/project/trip_read?no=${board.no}">${board.name}</a></h4>
 						<h4><a href="/project/trip_read?no=${board.no}">${board.title}</a></h4>
-						<p>내용 </p>
 						<a href="/project/trip_read?no=${board.no}" class="readmore-btn">자세히 보기</a>
 					</div>
 				</div>

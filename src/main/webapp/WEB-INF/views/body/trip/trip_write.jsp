@@ -70,6 +70,11 @@ function search_Postcode() {
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="title" placeholder="제목"> 
                 </div>
+                
+                <span class="col-sm-2 control-label">관광명소 이름</span>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="name" placeholder="관광명소 이름"> 
+                </div>
 
                 <span class="col-sm-2 control-label">지역주소</span>
                 <div class="col-sm-4">

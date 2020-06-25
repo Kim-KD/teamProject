@@ -22,6 +22,7 @@ $(function() {
 	   $("#update_btn").attr('href',"/guehamo/trip_update?no="+board.no+"&user_id="+board.user_id);
 	   
 	   $("#title").text(board.title);
+	   $("#name").text(board.name);
 	   $("#user_id").text(board.user_id);
 	   $("#no").text(board.no);
 	   $("#w_time").text(board.w_time);
@@ -173,6 +174,7 @@ $(function() {
 				<img src="assets/gh_img/unnamed.png" alt="">
 				<div class="aw-text">
 					<h6 id="user_id"></h6>
+					<h6 id="name"></h6>
 					<a href="#" class="readmore-btn">블로그 or 카페 or SNS 링크</a>
 				</div>
 			</div>

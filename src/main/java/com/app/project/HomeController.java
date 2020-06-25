@@ -8,10 +8,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @SessionAttributes("login_data")
 public class HomeController {
 	
-	@GetMapping("test1")
-	public String testst() {
-		return "index/index";
-	}
 	@GetMapping("/about_us")
 	public String about_us() {
 		return "about_us";
@@ -22,7 +18,7 @@ public class HomeController {
 		return "page3";
 	}
 	
-	@GetMapping("/")
+	@GetMapping({"/","/index"})
 	public String home() {
 		return "main/index";
 	}
