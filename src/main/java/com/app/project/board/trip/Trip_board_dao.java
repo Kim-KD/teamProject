@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class Trip_BoardDao {
+public class Trip_board_dao {
 	
 	@Autowired
 	private SqlSessionTemplate sql;
@@ -20,30 +20,30 @@ public class Trip_BoardDao {
 		return sql.selectOne("trip_mapper.trip_count",map);
 	}
 	
-	public List<Trip_BoardBean> trip_find_all(Integer startRowNum, Integer endRowNum) {
+	public List<Trip_board_bean> trip_find_all(Integer startRowNum, Integer endRowNum) {
 		Map<String,Integer> map = new HashMap<>();
 		map.put("startRowNum", startRowNum);
 		map.put("endRowNum", endRowNum);
 		return sql.selectList("trip_mapper.trip_find_all", map);
 	}
 	
-	public Trip_BoardBean trip_read(Integer no) {
+	public Trip_board_bean trip_read(Integer no) {
 		return sql.selectOne("trip_mapper.trip_read", no);
 	}
 	
-	public List<Trip_ViewBean> trip_view_read(Integer no) {
+	public List<Trip_view_bean> trip_view_read(Integer no) {
 		return sql.selectList("trip_mapper.trip_view_read", no);
 	}
 	
-	public int trip_insert(Trip_BoardBean board) {
+	public int trip_insert(Trip_board_bean board) {
 		return sql.insert("trip_mapper.trip_insert", board);
 	}
 	
-	public int trip_view_insert(Trip_BoardBean board) {
+	public int trip_view_insert(Trip_board_bean board) {
 		return sql.insert("trip_mapper.trip_view_insert", board);
 	}
 	
-	public int trip_update(Trip_BoardBean board) {
+	public int trip_update(Trip_board_bean board) {
 		return sql.update("trip_mapper.trip_update", board);
 	}
 	

@@ -13,7 +13,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UserBean {
+public class User_bean {
 	
 	private String user_id;			// 아이디
 	private String user_status;		// 유저 구분

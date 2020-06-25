@@ -13,17 +13,17 @@ import com.app.project.util.MailUtil;
 import com.app.project.user.AuthorityDao;
 
 @Service
-public class UserService {
+public class User_service {
 	
 	@Autowired
-	private UserDao dao;
+	private User_dao dao;
 	@Autowired
 	private AuthorityDao authorityDao;
 	@Autowired
 	private PasswordEncoder pwdEncoder;
 	
 	// 회원가입
-	public void join(UserBean user) {
+	public void join(User_bean user) {
 		if(user.getUser_status().equals("0")) {
 			
 			String[] str = user.getUser_radio().split("-");
@@ -88,12 +88,12 @@ public class UserService {
 	}
 	
 	// 이메일 수정체크
-	public int update_email_chk(UserBean user) {
+	public int update_email_chk(User_bean user) {
 		return dao.email_update_chk(user);
 	}
 	
 	// 비밀번호 확인
-	public int pwd_chk(UserBean user) {
+	public int pwd_chk(User_bean user) {
 		String before_pwd = user.getUser_pwd();
 		user = dao.user_read(user.getUser_id());
 		if(pwdEncoder.matches(before_pwd, user.getUser_pwd())) {
@@ -103,13 +103,13 @@ public class UserService {
 	}
 	
 	// 유저 정보 읽기
-	public UserBean userInfoRead(String user_id) {
-		UserBean user = dao.user_read(user_id);
+	public User_bean userInfoRead(String user_id) {
+		User_bean user = dao.user_read(user_id);
 		if(user.getUser_status().equals("0")) {
 			return user;
 		}
 		else if(user.getUser_status().equals("1")) {
-			UserBean cpn = dao.cpn_read(user_id);
+			User_bean cpn = dao.cpn_read(user_id);
 			user.setCpn_service_num(cpn.getCpn_service_num());
 			user.setCpn_bank(cpn.getCpn_bank());
 			user.setCpn_account(cpn.getCpn_account());
@@ -121,7 +121,7 @@ public class UserService {
 	}
 	
 	// 유저 정보 수정
-	public Integer userInfoUpdate(UserBean user) {
+	public Integer userInfoUpdate(User_bean user) {
 		if(user.getUser_status().equals("0")) {
 			if(user.getUser_pwd() != null) {
 				String encodedPwd = pwdEncoder.encode(user.getUser_pwd());
@@ -145,7 +145,7 @@ public class UserService {
 	}
 	
 	// 아이디 찾기
-	public void findById(UserBean user) {
+	public void findById(User_bean user) {
 		if(user != null) {
 			
 			String id = dao.find_by_id(user);
@@ -163,7 +163,7 @@ public class UserService {
 		}
 	}
 	// 비밀번호 찾기
-	public void findByPwd(UserBean user) {
+	public void findByPwd(User_bean user) {
 		if(user != null) {
 			if(dao.find_by_pwd(user) != null) {
 				String pwd = RandomStringUtils.randomAlphanumeric(8);
@@ -191,7 +191,7 @@ public class UserService {
 	}
 
 	// 인증번호
-	public UserBean findByNum(UserBean user) {
+	public User_bean findByNum(User_bean user) {
 		if(user != null) {
 			String key = RandomStringUtils.randomNumeric(4);
 			user.setFind_num(key);
@@ -205,7 +205,7 @@ public class UserService {
 
 	// 이메일 인증
 	public boolean joinCheck(String user_num) {
-		UserBean user = dao.findByUserNum(user_num);
+		User_bean user = dao.findByUserNum(user_num);
 		if(user==null) {
 			return false;
 		}

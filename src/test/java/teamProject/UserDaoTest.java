@@ -14,21 +14,21 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.app.project.user.UserBean;
-import com.app.project.user.UserDao;
+import com.app.project.user.User_bean;
+import com.app.project.user.User_dao;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/**/*-context.xml")
 public class UserDaoTest {
 	
 	@Autowired
-	UserDao dao;
+	User_dao dao;
 	
 	// 일반 회원가입 테스트
 	@Test
 	//@Transactional
 	public void insertTest() {
-		UserBean user = UserBean.builder().user_id("aaaa12").user_status("c")
+		User_bean user = User_bean.builder().user_id("aaaa12").user_status("c")
 				.user_pwd("test1234").user_name("cpn").user_radio("01079793021")
 				.user_cable("0000").user_email("aaa").user_gender("m")
 				.user_job("bs").change_pwd("1111").build();
@@ -56,7 +56,7 @@ public class UserDaoTest {
 	//@Test
 	//@Transactional
 	public void updateTest() {
-		UserBean user = UserBean.builder().user_id("aaaa")
+		User_bean user = User_bean.builder().user_id("aaaa")
 				.user_pwd("2222").user_radio("070")
 				.user_cable("1010").user_email("aaa@a.com").build();
 		assertThat(dao.user_info_update(user), is(1));
@@ -65,7 +65,7 @@ public class UserDaoTest {
 	// 로그인 테스트
 	//@Test
 	public void loginTest() {
-		UserBean user = UserBean.builder().user_id("aaaa").user_pwd("2222").build();
+		User_bean user = User_bean.builder().user_id("aaaa").user_pwd("2222").build();
 		//dao.login(user);
 		System.out.println(user);
 	}

@@ -3,7 +3,7 @@ package com.app.project.board;
 import java.util.*;
 
 import com.app.project.board.gh.GH_BoardBean;
-import com.app.project.board.trip.Trip_BoardBean;
+import com.app.project.board.trip.Trip_board_bean;
 
 import lombok.*;
 
@@ -21,6 +21,6 @@ public class Page{
 	private boolean isNext;
 	private int pageno;
 	
-	List<Trip_BoardBean> trip_list;
+	List<Trip_board_bean> trip_list;
 	List<GH_BoardBean> gh_list;
 }

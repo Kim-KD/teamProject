@@ -73,6 +73,32 @@ $(function() {
 			}
 		})
 	})
+
+	// 게시글 추천
+	$("#like_btn").on("click", function() {
+		var param = {
+			no : board.no,
+			user_id : board.user_id,
+			_csrf:"${_csrf.token}"
+		}
+		$.ajax({
+			url: "/project/trip_like",
+			method: "post",
+			data: param,
+			success: function(e) {
+				if(e==true){
+					$("#likes").text(board.likes+1);
+					alert("게시글이 추천되었습니다.");
+				}else if(e==null){
+					alert("자신의 게시글에 추천할 수 없습니다.");
+				}else{
+					alert("이미 추천한 게시글 입니다.");
+				}
+			},error(){
+				alert("게시글을 추천하는데 실패했습니다.");
+			}
+		})
+	})
 })
 </script>
 <style>

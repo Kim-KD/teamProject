@@ -11,7 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Trip_ViewBean {
+public class Trip_view_bean {
 
 	private int no;
 	private String user_id;

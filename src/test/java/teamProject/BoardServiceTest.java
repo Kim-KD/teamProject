@@ -11,8 +11,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.app.project.board.gh.GH_BoardService;
-import com.app.project.board.trip.Trip_BoardBean;
-import com.app.project.board.trip.Trip_BoardService;
+import com.app.project.board.trip.Trip_board_bean;
+import com.app.project.board.trip.Trip_board_service;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/**/*-context.xml")
@@ -21,7 +21,7 @@ public class BoardServiceTest {
 	@Autowired
 	GH_BoardService gsvc;
 	@Autowired
-	Trip_BoardService tsvc;
+	Trip_board_service tsvc;
 	
 	//@Test
 //	public void ghReadTest() {
@@ -33,7 +33,7 @@ public class BoardServiceTest {
 	@Test
 	public void ghReadTest() throws IOException {
 		for (int i = 0; i < 100; i++) {
-			Trip_BoardBean trip = Trip_BoardBean.builder().user_id("test1234")
+			Trip_board_bean trip = Trip_board_bean.builder().user_id("test1234")
 				.title(i+"번째 게시글").content(i+"번째 내용").opentime("씨발").build();
 			tsvc.tripWrite(trip);
 		}

@@ -62,8 +62,8 @@
 			<if test="on_off != null">on_off = #{on_off},</if>
 			<if test="p_link != null">p_link = #{p_link},</if>
 			<if test="up_view != null">up_view = #{up_view},</if>
-			<if test="views != null">views = views+1,</if>
-			<if test="likes != null">likes = likes+1,</if>
+			<if test="views != null">views = #{views},</if>
+			<if test="likes != null">likes = #{likes},</if>
 		</trim>
 		where no=#{no}
 	</update>

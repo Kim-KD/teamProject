@@ -13,8 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.app.project.board.gh.GH_BoardBean;
 import com.app.project.board.gh.GH_BoardDao;
-import com.app.project.board.trip.Trip_BoardBean;
-import com.app.project.board.trip.Trip_BoardDao;
+import com.app.project.board.trip.Trip_board_bean;
+import com.app.project.board.trip.Trip_board_dao;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/**/*-context.xml")
@@ -23,7 +23,7 @@ public class BoardDaoTest {
 	@Autowired
 	GH_BoardDao ghDao;
 	@Autowired
-	Trip_BoardDao tripDao;
+	Trip_board_dao tripDao;
 
 	//@Test
 	// 게하 게시글 읽기
@@ -125,7 +125,7 @@ public class BoardDaoTest {
 	//@Transactional
 	// 관광명소 게시글 작성
 //	public void tripInsertTest() {
-//		Trip_BoardBean b = Trip_BoardBean.builder().user_id("aaaa").title("제목")
+//		Trip_board_bean b = Trip_board_bean.builder().user_id("aaaa").title("제목")
 //				.content("내용").postcode("우편번호").city("지역주소").admission(2000)
 //				.opentime("10시").address("상세주소").photo("사진").build();
 //		assertThat(tripDao.trip_insert(b), is(1));
@@ -135,7 +135,7 @@ public class BoardDaoTest {
 	//@Transactional
 	// 관광명소 후기 작성
 	public void tripViewInsertTest() {
-		Trip_BoardBean b = Trip_BoardBean.builder().no(2).user_id("aaaa").content("후기 내용").build();
+		Trip_board_bean b = Trip_board_bean.builder().no(2).user_id("aaaa").content("후기 내용").build();
 		assertThat(tripDao.trip_view_insert(b), is(1));
 	}
 	
@@ -143,7 +143,7 @@ public class BoardDaoTest {
 	//@Transactional
 	// 관광명소 게시글 수정
 //	public void tripUpdateTest() {
-//		Trip_BoardBean b = Trip_BoardBean.builder().no(1).title("변경 제목")
+//		Trip_board_bean b = Trip_board_bean.builder().no(1).title("변경 제목")
 //				.content("변경 내용").postcode("변경 우편번호").city("변경 지역주소").admission(2000)
 //				.opentime("변경 10시").address("변경 상세주소").photo("변경 사진").build();
 //		assertThat(tripDao.trip_update(b), is(1));
@@ -153,7 +153,7 @@ public class BoardDaoTest {
 	//@Transactional
 	// 관광명소 게시글 삭제
 	public void tripDeleteTest() {
-		Trip_BoardBean b = Trip_BoardBean.builder().no(1).build();
+		Trip_board_bean b = Trip_board_bean.builder().no(1).build();
 		assertThat(tripDao.trip_delete(1), is(2));
 	}
 }

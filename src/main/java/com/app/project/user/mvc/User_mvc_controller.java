@@ -1,4 +1,4 @@
-package com.app.project.user;
+package com.app.project.user.mvc;
 
 import java.security.Principal;
 import java.util.List;
@@ -19,15 +19,17 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.app.project.user.User_bean;
+import com.app.project.user.User_service;
 import com.app.project.util.AuthorityPropertyEditor;
 import com.sun.istack.internal.NotNull;
 
 @Controller
 @SessionAttributes("login_data")
-public class UserController {
+public class User_mvc_controller {
 	
 	@Autowired
-	private UserService svc;
+	private User_service svc;
 	
 	@InitBinder
 	public void init(WebDataBinder wdb) {
@@ -60,7 +62,7 @@ public class UserController {
 		if(session.getAttribute("check")==null)
 			return new ModelAndView("check_pwd");
 		
-		UserBean user = svc.userInfoRead(principal.getName());
+		User_bean user = svc.userInfoRead(principal.getName());
 		return new ModelAndView("user/profile").addObject("user",user);
 	}
 	
@@ -72,7 +74,7 @@ public class UserController {
 	
 	// 회원가입
 	@PostMapping("/join")
-	public String join(UserBean user) {
+	public String join(User_bean user) {
 		svc.join(user);
 		
 		return "/";
@@ -117,7 +119,7 @@ public class UserController {
 			result = svc.email_chk(user_email);
 		}
 		if(result == 1) {
-			UserBean user = UserBean.builder().user_id(pcp.getName()).user_email(user_email).build();
+			User_bean user = User_bean.builder().user_id(pcp.getName()).user_email(user_email).build();
 			if(svc.update_email_chk(user) == 1) {
 				result = 0;
 			}
@@ -127,14 +129,14 @@ public class UserController {
 	
 	// 아이디 찾기
 	@PostMapping("/find_id")
-	public ResponseEntity<Void> find_id(UserBean user) {
+	public ResponseEntity<Void> find_id(User_bean user) {
 		svc.findById(user);
 		return ResponseEntity.ok(null);
 	}
 	
 	// 비밀번호 찾기
 	@PostMapping("/find_pwd")
-	public ResponseEntity<Void> find_pwd(UserBean user) {
+	public ResponseEntity<Void> find_pwd(User_bean user) {
 		svc.findByPwd(user);
 		return ResponseEntity.ok(null);
 	}
@@ -144,7 +146,7 @@ public class UserController {
 	@PostMapping("/check_pwd")
 	public String checkPwd(String user_pwd, Principal pcp, HttpSession session) {
 		session.setAttribute("check", "ok");
-		UserBean user = UserBean.builder().user_id(pcp.getName()).user_pwd(user_pwd).build();
+		User_bean user = User_bean.builder().user_id(pcp.getName()).user_pwd(user_pwd).build();
 		System.out.println(svc.pwd_chk(user));
 		if(svc.pwd_chk(user) == 1) {
 			return "user/profile";
@@ -156,7 +158,7 @@ public class UserController {
 	
 	// 유저 정보 수정
 	@PostMapping("/update")
-	public String update_info(UserBean user, Principal pcp) {
+	public String update_info(User_bean user, Principal pcp) {
 		user.setUser_id(pcp.getName());
 		svc.userInfoUpdate(user);
 		return "user/profile";

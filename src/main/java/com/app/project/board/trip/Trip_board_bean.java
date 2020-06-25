@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Trip_BoardBean {
+public class Trip_board_bean {
 
 	private Integer no;				// 게시글 번호
 	private String user_id;		// 아이디
@@ -35,6 +35,6 @@ public class Trip_BoardBean {
 	private String opentime;	// 운영 시간
 	private String thumbnail;		// 풍경 이미지
 	private List<MultipartFile> upload; // 사진 업로드
-	private List<Trip_ViewBean> comments; // 댓글
+	private List<Trip_view_bean> comments; // 댓글
 	private List<UploadInfoBean> upload_info; // 사진 업로드 정보
 }

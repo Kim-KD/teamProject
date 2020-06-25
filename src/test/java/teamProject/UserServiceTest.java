@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.app.project.user.UserBean;
-import com.app.project.user.UserService;
+import com.app.project.user.User_bean;
+import com.app.project.user.User_service;
 
 import lombok.Builder;
 
@@ -16,11 +16,11 @@ import lombok.Builder;
 public class UserServiceTest {
 
 	@Autowired
-	private UserService usvc;
+	private User_service usvc;
 	
 	@Test
 	public void update() {
-		UserBean user = UserBean.builder().user_id("test1234").user_pwd("test1234!")
+		User_bean user = User_bean.builder().user_id("test1234").user_pwd("test1234!")
 				.user_status("0").build();
 		usvc.userInfoUpdate(user);
 	}

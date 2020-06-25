@@ -18,10 +18,10 @@ import com.app.project.board.UploadInfoDao;
 import com.app.project.util.PagingUtil;
 
 @Service
-public class Trip_BoardService {
+public class Trip_board_service {
 	
 	@Autowired
-	private Trip_BoardDao dao;
+	private Trip_board_dao dao;
 	@Autowired
 	private UploadInfoDao uploadDao;
 	@Autowired
@@ -32,13 +32,13 @@ public class Trip_BoardService {
 		Page page = PagingUtil.getPage(pageno, countOfBoard);
 		int srn = page.getStartRowNum();
 		int ern = page.getEndRowNum();
-		List<Trip_BoardBean> boardList = dao.trip_find_all(srn, ern);
+		List<Trip_board_bean> boardList = dao.trip_find_all(srn, ern);
 		page.setTrip_list(boardList);
 		return page;
 	}
 	
 	// 게시글 작성
-	public int tripWrite(Trip_BoardBean board) throws IOException {
+	public int tripWrite(Trip_board_bean board) throws IOException {
 		
 		dao.trip_insert(board);
 		
@@ -61,11 +61,11 @@ public class Trip_BoardService {
 	}
 	
 	// 게시글 읽기
-	public Trip_BoardBean tripRead(Integer no, String user_id) {
-		Trip_BoardBean board = dao.trip_read(no);
+	public Trip_board_bean tripRead(Integer no, String user_id) {
+		Trip_board_bean board = dao.trip_read(no);
 		// 로그인했다 && 글쓴이가 아니다
 		if(user_id!=null && user_id.equals(board.getUser_id())==false)
-			dao.trip_update(Trip_BoardBean.builder().no(no).views(0).build());
+			dao.trip_update(Trip_board_bean.builder().no(no).views(0).build());
 		
 //		String str = board.getW_date().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일"));
 //		board.setW_date(str);
@@ -75,7 +75,7 @@ public class Trip_BoardService {
 	}
 	
 	// 게시글 수정
-	public int tripUpdate(Trip_BoardBean board) {
+	public int tripUpdate(Trip_board_bean board) {
 		return dao.trip_update(board);
 	}
 	

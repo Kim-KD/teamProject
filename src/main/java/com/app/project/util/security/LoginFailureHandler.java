@@ -25,8 +25,8 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.app.project.user.UserBean;
-import com.app.project.user.UserService;
+import com.app.project.user.User_bean;
+import com.app.project.user.User_service;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,7 +36,7 @@ import lombok.NoArgsConstructor;
 public class LoginFailureHandler implements AuthenticationFailureHandler {
 	
     @Autowired
-	private UserService svc;
+	private User_service svc;
     private RedirectStrategy rs = new DefaultRedirectStrategy();
  
     @Override
@@ -72,14 +72,14 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
     }
     
     public void loginFail(String user_id) {
-    	UserBean user = svc.userInfoRead(user_id);
+    	User_bean user = svc.userInfoRead(user_id);
     	int failCnt = user.getLogin_fail_cnt() + 1;
     	if(failCnt > 5) {
 			
-			svc.userInfoUpdate(UserBean.builder().user_id(user_id).login_fail_cnt(failCnt)
+			svc.userInfoUpdate(User_bean.builder().user_id(user_id).login_fail_cnt(failCnt)
 					.user_status(user.getUser_status()).enabled(false).build());
 		} else {
-			svc.userInfoUpdate(UserBean.builder().user_id(user_id).user_status(user.getUser_status())
+			svc.userInfoUpdate(User_bean.builder().user_id(user_id).user_status(user.getUser_status())
 					.login_fail_cnt(failCnt).build());
 		}
 	}

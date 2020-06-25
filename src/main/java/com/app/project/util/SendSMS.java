@@ -12,18 +12,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.app.project.user.UserBean;
-import com.app.project.user.UserService;
+import com.app.project.user.User_bean;
+import com.app.project.user.User_service;
 
 
 @Controller
 public class SendSMS {
 
 	@Autowired
-	private UserService svc;
+	private User_service svc;
 	
 	@PostMapping("/find_num")
-	public ResponseEntity<Void> sendSMS(UserBean user) {
+	public ResponseEntity<Void> sendSMS(User_bean user) {
 		
 		user = svc.findByNum(user);
 		
