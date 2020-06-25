@@ -36,7 +36,6 @@ $(function() {
 		}
 	   $("#admission").text(board.admission);
 	   $("#opentime").text(board.opentime);
-	   $("#content").html(board.content);
 	   
 	   // 초기화 - 버튼영역 감추기
 	   $("#btn_area").hide();
@@ -132,7 +131,9 @@ $(function() {
 				<div class="property-text">
 					<div id="create_input3">
 						<h4 id="title"></h4>
-						<p id="content"></p>
+						<div id="content">
+							${content}
+						</div>
 					</div>
 				<div id="btn_area">
 					<a href="javascript:void(0);" id="update_btn" type="button" class="btn btn-success">수정하기</a>

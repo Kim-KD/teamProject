@@ -1,6 +1,5 @@
 package com.app.project.board.trip.rest;
 
-import java.io.IOException;
 import java.security.Principal;
 
 import javax.servlet.http.Cookie;
@@ -12,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.app.project.board.trip.Trip_board_service;
 import com.app.project.board.trip.Trip_board_bean;
@@ -22,31 +20,6 @@ public class Trip__board_rest_controller {
 	
 	@Autowired
 	private Trip_board_service svc;
-	
-	@PreAuthorize("isAuthenticated()")
-	@PostMapping("/trip_write")
-	public String write(Trip_board_bean board, Principal principal) {
-		board.setUser_id(principal.getName());
-		try {
-			return "trip/trip_read?no=" + svc.tripWrite(board);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return "trip/trip_list";
-	}
-	
-	@PreAuthorize("isAuthenticated()")
-	@PostMapping("/trip_update")
-	public ModelAndView update2(Trip_board_bean board, Principal pcp) {
-		if(board.getUser_id().equals(pcp.getName())) {
-			svc.tripUpdate(board);
-			ModelAndView mav = new ModelAndView();
-			mav.setViewName("trip/trip_read?no="+board.getNo());
-			mav.addObject("board",board);
-			return mav;
-		}
-		return null;
-	}
 	
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/trip_delete")
