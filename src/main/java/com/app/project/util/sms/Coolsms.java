@@ -1,4 +1,4 @@
-package com.app.project.util;
+package com.app.project.util.sms;
 
 import java.io.*;
 import java.net.URLEncoder;

@@ -1,4 +1,4 @@
-package com.app.project.util;
+package com.app.project.util.sms;
 
 import java.util.HashMap;
 import java.util.Random;
