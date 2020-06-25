@@ -1,34 +1,28 @@
-package com.app.project.board.gh;
+package com.app.project.board.gh.mvc;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.app.project.board.gh.GH_BoardBean;
+import com.app.project.board.gh.GH_BoardService;
+import com.app.project.board.gh.GH_RoomBean;
+
 @Controller
 @SessionAttributes("login_data")
-public class GH_BoardController {
+public class GH_Board_mvc_Controller {
 	
 	@Autowired
 	private GH_BoardService bsvc;
 	private ModelAndView mav;
-	
-	// 처음 시작 화면
-//	@GetMapping({"/index","/"})
-//	public ModelAndView home() {
-//		mav = bsvc.index_Page_Slider();
-//		return mav;
-//	}
 	
 	// 게시글 작성
 	@PostMapping("/write")
@@ -63,45 +57,5 @@ public class GH_BoardController {
 	public ModelAndView guest_house_read(@RequestParam("no") int no) {
 		mav = bsvc.guest_house_read(no);
 		return mav;
-	}
-	
-	// 방 정보
-	@PostMapping("/room_info_data")
-	@ResponseBody
-	public List<Map<String,Object>> room_info_data(GH_RoomBean roomBean) {
-		List<Map<String,Object>> roomList = bsvc.room_info_data(roomBean);
-		return roomList;
-	}
-	
-	// 게스트하우스 후기 작성
-	@PostMapping("/gh_view_insert")
-	@ResponseBody
-	public int gh_View_Insert(GH_ViewBean viewBean) {
-		int result = bsvc.gh_View_Insert(viewBean);
-		return result;
-	}
-	
-	// 게스트하우스 후기 읽기
-	@PostMapping("/gh_view_list")
-	@ResponseBody
-	public List<GH_ViewBean> gh_View_Read(int no) {
-		List<GH_ViewBean> viewList = bsvc.gh_View_Read(no);
-		return viewList;
-	}
-	
-	// 게스트하우스 후기 삭제
-	@PostMapping("/gh_view_delete")
-	@ResponseBody
-	public int gh_View_delete(GH_ViewBean viewBean) {
-		int result = bsvc.gh_View_delete(viewBean); 
-		return result;
-	}
-	
-	// 게스트하우스 후기 수정
-	@PostMapping("/gh_view_modify")
-	@ResponseBody
-	public int gh_view_modify(GH_ViewBean viewBean) {
-		int result = bsvc.gh_view_modify(viewBean);
-		return result;
 	}
 }
