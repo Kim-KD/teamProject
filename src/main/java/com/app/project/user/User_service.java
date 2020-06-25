@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.app.project.util.MailUtil;
 import com.app.project.user.AuthorityDao;
+import com.app.project.util.email.MailUtil;
 
 @Service
 public class User_service {

@@ -1,4 +1,4 @@
-package com.app.project.util;
+package com.app.project.util.email;
 
 import java.util.*;
 
