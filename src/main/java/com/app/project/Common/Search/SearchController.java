@@ -12,9 +12,9 @@ public class SearchController {
 	private SearchService ssvc;
 	private ModelAndView mav;
 	
-	@PostMapping("all_search")
-	public ModelAndView all_search(SearchBean searchBean) {
-		mav = ssvc.all_search(searchBean);
+	@PostMapping("/search")
+	public ModelAndView search(SearchBean searchBean) {
+		mav = ssvc.search(searchBean);
 		return mav;
 	}
 	

@@ -13,7 +13,19 @@ $(window).on('scroll', function () {
 });
 
 
+//추가[s]
+$(".searchTag").on("click", function(event) {
+	$(this).siblings('.sp_active').removeClass('sp_active');
+    $(this).addClass('sp_active');
+    event.preventDefault();
+});
 
+$(".index-a-tag").on("click", function(event) {
+	$(this).siblings('.a-active').removeClass('a-active');
+    $(this).addClass('a-active');
+    event.preventDefault();
+});
+// 추가[e]
 
 
 $(document).ready(function(){

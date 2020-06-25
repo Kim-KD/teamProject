@@ -24,6 +24,16 @@ public class GH_Board_mvc_Controller {
 	private GH_BoardService bsvc;
 	private ModelAndView mav;
 	
+	@GetMapping("/guest_house_list")
+	public String guest_house_list() {
+		return "guest_house/guest_house_list";
+	}
+
+	@GetMapping("/guest_house_write")
+	public String write_page() {
+		return "guest_house/guest_house_write";
+	}
+	
 	// 게시글 작성
 	@PostMapping("/write")
 	public String write(GH_BoardBean boardBean, GH_RoomBean roomBean, @RequestParam MultipartFile file) {

@@ -11,4 +11,5 @@ import lombok.Setter;
 @NoArgsConstructor
 public class SearchBean {
 	private String keyword;
+	private String search_type;
 }

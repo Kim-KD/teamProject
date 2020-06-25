@@ -69,6 +69,8 @@
     
     <!-- 검색 area [s]  -->
     <div class="newletter_area overlay">
+    <form action="search" method="post">
+    <input type="hidden" name="_csrf" value="${_csrf.token}">
         <div class="container">
         <div class="row justify-content-left">
                 <div class="col-lg-6 d-none d-md-block">
@@ -95,12 +97,13 @@
                                 <div class="row no-gutters">
                                     <div class="col-lg-10 col-md-10">
                                         <div class="newsletter_field">
-                                            <input type="email" placeholder="검색어를 입력하세요." >
+                                        	<input type="hidden" id="search_type" name="search_type" >
+                                            <input type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요." >
                                         </div>
                                     </div>
                                     <div class="col-lg-2 col-md-2">
                                         <div class="newsletter_btn">
-                                            <button class="boxed-btn4 " type="submit" >검색</button>
+                                            <button class="boxed-btn4 " onclick="return S_search()">검색</button>
                                         </div>
                                     </div>
                                 </div>
@@ -110,5 +113,27 @@
                 </div>
             </div>
         </div>
+	</form>
     </div>
     <!-- where_togo_area_end  -->
+    
+    <script>
+	    function S_search() {
+	    	var keyword = $("#keyword").val();
+	    	var search_type = $('.searchTag.sp_active').text();
+	    	
+	    	if(keyword == '') {
+	    		alert("검색어를 입력해주세요.");
+	    		return false;
+	    	} else if(search_type == "숙소") {
+	    		search_type = "0";
+	    		$('#search_type').val(search_type);
+	    	} else if(search_type == "관광") {
+	    		search_type = "1";
+	    		$('#search_type').val(search_type);
+	    	} else if(search_type == "지역") {
+	    		search_type = "2";
+	    		$('#search_type').val(search_type);
+    		}
+	    }
+    </script>

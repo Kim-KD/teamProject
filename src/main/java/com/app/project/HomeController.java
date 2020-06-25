@@ -17,16 +17,6 @@ public class HomeController {
 		return "about_us";
 	}
 	
-	@GetMapping("/guest_house_list")
-	public String guest_house_list() {
-		return "guest_house/guest_house_list";
-	}
-
-	@GetMapping("/guest_house_write")
-	public String write_page() {
-		return "guest_house/guest_house_write";
-	}
-	
 	@GetMapping("/page3")
 	public String page3() {
 		return "page3";
