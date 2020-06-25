@@ -36,7 +36,7 @@
                         <div class="row align-items-center">
                             <div class="col-xl-2 col-lg-2">
                                 <div class="logo">
-                                    <a href="/">
+                                    <a href="index">
                                         <img src="assets/main/img/import/img/logo.png" alt="게하모 로고" class="bg_logo">
                                     </a>
                                 </div>

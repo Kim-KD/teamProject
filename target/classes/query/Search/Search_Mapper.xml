@@ -5,7 +5,7 @@
 <mapper namespace="Search_Mapper">
 	<!-- 게스트하우스 -->
 	<select id="guest_house_Search" parameterType="search" resultType="gh_Board">
-		select gh.no, gh.title, gh.content, gh.thumbnail
+		select gh.no, gh.title, gh.name, gh.thumbnail
 		from gh_info gh
 		where gh.title like CONCAT('%', #{keyword}, '%')
 		or gh.content like CONCAT('%', #{keyword}, '%')
@@ -13,7 +13,7 @@
 	
 	<!-- 관광지 -->
 	<select id="trip_Search" parameterType="search" resultType="trip_Board">
-		select tr.no, tr.title, tr.content, tr.thumbnail
+		select tr.no, tr.title, tr.name, tr.thumbnail
 		from trip_info tr
 		where tr.title like CONCAT('%', #{keyword}, '%')
 		or tr.content like CONCAT('%', #{keyword}, '%')
@@ -21,14 +21,14 @@
 	
 	<!-- 게스트하우스 지역별 검색 -->
  	<select id="guest_house_area" parameterType="search" resultType="gh_Board">
-		select gh.no, gh.title, gh.content, gh.thumbnail, gh.city
+		select gh.no, gh.title, gh.name, gh.thumbnail, gh.city
 		from gh_info gh
 		where gh.city like CONCAT('%', #{keyword}, '%')
 	</select>
 	
 	<!-- 관광지 지역별 검색 -->
 	<select id="trip_area" parameterType="search" resultType="trip_Board">
-		select tr.no, tr.title, tr.content, tr.thumbnail, tr.city 
+		select tr.no, tr.title, tr.name, tr.thumbnail, tr.city 
 		from trip_info tr
 		where tr.city like CONCAT('%', #{keyword}, '%')
 	</select>

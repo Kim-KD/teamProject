@@ -25,7 +25,10 @@ $(function(){
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="title" placeholder="제목"> 
                 </div>
-				<input type="hidden" value="">
+				<span class="col-sm-2 control-label">게스트하우스 이름</span>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="name" placeholder="게스트하우스 이름"> 
+                </div>
                 <span class="col-sm-2 control-label">지역주소</span>
                 <div class="col-sm-3">
                     <input type="text" class="form-control" name="city" id="city" placeholder="지역주소">

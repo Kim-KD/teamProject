@@ -22,8 +22,8 @@
 							</c:if>
 						</a>
 						</div>
-						<h3>${search_data.title}</h3>
-						<p>${search_data.content}</p>
+						<h3>${search_data.name}</h3>
+						<p>${search_data.title}</p>
 					</div>
 				</div>
 			</c:forEach>
@@ -46,8 +46,8 @@
 							</c:if>
 						</a>
 						</div>
-						<h3>${guest_house_area_search_data.title}</h3>
-						<p>${guest_house_area_search_data.content}</p>
+						<h3>${guest_house_area_search_data.name}</h3>
+						<p>${guest_house_area_search_data.title}</p>
 					</div>
 				</div>
 			</c:forEach>
@@ -68,8 +68,8 @@
 							</c:if>
 						</a>
 						</div>
-						<h3>${trip_area_search_data.title}</h3>
-						<p>${trip_area_search_data.content}</p>
+						<h3>${trip_area_search_data.name}</h3>
+						<p>${trip_area_search_data.title}</p>
 					</div>
 				</div>
 			</c:forEach>

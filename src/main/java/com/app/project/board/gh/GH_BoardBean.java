@@ -39,4 +39,5 @@ public class GH_BoardBean {
 	private String pet;			// 반려동물 출입여부
 	private String check_in;	// 입실 시간
 	private String check_out;	// 퇴실 시간
+	private String name;		// 게스트하우스 이름
 }

@@ -354,7 +354,12 @@
 					<img src="assets/gh_img/unnamed.png" alt="">
 					<div class="aw-text">
 						<h4>${gh_details.user_name}</h4>
-						<h6>게스트 하우스 이름</h6>
+						<c:if test="${gh_details.name == null}">
+							<h6>게스트하우스 이름 없음</h6>
+						</c:if>
+						<c:if test="${gh_details.name != null}">
+							<h6>${gh_details.name}</h6>
+						</c:if>
 						<p>연락처 : ${gh_details.user_radio}</p>
 						<p>이메일 : ${gh_details.user_email}</p>
 						<p>주소 : ${gh_details.address}</p>

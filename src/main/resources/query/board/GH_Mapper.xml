@@ -132,8 +132,8 @@
 	<!-- 게스트하우스 정보 작성 -->
 	<insert id="gh_Insert" parameterType="gh_Board" useGeneratedKeys="true" keyProperty="no">
 		insert into gh_info(user_id, title, content, thumbnail, w_date, 
-		postcode, city, address, on_off, p_link, up_view, views, likes)
-		values(#{user_id}, #{title}, #{content}, #{thumbnail}, now(), #{postcode}, #{city}, #{address}, "y", "n", "n", 0, 0)
+		postcode, city, address, on_off, p_link, up_view, views, likes, name)
+		values(#{user_id}, #{title}, #{content}, #{thumbnail}, now(), #{postcode}, #{city}, #{address}, "y", "n", "n", 0, 0, #{name})
 	</insert>
 
 	<!-- 게스트하우스 상세 정보 작성 -->
@@ -155,28 +155,28 @@
 	
 	<!-- index 최신순  -->
 	<select id="index_New_Slider" resultType="gh_Board">
-		select no, title, content, thumbnail from gh_info
+		select no, title, name, thumbnail from gh_info
 		order by w_date desc
 		limit 0, 6
 	</select>
 
 	<!-- index 조회수  -->
 	<select id="index_Views_Slider" resultType="gh_Board">
-		select no, title, content, thumbnail from gh_info
+		select no, title, name, thumbnail from gh_info
 		order by views desc
 		limit 0, 6
 	</select>
 	
 	<!-- index 추천수  -->
 	<select id="index_Likes_Slider" resultType="gh_Board">
-		select no, title, content, thumbnail from gh_info
+		select no, title, name, thumbnail from gh_info
 		order by likes desc
 		limit 0, 6
 	</select>
 	
 	<!-- 상세보기 페이지 -->
 	<select id="guest_house_read" parameterType="gh_Board" resultType="map">
-		select gi.no, gi.user_id, gi.title, gi.content, gi.address, gi.views, gi.likes, ui.user_name, ui.user_radio, ui.user_email,
+		select gi.no, gi.user_id, gi.title, gi.content, gi.address, gi.views, gi.likes, gi.name, ui.user_name, ui.user_radio, ui.user_email,
 				gmi.party_day, gmi.party_menu, gmi.party_time, gmi.alcohol, gmi.off_time, gmi.join_man, gmi.join_girl, 
 				gmi.wifi, gmi.parking, gmi.morning, gmi.pet, gmi.check_in, gmi.check_out
 		from gh_info gi
