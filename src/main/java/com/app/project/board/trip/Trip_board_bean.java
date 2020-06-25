@@ -20,6 +20,7 @@ public class Trip_board_bean {
 
 	private Integer no;				// 게시글 번호
 	private String user_id;		// 아이디
+	private String name;		// 관광명소 이름
 	private String title;		// 제목 
 	private String content;		// 내용
 	private String postcode;	// 우편번호
