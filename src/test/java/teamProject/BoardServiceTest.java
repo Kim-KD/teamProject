@@ -30,12 +30,12 @@ public class BoardServiceTest {
 //		System.out.println(map.get("view"));
 //	}
 	
-	@Test
-	public void ghReadTest() throws IOException {
-		for (int i = 0; i < 100; i++) {
-			Trip_board_bean trip = Trip_board_bean.builder().user_id("test1234")
-				.title(i+"번째 게시글").content(i+"번째 내용").opentime("씨발").build();
-			tsvc.tripWrite(trip);
-		}
-	}
+//	@Test
+//	public void ghReadTest() throws IOException {
+//		for (int i = 0; i < 100; i++) {
+//			Trip_board_bean trip = Trip_board_bean.builder().user_id("test1234")
+//				.title(i+"번째 게시글").content(i+"번째 내용").opentime("씨발").build();
+//			tsvc.tripWrite(trip);
+//		}
+//	}
 }

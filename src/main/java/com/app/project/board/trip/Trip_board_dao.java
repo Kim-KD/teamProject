@@ -31,16 +31,8 @@ public class Trip_board_dao {
 		return sql.selectOne("trip_mapper.trip_read", no);
 	}
 	
-	public List<Trip_view_bean> trip_view_read(Integer no) {
-		return sql.selectList("trip_mapper.trip_view_read", no);
-	}
-	
 	public int trip_insert(Trip_board_bean board) {
 		return sql.insert("trip_mapper.trip_insert", board);
-	}
-	
-	public int trip_view_insert(Trip_board_bean board) {
-		return sql.insert("trip_mapper.trip_view_insert", board);
 	}
 	
 	public int trip_update(Trip_board_bean board) {
@@ -51,4 +43,29 @@ public class Trip_board_dao {
 		return sql.delete("trip_mapper.trip_delete", no);
 	}
 
+	// 후기 start
+	// 관광명소 후기 작성
+	public int trip_view_insert(Trip_view_bean view) {
+		return sql.insert("trip_mapper.trip_view_insert", view);
+	}
+
+	// 관광명소 후기 총 갯수
+	public List<Trip_view_bean> trip_view_find_all(Integer no) {
+		return sql.selectList("trip_mapper.trip_view_find_all", no);
+	}
+
+	// 관광명소 후기 읽기
+	public Trip_view_bean trip_view_read(Integer vno) {
+		return sql.selectOne("trip_mapper.trip_view_read", vno);
+	}
+
+	// 관광명소 후기 삭제
+	public int trip_view_delete(Integer vno) {
+		return sql.delete("trip_mapper.trip_view_delete", vno);
+	}
+
+	// 관광명소 후기 수정
+	public int trip_view_update(Trip_view_bean view) {
+		return sql.update("trip_mapper.trip_view_update", view);
+	}
 }

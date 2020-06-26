@@ -134,10 +134,10 @@ public class BoardDaoTest {
 	//@Test
 	//@Transactional
 	// 관광명소 후기 작성
-	public void tripViewInsertTest() {
-		Trip_board_bean b = Trip_board_bean.builder().no(2).user_id("aaaa").content("후기 내용").build();
-		assertThat(tripDao.trip_view_insert(b), is(1));
-	}
+//	public void tripViewInsertTest() {
+//		Trip_board_bean b = Trip_board_bean.builder().no(2).user_id("aaaa").content("후기 내용").build();
+//		assertThat(tripDao.trip_view_insert(b), is(1));
+//	}
 	
 	//@Test
 	//@Transactional

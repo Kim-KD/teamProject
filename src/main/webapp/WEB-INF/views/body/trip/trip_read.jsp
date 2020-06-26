@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
+<!DOCTYPE html>
 <sec:authorize access="isAuthenticated()">
    <script>
       var isLogin = true;
@@ -13,13 +14,39 @@
       var loginId = undefined;
    </script>
 </sec:authorize>
-<script src="resources/ckeditor/ckeditor.js"></script>
 <script>
+
+//댓글 가져오기
+function printComment(comments) {
+   var $comments = $("#comments_list");
+   $comments.empty();
+   $.each(comments, function(i, comment) {
+      var $comment = $("<div>").appendTo($comments);
+      var $upper_div = $("<div>").appendTo($comment);
+      var $center_div = $("<div>").attr("id","comment_area"+comment.vno).appendTo($comment);
+      $("<span></span>").text(comment.user_id).appendTo($upper_div);
+      $("<span>").html(comment.content).appendTo($center_div);
+      
+      if(comment.user_id===loginId) {
+          
+    	  var btn = $("<button>").attr("class","delete_comment").attr("data-vno",comment.vno).attr("data-user_id",comment.user_id)
+    	  .text("삭제").appendTo($center_div)
+    	  btn.css("float","right");
+    	  var btn = $("<button>").attr("class","update_comment").attr("data-vno",comment.vno).attr("data-user_id",comment.user_id)
+    	  .text("수정").appendTo($center_div)
+		  btn.css("float","right");
+      }
+      $("<hr>").appendTo($comment);
+   });
+  $("#comment_textarea").val('');	
+}
+
 $(function() {
-	
+
+		/* 초기 화면 셋팅 start */
 	   // 자바객체 -> json -> 자바스크립트 객체
 	   board = JSON.parse('${board}');
-	   $("#update_btn").attr('href',"/guehamo/trip_update?no="+board.no+"&user_id="+board.user_id);
+	   $("#update_btn").attr('href',"/project/trip_update?no="+board.no+"&user_id="+board.user_id);
 	   
 	   $("#title").text(board.title);
 	   $("#name").text(board.name);
@@ -48,7 +75,12 @@ $(function() {
 	   } else if(isLogin===true && board.user_id!==loginId) {
 	      $("#like_btn").prop("disabled", false);
 	   }
-	   
+
+		// 댓글 셋팅
+		printComment(board.comments)
+		
+		/* 초기 화면 셋팅 end */
+		
 		// 게시글 삭제 확인 창 보여주기
 		$('#delete_box_open').on('click', function(){
 			$('#delete_box').modal('show');
@@ -98,6 +130,99 @@ $(function() {
 				alert("게시글을 추천하는데 실패했습니다.");
 			}
 		})
+	})
+
+	/* 후기 start */
+	// 댓글 달기
+   $("#comment_write").on("click", function() {
+     if($("#comment_textarea").val()!=="") {
+	   if(isLogin===false){
+		   alert("로그인을 하고 후기를 작성할 수 있습니다.")
+		   return;
+		}
+      var params = {
+         no : board.no,
+         content : $("#comment_textarea").val(),
+         _csrf: "${_csrf.token}"
+      }
+      $.ajax({
+         url: "/project/view_write",
+         method: "post", 
+         data: params
+      })
+      .done((result)=>{printComment(result);})
+      .fail((result)=>{console.log(result)});
+     }
+   })
+   // 1.댓글 수정 누르면 textarea로 바꾸기
+	$(document).on("click",".update_comment", function() {
+		var text = $("#comment_area"+$(this).attr("data-vno")).children('span').text();
+		var vno = $(this).attr("data-vno");
+		var user_id = $(this).attr("data-user_id");
+		var div_id = $("#comment_area"+vno);
+		div_id.children('span').remove();
+		div_id.append("<textarea id=new_comment"+vno+">"+text+"</textarea>");
+		div_id.append("<button id='comment_update_btn"+vno+" date-vno="+vno+" data-user_id="+user_id+">수정</button>");
+		$(this).hide();
+		var btn = $("<button>").attr("class","update_comment_btn").attr("data-vno",vno).attr("data-user_id",user_id)
+  	  	.text("수정").appendTo(div_id);
+		btn.css("float","right");
+ 	})
+   
+   // 2.댓글 수정 누르면 변경시키기
+	$(document).on("click",".update_comment_btn", function() {
+		// data-no 속성의 값을 꺼낼 때
+    	// data("no") -> 넣은 값의 타입 그대로
+    	// attr("data-no") ->문자열
+    	var param = {
+       		no: board.no,
+       		vno: $(this).attr("data-vno"),
+       		user_id: $(this).attr("data-user_id"),
+       		content: $("#new_comment"+$(this).attr("data-vno")).val(),
+       		_csrf: "${_csrf.token}",
+       		_method:"put"
+    	}
+    	$.ajax({
+       		url: "/project/view_update",
+       		method: "post",
+       		data: param
+    	})
+    	.done((result)=>{
+    		$(this).hide();
+    		var text = $("#new_comment"+$(this).attr("data-vno")).val();
+    		var vno = $(this).attr("data-vno");
+    		var user_id = $(this).attr("data-user_id");
+    		var div_id = $("#comment_area"+vno);
+    		var btn = $("<button>").attr("class","update_comment").attr("data-vno",vno).attr("data-user_id",user_id)
+      	  	.text("수정").appendTo($("#comment_area"+vno));
+  		  	btn.css("float","right");
+			div_id.children('textarea').remove();
+			div_id.append("<span>"+text+"</span>");
+        	})
+    	.fail((result)=>{
+        	console.log(result);
+        	});
+	})
+   
+	// 댓글 삭제
+	$(document).on("click",".delete_comment", function() {
+    	// data-no 속성의 값을 꺼낼 때
+    	// data("no") -> 넣은 값의 타입 그대로
+    	// attr("data-no") ->문자열
+    	var params = {
+       		no : board.no,
+       		vno : $(this).attr("data-vno"),
+       		user_id : $(this).attr("data-user_id"),
+       		_csrf: "${_csrf.token}",
+       		_method:"delete"
+    	}
+    	$.ajax({
+       		url: "/project/view_delete",
+       		method: "post",
+       		data: params
+    	})
+    	.done((result)=>{ printComment(result); })
+    	.fail((result)=>{console.log(result)});
 	})
 })
 </script>
@@ -155,16 +280,10 @@ $(function() {
 				<h4>후기</h4>
 				<div class="row">
 					<div class="col-md-12">
-						<div class="loan-cal-result">후기 내용</div>
-					</div>
-					<div class="col-md-12">
-						<!-- <input type="text" placeholder="후기를 작성해주세요~" id="lc-price"> -->
 						<textarea placeholder="후기를 작성해주세요~"></textarea>
-					</div>						
-					<div class="col-md-12">
-						<div class="text-left text-sm-center">
-							<button class="site-btn1 sb-big1" id="lc-submit">등록</button>
-						</div>
+						<button class="site-btn1 sb-big1" id="comment_write">등록</button>
+					</div>
+					<div id="comments_list">
 					</div>
 				</div>
 			</div>

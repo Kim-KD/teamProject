@@ -26,7 +26,7 @@ $(function(){
 					<div class="blog-text">
 						<div class="blog-date">${board.w_date}</div>
 						<h4><a href="/project/trip_read?no=${board.no}">${board.name}</a></h4>
-						<h4><a href="/project/trip_read?no=${board.no}">${board.title}</a></h4>
+						<p><a href="/project/trip_read?no=${board.no}">${board.title}</a></p>
 						<a href="/project/trip_read?no=${board.no}" class="readmore-btn">자세히 보기</a>
 					</div>
 				</div>

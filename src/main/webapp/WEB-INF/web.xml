@@ -80,6 +80,24 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
+	<!-- 
+	MVC : 백이  프론트의 화면을 이동
+		ModelAndView
+		get-변경x, post-변경o
+		url은 동사사용
+	REST : 백은 프론트에게 데이터를 공급. ajax요청
+		ResponseEntity: 결과 + 상태코드
+		읽기(get), 쓰기(post), 변경(put,path), 삭제(delete)
+		put, patch, delete (REST)를 지원하기 위한 필터 -->
+	<filter>
+      <filter-name>httpMethodFilter</filter-name>
+      <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+   </filter>
+   <filter-mapping>
+      <filter-name>httpMethodFilter</filter-name>
+      <url-pattern>/*</url-pattern>
+   </filter-mapping>
+
 	<!-- 스프링 시큐리티 -->
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>

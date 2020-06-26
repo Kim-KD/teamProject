@@ -2,8 +2,6 @@ package com.app.project.board.trip;
 
 import java.io.File;
 import java.io.IOException;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.app.project.board.CommentDao;
 import com.app.project.board.Page;
 import com.app.project.board.UploadInfoBean;
 import com.app.project.board.UploadInfoDao;
@@ -24,8 +21,6 @@ public class Trip_board_service {
 	private Trip_board_dao dao;
 	@Autowired
 	private UploadInfoDao uploadDao;
-	@Autowired
-	private CommentDao commentDao;
 
 	public Page tripList(int pageno, String user_id) {
 		int countOfBoard = dao.trip_count(user_id);
@@ -38,7 +33,7 @@ public class Trip_board_service {
 	}
 	
 	// 게시글 작성
-	public int tripWrite(Trip_board_bean board) throws IOException {
+	public int trip_write(Trip_board_bean board) throws IOException {
 		
 		dao.trip_insert(board);
 		
@@ -61,7 +56,7 @@ public class Trip_board_service {
 	}
 	
 	// 게시글 읽기
-	public Trip_board_bean tripRead(Integer no, String user_id) {
+	public Trip_board_bean trip_read(Integer no, String user_id) {
 		Trip_board_bean board = dao.trip_read(no);
 		// 로그인했다 && 글쓴이가 아니다
 		if(user_id!=null && user_id.equals(board.getUser_id())==false)
@@ -70,17 +65,40 @@ public class Trip_board_service {
 //		String str = board.getW_date().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일"));
 //		board.setW_date(str);
 		board.setUpload_info(uploadDao.findAllByBno(board.getNo()));
-		board.setComments(commentDao.findAllByBno(board.getNo()));
+//		board.setComments(commentDao.findAllByBno(board.getNo()));
 		return board;
 	}
 	
 	// 게시글 수정
-	public int tripUpdate(Trip_board_bean board) {
+	public int trip_update(Trip_board_bean board) {
 		return dao.trip_update(board);
 	}
 	
 	// 게시글 삭제
-	public int tripDelete(int no) {
+	public int trip_delete(int no) {
 		return dao.trip_delete(no);
+	}
+	
+	// 후기 start
+	// 게스트하우스 후기 작성
+	public List<Trip_view_bean> trip_view_insert(Trip_view_bean view) {
+		dao.trip_view_insert(view);
+		return dao.trip_view_find_all(view.getNo());
+	}
+
+	// 게스트하우스 후기 읽기
+	public Trip_view_bean trip_view_read(Integer vno) {
+		return dao.trip_view_read(vno);
+	}
+
+	// 게스트하우스 후기 삭제
+	public List<Trip_view_bean> trip_view_delete(Integer no, Integer vno) {
+		dao.trip_view_delete(vno);
+		return dao.trip_view_find_all(no); 
+	}
+
+	// 게스트하우스 후기 수정
+	public int trip_view_update(Trip_view_bean view) {
+		return dao.trip_view_update(view);
 	}
 }

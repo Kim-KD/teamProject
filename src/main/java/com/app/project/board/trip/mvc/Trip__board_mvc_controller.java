@@ -46,7 +46,7 @@ public class Trip__board_mvc_controller {
 	public String write(Trip_board_bean board, Principal principal) {
 		board.setUser_id(principal.getName());
 		try {
-			return "redirect:/trip_read?no=" + svc.tripWrite(board);
+			return "redirect:/trip_read?no=" + svc.trip_write(board);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -58,7 +58,7 @@ public class Trip__board_mvc_controller {
 		String check = null;
 		Cookie[] cookies = req.getCookies();
 		String username = pcp!=null? pcp.getName():null;
-		Trip_board_bean board = svc.tripRead(no, username);
+		Trip_board_bean board = svc.trip_read(no, username);
 		if(cookies != null) {
 			for(Cookie c : cookies) {
 				if(c.getName().equals("post"+ no)) {
@@ -71,7 +71,7 @@ public class Trip__board_mvc_controller {
 			hits.setMaxAge(1*60*60);
 			res.addCookie(hits);
 			board.setViews(board.getViews()+1);
-			svc.tripUpdate(board);
+			svc.trip_update(board);
 		}
 		String content = board.getContent();
 		board.setContent(null);
@@ -85,7 +85,7 @@ public class Trip__board_mvc_controller {
 	@GetMapping("/trip_update")
 	public ModelAndView update1(Integer no, String user_id, Principal pcp) {
 		if(user_id.equals(pcp.getName())) {
-			Trip_board_bean board = svc.tripRead(no,user_id);
+			Trip_board_bean board = svc.trip_read(no,user_id);
 			ModelAndView mav = new ModelAndView();
 			mav.setViewName("trip/trip_update");
 			mav.addObject("board",board);
@@ -98,7 +98,7 @@ public class Trip__board_mvc_controller {
 	@PostMapping("/trip_update")
 	public ModelAndView update2(Trip_board_bean board, Principal pcp) {
 		if(board.getUser_id().equals(pcp.getName())) {
-			svc.tripUpdate(board);
+			svc.trip_update(board);
 			ModelAndView mav = new ModelAndView();
 			mav.setViewName("trip/trip_read?no="+board.getNo());
 			mav.addObject("board",board);

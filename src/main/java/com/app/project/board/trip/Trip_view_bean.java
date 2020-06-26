@@ -13,7 +13,8 @@ import lombok.Setter;
 @Builder
 public class Trip_view_bean {
 
-	private int no;
+	private Integer no;
+	private Integer vno;
 	private String user_id;
 	private String content;
 	

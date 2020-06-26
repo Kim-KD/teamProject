@@ -15,7 +15,7 @@
 	</select>
 
 	<!-- 관광 명소 게시글 정보 -->
-	<select id="trip_find_all" resultType="trip_Board"> 
+	<select id="trip_find_all" resultType="trip_board"> 
  	<![CDATA[ 
  		select no,user_id,title,content,admission,opentime,w_date wDate,
 			city,postcode,address,on_off,p_link,up_view,views,likes,name
@@ -25,22 +25,15 @@
 	</select>
 
 	<!-- 관광명소 게시글 읽기 -->
-	<select id="trip_read" resultType="trip_Board">
+	<select id="trip_read" resultType="trip_board">
 		select no,user_id,title,content,city,address,on_off,p_link,up_view
 		,likes,views,w_date,postcode,admission,opentime,thumbnail,name
 		from trip_info
 		where trip_info.no = #{no};
 	</select>
 	
-	<!-- 관광명소 후기 읽기(게시글 번호에 맞는 후기 전부 찾는다) -->
-	<select id="trip_view_read" resultType="trip_Board">
-		select no,user_id,content
-		from trip_view_info
-		where trip_view_info.no = #{no}
-	</select>
-	
 	<!-- 관광명소 게시글 작성 -->
-	<insert id="trip_insert" parameterType="trip_Board" useGeneratedKeys="true" keyProperty="no">
+	<insert id="trip_insert" parameterType="trip_board" useGeneratedKeys="true" keyProperty="no">
 		insert into trip_info(no, user_id, title, content, admission, opentime,w_date,name
 		, city, postcode, address, thumbnail, on_off, p_link, up_view, views, likes, board_status)
 		values(#{no},#{user_id},#{title},#{content},#{admission},#{opentime}
@@ -69,18 +62,49 @@
 		where no=#{no}
 	</update>
 
-	<!-- 관광명소 후기 작성 -->
-	<insert id="trip_view_insert" parameterType="trip_Board">
-		insert into trip_view_info(no, user_id, content)
-		values(#{no}, #{user_id}, #{content})
-	</insert>
-
 	<!-- 관광명소 게시글 삭제 -->
 	<delete id="trip_delete">
 		delete trip_info, trip_view_info
 		from trip_info
 			left join trip_view_info on (trip_view_info.no = trip_info.no)
 		where trip_info.no = #{no};
+	</delete>
+
+	<!-- 후기 start -->
+	<!-- 관광명소 후기 작성 -->
+	<insert id="trip_view_insert" parameterType="trip_view" useGeneratedKeys="true" keyProperty="vno">
+		insert into trip_view_info(no, user_id, content)
+		values(#{no}, #{user_id}, #{content})
+	</insert>
+
+	<!-- 관광명소 게시글의 후기 총 갯수 -->
+	<select id="trip_view_find_all" resultType="trip_view">
+		select no,vno,user_id,content
+		from trip_view_info
+		where trip_view_info.no = #{no}
+		order by vno desc
+	</select>
+
+	<!-- 관광명소  후기 읽기 -->
+	<select id="trip_view_read" resultType="trip_view">
+		select no,vno,user_id,content
+		from trip_view_info
+		where trip_view_info.vno = #{vno}
+	</select>
+
+	<!-- 게스트하우스 후기 수정 -->
+	<update id="trip_view_update">
+		update trip_view_info
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="content != null">content = #{content},</if>
+		</trim>
+		where no = #{no} and vno = #{vno}
+	</update>
+
+	<!-- 게스트하우스 후기 삭제 -->
+	<delete id="trip_view_delete">
+		delete from trip_view_info
+		where vno = #{vno}
 	</delete>
 
 </mapper>
