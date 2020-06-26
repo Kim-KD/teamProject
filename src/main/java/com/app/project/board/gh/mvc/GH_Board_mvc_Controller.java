@@ -24,9 +24,11 @@ public class GH_Board_mvc_Controller {
 	private GH_BoardService bsvc;
 	private ModelAndView mav;
 	
+	// 게스트하우스 리스트
 	@GetMapping("/guest_house_list")
-	public String guest_house_list() {
-		return "guest_house/guest_house_list";
+	public ModelAndView guest_house_list() {
+		mav = bsvc.guest_house_list();
+		return mav;
 	}
 
 	@GetMapping("/guest_house_write")

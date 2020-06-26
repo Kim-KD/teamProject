@@ -30,6 +30,11 @@ public class GH_BoardDao {
 	
 // ==============================================================
 	
+	// 게스트하우스 리스트
+	public List<GH_BoardBean> guest_house_list() {
+		return sql.selectList("GH_Mapper.guest_house_list");
+	}
+	
 	// 게스트 하우스 게시글 작성
 	public int gh_Insert(GH_BoardBean boardBean) {
 		return sql.insert("GH_Mapper.gh_Insert", boardBean);

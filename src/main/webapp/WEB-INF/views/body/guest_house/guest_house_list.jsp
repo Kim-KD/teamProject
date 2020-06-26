@@ -8,113 +8,22 @@
 			<h2>게스트 하우스</h2>
 		</div>
 		<div class="row">
+			<c:forEach items="${boardList}" var="boardList">
 			<div class="col-lg-4 col-md-6">
 				<div class="blog-item">
-					<img src="assets/img/blog/1.jpg" alt="">
+					<a href="guest_house_read?no=${boardList.no}"><img src="assets/main/img/property/${boardList.thumbnail})"></a>
 					<div class="blog-text">
-						<div class="blog-date">April 16, 2019</div>
-						<h4>How to buy a house in this market</h4>
-						<p>Fusce lobortis a enim eget tempus. Class aptent taciti sociosqu ad litora. Donec eget efficitur ex. Donec eget dolor vitae eros feugiat tristique id vitae massa. </p>
-						<a href="#" class="readmore-btn">Read More</a>
+						<div class="blog-date">${boardList.w_date}</div>
+						<h4><a href="guest_house_read?no=${boardList.no}">${boardList.name}</a></h4>
+						<h4><a href="guest_house_read?no=${boardList.no}">${boardList.title}</a></h4>
+						<a href="guest_house_read?no=${boardList.no}" class="readmore-btn">자세히 보기</a>
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-4 col-md-6">
-				<div class="blog-item">
-					<img src="assets/img/blog/2.jpg" alt="">
-					<div class="blog-text">
-						<div class="blog-date">April 16, 2019</div>
-						<h4>5 Tips to get a good deal on your house</h4>
-						<p>Fusce lobortis a enim eget tempus. Class aptent taciti sociosqu ad litora. Donec eget efficitur ex. Donec eget dolor vitae eros feugiat tristique id vitae massa. </p>
-						<a href="#" class="readmore-btn">Read More</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6">
-				<div class="blog-item">
-					<img src="assets/img/blog/3.jpg" alt="">
-					<div class="blog-text">
-						<div class="blog-date">April 16, 2019</div>
-						<h4>Papers you need to buy a house </h4>
-						<p>Fusce lobortis a enim eget tempus. Class aptent taciti sociosqu ad litora. Donec eget efficitur ex. Donec eget dolor vitae eros feugiat tristique id vitae massa. </p>
-						<a href="#" class="readmore-btn">Read More</a>
-					</div>
-				</div>
-			</div>
+         </c:forEach>
 		</div>
-		<div class="row">
-			<div class="col-lg-4 col-md-6">
-				<div class="blog-item">
-					<img src="assets/img/blog/4.jpg" alt="">
-					<div class="blog-text">
-						<div class="blog-date">April 16, 2019</div>
-						<h4>How to buy a house in this market</h4>
-						<p>Fusce lobortis a enim eget tempus. Class aptent taciti sociosqu ad litora. Donec eget efficitur ex. Donec eget dolor vitae eros feugiat tristique id vitae massa. </p>
-						<a href="#" class="readmore-btn">Read More</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6">
-				<div class="blog-item">
-					<img src="assets/img/blog/5.jpg" alt="">
-					<div class="blog-text">
-						<div class="blog-date">April 16, 2019</div>
-						<h4>5 Tips to get a good deal on your house</h4>
-						<p>Fusce lobortis a enim eget tempus. Class aptent taciti sociosqu ad litora. Donec eget efficitur ex. Donec eget dolor vitae eros feugiat tristique id vitae massa. </p>
-						<a href="#" class="readmore-btn">Read More</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6">
-				<div class="blog-item">
-					<img src="assets/img/blog/6.jpg" alt="">
-					<div class="blog-text">
-						<div class="blog-date">April 16, 2019</div>
-						<h4>Papers you need to buy a house </h4>
-						<p>Fusce lobortis a enim eget tempus. Class aptent taciti sociosqu ad litora. Donec eget efficitur ex. Donec eget dolor vitae eros feugiat tristique id vitae massa. </p>
-						<a href="#" class="readmore-btn">Read More</a>
-					</div>
-				</div>
-			</div>
-		</div>
-<!-- 		<div class="section-title"> -->
-<!-- 			<h2>관광명소</h2> -->
-<!-- 		</div> -->
-<!-- 		<div class="blog-item feature-blog"> -->
-<!-- 			<div class="row"> -->
-<!-- 				<div class="col-lg-6"> -->
-<!-- 					<img src="assets/img/blog/big-1.jpg" alt=""> -->
-<!-- 				</div> -->
-<!-- 				<div class="col-lg-6"> -->
-<!-- 					<div class="blog-text"> -->
-<!-- 						<div class="blog-date">April 16, 2019</div> -->
-<!-- 						<h4>Papers you need to buy a house </h4> -->
-<!-- 						<p>Fusce lobortis a enim eget tempus. Class aptent taciti sociosqu ad litora. Donec eget efficitur ex. Donec eget dolor vitae eros feugiat tristique id vitae massa.  Donec eget dolor vitae eros feugiat tristique id vitae massa.  Donec eget dolor vitae eros feugiat tristique id vitae massa. </p> -->
-<!-- 						<a href="#" class="readmore-btn">Read More</a> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 		<div class="blog-item feature-blog"> -->
-<!-- 			<div class="row"> -->
-<!-- 				<div class="col-lg-6"> -->
-<!-- 					<img src="assets/img/blog/big-2.jpg" alt=""> -->
-<!-- 				</div> -->
-<!-- 				<div class="col-lg-6"> -->
-<!-- 					<div class="blog-text"> -->
-<!-- 						<div class="blog-date">April 16, 2019</div> -->
-<!-- 						<h4>Papers you need to buy a house </h4> -->
-<!-- 						<p>Fusce lobortis a enim eget tempus. Class aptent taciti sociosqu ad litora. Donec eget efficitur ex. Donec eget dolor vitae eros feugiat tristique id vitae massa.  Donec eget dolor vitae eros feugiat tristique id vitae massa.  Donec eget dolor vitae eros feugiat tristique id vitae massa. </p> -->
-<!-- 						<a href="#" class="readmore-btn">Read More</a> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-		<div class="site-pagination">
-			<a href="#">01.</a>
-			<a href="#" class="active">02.</a>
-			<a href="#">03.</a>
-			<a href="#">04.</a>
+		<div class="site-pagination" style="text-align: right">
+			<a href="guest_house_write" class="btn px-4 btn-primary text-white">글 작성</a>
 		</div>
 	</div>
 </section>

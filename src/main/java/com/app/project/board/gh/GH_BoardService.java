@@ -35,6 +35,16 @@ public class GH_BoardService {
 	
 // ==============================================================
 	
+	// 게스트하우스 리스트
+	public ModelAndView guest_house_list() {
+		List<GH_BoardBean> boardList = bdao.guest_house_list();
+		
+		mav = new ModelAndView();
+		mav.addObject("boardList", boardList);
+		mav.setViewName("guest_house/guest_house_list");
+		return mav;
+	}
+	
 	// 게시글 작성
 	public void write(GH_BoardBean boardBean, GH_RoomBean roomBean) {
 		bdao.gh_Insert(boardBean);
