@@ -69,7 +69,7 @@
     
     <!-- 검색 area [s]  -->
     <div class="newletter_area overlay">
-    <form action="search" method="post">
+    <form action="search" method="get">
     <input type="hidden" name="_csrf" value="${_csrf.token}">
         <div class="container">
         <div class="row justify-content-left">
