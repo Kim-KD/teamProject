@@ -46,7 +46,7 @@
                                     <nav>
                                         <ul id="navigation">
                                             <li><a class="active" href="guest_house_list">숙소</a></li>
-                                            <li><a href="about.html">트립</a></li>
+                                            <li><a href="trip_list">트립</a></li>
                                             <li><a class="" href="travel_destination.html">정보</a></li>
                                             <li><a class="" href="travel_destination.html">교통</a></li>
                                             <li><a class="" href="travel_destination.html">할인&이벤트</a></li>

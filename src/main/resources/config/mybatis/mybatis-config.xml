@@ -11,6 +11,6 @@
 		<typeAlias alias="search" type="com.app.project.Common.Search.SearchBean" />
 		
 		<typeAlias alias="trip_board" type="com.app.project.board.trip.Trip_board_bean" />
-		<typeAlias alias="trip_view" type="com.app.guehamo.board.trip.Trip_view_bean" />
+		<typeAlias alias="trip_view" type="com.app.project.board.trip.Trip_view_bean" />
 	</typeAliases>
 </configuration>
