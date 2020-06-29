@@ -2,6 +2,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7096ea5f9666571cfb87c2ec2957f892&libraries=services,clusterer,drawing"></script>
 <sec:authorize access="isAuthenticated()">
    <script>
       var isLogin = true;
@@ -224,6 +225,51 @@ $(function() {
     	.done((result)=>{ printComment(result); })
     	.fail((result)=>{console.log(result)});
 	})
+
+	<!-- kakao 지도 api -->
+		// 검색 지도 경도위도 알아내기
+		// var coordXY = document.getElementById("coordXY");
+		
+		var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+		var options = { center: new kakao.maps.LatLng(33.450701, 126.570667), // 위도경도
+				level: 3 //지도의 레벨(확대, 축소 정도)
+				};
+				var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+				
+				// 지도타입 컨트롤, 줌 컨트롤 생성
+				var mapTypeControl = new kakao.maps.MapTypeControl(); map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+				var zoomControl = new kakao.maps.ZoomControl(); map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT); // ★ 주소-좌표 변환 객체를 생성
+				var geocoder = new kakao.maps.services.Geocoder();
+				
+				// ★ 주소로 좌표를 검색
+				geocoder.addressSearch(board.city+board.address, function(result, status) {
+					// 정상적으로 검색이 완료됐으면
+					if (status === kakao.maps.services.Status.OK) {
+						
+						var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+						yy = result[0].x;
+						xx = result[0].y;
+						
+						// 결과값으로 받은 위치를 마커로 표시
+						var marker = new kakao.maps.Marker({ map: map, position: coords });
+						
+						// 인포윈도우로 장소에 대한 설명을 표시
+						var iwContent = '<div style="padding:5px;">'+board.name+'<br>'
+						+'<a href="https://map.kakao.com/link/map/'+board.name+','+xx+','+yy+'" style="color:blue" target="_blank">크게 보기</a> '
+						+' <a href="https://map.kakao.com/link/to/'+board.name+','+xx+','+yy+'" style="color:blue" target="_blank">길찾기</a>'+'</div>'
+						var infowindow = new kakao.maps.InfoWindow({ content : iwContent }); infowindow.open(map, marker);
+						
+						// 지도의 중심을 결과값으로 받은 위치로 이동
+						map.setCenter(coords);
+						
+						// ★ resize 마커 중심
+						var markerPosition = marker.getPosition();
+						$(window).on('resize', function(){ map.relayout(); map.setCenter(markerPosition); });
+						
+						// ★ 검색 경도위도 표시 
+						// coordXY.innerHTML = "<br>X좌표 : " + xx + "<br><br>Y좌표 : " + yy; } else { console.log('에러');
+					}
+				});
 })
 </script>
 <style>
@@ -297,9 +343,9 @@ $(function() {
 					<a href="#" class="readmore-btn">블로그 or 카페 or SNS 링크</a>
 				</div>
 			</div>
-			<div class="map-widget">
-				<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14376.077865872314!2d-73.879277264103!3d40.757667781624285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1546528920522" style="border:0" allowfullscreen></iframe>
-				</div>
+				<!-- kakao 지도 api -->
+				<div id="map" style="width:300px; height:400px"></div>
+				<!-- 위도 경도 좌표 표시 <div id="coordXY"></div> -->
 			</div>
 		</div>
 	</div>
