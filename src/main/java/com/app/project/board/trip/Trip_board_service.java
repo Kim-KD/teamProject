@@ -60,12 +60,12 @@ public class Trip_board_service {
 		Trip_board_bean board = dao.trip_read(no);
 		// 로그인했다 && 글쓴이가 아니다
 		if(user_id!=null && user_id.equals(board.getUser_id())==false)
-			dao.trip_update(Trip_board_bean.builder().no(no).views(0).build());
+			dao.trip_update(Trip_board_bean.builder().no(no).build());
 		
 //		String str = board.getW_date().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일"));
 //		board.setW_date(str);
 		board.setUpload_info(uploadDao.findAllByBno(board.getNo()));
-//		board.setComments(commentDao.findAllByBno(board.getNo()));
+		board.setComments(dao.trip_view_find_all(board.getNo()));
 		return board;
 	}
 	
