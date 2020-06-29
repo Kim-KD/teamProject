@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7096ea5f9666571cfb87c2ec2957f892&libraries=services,clusterer,drawing"></script>
 <sec:authorize access="isAuthenticated()">
    <script>
@@ -283,7 +285,7 @@ $(function() {
 				<div class="single-property">
 				
 					<div class="sp-image">
-						<img src="assets/img/property/big.jpg" alt="">
+						<!-- <img src="assets/img/property/big.jpg" alt=""> -->
 						<div class="sp-badge new">New</div>
 					</div>
 
@@ -336,7 +338,7 @@ $(function() {
 		</div>
 		<div class="col-lg-4 col-md-8 sidebar">
 			<div class="agent-widget">
-				<img src="assets/gh_img/unnamed.png" alt="">
+				<!-- <img src="assets/gh_img/unnamed.png" alt=""> -->
 				<div class="aw-text">
 					<h6 id="user_id"></h6>
 					<h6 id="name"></h6>
