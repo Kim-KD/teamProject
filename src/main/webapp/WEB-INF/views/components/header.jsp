@@ -8,6 +8,8 @@
     <title>게하모 | 게스트 하우스의 모든것</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta id="_csrf" name="_csrf" content="${_csrf.token}" />
+    <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}" />
 
     <link rel="shortcut icon" type="image/x-icon" href="assets/main/img/import/img/icon.png">
 

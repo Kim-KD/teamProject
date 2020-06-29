@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
  <!-- 헤더 [s] -->
 <header>
 	<div id="top-sticky-header" class="top-main-header-area d-none d-md-block">
@@ -14,12 +15,12 @@
 	                            <sec:authorize access="isAuthenticated()">
                             <c:set var="loginId"
 							value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}"></c:set>
-								<a href="/guehamo/profile">${loginId}님 환영합니다.</a>
+								<a href="/project/profile">${loginId}님 환영합니다.</a>
 								&nbsp;&nbsp;&nbsp;
 								<a href="javascript:void(0);" id="logoutBtn" class="register">로그아웃</a>
                             </sec:authorize>
                             <sec:authorize access="isAnonymous()">
-	                            <a href="/guehamo/login" class="top-a-tag sp_active">로그인</a>	
+	                            <a href="/project/login" class="top-a-tag sp_active">로그인</a>	
 	                            <a href="javascript:void(0);" class="top-a-tag">회원가입</a>
 	                        </sec:authorize>
 	                            <a href="javascript:void(0);" class="top-a-tag">고객센터</a>
@@ -118,6 +119,18 @@
     <!-- where_togo_area_end  -->
     
     <script>
+    $(function(){
+    	$("#logoutBtn").on("click", function() {
+    		$.ajax({
+    			url: "/project/logout",
+    			method: "post",
+    			data: "_csrf="+"${_csrf.token}",
+    			success: function() {
+    				location.href = "/project";
+    			}
+    		})
+    	})
+    })
 	    function S_search() {
 	    	var keyword = $("#keyword").val();
 	    	var search_type = $('.searchTag.sp_active').text();

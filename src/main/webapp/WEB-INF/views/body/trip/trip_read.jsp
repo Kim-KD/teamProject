@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7096ea5f9666571cfb87c2ec2957f892&libraries=services,clusterer,drawing"></script>
 <sec:authorize access="isAuthenticated()">
    <script>
