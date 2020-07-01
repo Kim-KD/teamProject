@@ -3,49 +3,12 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="GH_Mapper">
-	<!-- 게스트하우스 리스트 -->
-	<select id="testlist" resultType="map">
-		<!-- select g.no, g.title, g.content, r.price
-		from gh_info g
-		left join gh_more_info m on g.no = m.no
-		left join gh_room_info r on r.no = m.no -->
-		
-		select g.no, g.title, g.content, r.price
-		from gh_info g
-		left join gh_room_info r on g.no = r.no
-	</select>
-	
 	<!-- 게스트 하우스 게시글 총 갯수 -->
 	<!-- <select id='gh_Count' resultType='int'>
 		select /*+ index_ffs(gh_info
 		pk_gh_num)*/ count(*)
 		from gh_info
 	</select> -->
-
-	<!-- 게스트 하우스 게시글 정보 -->
-	<!-- <select id="gh_Find_All" resultType="board"> 
- 	<![CDATA[ 
- 		select*from 
- 			(select gh.*,rownum as rnum from 
- 				(select /*+ index_desc(gh_info gh_pk_no)*/  
- 				no,user_id userId,title,content,w_date wDate,city,postcode, 
- 				address,on_off onOff,p_link pLink,up_view upView,views,likes
- 				from gh_info)gh 
- 			where rownum<=#{endRowNum})
- 		where rnum>=#{startRowNum}
- 	]]>
-	</select> -->
-
-	<!-- 게스트하우스 게시글 읽기 -->
-	<select id="gh_Read" resultType="gh_Board">
-		select g.no,g.user_id,title,g.content,city,address,on_off,p_link,up_view,views,likes
-		,w_date,postcode,room,room_status,price,photo,room_people,party_menu,alcohol,party_time
-		,off_time,join_man,join_girl,party_day,wifi,parking,morning,pet,check_in,check_out
-		from gh_room_info r
-		left join gh_more_info m on (r.no = m.no)
-		left join gh_info g on (m.no = g.no)
-		where g.no = #{no} and r.room_status = 1;
-	</select>
 
 	<!-- 게스트하우스 게시글 수정(조회수,추천수 상승,게스트 하우스 전체 테이블 포함) -->
 	<update id="gh_Update">
@@ -116,20 +79,10 @@
 		</trim>
 		where no=#{no}
 	</update>
-
-	<!-- 게스트하우스 게시글 + 후기 삭제 -->
-	<delete id="gh_Delete">
-		delete gh_info, gh_more_info, gh_room_info, gh_view_info
-			from gh_view_info
-				left join gh_room_info on (gh_view_info.no = gh_room_info.no)
-				left join gh_more_info on (gh_room_info.no = gh_more_info.no)
-				left join gh_info on (gh_more_info.no = gh_info.no)
-			where gh_view_info.no = #{no}
-	</delete>
 	
 	<!-- ============================================================== -->
 	
-	<!-- 게스트하우스 리스트 -->
+	<!-- 게스트하우스 목록 -->
 	<select id="guest_house_list" resultType="gh_Board">
 		select no, title, name, thumbnail
 		from gh_info
@@ -160,30 +113,66 @@
 		</foreach>
 	</insert>
 	
-	<!-- index 최신순  -->
-	<select id="index_New_Slider" resultType="gh_Board">
-		select no, title, name, thumbnail from gh_info
-		order by w_date desc
-		limit 0, 6
-	</select>
-
-	<!-- index 조회수  -->
-	<select id="index_Views_Slider" resultType="gh_Board">
-		select no, title, name, thumbnail from gh_info
-		order by views desc
-		limit 0, 6
-	</select>
+	<!-- 게스트하우스 정보 수정 -->
+	<update id="gh_Modify" parameterType="gh_Board" useGeneratedKeys="true" keyProperty="no">
+		update gh_info set
+			title = #{title},
+			content = #{content},
+			thumbnail = #{thumbnail},
+			w_date = now(),
+			postcode = #{postcode},
+			city = #{city},
+			address = #{address},
+			name = #{name}
+		where no = #{no}
+	</update>
 	
-	<!-- index 추천수  -->
-	<select id="index_Likes_Slider" resultType="gh_Board">
-		select no, title, name, thumbnail from gh_info
-		order by likes desc
-		limit 0, 6
-	</select>
+	<!-- 게스트하우스 상세 정보 수정 -->
+	<update id="gh_More_Modify" parameterType="gh_Board">
+		update gh_more_info set
+			party_menu = #{party_menu},
+			alcohol = #{alcohol},
+			party_time = #{party_time},
+			off_time = #{off_time},
+			join_man = #{join_man},
+			join_girl = #{join_girl},
+			party_day = #{party_day},
+			wifi = #{wifi},
+			parking = #{parking},
+			morning = #{morning},
+			pet = #{pet},
+			check_in = #{check_in},
+			check_out = #{check_out}
+		where no = #{no}
+	</update>
+	
+	<!-- 게스트하우스 방 정보 수정 -->
+	<update id="gh_Room_Modify" parameterType="list">
+		<foreach item="roomList" collection="list">
+			update gh_room_info set
+				room = #{roomList.room},
+				room_status = #{roomList.room_status},
+				price = #{roomList.price},
+				photo = #{roomList.photo},
+				room_people = #{roomList.room_people},
+				gender = #{roomList.gender}
+			where no = #{roomList.no}
+		</foreach>
+	</update>
+	
+	<!-- 게스트하우스 게시글 + 후기 삭제 -->
+	<delete id="gh_delete" parameterType="gh_Board">
+		delete gh_info, gh_more_info, gh_room_info, gh_view_info
+		from gh_more_info
+			left join gh_room_info on (gh_more_info.no = gh_room_info.no)
+			left join gh_view_info on (gh_more_info.no = gh_view_info.no)
+			left join gh_info on (gh_more_info.no = gh_info.no)
+		where gh_more_info.no = #{no}
+	</delete>
 	
 	<!-- 상세보기 페이지 -->
 	<select id="guest_house_read" parameterType="gh_Board" resultType="map">
-		select gi.no, gi.user_id, gi.title, gi.content, gi.address, gi.views, gi.likes, gi.name, ui.user_name, ui.user_radio, ui.user_email,
+		select gi.no, gi.user_id, gi.title, gi.content, gi.address, gi.city, gi.views, gi.likes, gi.name, ui.user_name, ui.user_radio, ui.user_email,
 				gmi.party_day, gmi.party_menu, gmi.party_time, gmi.alcohol, gmi.off_time, gmi.join_man, gmi.join_girl, 
 				gmi.wifi, gmi.parking, gmi.morning, gmi.pet, gmi.check_in, gmi.check_out
 		from gh_info gi
@@ -223,5 +212,26 @@
 	<update id="gh_view_modify" parameterType="gh_View">
 		update gh_view_info set content = #{content} where no = #{no} and re_no = #{re_no}
 	</update>
+	
+	<!-- index 최신순  -->
+	<select id="index_New_Slider" resultType="gh_Board">
+		select no, title, name, thumbnail from gh_info
+		order by w_date desc
+		limit 0, 6
+	</select>
+
+	<!-- index 조회수  -->
+	<select id="index_Views_Slider" resultType="gh_Board">
+		select no, title, name, thumbnail from gh_info
+		order by views desc
+		limit 0, 6
+	</select>
+	
+	<!-- index 추천수  -->
+	<select id="index_Likes_Slider" resultType="gh_Board">
+		select no, title, name, thumbnail from gh_info
+		order by likes desc
+		limit 0, 6
+	</select>
 	
 </mapper>

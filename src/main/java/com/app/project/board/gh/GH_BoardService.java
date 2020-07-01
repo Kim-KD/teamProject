@@ -14,28 +14,8 @@ public class GH_BoardService {
 	@Autowired
 	private GH_BoardDao bdao;
 	private ModelAndView mav;
-
-	// 게시글 읽기
-//	public Map ghRead(int no) {
-//		Map<String,Object> map = new HashMap<String, Object>();
-//		map.put("info", bdao.gh_Read(no));
-//		map.put("view", bdao.gh_View_Read(no));
-//		return map;
-//	}
 	
-	// 게시글 방 정보 읽기
-	public List<Map> ghRoomRead(int bno) {
-		return bdao.gh_Room_Read(bno);
-	}
-	
-	// 게시글 수정
-	public int ghUpdate(GH_BoardBean boardBean) {
-		return bdao.gh_Update(boardBean);
-	}
-	
-// ==============================================================
-	
-	// 게스트하우스 리스트
+	// 게스트하우스 목록
 	public ModelAndView guest_house_list() {
 		List<GH_BoardBean> boardList = bdao.guest_house_list();
 		
@@ -68,22 +48,38 @@ public class GH_BoardService {
 		bdao.gh_Room_Insert(roomList);
 	}
 	
-	// index Slider 부분 출력
-	public ModelAndView index_Page_Slider() {	
-		// index_New_Slider
-		List<GH_BoardBean> index_New = bdao.index_New_Slider();
+	// 게시글 수정
+	public void modify(GH_BoardBean boardBean, GH_RoomBean roomBean) {
+		bdao.gh_Modify(boardBean);
+		bdao.gh_More_Modify(boardBean);
 		
-		// index_Views_Slider
-		List<GH_BoardBean> index_Views = bdao.index_Views_Slider();
+		List<GH_RoomBean> roomList = new ArrayList<GH_RoomBean>();
+		String[] Room = roomBean.getRoom().split(",");
+		String[] Price = roomBean.getPrice().split(",");
+		String[] Gender = roomBean.getGender().split(",");
+		String[] Room_people = roomBean.getRoom_people().split(",");
+
+		for(int i = 0; i < Room.length; i++) {
+			roomList.add(new GH_RoomBean(
+						roomBean.getNo(), Room[i], roomBean.getRoom_status(), 
+						Price[i], roomBean.getPhoto(), Room_people[i], Gender[i]));
+		}
 		
-		// index_Likes_Slider
-		List<GH_BoardBean> index_Likes = bdao.index_Likes_Slider();
-		
+		bdao.gh_Room_Modify(roomList);
+	}
+	
+	// 게스트하우스 게시글 + 후기 삭제
+	public int gh_delete(int no) {
+		int result = bdao.gh_delete(no);
+		return result;
+	}
+	
+	// 게스트하우스 게시글 수정페이지 이동
+	public ModelAndView modify_page(int no) {
+		Map<String, Object> modify_page_data = bdao.guest_house_read(no);
 		mav = new ModelAndView();
-		mav.addObject("new_list", index_New);
-		mav.addObject("views_list", index_Views);
-		mav.addObject("likes_list", index_Likes);
-		mav.setViewName("index/index");
+		mav.addObject("modify_page_data", modify_page_data);
+		mav.setViewName("guest_house/guest_house_modify");
 		return mav;
 	}
 	
@@ -126,4 +122,24 @@ public class GH_BoardService {
 		int result = bdao.gh_view_modify(viewBean);
 		return result;
 	}
+	
+	// index Slider 부분 출력
+	public ModelAndView index_Page_Slider() {	
+		// index_New_Slider
+		List<GH_BoardBean> index_New = bdao.index_New_Slider();
+		
+		// index_Views_Slider
+		List<GH_BoardBean> index_Views = bdao.index_Views_Slider();
+		
+		// index_Likes_Slider
+		List<GH_BoardBean> index_Likes = bdao.index_Likes_Slider();
+		
+		mav = new ModelAndView();
+		mav.addObject("new_list", index_New);
+		mav.addObject("views_list", index_Views);
+		mav.addObject("likes_list", index_Likes);
+		mav.setViewName("index/index");
+		return mav;
+	}
+
 }

@@ -117,8 +117,34 @@
 					<div class="property-text">
 						<h4>${gh_details.title}</h4>
 						<p>${gh_details.content}</p>
+						<c:if test="${gh_details.user_id == sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}">
+							<a href="guest_house_modify?no=${gh_details.no}" class="btn px-4 btn-success text-white">수정</a>&nbsp;
+							<a class="btn px-4 btn-danger text-white" onclick="border_Delete()">삭제</a>
+						</c:if>
 					</div>
 					<hr>
+					
+					<script>
+						function border_Delete() {
+							var no = $("#no").val();
+							var _csrf = $("#_csrf").val();
+							
+							$.ajax({
+								url : "gh_delete",
+								type : "POST",
+								data : {"no" : no, "_csrf" : _csrf},
+								dataType : "json",
+								success : function(data) {
+									console.log(data);
+									if(data > 0) {
+										alert("게시글이 삭제되었습니다.");
+										location.href = "/project/guest_house_list"
+									}
+								}
+							});
+						}
+					</script>
+					
 					<div class="property-feature">
 						<div class="row">
 							<div class="col-6 col-sm-4 col-md-3 col-lg-2">
@@ -406,7 +432,7 @@
 		{{#if (isEqual user_id '${user_id}')}}
 			<div style="text-align: right" id="commentbtn{{re_no}}">
 				<a class="btn px-4 btn-success text-white" onclick="comment_Modify_Form({{re_no}}, {{content}})">수정</a>&nbsp;
-				<a class="btn px-4 btn-primary text-white" onclick="comment_Delete({{re_no}})">삭제</a>
+				<a class="btn px-4 btn-danger text-white" onclick="comment_Delete({{re_no}})">삭제</a>
 			</div>
 		{{/if}}
 		<br><br>

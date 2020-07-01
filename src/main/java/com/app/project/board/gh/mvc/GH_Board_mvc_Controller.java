@@ -24,16 +24,23 @@ public class GH_Board_mvc_Controller {
 	private GH_BoardService bsvc;
 	private ModelAndView mav;
 	
+	@GetMapping("/guest_house_write")
+	public String write_page() {
+		return "guest_house/guest_house_write";
+	}
+	
 	// 게스트하우스 리스트
 	@GetMapping("/guest_house_list")
 	public ModelAndView guest_house_list() {
 		mav = bsvc.guest_house_list();
 		return mav;
 	}
-
-	@GetMapping("/guest_house_write")
-	public String write_page() {
-		return "guest_house/guest_house_write";
+	
+	// 게스트하우스 게시글 수정페이지 이동
+	@GetMapping("/guest_house_modify")
+	public ModelAndView modify_page(int no) {
+		mav = bsvc.modify_page(no);
+		return mav;
 	}
 	
 	// 게시글 작성
@@ -47,7 +54,7 @@ public class GH_Board_mvc_Controller {
 		System.out.println(roomBean.getRoom_status());
 		System.out.println("======================================");
 		
-		String path = "C:\\Users\\rmseh\\Desktop\\workspace\\teamProject\\src\\main\\webapp\\resources\\assets\\gh_img\\";
+		String path = "C:\\Users\\rmseh\\Desktop\\workspace\\teamProject\\src\\main\\webapp\\resources\\assets\\main\\img\\guest_house_img\\";
 		String originalFileName = file.getOriginalFilename();
 		boardBean.setThumbnail(originalFileName);
 
@@ -61,6 +68,26 @@ public class GH_Board_mvc_Controller {
 			e.printStackTrace();
 		}
 		bsvc.write(boardBean, roomBean);
+		return "redirect:/";
+	}
+	
+	// 게시글 수정
+	@PostMapping("/modify")
+	public String modify(GH_BoardBean boardBean, GH_RoomBean roomBean, @RequestParam MultipartFile file) {
+		String path = "C:\\Users\\rmseh\\Desktop\\workspace\\teamProject\\src\\main\\webapp\\resources\\assets\\main\\img\\guest_house_img\\";
+		String originalFileName = file.getOriginalFilename();
+		boardBean.setThumbnail(originalFileName);
+
+		File upload_file = new File(path + originalFileName);
+		
+		try {
+			file.transferTo(upload_file);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		bsvc.modify(boardBean, roomBean);
 		return "redirect:/";
 	}
 	
