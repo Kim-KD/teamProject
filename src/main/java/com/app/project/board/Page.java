@@ -1,11 +1,15 @@
 package com.app.project.board;
 
-import java.util.*;
+import java.util.List;
 
 import com.app.project.board.gh.GH_BoardBean;
+import com.app.project.board.reserve.Reserve_bean;
 import com.app.project.board.trip.Trip_board_bean;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
@@ -23,4 +27,5 @@ public class Page{
 	
 	List<Trip_board_bean> trip_list;
 	List<GH_BoardBean> gh_list;
+	List<Reserve_bean> reserve_list;
 }

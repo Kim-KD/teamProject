@@ -27,15 +27,15 @@ public class BoardDaoTest {
 
 	//@Test
 	// 게하 게시글 읽기
-	public void ghReadTest() {
-		assertThat(ghDao.gh_Read(5),is(notNullValue()));
-	}
+//	public void ghReadTest() {
+//		assertThat(ghDao.gh_Read(5),is(notNullValue()));
+//	}
 	
 	//@Test
 	// 게하 방 정보 읽기
-	public void ghRoomReadTest() {
-		assertThat(ghDao.gh_Room_Read(5),is(notNullValue()));
-	}
+//	public void ghRoomReadTest() {
+//		assertThat(ghDao.gh_Room_Read(5),is(notNullValue()));
+//	}
 	
 	//@Test
 	// 게하 후기 정보 읽기
@@ -83,12 +83,12 @@ public class BoardDaoTest {
 	//@Test
 	//@Transactional
 	// 게하 게시글 수정
-	public void ghUpdateTest() {
-		GH_BoardBean b = GH_BoardBean.builder().no(3).user_id("aaaa").title("변경 제목")
-				.content("변경 내용").postcode("우편번호").city("지역주소")
-				.address("상세주소").build();
-		assertThat(ghDao.gh_Update(b), is(1));
-	}
+//	public void ghUpdateTest() {
+//		GH_BoardBean b = GH_BoardBean.builder().no(3).user_id("aaaa").title("변경 제목")
+//				.content("변경 내용").postcode("우편번호").city("지역주소")
+//				.address("상세주소").build();
+//		assertThat(ghDao.gh_Update(b), is(1));
+//	}
 	
 	//@Test
 	//@Transactional
