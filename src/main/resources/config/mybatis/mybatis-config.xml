@@ -13,6 +13,6 @@
 		<typeAlias alias="trip_board" type="com.app.project.board.trip.Trip_board_bean" />
 		<typeAlias alias="trip_view" type="com.app.project.board.trip.Trip_view_bean" />
 		
-		<typeAlias alias="reserve" type="com.app.guehamo.board.reserve.Reserve_bean" />
+		<typeAlias alias="reserve" type="com.app.project.board.reserve.Reserve_bean" />
 	</typeAliases>
 </configuration>
