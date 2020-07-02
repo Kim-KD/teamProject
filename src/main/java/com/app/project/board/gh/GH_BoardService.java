@@ -83,6 +83,11 @@ public class GH_BoardService {
 		return mav;
 	}
 	
+	// 게스트하우스 조회수
+	public int views_update(GH_BoardBean boardBean) {
+		return bdao.views_update(boardBean);
+	}
+	
 	// 상세보기 페이지
 	public ModelAndView guest_house_read(int no) {
 		Map<String, Object> gh_details = bdao.guest_house_read(no);

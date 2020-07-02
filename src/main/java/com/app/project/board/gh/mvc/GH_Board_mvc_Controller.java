@@ -3,6 +3,10 @@ package com.app.project.board.gh.mvc;
 import java.io.File;
 import java.io.IOException;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -93,7 +97,28 @@ public class GH_Board_mvc_Controller {
 	
 	// 상세보기 페이지
 	@GetMapping("/guest_house_read")
-	public ModelAndView guest_house_read(@RequestParam("no") int no) {
+	public ModelAndView guest_house_read(@RequestParam("no") int no, HttpServletRequest req, HttpServletResponse res) {
+		String check = null;
+		Cookie[] cookies = req.getCookies();
+		
+		if(cookies != null) {
+			for(Cookie c : cookies) {
+				if(c.getName().equals("post" + no)) {
+					check = c.getValue();
+				}
+			}
+		}
+		if(check == null) {
+			GH_BoardBean boardBean = new GH_BoardBean();
+			boardBean.setNo(no);
+			
+			Cookie hits = new Cookie("post" + no, Integer.toString(no));
+			hits.setMaxAge(1 * 60 * 60);
+			res.addCookie(hits);
+			boardBean.setViews(boardBean.getViews() + 1);
+			bsvc.views_update(boardBean);
+		}
+		
 		mav = bsvc.guest_house_read(no);
 		return mav;
 	}

@@ -170,6 +170,12 @@
 		where gh_more_info.no = #{no}
 	</delete>
 	
+	<!-- 게스트하우스 조회수 -->
+	<update id="gh_view" parameterType="gh_Board">
+		update gh_info set views = #{views}
+		where no = #{no}
+	</update>
+	
 	<!-- 상세보기 페이지 -->
 	<select id="guest_house_read" parameterType="gh_Board" resultType="map">
 		select gi.no, gi.user_id, gi.title, gi.content, gi.address, gi.city, gi.views, gi.likes, gi.name, ui.user_name, ui.user_radio, ui.user_email,

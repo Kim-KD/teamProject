@@ -53,6 +53,11 @@ public class GH_BoardDao {
 		return sql.delete("GH_Mapper.gh_delete", no);
 	}
 	
+	// 게스트하우스 조회수
+	public int views_update(GH_BoardBean boardBean) {
+		return sql.update("GH_Mapper.gh_view", boardBean);
+	}
+	
 	// 상세보기 페이지
 	public Map<String, Object> guest_house_read(int no) {
 		return sql.selectOne("GH_Mapper.guest_house_read", no);

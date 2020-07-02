@@ -6,9 +6,9 @@
 <section class="single-property-section spad">
 	<div class="container">
 		<c:set var="user_id" value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}"/>
-		<input type="hidden" id="user_id" name="user_id" value="${user_id}">
-		
+		<input type="hidden" id="user_id" name="user_id" value="${user_id}">		
 		<input type="hidden" id="no" name="no" value="${gh_details.no}">
+		<input type="hidden" id="views" name="views" value="${gh_details.views }">
 		<input type="hidden" id="_csrf" name="_csrf" value="${_csrf.token}">
 		<div class="row">
 			<div class="col-lg-8">
