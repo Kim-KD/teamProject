@@ -25,7 +25,7 @@ public class GH_BoardService {
 		return mav;
 	}
 	
-	// 게시글 작성
+	// 게스트하우스 게시글 작성
 	public void write(GH_BoardBean boardBean, GH_RoomBean roomBean) {
 		bdao.gh_Insert(boardBean);
 		bdao.gh_More_Insert(boardBean);
@@ -48,7 +48,7 @@ public class GH_BoardService {
 		bdao.gh_Room_Insert(roomList);
 	}
 	
-	// 게시글 수정
+	// 게스트하우스 게시글 수정
 	public void modify(GH_BoardBean boardBean, GH_RoomBean roomBean) {
 		bdao.gh_Modify(boardBean);
 		bdao.gh_More_Modify(boardBean);
@@ -88,7 +88,12 @@ public class GH_BoardService {
 		return bdao.views_update(boardBean);
 	}
 	
-	// 상세보기 페이지
+	// 게스트하우스 추천
+	public int likes_update(GH_BoardBean boardBean) {
+		return bdao.likes_update(boardBean);
+	}
+	
+	// 게스트하우스 상세보기 페이지
 	public ModelAndView guest_house_read(int no) {
 		Map<String, Object> gh_details = bdao.guest_house_read(no);
 		
@@ -98,7 +103,7 @@ public class GH_BoardService {
 		return mav;
 	}
 	
-	// 방정보
+	// 게스트하우스 방정보
 	public List<Map<String, Object>> room_info_data(GH_RoomBean roomBean) {
 		List<Map<String, Object>> roomList = bdao.room_info_data(roomBean);
 		return roomList;
@@ -147,4 +152,13 @@ public class GH_BoardService {
 		return mav;
 	}
 
+	public int count_views(int no) {
+		int result = bdao.count_views(no);
+		return result;
+	}
+	
+	public int count_like(int no) {
+		int result = bdao.count_like(no);
+		return result;
+	}
 }

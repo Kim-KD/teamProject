@@ -115,7 +115,8 @@ public class GH_Board_mvc_Controller {
 			Cookie hits = new Cookie("post" + no, Integer.toString(no));
 			hits.setMaxAge(1 * 60 * 60);
 			res.addCookie(hits);
-			boardBean.setViews(boardBean.getViews() + 1);
+			
+			boardBean.setViews(bsvc.count_views(no) + 1);
 			bsvc.views_update(boardBean);
 		}
 		
