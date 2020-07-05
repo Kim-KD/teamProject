@@ -6,6 +6,7 @@
 #main-content{padding: 100px}
 #passwordArea > span{margin-right: auto; margin-left: auto; display: block}
 </style>
+<script src="resources/data-components/user/profile.js"></script>
 <!--main content start-->
 <section id="main-content">
 	<section class="wrapper site-min-height">
