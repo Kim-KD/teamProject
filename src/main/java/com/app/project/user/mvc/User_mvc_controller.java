@@ -53,7 +53,7 @@ public class User_mvc_controller {
 	@GetMapping("/profile")
 	public ModelAndView profile_read(Principal principal, HttpSession session) {
 		if(session.getAttribute("check")==null)
-			return new ModelAndView("check_pwd");
+			return new ModelAndView("user/check_pwd");
 		
 		User_bean user = svc.userInfoRead(principal.getName());
 		return new ModelAndView("user/profile").addObject("user",user);

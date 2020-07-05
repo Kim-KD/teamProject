@@ -14,5 +14,7 @@
 		<typeAlias alias="trip_view" type="com.app.project.board.trip.Trip_view_bean" />
 		
 		<typeAlias alias="reserve" type="com.app.project.board.reserve.Reserve_bean" />
+		
+		<typeAlias alias="service" type="com.app.guehamo.service_center.inquiry.Inquiry_bean" />
 	</typeAliases>
 </configuration>

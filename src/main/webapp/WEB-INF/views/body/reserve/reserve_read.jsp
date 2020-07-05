@@ -7,19 +7,6 @@
 
 $(function() {
 	
-	/* 초기 화면 셋팅 start */
-// 	//자바객체 -> json -> 자바스크립트 객체
-// 	board = JSON.parse('${board}');
-// 	$("#update_btn").attr('href',"/guehamo/trip_update?no="+board.no+"&user_id="+board.user_id);
-	   
-// 	$("#title").text(board.title);
-// 	$("#name").text(board.name);
-// 	$("#user_id").text(board.user_id);
-// 	$("#no").text(board.no);
-// 	$("#w_time").text(board.w_time);
-// 	$("#likes").text(board.likes);
-// 	$("#views").text(board.views);
-	   
 	if(${board.reserve_status}==0){
 		$("#reserve_status").text("예약 취소");
 	}
@@ -30,18 +17,6 @@ $(function() {
 		$("#reserve_status").text("예약 완료");
 	}
 		
-// 	$("#admission").text(board.admission);
-// 	$("#opentime").text(board.opentime);
-	   
-// 	if(isLogin===true && board.user_id===loginId) {
-// 		$("#title").prop("disabled", false);
-// 	    $("#btn_area").show();
-	      
-// 	} else if(isLogin===true && board.user_id!==loginId) {
-// 		$("#like_btn").prop("disabled", false);
-// 	}
-	/* 초기 화면 셋팅 end */
-	
 	// 예약 취소 확인 창 보여주기
 	$('#cancel_box_open').on('click', function(){
 		$('#cancel_box').modal('show');

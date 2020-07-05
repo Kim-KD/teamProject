@@ -5,38 +5,34 @@
 <section class="blog-section spad">
 	<div class="container">
 		<div class="section-title">
-			<h2>게스트 하우스 예약 내역</h2>
+			<h2>문의 내역</h2>
 		</div>
 		
 		<div>
       <table class="table table-hover">
          <colgroup>
-            <col width="50%">
+            <col width="40%">
+            <col width="30%">
             <col width="20%">
-            <col width="10%">
-            <col width="10%">
             <col width="10%">
          </colgroup>
          <thead>
             <tr>
-               <th>게스트 하우스 이름</th>
-               <th>예약 상세 정보</th>
-               <th>예약일</th>
-               <th>체크인 날짜</th>
+               <th>제목</th>
+               <th>작성자</th>
+               <th>작성 날짜</th>
                <th>진행 상태</th>
             </tr>
          </thead>
          <tbody id="list">
-         <c:forEach items="${page.reserve_list}" var="board">
+         <c:forEach items="${page.inquiry_list}" var="board">
             <tr>
-           	   <td><a href="guest_house_read?no=${board.no}">${board.name}</a></td>
-               <td>예약 번호 : ${board.rno}<br><a href="reserve_read?rno=${board.rno}">자세히 보기</a></td>
-               <td>${board.reserve_date}</td>
-               <td>${board.check_in}</td>
+           	   <td><a href="inquiry_read?no=${board.no}">${board.title}</a></td>
+               <td>${board.user_id}</td>
+               <td>${board.inquiry_date}</td>
                <td>
-               <c:if test="${board.reserve_status==0}">예약 취소</c:if>
-               <c:if test="${board.reserve_status==1}">예약 대기</c:if>
-               <c:if test="${board.reserve_status==2}">예약 완료</c:if>
+               <c:if test="${board.inquiry_status==0}">답변 대기</c:if>
+               <c:if test="${board.inquiry_status==1}">답변 완료</c:if>
                </td>
             </tr>
          </c:forEach>

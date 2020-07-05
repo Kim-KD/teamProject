@@ -22,7 +22,7 @@
 	                            <a href="/project/login" class="top-a-tag sp_active">로그인</a>	
 	                            <a href="javascript:void(0);" class="top-a-tag">회원가입</a>
 	                        </sec:authorize>
-	                            <a href="javascript:void(0);" class="top-a-tag">고객센터</a>
+	                            <a href="service_center" class="top-a-tag">고객센터</a>
                             </div>
                         </div>
                     </div>

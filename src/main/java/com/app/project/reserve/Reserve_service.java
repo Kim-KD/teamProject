@@ -1,4 +1,4 @@
-package com.app.project.board.reserve;
+package com.app.project.reserve;
 
 import java.util.List;
 

@@ -13,7 +13,7 @@
 
 // function ajaxPwdCheck() {
 // 	$.ajax({
-// 		url: "/project/pwd_chk",
+// 		url: "pwd_chk",
 // 		data: "user_pwd=" + $("#user_pwd").val(),
 // 		method: "post",
 // 		success:function(result){
@@ -27,10 +27,6 @@
 // 		}
 // 	})
 // }
-
-$("#pwdCheck").on("click", function() {
-	$("#checkForm").submit();
-})
 </script>
 </head>
 <body>
@@ -43,14 +39,14 @@ $("#pwdCheck").on("click", function() {
 </div>
 
 <div class="modal-body">
-<form action="/project/check_pwd" method="post" id="checkForm">
+<form action="check_pwd" method="post" id="checkForm">
 	<div class="container">
 		<div class="form-group">
 			<label for="user_pwd">비밀번호</label>
 			<input type="password" name="user_pwd" id="user_pwd" class="form-control" placeholder="비밀번호를 입력하세요.">
 			<input type="hidden" name="_csrf" value="${_csrf.token}">
 		</div>
-		<button type="button" class="btn btn-success" id="pwdCheck">확인</button>
+		<button class="btn btn-success" id="pwdCheck">확인</button>
 	</div>
 </form>
 </div>
