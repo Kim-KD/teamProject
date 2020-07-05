@@ -45,6 +45,18 @@ public class GH_BoardDao {
 	
 	// 게스트하우스 방 정보 수정
 	public int gh_Room_Modify(List<GH_RoomBean> roomList) {
+		for(int i = 0; i < roomList.size(); i++) {
+			System.out.println("---------------------------------------");
+			System.out.println(roomList.get(i).getNo());
+			System.out.println(roomList.get(i).getRoom());
+			System.out.println(roomList.get(i).getRoom_status());
+			System.out.println(roomList.get(i).getPrice());
+			System.out.println(roomList.get(i).getPhoto());
+			System.out.println(roomList.get(i).getRoom_people());
+			System.out.println(roomList.get(i).getGender());
+			System.out.println(roomList.get(i).getNo());
+			System.out.println("---------------------------------------");
+		}
 		return sql.update("GH_Mapper.gh_Room_Modify", roomList);
 	}
 	
@@ -56,6 +68,11 @@ public class GH_BoardDao {
 	// 게스트하우스 조회수
 	public int views_update(GH_BoardBean boardBean) {
 		return sql.update("GH_Mapper.gh_view", boardBean);
+	}
+	
+	// 게스트하우스 추천
+	public int likes_update(GH_BoardBean boardBean) {
+		return sql.update("GH_Mapper.gh_like",boardBean);
 	}
 	
 	// 상세보기 페이지
@@ -103,4 +120,11 @@ public class GH_BoardDao {
 		return sql.selectList("GH_Mapper.index_Likes_Slider");
 	}
 
+	public int count_views(int no) {
+		return sql.selectOne("GH_Mapper.count_views", no);
+	}
+	
+	public int count_like(int no) {
+		return sql.selectOne("GH_Mapper.count_likes", no);
+	}
 }

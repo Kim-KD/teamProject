@@ -115,7 +115,11 @@
 					
 					<hr>
 					<div class="property-text">
-						<h4>${gh_details.title}</h4>
+						<h4 style="position: absolute;">${gh_details.title}</h4>
+						<div style="text-align: right;">
+							<a class="btn px-4 btn-success text-white" style="position: relative" onclick="border_like()">추천 ${gh_details.likes}</a>
+							조회수 ${gh_details.views}
+						</div>
 						<p>${gh_details.content}</p>
 						<c:if test="${gh_details.user_id == sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}">
 							<a href="guest_house_modify?no=${gh_details.no}" class="btn px-4 btn-success text-white">수정</a>&nbsp;
@@ -140,6 +144,22 @@
 										alert("게시글이 삭제되었습니다.");
 										location.href = "/project/guest_house_list"
 									}
+								}
+							});
+						}
+						
+						function border_like() {
+							var no = $("#no").val();
+							var user_id = $("#user_id").val();
+							var _csrf = $("#_csrf").val();
+							
+							$.ajax({
+								url : "gh_like",
+								type : "POST",
+								data : {"no" : no, "user_id" : user_id, "_csrf" : _csrf},
+								dataType : "json",
+								success : function(data) {
+									console.log(data);
 								}
 							});
 						}

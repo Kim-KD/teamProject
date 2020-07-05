@@ -176,6 +176,20 @@
 		where no = #{no}
 	</update>
 	
+	<!-- 게스트하우스 추천 -->
+	<update id="gh_like" parameterType="gh_Board">
+		update gh_info set likes = #{likes}
+		where no = #{no}
+	</update>
+	
+	<select id="count_views" parameterType="gh_Board" resultType="int">
+		select views from gh_info where no = #{no}
+	</select>
+	
+	<select id="count_likes" parameterType="gh_Board" resultType="int">
+		select likes from gh_info where no = #{no}
+	</select>
+	
 	<!-- 상세보기 페이지 -->
 	<select id="guest_house_read" parameterType="gh_Board" resultType="map">
 		select gi.no, gi.user_id, gi.title, gi.content, gi.address, gi.city, gi.views, gi.likes, gi.name, ui.user_name, ui.user_radio, ui.user_email,
