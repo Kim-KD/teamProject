@@ -78,7 +78,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="assets/main/js/jquery.form.js"></script>
     <script src="assets/main/js/jquery.validate.min.js"></script>
     <script src="assets/main/js/mail-script.js"></script>
-
+	
 
     <script src="assets/main/js/main.js"></script>
     <script>
