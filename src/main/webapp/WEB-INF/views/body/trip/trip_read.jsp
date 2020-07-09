@@ -2,8 +2,8 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<script src="resources/data-components/trip/trip_read.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7096ea5f9666571cfb87c2ec2957f892&libraries=services,clusterer,drawing"></script>
+<script src="resources/data-components/trip/trip_read.js"></script>
 
 <sec:authorize access="isAuthenticated()">
    <script>

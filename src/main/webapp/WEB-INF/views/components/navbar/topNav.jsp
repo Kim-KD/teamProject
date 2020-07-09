@@ -11,7 +11,10 @@
                     <div class="row align-items-center">
                         <div class="col-md-12 d-none d-md-block">
                             <div class="social_wrap d-flex align-items-center justify-content-end">
-	                            <sec:authorize access="isAuthenticated()">
+                            <sec:authorize access="hasRole('ROLE_ADMIN')">
+								<a href="javascript:void(0);" id="adminBtn" class="register">관리자 페이지로</a>&nbsp;&nbsp;&nbsp;
+                            </sec:authorize>
+	                        <sec:authorize access="isAuthenticated()">
                             <c:set var="loginId"
 							value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}"></c:set>
 								<a href="/project/profile">${loginId}님 환영합니다.</a>
