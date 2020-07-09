@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<script src="resources/data-components/common/common.js"></script>
 
  <!-- 헤더 [s] -->
 <header>
@@ -15,15 +16,14 @@
 								<a href="javascript:void(0);" id="adminBtn" class="register">관리자 페이지로</a>&nbsp;&nbsp;&nbsp;
                             </sec:authorize>
 	                        <sec:authorize access="isAuthenticated()">
-                            <c:set var="loginId"
-							value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}"></c:set>
-								<a href="/project/profile">${loginId}님 환영합니다.</a>
+                            <c:set var="loginId" value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}"></c:set>
+								<a href="profile">${loginId}님 환영합니다.</a>
 								&nbsp;&nbsp;&nbsp;
 								<a href="javascript:void(0);" id="logoutBtn" class="register">로그아웃</a>
                             </sec:authorize>
                             <sec:authorize access="isAnonymous()">
-	                            <a href="/project/login" class="top-a-tag sp_active">로그인</a>	
-	                            <a href="javascript:void(0);" class="top-a-tag">회원가입</a>
+	                            <a href="login" class="top-a-tag sp_active">로그인</a>
+	                            <a href="sign_up" class="top-a-tag">회원가입</a>
 	                        </sec:authorize>
 	                            <a href="service_center" class="top-a-tag">고객센터</a>
                             </div>
@@ -119,36 +119,3 @@
 	</form>
     </div>
     <!-- where_togo_area_end  -->
-    
-    <script>
-    $(function(){
-    	$("#logoutBtn").on("click", function() {
-    		$.ajax({
-    			url: "/project/logout",
-    			method: "post",
-    			data: "_csrf="+"${_csrf.token}",
-    			success: function() {
-    				location.href = "/project";
-    			}
-    		})
-    	})
-    })
-	    function S_search() {
-	    	var keyword = $("#keyword").val();
-	    	var search_type = $('.searchTag.sp_active').text();
-	    	
-	    	if(keyword == '') {
-	    		alert("검색어를 입력해주세요.");
-	    		return false;
-	    	} else if(search_type == "숙소") {
-	    		search_type = "0";
-	    		$('#search_type').val(search_type);
-	    	} else if(search_type == "관광") {
-	    		search_type = "1";
-	    		$('#search_type').val(search_type);
-	    	} else if(search_type == "지역") {
-	    		search_type = "2";
-	    		$('#search_type').val(search_type);
-    		}
-	    }
-    </script>

@@ -4,6 +4,19 @@
 
 <tiles-definitions>
 
+	
+	<definition name="user_layout" template="/WEB-INF/views/user_base.jsp">
+        <put-attribute name="header" value="/WEB-INF/views/user_components/header.jsp" />
+        <put-attribute name="body" value="" />
+    </definition>
+    
+    <!--  body content [s]  -->
+    <definition name="user/*" extends="user_layout">
+        <put-attribute name="body" value="/WEB-INF/views/body/user/{1}.jsp" />
+    </definition>
+    <!--  body content [e]  -->
+	
+	
     <!--  base layout [s]  -->
     <definition name="layout" template="/WEB-INF/views/base.jsp">
         <put-attribute name="header" value="/WEB-INF/views/components/header.jsp" />
@@ -21,8 +34,8 @@
     <!--  body content [e]  -->
 
 	<!-- 예외 항목 -->
-    <definition name="login"  template="/WEB-INF/views/body/login/login.jsp"/>
-    <definition name="logout"  template="/WEB-INF/views/body/login/login.jsp"/>
+    <!-- <definition name="login"  template="/WEB-INF/views/body/login/login.jsp"/>
+    <definition name="logout"  template="/WEB-INF/views/body/login/login.jsp"/> -->
     <definition name="error"  template="/WEB-INF/views/error/error.jsp"/>
-
+    
 </tiles-definitions>
