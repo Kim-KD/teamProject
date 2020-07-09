@@ -10,11 +10,14 @@
 		<typeAlias alias="gh_View" type="com.app.project.board.gh.GH_ViewBean" />
 		<typeAlias alias="search" type="com.app.project.Common.Search.SearchBean" />
 		
+		<!-- 관광명소 -->
 		<typeAlias alias="trip_board" type="com.app.project.board.trip.Trip_board_bean" />
 		<typeAlias alias="trip_view" type="com.app.project.board.trip.Trip_view_bean" />
 		
-		<typeAlias alias="reserve" type="com.app.project.board.reserve.Reserve_bean" />
+		<!-- 예약 -->
+		<typeAlias alias="reserve" type="com.app.project.reserve.Reserve_bean" />
 		
-		<typeAlias alias="service" type="com.app.guehamo.service_center.inquiry.Inquiry_bean" />
+		<!-- 고객센터 -->
+		<typeAlias alias="service" type="com.app.project.service_center.inquiry.Inquiry_bean" />
 	</typeAliases>
 </configuration>
