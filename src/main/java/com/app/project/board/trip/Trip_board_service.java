@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.app.project.board.Page;
 import com.app.project.board.UploadInfoBean;
 import com.app.project.board.UploadInfoDao;
+import com.app.project.util.Page;
 import com.app.project.util.PagingUtil;
 
 @Service

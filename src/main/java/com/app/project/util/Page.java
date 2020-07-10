@@ -1,4 +1,4 @@
-package com.app.project.board;
+package com.app.project.util;
 
 import java.util.List;
 
@@ -6,6 +6,7 @@ import com.app.project.board.gh.GH_BoardBean;
 import com.app.project.board.trip.Trip_board_bean;
 import com.app.project.reserve.Reserve_bean;
 import com.app.project.service_center.inquiry.Inquiry_bean;
+import com.app.project.user.User_bean;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,4 +31,5 @@ public class Page{
 	List<GH_BoardBean> gh_list;
 	List<Reserve_bean> reserve_list;
 	List<Inquiry_bean> inquiry_list;
+	List<User_bean> user_list;
 }

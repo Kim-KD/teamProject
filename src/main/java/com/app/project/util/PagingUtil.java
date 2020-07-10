@@ -1,7 +1,5 @@
 package com.app.project.util;
 
-import com.app.project.board.Page;
-
 public class PagingUtil {
 	// 페이지당 글의 개수
 		private final static int numberOfBoardPerPage = 12;

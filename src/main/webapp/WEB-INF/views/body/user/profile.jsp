@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@include file="/WEB-INF/include/other_header.jsp"%>
 <meta charset="UTF-8">
 
 <style>
@@ -13,7 +12,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-sm-10 col-sm-offset-1 profiel-container">
-		<div class="profiel-header">
+		<div class="profile-header">
 			<h3>
 				<b>회원 정보</b><br> <small>내 정보를 보고 수정할 수 있습니다.</small>
 			</h3>
@@ -105,4 +104,3 @@
 	</div>
 </section>
 </section>
-<%@include file="/WEB-INF/include/footer.jsp"%>

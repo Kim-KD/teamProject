@@ -1,5 +1,6 @@
 package com.app.project.user;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -25,7 +26,7 @@ public class User_bean {
 	private String user_email;		// 이메일
 	private String user_gender;		// 성별
 	private String user_job;		// 직업
-	private String user_create_day;	// 가입일
+	private LocalDate user_create_day;	// 가입일
 	private String user_certify;	// 이메일 인증
 	private String change_pwd;		// 변경된 비밀번호
 	private String change_pwd_day;	// 비밀번호 변경일

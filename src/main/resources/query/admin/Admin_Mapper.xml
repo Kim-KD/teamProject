@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="admin_mapper">
+	
+	<!-- 회원 관리 start -->
+	<!-- 유저 총 갯수 -->
+	<select id='user_count' resultType='int'>
+		select /*+
+		index_ffs(trip_info PRIMARY)*/ count(*)
+		from user_info
+		<where>
+			<if test="user_status != null">and user_status=#{user_status}</if>
+		</where>
+	</select>
+	
+	<!-- 전체 유저 정보 -->
+	<select id="user_find_all" resultType="user"> 
+ 		select *
+		from user_info
+		<where>
+			<if test="user_status != null">and user_status=#{user_status}</if>
+		</where>
+  	 	limit #{startRowNum},#{endRowNum}
+	</select>
+	
+	<!-- 유저 정보 읽기 -->
+	<select id="user_Read" resultType="user">
+		select user_id, user_status, user_num, user_pwd, user_name,
+		user_radio, user_cable, user_email, user_gender, user_job,
+		user_create_day, user_certify, change_pwd, change_pwd_day,
+		login_fail_cnt, enabled, find_num
+		from user_info
+		where user_id = #{user_id};
+	</select>
+	
+	<!-- 기업 유저 상세 정보 읽기 -->
+	<select id="cpn_Read" resultType="user">
+		select user_id, cpn_service_num, cpn_bank, cpn_account
+		from cpn_info
+		where user_id = #{user_id};
+	</select>
+	
+	<!-- 유저 계정 상태 수정 -->
+	<update id="enabled_update">
+		update user_info
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="enabled != null">enabled = #{enabled},</if>
+		</trim>
+		where user_id=#{user_id}
+	</update>
+	
+	<!-- 회원 관리 end -->
+
+</mapper>

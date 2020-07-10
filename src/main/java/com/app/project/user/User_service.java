@@ -136,8 +136,11 @@ public class User_service {
 				user.setUser_pwd(encodedPwd);
 				user.setChange_pwd(encodedPwd);
 			}
-			dao.user_info_update(user);
-			return dao.cpn_info_update(user);
+			if(user.getCpn_account()!=null || user.getCpn_bank()!=null ||
+					user.getCpn_service_num()!=null) {
+				dao.cpn_info_update(user);
+			}
+			return dao.user_info_update(user);
 		}
 		else {
 			return null;
