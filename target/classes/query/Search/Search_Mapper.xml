@@ -12,7 +12,7 @@
 	</select>
 	
 	<!-- 관광지 -->
-	<select id="trip_Search" parameterType="search" resultType="trip_Board">
+	<select id="trip_Search" parameterType="search" resultType="trip_board">
 		select tr.no, tr.title, tr.name, tr.thumbnail
 		from trip_info tr
 		where tr.title like CONCAT('%', #{keyword}, '%')
@@ -27,7 +27,7 @@
 	</select>
 	
 	<!-- 관광지 지역별 검색 -->
-	<select id="trip_area" parameterType="search" resultType="trip_Board">
+	<select id="trip_area" parameterType="search" resultType="trip_board">
 		select tr.no, tr.title, tr.name, tr.thumbnail, tr.city 
 		from trip_info tr
 		where tr.city like CONCAT('%', #{keyword}, '%')

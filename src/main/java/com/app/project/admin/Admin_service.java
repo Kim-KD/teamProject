@@ -16,12 +16,12 @@ public class Admin_service {
 	@Autowired
 	private Admin_dao dao;
 	
-	public Page userList(int pageno, String user_status) {
-		int countOfBoard = dao.user_count(user_status);
+	public Page userList(int pageno, String user_status, String user_id) {
+		int countOfBoard = dao.user_count(user_status, user_id);
 		Page page = PagingUtil.getPage(pageno, countOfBoard);
 		int srn = page.getStartRowNum();
 		int ern = page.getEndRowNum();
-		List<User_bean> userList = dao.user_find_all(srn, ern, user_status);
+		List<User_bean> userList = dao.user_find_all(srn, ern, user_status, user_id);
 		page.setUser_list(userList);
 		return page;
 	}

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<script src="resources/data-components/admin/user_list.js"></script>
+
 <!-- Blog Section end -->
 <section class="blog-section spad">
 
@@ -42,10 +44,14 @@
                <c:if test="${board.enabled==true}">활성화</c:if>
                </td>
             </tr>
+            <input type="hidden" id="user_status" value="${board.user_status}">
          </c:forEach>
          </tbody>
       </table>
    </div>
+   
+	<div>
+	</div>
    
    <div style="text-align:center;">
       <ul class="pagination">
@@ -69,6 +75,10 @@
             <li><a href="user_list?pageno=${page.endPage+1}">다음</a></li>
          </c:if>
       </ul>
+      <form id="search_form" action="#" method="get">
+      <input type="text" id="keyword" name="user_id">
+      <button id="search_btn">검색</button>
+      </form>
    </div>
 		
 </div>

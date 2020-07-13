@@ -17,14 +17,18 @@ public class Admin_dao {
 	private SqlSessionTemplate sql;
 
 	// 유저 총 갯수
-	public int user_count(String user_status) {
-		return sql.selectOne("admin_mapper.user_count",user_status);
+	public int user_count(String user_status, String user_id) {
+		Map<String,Object> map = new HashMap<>();
+		map.put("user_status", user_status);
+		map.put("user_id", user_id);
+		return sql.selectOne("admin_mapper.user_count",map);
 	}
 	
 	// 전체 유저 정보
-	public List<User_bean> user_find_all(Integer startRowNum, Integer endRowNum, String user_status) {
+	public List<User_bean> user_find_all(Integer startRowNum, Integer endRowNum, String user_status, String user_id) {
 		Map<String,Object> map = new HashMap<>();
 		map.put("user_status", user_status);
+		map.put("user_id", user_id);
 		map.put("startRowNum", startRowNum);
 		map.put("endRowNum", endRowNum);
 		return sql.selectList("admin_mapper.user_find_all", map);
