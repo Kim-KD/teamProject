@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<script src="resources/data-components/admin/user_list.js"></script>
+<script src="resources/data-components/admin/inquiry_list.js"></script>
 
 <!-- Blog Section end -->
 <section class="blog-section spad">
@@ -14,44 +14,35 @@
 		<div>
       <table class="table table-hover">
          <colgroup>
-            <col width="15%">
-            <col width="15%">
+            <col width="40%">
+            <col width="30%">
             <col width="20%">
-            <col width="15%">
-            <col width="15%">
-            <col width="20%">
+            <col width="10%">
          </colgroup>
          <thead>
             <tr>
-               <th>유저 아이디</th>
-               <th>유저 이름</th>
-               <th>E-mail</th>
-               <th>무선 전화</th>
-               <th>유선 전화</th>
-               <th>계정 상태</th>
+               <th>제목</th>
+               <th>작성자</th>
+               <th>작성 날짜</th>
+               <th>진행 상태</th>
             </tr>
          </thead>
          <tbody id="list">
-         <c:forEach items="${page.user_list}" var="board">
+         <c:forEach items="${page.inquiry_list}" var="board">
             <tr>
-           	   <td><a href="user_read?user_id=${board.user_id}">${board.user_id}</a></td>
-               <td>${board.user_name}</td>
-               <td>${board.user_email}</td>
-               <td>${board.user_radio}</td>
-               <td>${board.user_cable}</td>
+           	   <td><a href="admin_inquiry_read?no=${board.no}">${board.title}</a></td>
+               <td>${board.user_id}</td>
+               <td>${board.inquiry_date}</td>
                <td>
-               <c:if test="${board.enabled==false}">비활성화</c:if>
-               <c:if test="${board.enabled==true}">활성화</c:if>
+               <c:if test="${board.inquiry_status==0}">답변 대기</c:if>
+               <c:if test="${board.inquiry_status==1}">답변 완료</c:if>
                </td>
             </tr>
-            <input type="hidden" id="user_status" value="${board.user_status}">
+            <input type="hidden" id="inquiry_status" value="${board.inquiry_status}">
          </c:forEach>
          </tbody>
       </table>
    </div>
-   
-	<div>
-	</div>
    
    <div style="text-align:center;">
       <ul class="pagination">

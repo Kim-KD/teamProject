@@ -28,7 +28,7 @@
 	</select>
 	
 	<!-- 유저 정보 읽기 -->
-	<select id="user_Read" resultType="user">
+	<select id="user_read" resultType="user">
 		select user_id, user_status, user_num, user_pwd, user_name,
 		user_radio, user_cable, user_email, user_gender, user_job,
 		user_create_day, user_certify, change_pwd, change_pwd_day,
@@ -38,7 +38,7 @@
 	</select>
 	
 	<!-- 기업 유저 상세 정보 읽기 -->
-	<select id="cpn_Read" resultType="user">
+	<select id="cpn_read" resultType="user">
 		select user_id, cpn_service_num, cpn_bank, cpn_account
 		from cpn_info
 		where user_id = #{user_id};
@@ -55,4 +55,51 @@
 	
 	<!-- 회원 관리 end -->
 
+	<!-- 1:1문의 start -->
+	<!-- 1:1문의 총 갯수 -->
+	<select id='inquiry_count' resultType='int'>
+		select /*+
+		index_ffs(service_inquiry PRIMARY)*/ count(*)
+		from service_inquiry
+		<where>
+			<if test="inquiry_status != null">inquiry_status=#{inquiry_status}</if>
+			<if test="user_id != null">and user_id like CONCAT('%', #{user_id}, '%')</if>
+		</where>
+	</select>
+	
+	<!-- 1:1문의 정보 -->
+	<select id="inquiry_find_all" resultType="inquiry">
+		select no,user_id,title,content,inquiry_date,inquiry_status,answer
+		from service_inquiry
+		<where>
+			<if test="inquiry_status != null">inquiry_status=#{inquiry_status}</if>
+			<if test="user_id != null">and user_id like CONCAT('%', #{user_id}, '%')</if>
+		</where>
+		limit #{startRowNum},#{endRowNum}
+	</select>
+	
+	<!-- 1:1문의 읽기 -->
+	<select id="inquiry_read" resultType="inquiry">
+		select no,user_id,title,content,inquiry_date,inquiry_status,answer
+		from service_inquiry
+		where no = #{no}
+	</select>
+	
+	<!-- 1:1문의 수정 -->
+	<update id="inquiry_update">
+		update service_inquiry
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="inquiry_status != null">inquiry_status = #{inquiry_status},</if>
+			<if test="answer != null">answer = #{answer},</if>
+		</trim>
+		where no = #{no}
+	</update>
+	
+	<!-- 1:1문의 삭제 -->
+	<delete id="inquiry_delete">
+		delete from service_inquiry
+		where no = #{no}
+	</delete>
+	
+	<!-- 1:1 문의 end -->
 </mapper>

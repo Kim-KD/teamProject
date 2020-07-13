@@ -1,18 +1,11 @@
 $(function() {
 	
-//	$("#search_btn").on("click", function() {
-//		
-//		if($("#user_status").val()=="0"){
-//			$("#search_form").action = "user_lost"
-//			$("#search_form").submit();
-//		}
-//		else if($("#user_status").val()=="1"){
-//			$("#search_form").action = "cpn_lost"
-//			$("#search_form").submit();
-//		}
-//		else{
-//			alert("잘못된 검색");
-//			return null;
-//		}
-//	})
+	if($("#user_status").val()=="0") {
+		$("#page_title").text("일반 회원 관리");
+	}else if($("#user_status").val()=="1") {
+		$("#page_title").text("기업 회원 관리");
+	}
+	else{
+		return null;
+	}
 })

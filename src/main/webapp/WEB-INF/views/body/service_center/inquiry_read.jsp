@@ -3,16 +3,29 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
+
+<sec:authorize access="isAuthenticated()">
+   <script>
+      var isLogin = true;
+      var loginId = "${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}"
+   </script>
+</sec:authorize>
+<sec:authorize access="isAnonymous()">
+   <script>
+      var isLogin = false;
+      var loginId = undefined;
+   </script>
+</sec:authorize>
+
 <script>
 
 $(function() {
-	
-	// 문의 취소 확인 창 보여주기
-	$('#cancel_box_open').on('click', function(){
-		$('#cancel_box').modal('show');
-	})
 
-	// 예약 취소
+	if(isLogin===true && $("#user_id").text()!==loginId) {
+		$('#cancel_box_open').hide();
+	}
+	
+	// 문의 취소
 	$("#cancel_btn").on("click", function() {
 		var param = {
 			no : ${board.no},

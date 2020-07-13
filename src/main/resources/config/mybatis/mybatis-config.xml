@@ -18,6 +18,6 @@
 		<typeAlias alias="reserve" type="com.app.project.reserve.Reserve_bean" />
 		
 		<!-- 고객센터 -->
-		<typeAlias alias="service" type="com.app.project.service_center.inquiry.Inquiry_bean" />
+		<typeAlias alias="inquiry" type="com.app.project.service_center.inquiry.Inquiry_bean" />
 	</typeAliases>
 </configuration>

@@ -16,22 +16,22 @@
 	</select>
 	
 	<!-- 1:1문의 작성 -->
-	<insert id="inquiry_insert" parameterType="service" useGeneratedKeys="true" keyProperty="no">
+	<insert id="inquiry_insert" parameterType="inquiry" useGeneratedKeys="true" keyProperty="no">
 		insert into service_inquiry(no, user_id, title, content, inquiry_date, inquiry_status)
 		values(#{no}, #{user_id}, #{title}, #{content}, now(), '0')
 	</insert>
 
 	<!-- 1:1문의 정보 -->
-	<select id="inquiry_find_all" resultType="service">
-		select no,user_id,title,content,inquiry_date,inquiry_status
+	<select id="inquiry_find_all" resultType="inquiry">
+		select no,user_id,title,content,inquiry_date,inquiry_status,answer
 		from service_inquiry
 		where user_id = #{user_id}
 		limit #{startRowNum},#{endRowNum}
 	</select>
 	
 	<!-- 1:1문의 읽기 -->
-	<select id="inquiry_read" resultType="service">
-		select no,user_id,title,content,inquiry_date,inquiry_status
+	<select id="inquiry_read" resultType="inquiry">
+		select no,user_id,title,content,inquiry_date,inquiry_status,answer
 		from service_inquiry
 		where no = #{no}
 	</select>
@@ -46,7 +46,7 @@
 		where no = #{no}
 	</update>
 	
-	<!-- 게스트하우스 후기 삭제 -->
+	<!-- 1:1문의 삭제 -->
 	<delete id="inquiry_delete">
 		delete from service_inquiry
 		where no = #{no}

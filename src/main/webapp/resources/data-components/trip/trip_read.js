@@ -207,7 +207,7 @@ $(function() {
     	.fail((result)=>{console.log(result)});
 	})
 
-	<!-- kakao 지도 api -->
+		// kakao 지도 api
 		// 검색 지도 경도위도 알아내기
 		// var coordXY = document.getElementById("coordXY");
 		
