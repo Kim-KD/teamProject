@@ -52,8 +52,9 @@ public class Inquiry_mvc_controller {
 	}
 	
 	// 문의 읽기
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/inquiry_read")
-	public ModelAndView inquiry_read(Integer no, HttpServletRequest req, HttpServletResponse res, Principal pcp) {
+	public ModelAndView inquiry_read(Integer no, Principal pcp) {
 		String user_id = pcp != null ? pcp.getName() : null;
 		Inquiry_bean board = svc.inquiry_read(no, user_id);
 		ModelAndView mav = new ModelAndView("service_center/inquiry_read").addObject("board", board);
@@ -87,5 +88,16 @@ public class Inquiry_mvc_controller {
 			return mav;
 		}
 		return null;
+	}
+	
+	// 문의 삭제
+	@PreAuthorize("isAuthenticated()")
+	@PostMapping("/inquiry_delete")
+	public String delete(Integer no, String user_id, Principal pcp) {
+		if(user_id.equals(pcp.getName())) {
+			svc.inquiry_delete(no);
+			return "service_center/inquiry_list";
+		}
+			return null;
 	}
 }

@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+<script src="resources/ckeditor/ckeditor.js"></script>
 <script>
 $(function(){
+	CKEDITOR.replace("content",{
+		filebrowserUploadUrl : "/guehamo/imgupload?_csrf=${_csrf.token}"
+	})
 })
 </script>
 
