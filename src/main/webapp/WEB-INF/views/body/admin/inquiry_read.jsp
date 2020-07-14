@@ -4,6 +4,7 @@
 
 <!DOCTYPE html>
 
+<script src="resources/ckeditor/ckeditor.js"></script>
 <script src="resources/data-components/admin/inquiry_read.js"></script>
 
 <style>
@@ -16,11 +17,14 @@
 		<div class="section-title">
 			<h2>문의 정보</h2>
 		</div>
+		
+		<input type="hidden" id="no" value="${board.no}">
+		<input type="hidden" id="inquiry_status_val" value="${board.inquiry_status}">
+		
 			<div class="row" id="basic_info">
 				<div class="col-lg-12">
 					<div class="property-header" >
 						<h4><span id="user_id">작성자 : ${board.user_id}</span></h4>
-						<input type="hidden" id="no" value="${board.no}">
 					</div>
 				</div>
 				<div class="col-lg-12">
@@ -50,29 +54,26 @@
 				<h2>답변하기</h2>
 				<div class="row" id="basic_info">
 					<div class="col-lg-12">
-						<textarea id="answer"></textarea>
+						<textarea id="answer" name="answer" style="width:100%;height:100;border:1;overflow:visible;text-overflow:ellipsis;"></textarea>
 					</div>
-				</div>
-				
-				<div id="btn_area">
-					<a href="#" type="button" class="btn btn-success" id="answer_btn">답변하기</a>
-					<a href="wait_list" type="button" class="btn btn-primary" id="list_btn">목록으로</a>
 				</div>
 			</c:if>
 			<c:if test="${board.inquiry_status==1}">
 				<h2>답변</h2>
 				<div class="row" id="basic_info">
-					<div class="col-lg-12">
-						<p>${board.answer}</p>
+					<div id="answer_area" class="col-lg-12">
+						${board.answer}
 					</div>
-				</div>
-				
-				<div id="btn_area">
-					<a href="#" type="button" class="btn btn-success" id="answer_update_btn">답변 수정</a>
-					<a href="success_list" type="button" class="btn btn-primary" id="list_btn">목록으로</a>
 				</div>
 			</c:if>
         </sec:authorize>
+        <hr>
+        
+        	<div id="btn_area">
+				<button class="btn btn-success" id="answer_update_btn">답변 수정</button>
+				<a href="wait_list" type="button" class="btn btn-primary">대기 목록</a>
+				<a href="success_list" type="button" class="btn btn-primary">완료 목록</a>
+			</div>
 		<div>
    </div>
 </div>
