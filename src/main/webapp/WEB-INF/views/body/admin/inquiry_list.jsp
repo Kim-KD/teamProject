@@ -5,7 +5,15 @@
 
 <!-- Blog Section end -->
 <section class="blog-section spad">
-
+<aside>
+	<ul>
+		<li><a href="user_list">일반 회원 관리</a></li>
+		<li><a href="cpn_list">기업 회원 관리</a></li>
+		<li><a href="wait_list">문의 답변 대기</a></li>
+		<li><a href="success_list">문의 답변 완료</a></li>
+		<li><a href="notice_write">공지 사항 작성</a></li>
+	</ul>
+</aside>
 	<div class="container">
 		<div class="section-title">
 			<h2 id="page_title"></h2>
@@ -45,7 +53,7 @@
    </div>
    
    <div style="text-align:center;">
-      <ul class="pagination">
+      <ul>
          <c:if test="${page.prev==true}">
             <li><a href="user_list?pageno=${page.startPage-1}">이전</a></li>
          </c:if>

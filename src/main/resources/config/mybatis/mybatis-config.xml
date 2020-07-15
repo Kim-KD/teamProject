@@ -17,7 +17,10 @@
 		<!-- 예약 -->
 		<typeAlias alias="reserve" type="com.app.project.reserve.Reserve_bean" />
 		
-		<!-- 고객센터 -->
+		<!-- 1:1문의 -->
 		<typeAlias alias="inquiry" type="com.app.project.service_center.inquiry.Inquiry_bean" />
+		
+		<!-- 공지사항 -->
+		<typeAlias alias="notice" type="com.app.project.admin.notice.Notice_bean" />
 	</typeAliases>
 </configuration>

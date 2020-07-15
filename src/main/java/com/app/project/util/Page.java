@@ -2,6 +2,7 @@ package com.app.project.util;
 
 import java.util.List;
 
+import com.app.project.admin.notice.Notice_bean;
 import com.app.project.board.gh.GH_BoardBean;
 import com.app.project.board.trip.Trip_board_bean;
 import com.app.project.reserve.Reserve_bean;
@@ -30,6 +31,9 @@ public class Page{
 	List<Trip_board_bean> trip_list;
 	List<GH_BoardBean> gh_list;
 	List<Reserve_bean> reserve_list;
-	List<Inquiry_bean> inquiry_list;
+	
 	List<User_bean> user_list;
+	
+	List<Notice_bean> notice_list;
+	List<Inquiry_bean> inquiry_list;
 }

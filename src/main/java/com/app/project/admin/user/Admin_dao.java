@@ -1,4 +1,4 @@
-package com.app.project.admin;
+package com.app.project.admin.user;
 
 import java.util.HashMap;
 import java.util.List;
@@ -52,39 +52,4 @@ public class Admin_dao {
 	}
 	
 	// 회원 관리 end
-	
-	// 문의 관리 start
-	// 문의 총 갯수
-	public Integer inquiry_count(String inquiry_status, String user_id) {
-		Map<String,Object> map = new HashMap<>();
-		map.put("user_id", user_id);
-		map.put("inquiry_status", inquiry_status);
-		return sql.selectOne("admin_mapper.inquiry_count",map);
-	}
-	
-	// 전체 문의 정보
-	public List<Inquiry_bean> inquiry_find_all(Integer startRowNum, Integer endRowNum, String inquiry_status, String user_id) {
-		Map<String,Object> map = new HashMap<>();
-		map.put("startRowNum", startRowNum);
-		map.put("endRowNum", endRowNum);
-		map.put("user_id", user_id);
-		map.put("inquiry_status", inquiry_status);
-		return sql.selectList("admin_mapper.inquiry_find_all", map);
-	}
-	
-	// 문의 읽기
-	public Inquiry_bean inquiry_read(Integer no) {
-		return sql.selectOne("admin_mapper.inquiry_read", no);
-	}
-	
-	// 문의 답변
-	public Integer inquiry_update(Inquiry_bean board) {
-		return sql.update("admin_mapper.inquiry_update", board);
-	}
-	
-	// 문의 삭제
-	public Integer inquiry_delete(Integer no) {
-		return sql.delete("admin_mapper.inquiry_delete", no);
-	}
-	// 문의 관리 end
 }

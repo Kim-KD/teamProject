@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="notice_mapper">
+	
+	<!-- 공지사항 총 갯수 -->
+	<select id='notice_count' resultType='int'>
+		select /*+
+		index_ffs(service_notice PRIMARY)*/ count(*)
+		from service_notice
+		<where>
+			<if test="title != null">title like CONCAT('%', #{title}, '%')</if>
+		</where>
+	</select>
+	
+	<!-- 공지사항 정보 -->
+	<select id="notice_find_all" resultType="notice">
+		select *
+		from service_notice
+		<where>
+			<if test="title != null">title like CONCAT('%', #{title}, '%')</if>
+		</where>
+		limit #{startRowNum},#{endRowNum}
+	</select>
+	
+	<!-- 공지사항 작성 -->
+	<insert id="notice_insert" parameterType="notice" useGeneratedKeys="true" keyProperty="no">
+		insert into service_notice(no, admin_id, title, content, write_date)
+		values(#{no},#{admin_id},#{title},#{content},now())
+	</insert>
+	
+	<!-- 공지사항 읽기 -->
+	<select id="notice_read" resultType="notice">
+		select *
+		from service_notice
+		where no = #{no}
+	</select>
+	
+	<!-- 공지사항 수정 -->
+	<update id="notice_update">
+		update service_notice
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="title != null">title = #{title},</if>
+			<if test="content != null">content = #{content},</if>
+		</trim>
+		where no = #{no}
+	</update>
+	
+	<!-- 공지사항 삭제 -->
+	<delete id="notice_delete">
+		delete from service_notice
+		where no = #{no}
+	</delete>
+</mapper>

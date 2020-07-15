@@ -2,9 +2,6 @@ package com.app.project.service_center.inquiry.mvc;
 
 import java.security.Principal;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -22,11 +19,6 @@ public class Inquiry_mvc_controller {
 	@Autowired
 	private Inquiry_service svc;
 
-	@GetMapping("/service_center")
-	public String service() {
-		return "service_center/service_center";
-	}
-	
 	// 문의 내역
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/inquiry_list")
