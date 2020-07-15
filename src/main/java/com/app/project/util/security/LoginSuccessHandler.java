@@ -37,7 +37,7 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 				.login_fail_cnt(0).build();
 		svc.userInfoUpdate(user);
 		
-		session.setAttribute("errorMsg", "");
+		session.setAttribute("error_msg", "");
 		
 		// 이동. 특별한 목적지가 없으면 /로 이동
 		SavedRequest req = cache.getRequest(request, response);

@@ -21,7 +21,7 @@
 		<sec:form-login
 			username-parameter="user_id"
 			password-parameter="user_pwd"
-			login-page="/"
+			login-page="/login"
 			login-processing-url="/login"
 			default-target-url="/"
 			authentication-failure-handler-ref="loginFailureHandler"	

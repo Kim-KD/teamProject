@@ -65,9 +65,9 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
         }
         
         session.setAttribute("id", username);
-        session.setAttribute("errorMsg", errormsg);
+        session.setAttribute("error_msg", errormsg);
  
-        rs.sendRedirect(request, response, "/");
+        rs.sendRedirect(request, response, "/login");
 
     }
     

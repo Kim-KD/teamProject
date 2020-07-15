@@ -8,6 +8,7 @@
                    <a href="index" class="login100-form-title p-b-1"><img src="assets/main/img/import/img/logo.png"></a>
                    <span class="login100-form-minititle p-b-21"></span>
 				<input type="hidden" name="_csrf" value="${_csrf.token}">
+				<input type="hidden" id="msg" name="msg" value="${error_msg}">
 				
 				<!-- id -->
 				<span class="txt1"><i class="fa fa-asterisk"></i>&nbsp;&nbsp; 아이디

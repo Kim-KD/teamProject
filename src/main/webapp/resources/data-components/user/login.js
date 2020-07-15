@@ -22,4 +22,11 @@ $(function(){
 			$("#warning_id").empty();
 		}
 	});
+	
+	// 로그인 실패 메세지
+	var msg = $("#msg").val();
+	console.log(msg);
+	if(msg!="") {
+		alert(msg);
+	}
 });
