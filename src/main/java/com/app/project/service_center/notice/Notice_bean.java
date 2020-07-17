@@ -1,4 +1,4 @@
-package com.app.project.admin.notice;
+package com.app.project.service_center.notice;
 
 import java.time.LocalDate;
 

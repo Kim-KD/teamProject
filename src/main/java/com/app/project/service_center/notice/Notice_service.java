@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.app.project.admin.notice.Notice_bean;
 import com.app.project.util.Page;
 import com.app.project.util.PagingUtil;
 
@@ -30,5 +29,21 @@ public class Notice_service {
 	public Notice_bean notice_read(Integer no) {
 		Notice_bean board = dao.notice_read(no);
 		return board;
+	}
+	
+	// 공지사항 작성
+	public Integer notice_insert(Notice_bean board) {
+		dao.notice_insert(board);
+		return board.getNo();
+	}
+	
+	// 공지사항 수정
+	public Integer notice_update(Notice_bean board) {
+			return dao.notice_update(board);
+	}
+	
+	// 공지사항 삭제
+	public Integer notice_delete(Integer no) {
+		return dao.notice_delete(no);
 	}
 }
