@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <script src="resources/ckeditor/ckeditor.js"></script>
-<script src="resources/data-components/admin/notice_write.js"></script>
+<script src="resources/data-components/service_center/notice_write.js"></script>
 
 <!-- Contact Section end -->
 <section class="contact-section">

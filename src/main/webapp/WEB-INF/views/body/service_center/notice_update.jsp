@@ -1,49 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <script src="resources/ckeditor/ckeditor.js"></script>
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
-$(function(){
-	CKEDITOR.replace("content",{
-		filebrowserUploadUrl : "/guehamo/imgupload?_csrf=${_csrf.token}"
-	})
-	$("#title").val("${board.title}");
-
-	// 문의 수정
-	$("#update_btn").on("click", function() {
-		$.ajax({
-			url: "inquiry_update",
-			method: "post",
-			data: $("#update_form").serialize(),
-			success: function() {
-				location.href="inquiry_read?no="+"${board.no}"
-			},error(){
-				alert("게시글을 수정하는데 실패했습니다.");
-			}
-		})
-	})
-
-	// 문의 수정 취소 확인 창 보여주기
-	$('#cancel_box_open').on('click', function(){
-		$('#cancel_box').modal('show');
-	})
-	
-	// 문의 수정 취소
-	$("#cancel_btn").on("click", function() {
-		location.href="inquiry_read?no="+"${board.no}"
-	})
-})
-</script>
+<script src="resources/data-components/service_center/notice_update.js"></script>
 
 <!-- Contact Section end -->
 <section class="contact-section">
     <div class="container">
     <div class="section-title">
-			<h2>문의 수정</h2>
+			<h2>공지 수정</h2>
 	</div>
 <form id="update_form" class="contact-form" action="#" method="post">
-        <input type="hidden" name="user_id" value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}">
-        <input type="hidden" name="no" value="${board.no}">
+        <input type="hidden" id="admin_id" name="admin_id" value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}">
+        <input type="hidden" id="no" name="no" value="${board.no}">
         <input type="hidden" name="_csrf" value="${_csrf.token}">
         
             <div class="row">
@@ -59,7 +27,7 @@ $(function(){
 
                 <span class="col-sm-2 control-label">내용</span>
                 <div class="col-sm-10">
-                    <textarea placeholder="내용" id="content" name="content"  style="width:100%;height:100;border:1;overflow:visible;text-overflow:ellipsis;">${board.content}</textarea>
+                    <textarea placeholder="내용" id="content" name="content">${board.content}</textarea>
                 </div>
                 <button type="button" id="update_btn" class="site-btn1 sb-big1">수정 하기</button>
                 <button type="button" id="cancel_box_open" class="site-btn1 sb-big1">수정 취소</button>

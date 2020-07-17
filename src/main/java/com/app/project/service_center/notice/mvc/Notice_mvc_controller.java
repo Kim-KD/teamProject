@@ -47,7 +47,7 @@ public class Notice_mvc_controller {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/notice_write")
 	public String notice_write() {
-		return "admin/notice_write";
+		return "service_center/notice_write";
 	}
 	
 	// 공지사항 등록
@@ -61,15 +61,12 @@ public class Notice_mvc_controller {
 	// 공지사항 수정 페이지
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/notice_update")
-	public ModelAndView notice_update(Integer no, String admin_id, Principal pcp) {
-		if(admin_id.equals(pcp.getName())) {
-			Notice_bean board = svc.notice_read(no);
-			ModelAndView mav = new ModelAndView();
-			mav.setViewName("trip/trip_update");
-			mav.addObject("board",board);
-			return mav;
-		}
-		return null;
+	public ModelAndView notice_update(Integer no) {
+		Notice_bean board = svc.notice_read(no);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("service_center/notice_update");
+		mav.addObject("board",board);
+		return mav;
 	}
 	
 	// 공지사항 수정 등록
@@ -89,8 +86,8 @@ public class Notice_mvc_controller {
 	// 공지사항 삭제
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/notice_delete")
-	public String notice_delete(Integer no, String user_id, Principal pcp) {
-		if(user_id.equals(pcp.getName())) {
+	public String notice_delete(Integer no, String admin_id, Principal pcp) {
+		if(admin_id.equals(pcp.getName())) {
 			svc.notice_delete(no);
 			return "service_center/notice_list";
 		}
