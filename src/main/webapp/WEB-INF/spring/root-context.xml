@@ -13,7 +13,7 @@
 	
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
 	<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-	<property name="url" value="jdbc:mysql://203.245.44.73:3306/sexyboyz?serverTimezone=UTC" />
+	<property name="url" value="jdbc:mysql://every-guesthouse.com:3306/sexyboyz?serverTimezone=UTC" />
 	<property name="username" value="sexyboyz" />
 	<property name="password" value="sexboji@" />
 	<property name="maxTotal" value="10" />			<!-- 최대 활성 연결수 -->
