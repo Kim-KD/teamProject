@@ -7,7 +7,6 @@
 <aside>
 	<ul>
 		<li><a href="notice_list">공지 사항</a></li>
-		<li><a href="#">자주하는 질문</a></li>
 		<li><a href="inquiry_list">1:1문의</a></li>
 		<li><a href="report_list">게시글 신고</a></li>
 	</ul>
