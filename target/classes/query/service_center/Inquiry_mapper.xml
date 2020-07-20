@@ -27,6 +27,12 @@
 		limit #{startRowNum},#{endRowNum}
 	</select>
 	
+	<!-- 1:1문의 작성 -->
+	<insert id="inquiry_insert" parameterType="inquiry" useGeneratedKeys="true" keyProperty="no">
+		insert into service_inquiry(no, user_id, title, content, inquiry_date, inquiry_status)
+		values(#{no}, #{user_id}, #{title}, #{content}, now(), '0')
+	</insert>
+	
 	<!-- 1:1문의 읽기 -->
 	<select id="inquiry_read" resultType="inquiry">
 		select no,user_id,title,content,inquiry_date,inquiry_status,answer
@@ -38,6 +44,8 @@
 	<update id="inquiry_update">
 		update service_inquiry
 		<trim prefix="SET" suffixOverrides=",">
+			<if test="title != null">title = #{title},</if>
+			<if test="content != null">content = #{content},</if>
 			<if test="inquiry_status != null">inquiry_status = #{inquiry_status},</if>
 			<if test="answer != null">answer = #{answer},</if>
 		</trim>

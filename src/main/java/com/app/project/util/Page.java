@@ -7,6 +7,7 @@ import com.app.project.board.trip.Trip_board_bean;
 import com.app.project.reserve.Reserve_bean;
 import com.app.project.service_center.inquiry.Inquiry_bean;
 import com.app.project.service_center.notice.Notice_bean;
+import com.app.project.service_center.report.Report_bean;
 import com.app.project.user.User_bean;
 
 import lombok.AllArgsConstructor;
@@ -32,8 +33,14 @@ public class Page{
 	List<GH_BoardBean> gh_list;
 	List<Reserve_bean> reserve_list;
 	
+//	관리자 유저 관리 리스트
 	List<User_bean> user_list;
 	
+//	고객센터
+//	공지사항 리스트
 	List<Notice_bean> notice_list;
+//	1:1문의 리스트
 	List<Inquiry_bean> inquiry_list;
+//	신고 글 리스트
+	List<Report_bean> report_list;
 }

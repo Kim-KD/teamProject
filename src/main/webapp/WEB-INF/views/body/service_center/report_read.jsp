@@ -17,7 +17,7 @@
    </script>
 </sec:authorize>
 
-<script src="resources/data-components/service_center/inquiry_read.js"></script>
+<script src="resources/data-components/service_center/report_read.js"></script>
 
 <style>
 	#btn_area{position:relative; left:38%;}
@@ -26,11 +26,12 @@
 <section class="blog-section spad">
 	<div class="container">
 		<div class="section-title">
-			<h2>문의 정보</h2>
+			<h2>신고 정보</h2>
 		</div>
 		
+		<input type="hidden" id="no" value="${board.no}">
 		<input type="hidden" id="user_id2" value="${board.user_id}">
-		<input type="hidden" id="inquiry_status2" value="${board.inquiry_status}">
+		<input type="hidden" id="report_status2" value="${board.report_status}">
 		
 			<div class="row" id="basic_info">
 				<div class="col-lg-12">
@@ -50,9 +51,9 @@
 				</div>
 				<div class="col-lg-12">
 					<div class="property-header" >
-						<h4><span id="inquiry_status">
-						<c:if test="${board.inquiry_status==0}">진행 상태 : 답변대기</c:if>
-						<c:if test="${board.inquiry_status==1}">진행 상태 : 답변완료</c:if>
+						<h4>진행 상태 : <span id="report_status">
+						<c:if test="${board.report_status==0}">답변대기</c:if>
+						<c:if test="${board.report_status==1}">답변완료</c:if>
 						</span></h4>
 					</div>
 				</div>
@@ -60,7 +61,7 @@
 			
 			<hr>
 			
-			<c:if test="${board.inquiry_status==1}">
+			<c:if test="${board.report_status==1}">
 				<h2>답변</h2>
 				<div class="row" id="basic_info">
 					<div class="col-lg-12">
@@ -70,20 +71,20 @@
 			</c:if>
 			
 		<div id="btn_area">
-			<a href="inquiry_update?no=${board.no}&user_id=${board.user_id}" type="button" class="btn btn-success" id="update_btn">문의 수정</a>
-			<button type="button" class="btn btn-danger" id="delete_box_open">문의 삭제</button>
-			<a href="inquiry_list" type="button" class="btn btn-primary" id="list_btn">목록으로</a>
+			<a href="report_update?no=${board.no}&user_id=${board.user_id}" type="button" class="btn btn-success" id="update_btn">글 수정</a>
+			<button type="button" class="btn btn-danger" id="delete_box_open">글 삭제</button>
+			<a href="report_list" type="button" class="btn btn-primary" id="list_btn">목록으로</a>
 		</div>
 		<div>
    </div>
 </div>
 			
-<!-- 문의 취소 Modal -->
+<!-- 신고 취소 Modal -->
 <div id="delete_box" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title" id="myModalLabel">문의 삭제</h4>
+				<h4 class="modal-title" id="myModalLabel">신고 글 삭제</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">X</span>
 					</button>
@@ -93,20 +94,20 @@
 				<div class="container">
 					<div class="form-group">
 						<div id="select">
-							<h6>정말 문의를 삭제하시겠습니까?</h6>
+							<h6>정말 신고 글을 삭제하시겠습니까?</h6>
 						</div>
 					</div>
 				</div>
 			</div>
 
 			<div class="modal-footer">
-				<button id="delete_btn" class="btn btn-danger">취소하기</button>
+				<button id="delete_btn" class="btn btn-danger">삭제하기</button>
 				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 			</div>
 		</div>
 	</div>
 </div>
-<!-- 문의 삭제 Modal End -->
+<!-- 신고 삭제 Modal End -->
 </section>
 
 <!--  Section end -->

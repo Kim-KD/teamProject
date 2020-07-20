@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="report_mapper">
+	
+	<!-- 신고 start -->
+	<!-- 신고 총 갯수 -->
+	<select id='report_count' resultType='int'>
+		select /*+
+		index_ffs(service_report PRIMARY)*/ count(*)
+		from service_report
+		<where>
+			<if test="report_status != null">report_status=#{report_status}</if>
+			<if test="user_id != null">and user_id like CONCAT('%', #{user_id}, '%')</if>
+		</where>
+	</select>
+	
+	<!-- 신고 정보 -->
+	<select id="report_find_all" resultType="report">
+		select no,user_id,title,content,report_date,report_status,answer
+		from service_report
+		<where>
+			<if test="report_status != null">report_status=#{report_status}</if>
+			<if test="user_id != null">and user_id like CONCAT('%', #{user_id}, '%')</if>
+		</where>
+		limit #{startRowNum},#{endRowNum}
+	</select>
+	
+	<!-- 신고 작성 -->
+	<insert id="report_insert" parameterType="report" useGeneratedKeys="true" keyProperty="no">
+		insert into service_report(no, user_id, title, content, report_date, report_status)
+		values(#{no}, #{user_id}, #{title}, #{content}, now(), '0')
+	</insert>
+	
+	<!-- 신고 읽기 -->
+	<select id="report_read" resultType="report">
+		select no,user_id,title,content,report_date,report_status,answer
+		from service_report
+		where no = #{no}
+	</select>
+	
+	<!-- 신고 수정 -->
+	<update id="report_update">
+		update service_report
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="title != null">title = #{title},</if>
+			<if test="content != null">content = #{content},</if>
+			<if test="report_status != null">report_status = #{report_status},</if>
+			<if test="answer != null">answer = #{answer},</if>
+		</trim>
+		where no = #{no}
+	</update>
+	
+	<!-- 신고 삭제 -->
+	<delete id="report_delete">
+		delete from service_report
+		where no = #{no}
+	</delete>
+	<!-- 신고 end -->
+	
+</mapper>

@@ -11,6 +11,8 @@
 		<li><a href="cpn_list">기업 회원 관리</a></li>
 		<li><a href="wait_list">문의 답변 대기</a></li>
 		<li><a href="success_list">문의 답변 완료</a></li>
+		<li><a href="report_wait_list">신고 답변 대기</a></li>
+		<li><a href="report_success_list">신고 답변 완료</a></li>
 		<li><a href="notice_write">공지 사항 작성</a></li>
 	</ul>
 </aside>

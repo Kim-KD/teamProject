@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <script src="resources/ckeditor/ckeditor.js"></script>
-<script src="resources/data-components/service_center/inquiry_write.js"></script>
+<script src="resources/data-components/service_center/report_write.js"></script>
 
 <!-- Contact Section end -->
 <section class="contact-section">
     <div class="container">
     <div class="section-title">
-			<h2>문의 작성</h2>
+			<h2>신고 작성</h2>
 	</div>
-        <form class="contact-form" action="inquiry_write" method="post">
+        <form class="contact-form" action="report_write" method="post">
         <input type="hidden" name="user_id" value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}">
         <input type="hidden" name="_csrf" value="${_csrf.token}">
         

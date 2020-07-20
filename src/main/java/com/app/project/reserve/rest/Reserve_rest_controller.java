@@ -29,7 +29,7 @@ public class Reserve_rest_controller {
 //		if(user_id.equals(pcp.getName())==false) {
 //			String check = null;
 //			Cookie[] cookies = req.getCookies();
-//			Inquiry_bean board = svc.trip_read(no, user_id);
+//			Report_bean board = svc.trip_read(no, user_id);
 //			if(cookies != null) {
 //				for(Cookie c : cookies) {
 //					if(c.getName().equals("like"+ no)) {

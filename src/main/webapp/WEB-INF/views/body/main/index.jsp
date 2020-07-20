@@ -35,7 +35,7 @@
                         </div>
                         <div class="place_info">
                             <a href="javascript:void(0);"><h3>스타 게스트하우스</h3></a>
-                            <p>제주특별시 섹스로 69</p>
+                            <p>제주특별시 서귀포로 69</p>
                             <div class="rating_days d-flex justify-content-between">
                                 <span class="d-flex justify-content-center align-items-center">
                                      <i class="fa fa-star"></i> 
@@ -60,7 +60,7 @@
                         </div>
                         <div class="place_info">
                             <a href="javascript:void(0);"><h3>브릭 게스트하우스</h3></a>
-                            <p>제주특별시 섹스로 69</p>
+                            <p>제주특별시 서귀포로 69</p>
                             <div class="rating_days d-flex justify-content-between">
                                 <span class="d-flex justify-content-center align-items-center">
                                      <i class="fa fa-star"></i> 
@@ -85,7 +85,7 @@
                         </div>
                         <div class="place_info">
                             <a href="javascript:void(0);"><h3>러브 게스트하우스</h3></a>
-                            <p>제주특별시 섹스로 69</p>
+                            <p>제주특별시 서귀포로 69</p>
                             <div class="rating_days d-flex justify-content-between">
                                 <span class="d-flex justify-content-center align-items-center">
                                      <i class="fa fa-star"></i> 
@@ -140,7 +140,7 @@
                         </div>
                         <div class="place_info">
                             <a href="javascript:void(0);"><h3>스타 게스트하우스</h3></a>
-                            <p>제주특별시 섹스로 69</p>
+                            <p>제주특별시 서귀포로 69</p>
                             <div class="rating_days d-flex justify-content-between">
                                 <span class="d-flex justify-content-center align-items-center">
                                      <i class="fa fa-star"></i> 
@@ -165,7 +165,7 @@
                         </div>
                         <div class="place_info">
                             <a href="javascript:void(0);"><h3>브릭 게스트하우스</h3></a>
-                            <p>제주특별시 섹스로 69</p>
+                            <p>제주특별시 서귀포로 69</p>
                             <div class="rating_days d-flex justify-content-between">
                                 <span class="d-flex justify-content-center align-items-center">
                                      <i class="fa fa-star"></i> 
@@ -190,7 +190,7 @@
                         </div>
                         <div class="place_info">
                             <a href="javascript:void(0);"><h3>러브 게스트하우스</h3></a>
-                            <p>제주특별시 섹스로 69</p>
+                            <p>제주특별시 서귀포로 69</p>
                             <div class="rating_days d-flex justify-content-between">
                                 <span class="d-flex justify-content-center align-items-center">
                                      <i class="fa fa-star"></i> 

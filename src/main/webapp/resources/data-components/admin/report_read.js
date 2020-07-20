@@ -1,5 +1,5 @@
 $(function() {
-	if($("#inquiry_status_val").val()=="0") {
+	if($("#report_status_val").val()=="0") {
 		CKEDITOR.replace("answer",{
 			filebrowserUploadUrl : "/guehamo/imgupload?_csrf=${_csrf.token}"
 		})
@@ -7,12 +7,12 @@ $(function() {
 	$("#answer_btn").on("click", function() {
 		var param = {
 				no : $("#no").val(),
-				inquiry_status : '1',
+				report_status : '1',
 				answer : CKEDITOR.instances.answer.getData(),
 				_csrf:"${_csrf.token}"
 			}
 		$.ajax({
-			url:"admin_inquiry_update",
+			url:"admin_report_update",
 			data: param,
 			method:"post",
 			success:function() {
@@ -44,7 +44,7 @@ function answer_update(){
 			_csrf:"${_csrf.token}"
 		}
 	$.ajax({
-		url:"admin_inquiry_update",
+		url:"admin_report_update",
 		data: param,
 		method:"post",
 		success:function() {

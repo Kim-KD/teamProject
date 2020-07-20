@@ -15,7 +15,7 @@
 
 	<div class="container">
 		<div class="section-title">
-			<h2>공지사항</h2>
+			<h2>신고 내역</h2>
 		</div>
 		
 		<div>
@@ -23,47 +23,54 @@
          <colgroup>
             <col width="40%">
             <col width="30%">
-            <col width="30%">
+            <col width="20%">
+            <col width="10%">
          </colgroup>
          <thead>
             <tr>
                <th>제목</th>
                <th>작성자</th>
                <th>작성 날짜</th>
+               <th>진행 상태</th>
             </tr>
          </thead>
          <tbody id="list">
-         <c:forEach items="${page.notice_list}" var="board">
+         <c:forEach items="${page.report_list}" var="board">
             <tr>
-           	   <td><a href="notice_read?no=${board.no}">${board.title}</a></td>
-               <td>${board.admin_id}</td>
-               <td>${board.write_date}</td>
+           	   <td><a href="report_read?no=${board.no}">${board.title}</a></td>
+               <td>${board.user_id}</td>
+               <td>${board.report_date}</td>
+               <td>
+               <c:if test="${board.report_status==0}">답변 대기</c:if>
+               <c:if test="${board.report_status==1}">답변 완료</c:if>
+               </td>
             </tr>
          </c:forEach>
          </tbody>
       </table>
+      	<a type="button" class="btn btn-success" href="report_write">문의하기</a>
    </div>
    
    <div style="text-align:center;">
       <ul>
          <c:if test="${page.prev==true}">
-            <li><a href="notice_list?pageno=${page.startPage-1}">이전</a></li>
+            <li><a href="report_list?pageno=${page.startPage-1}">이전</a></li>
          </c:if>
          <c:forEach begin="${page.startPage}" end="${page.endPage}" var="i">
             <c:choose>
                <c:when test="${page.pageno eq i }">
                   <li class="active">
-                     <a href="notice_list?pageno=${i}">${i}</a>
+                     <a href="report_list?pageno=${i}">${i}</a>
                   </li>
                </c:when>
                <c:otherwise>
-                  <li><a href="notice_list?pageno=${i}">${i}</a></li>
+                  <li><a href="report_list?pageno=${i}">${i}</a></li>
                </c:otherwise>
             </c:choose>
             
          </c:forEach>
          <c:if test="${page.next==true}">
-            <li><a href="notice_list?pageno=${page.endPage+1}">다음</a></li>
+            <li><a href="report_list?pageno=${page.endPage+1}">다음</a></li>
          </c:if>
       </ul>
    </div>
@@ -71,8 +78,8 @@
       <input type="text" id="keyword" name="title">
       <button id="search_btn">검색</button>
    </form>
+		
 </div>
-
 </section>
 <!-- Blog Section end -->
 

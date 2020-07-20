@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <script src="resources/ckeditor/ckeditor.js"></script>
-<script src="resources/data-components/service_center/inquiry_update.js"></script>
+<script src="resources/data-components/service_center/report_update.js"></script>
 
 <!-- Contact Section end -->
 <section class="contact-section">
     <div class="container">
     <div class="section-title">
-			<h2>문의 수정</h2>
+			<h2>신고 수정</h2>
 	</div>
 <form id="update_form" class="contact-form" action="#" method="post">
-        <input type="hidden" name="user_id" value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}">
-        <input type="hidden" name="no" value="${board.no}">
+        <input type="hidden" id="user_id2" name="user_id2" value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}">
+        <input type="hidden" id="no" name="no" value="${board.no}">
         <input type="hidden" name="_csrf" value="${_csrf.token}">
         
             <div class="row">
@@ -37,12 +37,12 @@
 </section>
 <!-- Contact Section end -->
 
-<!-- 문의 수정 취소 Modal -->
+<!-- 신고 수정 취소 Modal -->
 <div id="cancel_box" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title" id="myModalLabel">문의 수정 취소</h4>
+				<h4 class="modal-title" id="myModalLabel">신고 수정 취소</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">X</span>
 					</button>
@@ -53,7 +53,7 @@
 					<div class="form-group">
 						<div id="select">
 							<h6>변경된 내용이 저장되지 않습니다.
-							<br>정말 문의 수정을 취소하시겠습니까?</h6>
+							<br>정말 신고 수정을 취소하시겠습니까?</h6>
 						</div>
 					</div>
 				</div>
@@ -66,4 +66,4 @@
 		</div>
 	</div>
 </div>
-<!-- 문의 수정 취소 Modal End -->
+<!-- 신고 수정 취소 Modal End -->

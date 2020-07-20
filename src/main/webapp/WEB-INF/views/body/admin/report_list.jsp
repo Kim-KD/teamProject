@@ -1,21 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<script src="resources/data-components/admin/report_list.js"></script>
+
 <!-- Blog Section end -->
 <section class="blog-section spad">
-
 <aside>
 	<ul>
-		<li><a href="notice_list">공지 사항</a></li>
-		<li><a href="#">자주하는 질문</a></li>
-		<li><a href="inquiry_list">1:1문의</a></li>
-		<li><a href="report_list">게시글 신고</a></li>
+		<li><a href="user_list">일반 회원 관리</a></li>
+		<li><a href="cpn_list">기업 회원 관리</a></li>
+		<li><a href="wait_list">문의 답변 대기</a></li>
+		<li><a href="success_list">문의 답변 완료</a></li>
+		<li><a href="report_wait_list">신고 답변 대기</a></li>
+		<li><a href="report_success_list">신고 답변 완료</a></li>
+		<li><a href="notice_write">공지 사항 작성</a></li>
 	</ul>
 </aside>
-
 	<div class="container">
 		<div class="section-title">
-			<h2>문의 내역</h2>
+			<h2 id="page_title"></h2>
 		</div>
 		
 		<div>
@@ -35,49 +38,49 @@
             </tr>
          </thead>
          <tbody id="list">
-         <c:forEach items="${page.inquiry_list}" var="board">
+         <c:forEach items="${page.report_list}" var="board">
             <tr>
-           	   <td><a href="inquiry_read?no=${board.no}">${board.title}</a></td>
+           	   <td><a href="admin_report_read?no=${board.no}">${board.title}</a></td>
                <td>${board.user_id}</td>
-               <td>${board.inquiry_date}</td>
+               <td>${board.report_date}</td>
                <td>
-               <c:if test="${board.inquiry_status==0}">답변 대기</c:if>
-               <c:if test="${board.inquiry_status==1}">답변 완료</c:if>
+               <c:if test="${board.report_status==0}">답변 대기</c:if>
+               <c:if test="${board.report_status==1}">답변 완료</c:if>
                </td>
             </tr>
+            <input type="hidden" id="report_status" value="${board.report_status}">
          </c:forEach>
          </tbody>
       </table>
-      	<a type="button" class="btn btn-success" href="inquiry_write">문의하기</a>
    </div>
    
    <div style="text-align:center;">
       <ul>
          <c:if test="${page.prev==true}">
-            <li><a href="inquiry_list?pageno=${page.startPage-1}">이전</a></li>
+            <li><a href="report_list?pageno=${page.startPage-1}">이전</a></li>
          </c:if>
          <c:forEach begin="${page.startPage}" end="${page.endPage}" var="i">
             <c:choose>
                <c:when test="${page.pageno eq i }">
                   <li class="active">
-                     <a href="inquiry_list?pageno=${i}">${i}</a>
+                     <a href="report_list?pageno=${i}">${i}</a>
                   </li>
                </c:when>
                <c:otherwise>
-                  <li><a href="inquiry_list?pageno=${i}">${i}</a></li>
+                  <li><a href="report_list?pageno=${i}">${i}</a></li>
                </c:otherwise>
             </c:choose>
             
          </c:forEach>
          <c:if test="${page.next==true}">
-            <li><a href="inquiry_list?pageno=${page.endPage+1}">다음</a></li>
+            <li><a href="report_list?pageno=${page.endPage+1}">다음</a></li>
          </c:if>
       </ul>
-   </div>
-   <form id="search_form" action="#" method="get">
-      <input type="text" id="keyword" name="title">
+      <form id="search_form" action="#" method="get">
+      <input type="text" id="keyword" name="user_id">
       <button id="search_btn">검색</button>
-   </form>
+      </form>
+   </div>
 		
 </div>
 </section>

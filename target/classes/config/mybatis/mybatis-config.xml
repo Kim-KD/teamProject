@@ -22,6 +22,8 @@
 		<typeAlias alias="inquiry" type="com.app.project.service_center.inquiry.Inquiry_bean" />
 		<!-- 공지사항 -->
 		<typeAlias alias="notice" type="com.app.project.service_center.notice.Notice_bean" />
+		<!-- 신고 -->
+		<typeAlias alias="report" type="com.app.project.service_center.report.Report_bean" />
 		<!-- 고객센터 end -->
 	</typeAliases>
 </configuration>

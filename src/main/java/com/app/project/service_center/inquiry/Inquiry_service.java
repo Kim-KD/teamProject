@@ -14,12 +14,12 @@ public class Inquiry_service {
 	@Autowired
 	private Inquiry_dao dao;
 
-	public Page inquiry_list(int pageno, String user_id) {
-		int countOfBoard = dao.inquiry_count(user_id);
+	public Page inquiry_list(Integer pageno, String inquiry_status, String user_id) {
+		int countOfBoard = dao.inquiry_count(inquiry_status,user_id);
 		Page page = PagingUtil.getPage(pageno, countOfBoard);
 		int srn = page.getStartRowNum();
 		int ern = page.getEndRowNum();
-		List<Inquiry_bean> boardList = dao.inquiry_find_all(srn, ern, user_id);
+		List<Inquiry_bean> boardList = dao.inquiry_find_all(srn, ern,inquiry_status , user_id);
 		page.setInquiry_list(boardList);
 		return page;
 	}
@@ -31,7 +31,7 @@ public class Inquiry_service {
 	}
 	
 	// 문의 읽기
-	public Inquiry_bean inquiry_read(int no, String user_id) {
+	public Inquiry_bean inquiry_read(Integer no, String user_id) {
 		Inquiry_bean board = dao.inquiry_read(no);
 		return board;
 	}
@@ -42,7 +42,7 @@ public class Inquiry_service {
 	}
 	
 	// 문의 삭제
-	public Integer inquiry_delete(int no) {
+	public Integer inquiry_delete(Integer no) {
 		return dao.inquiry_delete(no);
 	}
 }
