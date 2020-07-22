@@ -14,16 +14,19 @@ public class Trip_board_dao {
 	@Autowired
 	private SqlSessionTemplate sql;
 
-	public int trip_count(String user_id) {
+	public Integer trip_count(String user_id, String on_off) {
 		Map<String,Object> map = new HashMap<>();
 		map.put("user_id", user_id);
+		map.put("on_off", on_off);
 		return sql.selectOne("trip_mapper.trip_count",map);
 	}
 	
-	public List<Trip_board_bean> trip_find_all(Integer startRowNum, Integer endRowNum) {
-		Map<String,Integer> map = new HashMap<>();
+	public List<Trip_board_bean> trip_find_all(Integer startRowNum, Integer endRowNum, String user_id, String on_off) {
+		Map<String,Object> map = new HashMap<>();
 		map.put("startRowNum", startRowNum);
 		map.put("endRowNum", endRowNum);
+		map.put("user_id", user_id);
+		map.put("on_off", on_off);
 		return sql.selectList("trip_mapper.trip_find_all", map);
 	}
 	
@@ -31,21 +34,21 @@ public class Trip_board_dao {
 		return sql.selectOne("trip_mapper.trip_read", no);
 	}
 	
-	public int trip_insert(Trip_board_bean board) {
+	public Integer trip_insert(Trip_board_bean board) {
 		return sql.insert("trip_mapper.trip_insert", board);
 	}
 	
-	public int trip_update(Trip_board_bean board) {
+	public Integer trip_update(Trip_board_bean board) {
 		return sql.update("trip_mapper.trip_update", board);
 	}
 	
-	public int trip_delete(Integer no) {
+	public Integer trip_delete(Integer no) {
 		return sql.delete("trip_mapper.trip_delete", no);
 	}
 
 	// 후기 start
 	// 관광명소 후기 작성
-	public int trip_view_insert(Trip_view_bean view) {
+	public Integer trip_view_insert(Trip_view_bean view) {
 		return sql.insert("trip_mapper.trip_view_insert", view);
 	}
 
@@ -60,12 +63,12 @@ public class Trip_board_dao {
 	}
 
 	// 관광명소 후기 삭제
-	public int trip_view_delete(Integer vno) {
+	public Integer trip_view_delete(Integer vno) {
 		return sql.delete("trip_mapper.trip_view_delete", vno);
 	}
 
 	// 관광명소 후기 수정
-	public int trip_view_update(Trip_view_bean view) {
+	public Integer trip_view_update(Trip_view_bean view) {
 		return sql.update("trip_mapper.trip_view_update", view);
 	}
 }

@@ -11,17 +11,20 @@
 		from trip_info
 		<where>
 			<if test="user_id != null">and user_id=#{user_id}</if>
+			<if test="on_off != null">and on_off=#{on_off}</if>
 		</where>
 	</select>
 
 	<!-- 관광 명소 게시글 정보 -->
 	<select id="trip_find_all" resultType="trip_board"> 
- 	<![CDATA[ 
- 		select no,user_id,title,content,admission,opentime,w_date wDate,
+ 		select no,user_id,title,content,admission,opentime,w_date,
 			city,postcode,address,on_off,p_link,up_view,views,likes,name
 		from trip_info
+		<where>
+			<if test="user_id != null">and user_id=#{user_id}</if>
+			<if test="on_off != null">and on_off=#{on_off}</if>
+		</where>
   	 limit #{startRowNum},#{endRowNum}
-  	 	]]>
 	</select>
 
 	<!-- 관광명소 게시글 읽기 -->

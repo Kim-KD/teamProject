@@ -93,8 +93,9 @@
 	<hr>
 	<div class="col-sm-5 col-sm-offset-1">
 	<input type="hidden" name="_csrf" value="${_csrf.token}">
-		<br> <button type="button" class="btn btn-success" id="update">수정하기</button>
-			<a href="javascript:void(0);" type="button" class="btn btn-finish btn-primary" id="back">목록으로</a>
+		<br> 
+		<button type="button" class="btn btn-success" id="update">수정하기</button>
+		<a href="javascript:void(0);" type="button" class="btn btn-finish btn-primary" id="back">목록으로</a>
 	</div>
 	</div>
 	</div>

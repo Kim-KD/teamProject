@@ -22,18 +22,18 @@ public class Trip_board_service {
 	@Autowired
 	private UploadInfoDao uploadDao;
 
-	public Page tripList(int pageno, String user_id) {
-		int countOfBoard = dao.trip_count(user_id);
+	public Page tripList(Integer pageno, String user_id, String on_off) {
+		Integer countOfBoard = dao.trip_count(user_id,on_off);
 		Page page = PagingUtil.getPage(pageno, countOfBoard);
-		int srn = page.getStartRowNum();
-		int ern = page.getEndRowNum();
-		List<Trip_board_bean> boardList = dao.trip_find_all(srn, ern);
+		Integer srn = page.getStartRowNum();
+		Integer ern = page.getEndRowNum();
+		List<Trip_board_bean> boardList = dao.trip_find_all(srn, ern,user_id,on_off);
 		page.setTrip_list(boardList);
 		return page;
 	}
 	
 	// 게시글 작성
-	public int trip_write(Trip_board_bean board) throws IOException {
+	public Integer trip_write(Trip_board_bean board) throws IOException {
 		
 		dao.trip_insert(board);
 		
@@ -70,13 +70,35 @@ public class Trip_board_service {
 	}
 	
 	// 게시글 수정
-	public int trip_update(Trip_board_bean board) {
+	public Integer trip_update(Trip_board_bean board) {
 		return dao.trip_update(board);
 	}
 	
+	// 관리자 게시글 공개여부 수정
+	public Integer admin_trip_update(String board) {
+//		dao.trip_update(board);
+		return null;
+	}
+	
 	// 게시글 삭제
-	public int trip_delete(int no) {
+	public Integer trip_delete(Integer no) {
 		return dao.trip_delete(no);
+	}
+	
+	// 관리자 게시글 삭제
+	public Integer admin_trip_delete(String no) {
+		String no_str1 = no.replace("[","");
+		String no_str2 = no_str1.replace("]","");
+		String no_str3 = no_str2.replace("\"","");
+		String[] no_list = no_str3.split(",");
+		if(no_list!=null) {
+			for (String number : no_list) {
+				System.out.println("확인==========="+number);
+				dao.trip_delete(Integer.parseInt(number));
+			}
+			return 1;
+		}
+		return 0;
 	}
 	
 	// 후기 start
@@ -98,7 +120,7 @@ public class Trip_board_service {
 	}
 
 	// 게스트하우스 후기 수정
-	public int trip_view_update(Trip_view_bean view) {
+	public Integer trip_view_update(Trip_view_bean view) {
 		return dao.trip_view_update(view);
 	}
 }
