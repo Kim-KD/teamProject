@@ -7,8 +7,14 @@
 <section class="blog-section spad">
 <aside>
 	<ul>
+		<li><a href="guest_on_list">게스트 하우스 공개 게시글 관리</a></li>
+		<li><a href="guest_off_list">게스트 하우스 비공개 게시글 관리</a></li>
+		<li><a href="trip_on_list">관광명소 공개 게시글 관리</a></li>
+		<li><a href="trip_off_list">관광명소 비공개 게시글 관리</a></li>
 		<li><a href="user_list">일반 회원 관리</a></li>
 		<li><a href="cpn_list">기업 회원 관리</a></li>
+		<li><a href="guest_list">일반 회원 관리</a></li>
+		<li><a href="trip_list">기업 회원 관리</a></li>
 		<li><a href="wait_list">문의 답변 대기</a></li>
 		<li><a href="success_list">문의 답변 완료</a></li>
 		<li><a href="report_wait_list">신고 답변 대기</a></li>

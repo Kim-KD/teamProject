@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.app.project.util.Page;
+import com.app.project.util.PagingUtil;
+
 @Service
 public class GH_BoardService {
 	
@@ -15,9 +18,66 @@ public class GH_BoardService {
 	private GH_BoardDao bdao;
 	private ModelAndView mav;
 	
+	//=========================관리자==============================
+	// 관리자 게스트 하우스 게시글 수정(공개여부,파워링크,상단노출)
+	// 관리자 게시글 공개여부 수정
+		public Integer admin_guest_update(String board) {
+			if(board.equals("[]")==false) {
+				GH_BoardBean guest = new GH_BoardBean();
+				String board_str1 = board.replace("[","");
+				String board_str2 = board_str1.replace("]","");
+				String board_str3 = board_str2.replace("\"","");
+				String board_str4 = board_str3.replace("{","");
+				String board_str5 = board_str4.replace("}","");
+				String[] board_list = board_str5.split(",");
+				String[] board_list2 = null;
+				
+				for (int i = 0; i < board_list.length; i++) {
+					board_list2 = board_list[i].split(":");
+					for (int j = 0; j < board_list2.length; j++) {
+						if(board_list2[j].equals("no")) {
+							guest.setNo(Integer.parseInt(board_list2[j+1]));
+						}else if(board_list2[j].equals("on_off")) {
+							guest.setOn_off(board_list2[j+1]);
+							bdao.gh_update(guest);
+						}
+					}
+				}
+				return 1;
+			}
+			return 0;
+		}
+		
+		// 관리자 게시글 삭제
+		public Integer admin_guest_delete(String no) {
+			String no_str1 = no.replace("[","");
+			String no_str2 = no_str1.replace("]","");
+			String no_str3 = no_str2.replace("\"","");
+			String[] no_list = no_str3.split(",");
+			if(no_list!=null) {
+				for (String number : no_list) {
+					bdao.gh_delete(Integer.parseInt(number));
+				}
+				return 1;
+			}
+			return 0;
+		}
+		
+		public Page admin_guest_list(Integer pageno, String user_id, String on_off) {
+			Integer countOfBoard = bdao.gh_count(user_id,on_off);
+			Page page = PagingUtil.getPage(pageno, countOfBoard);
+			Integer srn = page.getStartRowNum();
+			Integer ern = page.getEndRowNum();
+			List<GH_BoardBean> boardList = bdao.gh_find_all(srn, ern,user_id,on_off);
+			page.setGh_list(boardList);
+			return page;
+		}
+	//===========================================================
+	
+	
 	// 게스트하우스 목록
-	public ModelAndView guest_house_list() {
-		List<GH_BoardBean> boardList = bdao.guest_house_list();
+	public ModelAndView guest_house_list(String user_id, String on_off) {
+		List<GH_BoardBean> boardList = bdao.guest_house_list(user_id,on_off);
 		
 		mav = new ModelAndView();
 		mav.addObject("boardList", boardList);

@@ -7,6 +7,10 @@
 <section class="blog-section spad">
 <aside>
 	<ul>
+		<li><a href="guest_on_list">게스트 하우스 공개 게시글 관리</a></li>
+		<li><a href="guest_off_list">게스트 하우스 비공개 게시글 관리</a></li>
+		<li><a href="trip_on_list">관광명소 공개 게시글 관리</a></li>
+		<li><a href="trip_off_list">관광명소 비공개 게시글 관리</a></li>
 		<li><a href="user_list">일반 회원 관리</a></li>
 		<li><a href="cpn_list">기업 회원 관리</a></li>
 		<li><a href="guest_list">일반 회원 관리</a></li>
@@ -49,7 +53,7 @@
            	   <td><a href="user_read?user_id=${board.user_id}">${board.user_id}</a></td>
                <td>${board.w_date}</td>
                <td class="update_td">
-		       	<select class="selectOnoff" name="on_off" id="selectOnoff" data-no="${board.no}">
+		       	<select class="selectOnoff" name="on_off" data-no="${board.no}">
 			       	<c:if test="${board.on_off=='y'}">
 				       	<option selected="selected" value="y">공개</option>
 				       	<option value="n">비공개</option>
@@ -74,20 +78,24 @@
    <div style="text-align:center;">
 		<div class="site-pagination">
          <c:if test="${page.prev==true}">
-            <a id="before" href="trip_on_list?pageno=${page.startPage-1}">이전</a>
+            <a class="before_on" href="trip_on_list?pageno=${page.startPage-1}">이전</a>
+            <a class="before_off" href="trip_off_list?pageno=${page.startPage-1}">이전</a>
          </c:if>
          <c:forEach begin="${page.startPage}" end="${page.endPage}" var="i">
             <c:choose>
                <c:when test="${page.pageno eq i }">
-                    <a id="now" class="active" href="trip_on_list?pageno=${i}">${i}</a>
+                   	<a class="now_on" class="active" href="trip_on_list?pageno=${i}">${i}</a>
+                   	<a class="now_off" class="active" href="trip_off_list?pageno=${i}">${i}</a>
                </c:when>
                <c:otherwise>
-                  <a id="different" href="trip_on_list?pageno=${i}">${i}</a>
+               		<a class="different_on" href="trip_on_list?pageno=${i}">${i}</a>
+               		<a class="different_off" href="trip_off_list?pageno=${i}">${i}</a>
                </c:otherwise>
             </c:choose>
          </c:forEach>
          <c:if test="${page.next==true}">
-            <a id="after" href="trip_on_list?pageno=${page.endPage+1}">다음</a>
+           	<a class="after_on" href="trip_on_list?pageno=${page.endPage+1}">다음</a>
+           	<a class="after_off" href="trip_off_list?pageno=${page.endPage+1}">다음</a>
          </c:if>
       </div>
       <form id="search_form" action="#" method="get">

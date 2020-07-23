@@ -1,5 +1,7 @@
 package com.app.project.board.gh;
 
+import java.time.LocalDate;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,7 +27,7 @@ public class GH_BoardBean {
 	private String up_view;		// 상단노출
 	private int views;			// 조회수
 	private int likes;			// 추천수
-	private String w_date;		// 작성날짜
+	private LocalDate w_date;		// 작성날짜
 	private String party_menu;	// 파티 메뉴
 	private String alcohol;		// 술
 	private String party_time;	// 파티 시간

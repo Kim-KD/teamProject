@@ -4,15 +4,15 @@ $(function() {
 	var update_map = {};
 	var delete_list = [];
 	
-	if(document.location.href.split("project/")[1].split("?")[0]=="trip_on_list") {
-		$("#page_title").text("관광명소 게시글 공개 목록");
+	if(document.location.href.split("project/")[1].split("?")[0]=="guest_on_list") {
+		$("#page_title").text("게스트 하우스 게시글 공개 목록");
 		$(".before_off").hide();
 		$(".now_off").hide();
 		$(".different_off").hide();
 		$(".after_off").hide();
 		
-	}else if(document.location.href.split("project/")[1].split("?")[0]=="trip_off_list") {
-		$("#page_title").text("관광명소 게시글 비공개 목록");
+	}else if(document.location.href.split("project/")[1].split("?")[0]=="guest_off_list") {
+		$("#page_title").text("게스트 하우스 게시글 비공개 목록");
 		$(".before_on").hide();
 		$(".now_on").hide();
 		$(".different_on").hide();
@@ -41,7 +41,7 @@ $(function() {
 				_csrf:"${_csrf.token}"
 			}
 		$.ajax({
-			url:"admin_trip_update",
+			url:"admin_guest_update",
 			data: param,
 			method:"post",
 			success:function(result) {
@@ -76,7 +76,7 @@ $(function() {
 				_csrf:"${_csrf.token}"
 			}
 		$.ajax({
-			url:"admin_trip_delete",
+			url:"admin_guest_delete",
 			data: param,
 			method:"post",
 			success:function(result) {

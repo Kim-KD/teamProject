@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,6 +30,19 @@ public class GH_Board_mvc_Controller {
 	private GH_BoardService bsvc;
 	private ModelAndView mav;
 	
+	// 관리자 게스트 하우스 관리 start
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@GetMapping("/guest_on_list")
+	public ModelAndView admin_guest_on(@RequestParam(defaultValue="1") int pageno, @Nullable String user_id, @RequestParam(defaultValue="y") String on_off) {
+		return new ModelAndView("admin/guest_list").addObject("page",bsvc.admin_guest_list(pageno,user_id, on_off));
+	}
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@GetMapping("/guest_off_list")
+	public ModelAndView admin_guest_off(@RequestParam(defaultValue="1") int pageno, @Nullable String user_id, @RequestParam(defaultValue="n") String on_off) {
+		return new ModelAndView("admin/guest_list").addObject("page",bsvc.admin_guest_list(pageno,user_id, on_off));
+	}
+	// 관리자 게스트 하우스 관리 end
+	
 	@GetMapping("/guest_house_write")
 	public String write_page() {
 		return "guest_house/guest_house_write";
@@ -35,8 +50,8 @@ public class GH_Board_mvc_Controller {
 	
 	// 게스트하우스 리스트
 	@GetMapping("/guest_house_list")
-	public ModelAndView guest_house_list() {
-		mav = bsvc.guest_house_list();
+	public ModelAndView guest_house_list(@Nullable String user_id,@RequestParam(defaultValue="y") String on_off) {
+		mav = bsvc.guest_house_list(user_id,on_off);
 		return mav;
 	}
 	

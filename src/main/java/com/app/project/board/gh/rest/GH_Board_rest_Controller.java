@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -23,6 +25,23 @@ public class GH_Board_rest_Controller {
 	
 	@Autowired
 	private GH_BoardService bsvc;
+	
+	// 관리자 관광 명소 관리 start
+	// 게시글 공개 여부 수정
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PostMapping("/admin_guest_update")
+	public ResponseEntity<?> admin_update(String board) {
+		return ResponseEntity.ok(bsvc.admin_guest_update(board));
+	}
+
+	// 게시글 선택 삭제
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PostMapping("/admin_guest_delete")
+	public ResponseEntity<?> admin_delete(String no) {
+		return ResponseEntity.ok(bsvc.admin_guest_delete(no));
+	}
+	// 관리자 관광 명소 관리 end
+	
 	
 	// 게스트하우스 게시글 + 후기 삭제
 	@PostMapping("/gh_delete")

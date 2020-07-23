@@ -95,7 +95,7 @@
 		where trip_view_info.vno = #{vno}
 	</select>
 
-	<!-- 게스트하우스 후기 수정 -->
+	<!-- 관광명소 후기 수정 -->
 	<update id="trip_view_update">
 		update trip_view_info
 		<trim prefix="SET" suffixOverrides=",">
@@ -104,7 +104,7 @@
 		where no = #{no} and vno = #{vno}
 	</update>
 
-	<!-- 게스트하우스 후기 삭제 -->
+	<!-- 관광명소 후기 삭제 -->
 	<delete id="trip_view_delete">
 		delete from trip_view_info
 		where vno = #{vno}

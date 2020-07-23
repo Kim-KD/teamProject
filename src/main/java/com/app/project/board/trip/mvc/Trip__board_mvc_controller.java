@@ -2,21 +2,18 @@ package com.app.project.board.trip.mvc;
 
 import java.io.IOException;
 import java.security.Principal;
-import java.util.List;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.lang.Nullable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.app.project.board.trip.Trip_board_bean;
@@ -36,35 +33,19 @@ public class Trip__board_mvc_controller {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/trip_on_list")
 	public ModelAndView admin_trip_on(@RequestParam(defaultValue="1") int pageno, @Nullable String user_id, @RequestParam(defaultValue="y") String on_off) {
-		return new ModelAndView("admin/trip_list").addObject("page",svc.tripList(pageno, user_id, on_off));
+		return new ModelAndView("admin/trip_list").addObject("page",svc.trip_list(pageno, user_id, on_off));
 	}
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/trip_off_list")
 	public ModelAndView admin_trip_off(@RequestParam(defaultValue="1") int pageno, @Nullable String user_id, @RequestParam(defaultValue="n") String on_off) {
-		return new ModelAndView("admin/trip_list").addObject("page",svc.tripList(pageno, user_id, on_off));
+		return new ModelAndView("admin/trip_list").addObject("page",svc.trip_list(pageno, user_id, on_off));
 	}
-	
-	// 게시글 공개 여부 수정
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@PostMapping("/admin_trip_update")
-	@ResponseBody
-	public ResponseEntity<?> admin_update(Trip_board_bean board) {
-		svc.trip_update(board);
-		return ResponseEntity.ok(null);
-	}
-	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@PostMapping("/admin_trip_delete")
-	@ResponseBody
-	public ResponseEntity<?> admin_delete(String no) {
-		return ResponseEntity.ok(svc.admin_trip_delete(no));
-	}
-	
 	// 관리자 관광 명소 관리 end
+	
 	
 	@GetMapping("/trip_list")
 	public ModelAndView trip(@RequestParam(defaultValue="1") int pageno, @Nullable String user_id, @RequestParam(defaultValue="y") String on_off) {
-		return new ModelAndView("trip/trip_list").addObject("page",svc.tripList(pageno, user_id, on_off));
+		return new ModelAndView("trip/trip_list").addObject("page",svc.trip_list(pageno, user_id, on_off));
 	}
 	
 	@PreAuthorize("isAuthenticated()")

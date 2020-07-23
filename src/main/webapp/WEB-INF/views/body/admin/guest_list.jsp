@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<script src="resources/data-components/admin/report_list.js"></script>
+<script src="resources/data-components/admin/guest_list.js"></script>
 
 <!-- Blog Section end -->
 <section class="blog-section spad">
@@ -30,58 +30,74 @@
 		<div>
       <table class="table table-hover">
          <colgroup>
+         	<col width="10%">
             <col width="40%">
-            <col width="30%">
             <col width="20%">
-            <col width="10%">
+            <col width="15%">
+            <col width="15%">
          </colgroup>
          <thead>
             <tr>
+               <th>선택</th>
                <th>제목</th>
-               <th>작성자</th>
+               <th>유저 아이디</th>
                <th>작성 날짜</th>
-               <th>진행 상태</th>
+               <th>공개 여부</th>
             </tr>
          </thead>
          <tbody id="list">
-         <c:forEach items="${page.report_list}" var="board">
+         <c:forEach items="${page.gh_list}" var="board">
             <tr>
-           	   <td><a href="admin_report_read?no=${board.no}">${board.title}</a></td>
-               <td>${board.user_id}</td>
-               <td>${board.report_date}</td>
-               <td>
-               <c:if test="${board.report_status==0}">답변 대기</c:if>
-               <c:if test="${board.report_status==1}">답변 완료</c:if>
+            	<td><input type="checkbox" name="no" data-no="${board.no}" data-on_of="${board.on_off}"></td>
+           	   <td><a href="guest_house_read?no=${board.no}">${board.title}</a></td>
+           	   <td><a href="user_read?user_id=${board.user_id}">${board.user_id}</a></td>
+               <td>${board.w_date}</td>
+               <td class="update_td">
+		       	<select class="selectOnoff" name="on_off" data-no="${board.no}">
+			       	<c:if test="${board.on_off=='y'}">
+				       	<option selected="selected" value="y">공개</option>
+				       	<option value="n">비공개</option>
+			       	</c:if>
+	               	<c:if test="${board.on_off=='n'}">비공개
+	               		<option selected="selected" value="n">비공개</option>
+			       		<option value="y">공개</option>
+	               	</c:if>
+				</select>
                </td>
             </tr>
-            <input type="hidden" id="report_status" value="${board.report_status}">
          </c:forEach>
          </tbody>
       </table>
    </div>
    
+	<div>
+		<button type="button" class="btn btn-success" id="update">수정하기</button>
+		<button type="button" class="btn btn-danger" id="delete">삭제하기</button>
+	</div>
+   
    <div style="text-align:center;">
-      <ul>
+		<div class="site-pagination">
          <c:if test="${page.prev==true}">
-            <li><a href="report_list?pageno=${page.startPage-1}">이전</a></li>
+            <a class="before_on" href="guest_on_list?pageno=${page.startPage-1}">이전</a>
+            <a class="before_off" href="guest_off_list?pageno=${page.startPage-1}">이전</a>
          </c:if>
          <c:forEach begin="${page.startPage}" end="${page.endPage}" var="i">
             <c:choose>
                <c:when test="${page.pageno eq i }">
-                  <li class="active">
-                     <a href="report_list?pageno=${i}">${i}</a>
-                  </li>
+                   	<a class="now_on" class="active" href="guest_on_list?pageno=${i}">${i}</a>
+                   	<a class="now_off" class="active" href="guest_off_list?pageno=${i}">${i}</a>
                </c:when>
                <c:otherwise>
-                  <li><a href="report_list?pageno=${i}">${i}</a></li>
+               		<a class="different_on" href="guest_on_list?pageno=${i}">${i}</a>
+               		<a class="different_off" href="guest_off_list?pageno=${i}">${i}</a>
                </c:otherwise>
             </c:choose>
-            
          </c:forEach>
          <c:if test="${page.next==true}">
-            <li><a href="report_list?pageno=${page.endPage+1}">다음</a></li>
+           	<a class="after_on" href="guest_on_list?pageno=${page.endPage+1}">다음</a>
+           	<a class="after_off" href="guest_off_list?pageno=${page.endPage+1}">다음</a>
          </c:if>
-      </ul>
+      </div>
       <form id="search_form" action="#" method="get">
       <input type="text" id="keyword" name="user_id">
       <button id="search_btn">검색</button>

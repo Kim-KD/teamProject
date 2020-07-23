@@ -1,5 +1,6 @@
 package com.app.project.board.gh;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,8 +14,34 @@ public class GH_BoardDao {
 	@Autowired
 	private SqlSessionTemplate sql;
 	
+	//=========================관리자==============================
+	// 관리자 게스트 하우스 게시글 수정(공개여부,파워링크,상단노출)
+	public int gh_update(GH_BoardBean boardBean) {
+		return sql.update("GH_Mapper.gh_Update_admin", boardBean);
+	}
+	
+	public Integer gh_count(String user_id, String on_off) {
+		Map<String,Object> map = new HashMap<>();
+		map.put("user_id", user_id);
+		map.put("on_off", on_off);
+		return sql.selectOne("GH_Mapper.gh_count",map);
+	}
+	
+	public List<GH_BoardBean> gh_find_all(Integer startRowNum, Integer endRowNum, String user_id, String on_off) {
+		Map<String,Object> map = new HashMap<>();
+		map.put("startRowNum", startRowNum);
+		map.put("endRowNum", endRowNum);
+		map.put("user_id", user_id);
+		map.put("on_off", on_off);
+		return sql.selectList("GH_Mapper.gh_find_all", map);
+	}
+	//===========================================================
+	
 	// 게스트하우스 목록
-	public List<GH_BoardBean> guest_house_list() {
+	public List<GH_BoardBean> guest_house_list(String user_id, String on_off) {
+		Map<String,Object> map = new HashMap<>();
+		map.put("user_id", user_id);
+		map.put("on_off", on_off);
 		return sql.selectList("GH_Mapper.guest_house_list");
 	}
 	

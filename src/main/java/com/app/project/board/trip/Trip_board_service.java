@@ -22,7 +22,7 @@ public class Trip_board_service {
 	@Autowired
 	private UploadInfoDao uploadDao;
 
-	public Page tripList(Integer pageno, String user_id, String on_off) {
+	public Page trip_list(Integer pageno, String user_id, String on_off) {
 		Integer countOfBoard = dao.trip_count(user_id,on_off);
 		Page page = PagingUtil.getPage(pageno, countOfBoard);
 		Integer srn = page.getStartRowNum();
@@ -76,8 +76,30 @@ public class Trip_board_service {
 	
 	// 관리자 게시글 공개여부 수정
 	public Integer admin_trip_update(String board) {
-//		dao.trip_update(board);
-		return null;
+		if(board.equals("[]")==false) {
+			Trip_board_bean trip = new Trip_board_bean();
+			String board_str1 = board.replace("[","");
+			String board_str2 = board_str1.replace("]","");
+			String board_str3 = board_str2.replace("\"","");
+			String board_str4 = board_str3.replace("{","");
+			String board_str5 = board_str4.replace("}","");
+			String[] board_list = board_str5.split(",");
+			String[] board_list2 = null;
+			
+			for (int i = 0; i < board_list.length; i++) {
+				board_list2 = board_list[i].split(":");
+				for (int j = 0; j < board_list2.length; j++) {
+					if(board_list2[j].equals("no")) {
+						trip.setNo(Integer.parseInt(board_list2[j+1]));
+					}else if(board_list2[j].equals("on_off")) {
+						trip.setOn_off(board_list2[j+1]);
+						dao.trip_update(trip);
+					}
+				}
+			}
+			return 1;
+		}
+		return 0;
 	}
 	
 	// 게시글 삭제
@@ -93,7 +115,6 @@ public class Trip_board_service {
 		String[] no_list = no_str3.split(",");
 		if(no_list!=null) {
 			for (String number : no_list) {
-				System.out.println("확인==========="+number);
 				dao.trip_delete(Integer.parseInt(number));
 			}
 			return 1;

@@ -24,6 +24,23 @@ public class Trip__board_rest_controller {
 	@Autowired
 	private Trip_board_service svc;
 	
+	// 관리자 관광 명소 관리 start
+	// 게시글 공개 여부 수정
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PostMapping("/admin_trip_update")
+	public ResponseEntity<?> admin_update(String board) {
+		return ResponseEntity.ok(svc.admin_trip_update(board));
+	}
+
+	// 게시글 선택 삭제
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PostMapping("/admin_trip_delete")
+	public ResponseEntity<?> admin_delete(String no) {
+		return ResponseEntity.ok(svc.admin_trip_delete(no));
+	}
+	// 관리자 관광 명소 관리 end
+	
+	
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/trip_delete")
 	public String delete(Integer no, String user_id, Principal pcp) {
