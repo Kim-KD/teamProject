@@ -59,7 +59,7 @@
 				<div class="col-lg-4">
 					<div class="property-item">
 						<div class="pi-image">
-						<a href="guest_house_read?no=${trip_area_search_data.no}">
+						<a href="trip_read?no=${trip_area_search_data.no}">
 							<c:if test="${trip_area_search_data.thumbnail != null}">
 								<img src="assets/main/img/property/${trip_area_search_data.thumbnail}" alt="">
 							</c:if>

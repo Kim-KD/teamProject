@@ -17,7 +17,7 @@
          <c:forEach items="${page.trip_list}" var="board" varStatus="cnt">
 			<div class="col-lg-4 col-md-6" id="trip_board">
 				<div class="blog-item">
-					<a href="trip_read?no=${board.no}"><img src="assets/img/blog/1.jpg" alt="이미지를 불러 올 수 없습니다."></a>
+					<a href="trip_read?no=${board.no}"><img src="assets/main/img/place/1.png" alt="이미지를 불러 올 수 없습니다."></a>
 					<div class="blog-text">
 						<div class="blog-date">${board.w_date}</div>
 						<h4><a href="trip_read?no=${board.no}">${board.name}</a></h4>
